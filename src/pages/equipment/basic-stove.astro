@@ -1,0 +1,23 @@
+---
+import EntityPage from '../../components/EntityPage.astro';
+---
+<EntityPage
+  title="Karinderya Basic Stove"
+  description="Review what public sources establish about the Karinderya Basic Stove while exact prices and performance remain unconfirmed."
+  kicker="Equipment profile"
+  intro="The documented entry point in the Basic, Standard, and Deluxe stove progression."
+  overview="Basic Stove is a documented cooking-equipment tier. Public descriptions establish its role in the stove progression, but do not provide enough current evidence for numerical performance claims."
+  parent={{ label: 'Equipment', href: '/equipment/' }}
+  status="Community Verified"
+  statusNotes="The item name and cooking-equipment role are supported by multiple public gameplay sources. Current price and numerical performance are not established."
+  observedData={[
+    { label: 'Documented tier', value: 'Basic Stove' },
+    { label: 'Progression position', value: 'Before Standard Stove and Deluxe Stove' },
+    { label: 'Current Cash price', value: 'To be verified' },
+  ]}
+  known={['Basic Stove is a documented stove tier.', 'Stoves are used for cooking.', 'Public sources describe upgraded stoves as reducing cooking time.']}
+  unknown={['Exact cooking time or multiplier', 'Current Cash price', 'Unlock requirement', 'Exact throughput or capacity']}
+  sourceIds={['wiki-furniture', 'deluxe-guide']}
+  relatedLinks={[{ label: 'Standard Stove', href: '/equipment/standard-stove/' }, { label: 'Deluxe Stove', href: '/equipment/deluxe-stove/' }, { label: 'All stoves', href: '/equipment/stoves/' }]}
+  note="Any numerical stove comparison remains To be verified."
+/>

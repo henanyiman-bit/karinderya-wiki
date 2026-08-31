@@ -1,0 +1,11 @@
+---
+import WikiPage from '../components/WikiPage.astro';
+const cards = [
+  { title: 'Stoves', description: 'Compare the documented Basic, Standard, and Deluxe tiers without invented speed values.', href: '/equipment/stoves/', icon: 'S', status: 'Community Verified' },
+  { title: 'Deluxe Stove', description: 'A focused reference for the publicly documented higher-tier stove.', href: '/equipment/deluxe-stove/', icon: 'D', status: 'Community Verified' },
+  { title: 'Chiller', description: 'Track reported repair options and the many mechanics still under verification.', href: '/equipment/chiller/', icon: 'C', status: 'Reported' },
+];
+---
+<WikiPage title="Equipment" description="Browse Karinderya stoves, cooking equipment, and cautious Chiller documentation." kicker="Restaurant tools" intro="A verification-first reference for restaurant equipment and upgrades." cards={cards} note="Exact equipment speed values, multipliers, cash prices, and throughput increases remain To be verified." sourceIds={['wiki-furniture', 'deluxe-guide', 'worker-chiller']} relatedLinks={[{ label: 'Stoves', href: '/equipment/stoves/' }, { label: 'Deluxe Stove', href: '/equipment/deluxe-stove/' }, { label: 'Chiller', href: '/equipment/chiller/' }]}>
+  <p>Public sources document Basic Stove, Standard Stove, and Deluxe Stove tiers. Stoves are cooking equipment; better tiers are described as reducing cooking time, and multiple stations can support parallel order processing. Exact numerical effects are not publicly established.</p>
+</WikiPage>

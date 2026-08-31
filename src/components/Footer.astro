@@ -1,0 +1,35 @@
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <strong>Karinderya Wiki</strong>
+      <p>An unofficial, community-focused guide to the Karinderya Roblox experience.</p>
+    </div>
+    <nav aria-label="Footer navigation">
+      <a href="/about/">About</a>
+      <a href="/verification/">Verification</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy-policy/">Privacy</a>
+      <a href="/terms/">Terms</a>
+      <a href="/disclaimer/">Disclaimer</a>
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; {new Date().getFullYear()} Karinderya Wiki.</p>
+    <p>Not affiliated with Roblox Corporation or the Karinderya development team.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer { margin-top: 72px; color: #f8eee8; background: #2d211d; }
+  .footer-inner, .footer-bottom { width: min(1180px, calc(100% - 32px)); margin-inline: auto; }
+  .footer-inner { display: flex; justify-content: space-between; gap: 40px; padding: 46px 0 36px; }
+  .footer-brand { max-width: 460px; }
+  .footer-brand strong { font: 750 1.15rem/1.2 var(--font-heading); }
+  .footer-brand p { margin: 10px 0 0; color: #cbbab1; font-size: .9rem; }
+  nav { display: flex; flex-wrap: wrap; align-content: start; gap: 10px 22px; }
+  nav a { min-height: 44px; display: inline-flex; align-items: center; color: #eadfd8; font-size: .88rem; text-decoration: none; }
+  nav a:hover { color: #ffb89b; }
+  .footer-bottom { display: flex; justify-content: space-between; gap: 24px; padding: 18px 0 24px; border-top: 1px solid rgb(255 255 255 / 10%); color: #a9968d; font-size: .76rem; }
+  .footer-bottom p { margin: 0; }
+  @media (max-width: 700px) { .footer-inner, .footer-bottom { flex-direction: column; } .footer-bottom { gap: 8px; } }
+</style>

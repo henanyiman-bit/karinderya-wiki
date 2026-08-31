@@ -1,0 +1,21 @@
+---
+import ContentPage from '../../components/ContentPage.astro';
+import VerificationStatus from '../../components/VerificationStatus.astro';
+---
+<ContentPage title="Karinderya Tables" description="Compare documented Karinderya table families, observed Cash prices, and limited resale examples." kicker="Furniture database" intro="A public-source table reference that avoids filling missing shop values with guesses." parent={{ label: 'Furniture', href: '/furniture/' }} relatedLinks={[{ label: 'Chairs', href: '/furniture/chairs/' }, { label: 'Furniture overview', href: '/furniture/' }, { label: 'Counter upgrades', href: '/guides/counter-upgrades/' }]} sourceIds={['wiki-furniture']}>
+  <VerificationStatus status="Reported" notes="Selected Cash prices and two resale transactions appear in one retained community source. Other values remain To be verified." />
+  <h2>Documented table families</h2>
+  <p>Plank, Wood, Red Wooden, Integrated, Elegant Wooden, Parsons, Slat-back, and Royal.</p>
+  <h2>Observed Cash prices</h2>
+  <div class="table-scroll"><table><thead><tr><th scope="col">Table</th><th scope="col">Observed buy price</th><th scope="col">Status</th></tr></thead><tbody>
+    <tr><th scope="row">Plank Table</th><td>&#8369;130</td><td>Reported</td></tr>
+    <tr><th scope="row">Wood Table</th><td>&#8369;365</td><td>Reported</td></tr>
+    <tr><th scope="row">Red Wooden Table</th><td>&#8369;415</td><td>Reported</td></tr>
+  </tbody></table></div>
+  <h2>Observed resale examples</h2>
+  <div class="table-scroll"><table><thead><tr><th scope="col">Table</th><th scope="col">Buy</th><th scope="col">Sell</th><th scope="col">Observed recovery</th></tr></thead><tbody>
+    <tr><th scope="row">Plank Table</th><td>&#8369;130</td><td>&#8369;26</td><td>20%</td></tr>
+    <tr><th scope="row">Wood Table</th><td>&#8369;365</td><td>&#8369;73</td><td>20%</td></tr>
+  </tbody></table></div>
+  <p class="notice">These two examples suggest a 20% resale value for the observed items only. They do not prove that every furniture item always resells for 20%.</p>
+</ContentPage>

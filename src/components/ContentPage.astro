@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import type { BreadcrumbItem } from './Breadcrumb.astro';
+import Sources from './Sources.astro';
+import type { SourceId } from '../data/sources';
+
+interface RelatedLink {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  kicker?: string;
+  intro: string;
+  parent?: BreadcrumbItem;
+  relatedLinks?: RelatedLink[];
+  sourceIds?: SourceId[];
+}
+
+const {
+  title,
+  description,
+  kicker = 'Karinderya Wiki',
+  intro,
+  parent,
+  relatedLinks = [],
+  sourceIds = [],
+} = Astro.props;
+const breadcrumbs: BreadcrumbItem[] = [
+  { label: 'Home', href: '/' },
+  ...(parent ? [parent] : []),
+  { label: title },
+];
+---
+
+<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs}>
+  <div class="container article-wrap">
+    <header class="page-hero">
+      <p class="kicker">{kicker}</p>
+      <h1>{title}</h1>
+      <p class="lead">{intro}</p>
+    </header>
+    <article class="content-panel article-content"><slot /></article>
+    {sourceIds.length > 0 && <Sources ids={sourceIds} />}
+    {relatedLinks.length > 0 && (
+      <nav class="related" aria-label="Related pages">
+        <h2>Related pages</h2>
+        <div>{relatedLinks.map((item) => <a href={item.href}>{item.label}</a>)}</div>
+      </nav>
+    )}
+  </div>
+</BaseLayout>
+
+<style>
+  .article-wrap { max-width: 980px; }
+  .article-content :global(h2) { scroll-margin-top: 90px; }
+  .article-content :global(code) { padding: 2px 6px; border-radius: 5px; color: var(--accent-dark); background: var(--accent-soft); font-weight: 750; }
+  .article-content :global(.table-scroll) { max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .article-content :global(.table-scroll table) { min-width: 620px; }
+  .article-content :global(.fact-grid) { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 18px 0; }
+  .article-content :global(.fact-card) { padding: 16px; border: 1px solid var(--border); border-radius: 12px; background: #fffaf5; }
+  .article-content :global(.fact-card h3) { margin: 0 0 6px; font-size: 1rem; }
+  .article-content :global(.fact-card p) { margin: 0; }
+  .related { margin: 32px 0; }
+  .related h2 { margin: 0 0 14px; font-size: 1.15rem; }
+  .related div { display: flex; flex-wrap: wrap; gap: 8px; }
+  .related a { min-height: 44px; display: inline-flex; align-items: center; padding: 8px 13px; border: 1px solid var(--border); border-radius: 999px; color: var(--accent-dark); background: var(--surface); font-size: .82rem; font-weight: 700; text-decoration: none; }
+  .related a:hover { border-color: #dec3b4; background: var(--accent-soft); }
+  @media (max-width: 600px) { .article-content :global(.fact-grid) { grid-template-columns: 1fr; } }
+</style>

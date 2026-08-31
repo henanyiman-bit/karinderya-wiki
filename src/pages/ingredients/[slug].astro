@@ -1,0 +1,18 @@
+---
+import EntityPage from '../../components/EntityPage.astro';
+import { ingredientEntities, type EntityRecord } from '../../data/entities';
+
+export function getStaticPaths() {
+  return ingredientEntities.map((entity) => ({ params: { slug: entity.slug }, props: { entity } }));
+}
+
+interface Props { entity: EntityRecord }
+const { entity } = Astro.props;
+---
+
+<EntityPage
+  {...entity}
+  kicker="Ingredient profile"
+  parent={{ label: 'Ingredients', href: '/ingredients/' }}
+  relatedLinks={[{ label: 'All ingredients', href: '/ingredients/' }, { label: 'Grocery', href: '/grocery/' }, { label: 'Observed orders', href: '/recipes/' }]}
+/>

@@ -1,0 +1,13 @@
+---
+import ContentPage from '../components/ContentPage.astro';
+import VerificationStatus from '../components/VerificationStatus.astro';
+import WikiCard from '../components/WikiCard.astro';
+import { ingredientEntities } from '../data/entities';
+---
+<ContentPage title="Karinderya Ingredients" description="Explore documented Karinderya ingredient names and links to cautious grocery and order references." kicker="Ingredient index" intro="An ingredient index limited to names shown in public gameplay sources." relatedLinks={[{ label: 'Grocery prices', href: '/grocery/' }, { label: 'Observed orders', href: '/recipes/' }, { label: 'Food menu', href: '/food/' }]} sourceIds={['codex-menu', 'wiki-menu', 'wiki-money']}>
+  <VerificationStatus status="Community Verified" notes="These names are publicly documented, but quantities, yields, restock schedules, and complete recipe relationships remain under verification." />
+  <h2>Documented ingredients</h2>
+  <div class="card-grid">{ingredientEntities.map((item) => <WikiCard title={item.title.replace('Karinderya ', '')} description={item.description} href={`/ingredients/${item.slug}/`} icon={item.title.charAt(11)} status={item.status} />)}</div>
+  <h2>Scope of this index</h2>
+  <p>The <a href="/grocery/">Grocery page</a> records publicly observed listings. The <a href="/recipes/">Recipes page</a> records two customer tickets without assigning unverified dish names. No serving count or recipe yield is inferred from package labels such as “25kg” or “dozen.”</p>
+</ContentPage>

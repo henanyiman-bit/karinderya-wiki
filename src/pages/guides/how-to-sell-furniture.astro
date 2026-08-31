@@ -1,0 +1,17 @@
+---
+import ContentPage from '../../components/ContentPage.astro';
+import VerificationStatus from '../../components/VerificationStatus.astro';
+---
+<ContentPage title="How to Sell Furniture in Karinderya" description="Review supported Karinderya furniture resale examples and the limits of the currently available public evidence." kicker="Furniture guide" intro="A verification-first guide to documented resale values, without claiming a universal formula." parent={{ label: 'Guides', href: '/guides/' }} relatedLinks={[{ label: 'Furniture', href: '/furniture/' }, { label: 'Tables', href: '/furniture/tables/' }, { label: 'Plank Table', href: '/furniture/plank-table/' }, { label: 'Wood Table', href: '/furniture/wood-table/' }]} sourceIds={['wiki-furniture']}>
+  <VerificationStatus status="Reported" notes="The two price-and-resale examples below appear in one retained community source. The current interface flow and a universal resale formula remain To be verified." />
+  <h2>Observed resale examples</h2>
+  <div class="table-scroll"><table><thead><tr><th scope="col">Item</th><th scope="col">Observed buy price</th><th scope="col">Observed resale value</th><th scope="col">Ratio</th></tr></thead><tbody>
+    <tr><th scope="row"><a href="/furniture/plank-table/">Plank Table</a></th><td>&#8369;130</td><td>&#8369;26</td><td>Approximately 20%</td></tr>
+    <tr><th scope="row"><a href="/furniture/wood-table/">Wood Table</a></th><td>&#8369;365</td><td>&#8369;73</td><td>Approximately 20%</td></tr>
+  </tbody></table></div>
+  <h2>How to use this information</h2>
+  <p>Treat these as two observed examples, not proof that every furniture item always resells for the same percentage. Before selling, check the value shown by the current in-game interface and decide whether the recovered Cash is worth losing that item.</p>
+  <h2>Still to be verified</h2>
+  <ul><li>The exact current button-by-button selling flow</li><li>Whether all furniture shares one resale ratio</li><li>Current values for other table and chair families</li><li>Whether updates or item condition can affect resale</li></ul>
+  <p class="notice">No unsupported resale formula is used on this wiki.</p>
+</ContentPage>

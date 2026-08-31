@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AdSlot from './AdSlot.astro';
+import WikiCard from './WikiCard.astro';
+import Sources from './Sources.astro';
+import type { SourceId } from '../data/sources';
+
+export interface PageCard {
+  title: string;
+  description: string;
+  href?: string;
+  icon?: string;
+  status?: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  kicker: string;
+  intro: string;
+  cards: PageCard[];
+  note?: string;
+  sourceIds?: SourceId[];
+  relatedLinks?: { label: string; href: string }[];
+}
+
+const { title, description, kicker, intro, cards, note, sourceIds = [], relatedLinks } = Astro.props;
+const defaultRelatedSections = [
+  { label: 'Codes', href: '/codes/' },
+  { label: 'Food', href: '/food/' },
+  { label: 'Recipes', href: '/recipes/' },
+  { label: 'Workers', href: '/workers/' },
+  { label: 'Equipment', href: '/equipment/' },
+  { label: 'Guides', href: '/guides/' },
+  { label: 'Updates', href: '/updates/' },
+  { label: 'Grocery', href: '/grocery/' },
+  { label: 'Ingredients', href: '/ingredients/' },
+  { label: 'Furniture', href: '/furniture/' },
+  { label: 'Decorations', href: '/decorations/' },
+].filter((item) => item.href !== (Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`));
+const relatedSections = relatedLinks ?? defaultRelatedSections;
+---
+
+<BaseLayout title={title} description={description} breadcrumbs={[{ label: 'Home', href: '/' }, { label: title }]}>
+  <div class="container">
+    <header class="page-hero">
+      <p class="kicker">{kicker}</p>
+      <h1>{title}</h1>
+      <p class="lead">{intro}</p>
+    </header>
+    <AdSlot placement="top" />
+    {note && <p class="notice">{note}</p>}
+    <section class="section" aria-labelledby="browse-heading">
+      <div class="section-heading"><div><h2 id="browse-heading">Browse {title}</h2><p>First-edition index pages ready to grow as verified information becomes available.</p></div></div>
+      <div class="card-grid">
+        {cards.map((card) => <WikiCard {...card} />)}
+      </div>
+    </section>
+    <AdSlot placement="content-1" />
+    <section class="content-panel page-copy">
+      <h2>About this section</h2>
+      <slot />
+    </section>
+    {sourceIds.length > 0 && <Sources ids={sourceIds} />}
+    <nav class="related" aria-label="Related wiki sections">
+      <h2>Explore related sections</h2>
+      <div>{relatedSections.map((item) => <a href={item.href}>{item.label}</a>)}</div>
+    </nav>
+    <AdSlot placement="bottom" />
+  </div>
+</BaseLayout>
+
+<style>
+  .notice { margin: 18px 0 0; }
+  .page-copy { margin: 32px 0; }
+  .related { margin: 32px 0; }
+  .related h2 { margin: 0 0 14px; font-size: 1.15rem; }
+  .related div { display: flex; flex-wrap: wrap; gap: 8px; }
+  .related a { min-height: 44px; display: inline-flex; align-items: center; padding: 8px 13px; border: 1px solid var(--border); border-radius: 999px; color: var(--accent-dark); background: var(--surface); font-size: .82rem; font-weight: 700; text-decoration: none; }
+  .related a:hover { border-color: #dec3b4; background: var(--accent-soft); }
+  .ad-bottom { margin-top: 32px; }
+</style>

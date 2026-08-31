@@ -1,0 +1,14 @@
+---
+import ContentPage from '../../components/ContentPage.astro';
+import VerificationStatus from '../../components/VerificationStatus.astro';
+---
+<ContentPage title="Karinderya Shop Restock Guide" description="Learn what is documented about Karinderya shop inventory while exact restock timing and stock mechanics remain unconfirmed." kicker="Planning guide" intro="A cautious inventory-planning reference that does not invent a restock timer." parent={{ label: 'Guides', href: '/guides/' }} relatedLinks={[{ label: 'Grocery', href: '/grocery/' }, { label: 'Ingredients', href: '/ingredients/' }, { label: 'Furniture', href: '/furniture/' }, { label: 'Equipment', href: '/equipment/' }]} sourceIds={['codex-menu', 'wiki-furniture', 'wiki-money']}>
+  <VerificationStatus status="Community Verified" notes="Public sources establish grocery and furniture shop listings. They do not establish a dependable universal restock schedule." />
+  <h2>What is known</h2>
+  <ul><li>Karinderya includes documented grocery inventory and furniture listings.</li><li>Public captures show item names and some observed prices.</li><li>Availability and values can be update-sensitive, so a current in-game listing should take priority.</li></ul>
+  <h2>What is not known</h2>
+  <ul><li>Exact restock interval</li><li>Whether stock is shared, server-specific, or player-specific</li><li>Whether every item follows the same refresh rule</li><li>Current stock limits and all availability requirements</li></ul>
+  <h2>Safe planning approach</h2>
+  <p>Check the current shop before planning a purchase, keep enough Cash for essential ingredients, and avoid relying on an undocumented timer. The <a href="/grocery/">Grocery page</a> records observed listings, while entity pages separate supported values from unresolved details.</p>
+  <p class="notice">A precise shop restock schedule is To be verified.</p>
+</ContentPage>

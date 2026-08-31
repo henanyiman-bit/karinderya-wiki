@@ -1,0 +1,20 @@
+---
+import ContentPage from '../../components/ContentPage.astro';
+import VerificationStatus from '../../components/VerificationStatus.astro';
+import FAQ from '../../components/FAQ.astro';
+const faqItems = [
+  { question: 'Which stove tiers are currently documented?', answer: 'The current public sources used here document Basic Stove, Standard Stove, and Deluxe Stove.' },
+  { question: 'Is Deluxe Stove confirmed as a higher-tier stove?', answer: 'Yes. Community shop documentation consistently places Deluxe above Basic and Standard. Its exact numerical advantage is not published.' },
+  { question: 'Are exact cooking-speed multipliers known?', answer: 'No. Public descriptions say upgraded stoves reduce cooking time, but exact cook times, multipliers, and throughput values remain To be verified.' },
+];
+---
+<ContentPage title="Karinderya Stoves" description="Compare documented Karinderya Basic, Standard, and Deluxe Stove tiers without invented speed statistics." kicker="Equipment database" intro="Stove tiers and broad functions are documented while numerical performance remains unknown." parent={{ label: 'Equipment', href: '/equipment/' }} relatedLinks={[{ label: 'Deluxe Stove', href: '/equipment/deluxe-stove/' }, { label: 'Equipment', href: '/equipment/' }, { label: 'Recipes', href: '/recipes/' }]} sourceIds={['wiki-furniture', 'deluxe-guide']}>
+  <VerificationStatus status="Community Verified" notes="Tier names and broad shop descriptions are supported by public gameplay sources. Numerical effects are not established." />
+  <h2>Documented stove progression</h2>
+  <ol><li><a href="/equipment/basic-stove/">Basic Stove</a></li><li><a href="/equipment/standard-stove/">Standard Stove</a></li><li><a href="/equipment/deluxe-stove/">Deluxe Stove</a></li></ol>
+  <h2>Known role</h2>
+  <p>Stoves are cooking equipment. Public descriptions say better stoves reduce cooking time, while multiple stoves can support parallel order processing. Deluxe Stove is the higher-tier name in this documented three-item list.</p>
+  <h2>Unknown numerical data</h2>
+  <ul><li>Exact cook-time multiplier</li><li>Exact speed values</li><li>Exact current Cash prices</li><li>Exact throughput increase</li></ul>
+  <FAQ items={faqItems} />
+</ContentPage>

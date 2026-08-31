@@ -1,0 +1,14 @@
+---
+import ContentPage from '../components/ContentPage.astro';
+import VerificationStatus from '../components/VerificationStatus.astro';
+---
+<ContentPage title="Karinderya Recipes & Observed Orders" description="Review observed Karinderya customer orders while full recipe ingredients and formulas remain under verification." kicker="Cooking reference" intro="Observed customer tickets are documented separately from formal dish recipes." relatedLinks={[{ label: 'Food menu groups', href: '/food/' }, { label: 'Grocery', href: '/grocery/' }, { label: 'Equipment', href: '/equipment/' }]} sourceIds={['codex-menu', 'wiki-menu']}>
+  <VerificationStatus status="Community Verified" notes="The ticket contents and totals below are supported by public gameplay captures; they are not presented as complete named-dish recipes." />
+  <h2>Observed Customer Orders</h2>
+  <div class="table-scroll"><table><thead><tr><th scope="col">Order</th><th scope="col">Observed items</th><th scope="col">Observed ticket value</th><th scope="col">Status</th></tr></thead><tbody>
+    <tr><th scope="row">Order 1</th><td>1 Rice + 1 Condiments</td><td>&#8369;35</td><td>Community Verified</td></tr>
+    <tr><th scope="row">Order 2</th><td>1 Rice + 1 Egg + 1 Condiments</td><td>&#8369;75</td><td>Community Verified</td></tr>
+  </tbody></table></div>
+  <h2>What remains under verification</h2>
+  <p>Exact formal recipes, dish names for these tickets, ingredient quantities beyond the displayed order, cooking times, servings, and profit formulas remain <strong>To be verified</strong>.</p>
+</ContentPage>

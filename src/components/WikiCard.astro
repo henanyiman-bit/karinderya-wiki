@@ -1,0 +1,39 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href?: string;
+  icon?: string;
+  eyebrow?: string;
+  status?: string;
+}
+
+const { title, description, href, icon = '→', eyebrow, status } = Astro.props;
+---
+
+<article class="wiki-card">
+  <div class="card-icon" aria-hidden="true">{icon}</div>
+  <div class="card-copy">
+    {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+    <h3>
+      {href ? <a href={href}>{title}<span aria-hidden="true">↗</span></a> : title}
+    </h3>
+    <p>{description}</p>
+    {status && <span class="status">{status}</span>}
+  </div>
+</article>
+
+<style>
+  .wiki-card { height: 100%; display: flex; gap: 15px; padding: 20px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); box-shadow: 0 1px 0 rgb(60 35 20 / 2%); transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+  .wiki-card:hover { transform: translateY(-2px); border-color: #dec3b4; box-shadow: var(--shadow); }
+  .card-icon { flex: 0 0 auto; width: 42px; height: 42px; display: grid; place-items: center; border-radius: 12px; color: var(--accent-dark); background: var(--accent-soft); font-size: 1.15rem; }
+  .card-copy { min-width: 0; overflow-wrap: anywhere; }
+  .eyebrow { display: block; margin-bottom: 5px; color: var(--accent-dark); font-size: .66rem; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
+  h3 { margin: 0; font-size: 1.02rem; }
+  h3 a { display: flex; justify-content: space-between; gap: 12px; color: var(--ink); text-decoration: none; }
+  h3 a::after { position: absolute; content: ''; inset: 0; }
+  h3 span { color: #b9a69b; font-size: .8rem; }
+  p { margin: 8px 0 0; color: var(--muted); font-size: .86rem; line-height: 1.55; }
+  .status { display: inline-block; margin-top: 12px; padding: 4px 8px; border-radius: 999px; color: #806a5d; background: #f4eee9; font-size: .68rem; font-weight: 700; }
+  .wiki-card { position: relative; }
+</style>

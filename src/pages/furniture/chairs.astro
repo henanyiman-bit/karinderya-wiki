@@ -1,0 +1,16 @@
+---
+import ContentPage from '../../components/ContentPage.astro';
+import VerificationStatus from '../../components/VerificationStatus.astro';
+---
+<ContentPage title="Karinderya Chairs" description="Browse publicly documented Karinderya chair families without unverified prices or performance percentages." kicker="Furniture database" intro="A family-level chair index ready for verified item records as more evidence becomes available." parent={{ label: 'Furniture', href: '/furniture/' }} relatedLinks={[{ label: 'Tables', href: '/furniture/tables/' }, { label: 'Furniture overview', href: '/furniture/' }, { label: 'Beginner guide', href: '/guides/beginner-guide/' }]} sourceIds={['wiki-furniture']}>
+  <VerificationStatus status="Reported" notes="The family names appear in one retained community source. Current Cash prices, resale values, and exact gameplay effects remain To be verified." />
+  <h2>Documented chair families</h2>
+  <p>Plank, Wood, Red Wooden, Integrated, Elegant Wooden, Parsons, Slat-back, and Royal.</p>
+  <h2>Reported furniture effect</h2>
+  <p>Public shop dialogue describes better tables and chairs as improving tip chance and reducing the chance that customers leave. No exact percentage or guaranteed outcome is publicly established.</p>
+  <h2>What is known</h2>
+  <ul><li>Eight chair-family names are retained in public community documentation.</li><li>Chairs are part of the restaurant furniture system.</li><li>Public shop dialogue associates better dining furniture with tip chance and customer retention.</li></ul>
+  <h2>What is not yet confirmed</h2>
+  <ul><li>Current purchase and resale values for each chair</li><li>Unlock order and requirements</li><li>Exact tip-chance or customer-retention percentages</li><li>Whether every family remains available in the current shop rotation</li></ul>
+  <p class="notice">Individual chair pages will be added only when item-level evidence supports useful, non-speculative profiles.</p>
+</ContentPage>

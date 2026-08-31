@@ -1,0 +1,77 @@
+---
+import ContentPage from './ContentPage.astro';
+import VerificationStatus, { type VerificationStatus as Status } from './VerificationStatus.astro';
+import type { BreadcrumbItem } from './Breadcrumb.astro';
+import type { SourceId } from '../data/sources';
+
+interface DetailRow {
+  label: string;
+  value: string;
+}
+
+interface LinkItem {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  kicker: string;
+  intro: string;
+  overview: string;
+  parent: BreadcrumbItem;
+  status: Status;
+  statusNotes: string;
+  observedData: DetailRow[];
+  known: string[];
+  unknown: string[];
+  sourceIds: SourceId[];
+  relatedLinks: LinkItem[];
+  note?: string;
+}
+
+const props = Astro.props;
+---
+
+<ContentPage
+  title={props.title}
+  description={props.description}
+  kicker={props.kicker}
+  intro={props.intro}
+  parent={props.parent}
+  sourceIds={props.sourceIds}
+  relatedLinks={props.relatedLinks}
+>
+  <p>{props.overview}</p>
+  <VerificationStatus status={props.status} notes={props.statusNotes} />
+
+  <h2>Observed data</h2>
+  <div class="table-scroll">
+    <table class="entity-data">
+      <tbody>{props.observedData.map((row) => <tr><th scope="row">{row.label}</th><td>{row.value}</td></tr>)}</tbody>
+    </table>
+  </div>
+
+  <div class="known-unknown">
+    <section>
+      <h2>What is known</h2>
+      <ul>{props.known.map((item) => <li>{item}</li>)}</ul>
+    </section>
+    <section>
+      <h2>What is not yet confirmed</h2>
+      <ul>{props.unknown.map((item) => <li>{item}</li>)}</ul>
+    </section>
+  </div>
+  {props.note && <p class="notice">{props.note}</p>}
+</ContentPage>
+
+<style>
+  .entity-data { min-width: 460px; }
+  .entity-data th { width: 42%; }
+  .known-unknown { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 30px; }
+  .known-unknown section { min-width: 0; padding: 18px; border: 1px solid var(--border); border-radius: 12px; background: #fffaf5; }
+  .known-unknown h2 { margin: 0 0 10px; font-size: 1.15rem; }
+  .known-unknown ul { margin: 0; padding-left: 20px; }
+  @media (max-width: 680px) { .known-unknown { grid-template-columns: 1fr; } }
+</style>

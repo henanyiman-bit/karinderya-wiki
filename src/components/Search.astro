@@ -1,0 +1,264 @@
+---
+import { searchIndex } from '../data/search-index';
+
+const serializedIndex = JSON.stringify(searchIndex).replaceAll('<', '\\u003c');
+---
+
+<div class="site-search" data-site-search>
+  <button
+    class="search-toggle"
+    type="button"
+    aria-label="Open site search"
+    aria-expanded="false"
+    aria-controls="site-search-panel"
+  >
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+      <circle cx="11" cy="11" r="6.5"></circle>
+      <path d="m16 16 4 4"></path>
+    </svg>
+  </button>
+
+  <div class="search-panel" id="site-search-panel" role="search">
+    <label class="sr-only" for="site-search-input">Search Karinderya Wiki</label>
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+        <circle cx="11" cy="11" r="6.5"></circle>
+        <path d="m16 16 4 4"></path>
+      </svg>
+      <input
+        id="site-search-input"
+        type="search"
+        placeholder="Search the wiki"
+        autocomplete="off"
+        spellcheck="false"
+        role="combobox"
+        aria-autocomplete="list"
+        aria-expanded="false"
+        aria-controls="site-search-results"
+      />
+      <kbd aria-hidden="true">/</kbd>
+    </div>
+    <div class="search-results" id="site-search-results" role="listbox" aria-label="Search results" hidden></div>
+  </div>
+
+  <script type="application/json" data-search-index set:html={serializedIndex}></script>
+</div>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-site-search]');
+
+  if (root) {
+    const toggle = root.querySelector<HTMLButtonElement>('.search-toggle');
+    const input = root.querySelector<HTMLInputElement>('#site-search-input');
+    const results = root.querySelector<HTMLElement>('#site-search-results');
+    const indexSource = root.querySelector<HTMLScriptElement>('[data-search-index]');
+    const navigationToggle = document.querySelector<HTMLInputElement>('#nav-toggle');
+    const entries = indexSource ? JSON.parse(indexSource.textContent || '[]') : [];
+    let matches: typeof entries = [];
+    let activeIndex = -1;
+
+    const isMobile = () => window.matchMedia('(max-width: 960px)').matches;
+    const normalize = (value: string) => value.trim().toLocaleLowerCase();
+
+    const setExpanded = (expanded: boolean) => {
+      input?.setAttribute('aria-expanded', String(expanded));
+      if (results) results.hidden = !expanded;
+    };
+
+    const closeResults = () => {
+      activeIndex = -1;
+      setExpanded(false);
+      input?.removeAttribute('aria-activedescendant');
+    };
+
+    const closeMobileSearch = (restoreFocus = false) => {
+      root.classList.remove('is-open');
+      toggle?.setAttribute('aria-expanded', 'false');
+      closeResults();
+      if (restoreFocus) toggle?.focus();
+    };
+
+    const updateActiveResult = () => {
+      const options = Array.from(results?.querySelectorAll<HTMLElement>('[role="option"]') ?? []);
+      options.forEach((option, index) => option.setAttribute('aria-selected', String(index === activeIndex)));
+      const active = options[activeIndex];
+      if (active) {
+        input?.setAttribute('aria-activedescendant', active.id);
+        active.scrollIntoView({ block: 'nearest' });
+      } else {
+        input?.removeAttribute('aria-activedescendant');
+      }
+    };
+
+    const renderResults = () => {
+      if (!results || !input) return;
+      results.replaceChildren();
+
+      if (matches.length === 0) {
+        const empty = document.createElement('p');
+        empty.className = 'no-results';
+        empty.setAttribute('role', 'status');
+        empty.textContent = 'No results found';
+        results.append(empty);
+      } else {
+        matches.forEach((entry: typeof entries[number], index: number) => {
+          const link = document.createElement('a');
+          link.href = entry.url;
+          link.id = `site-search-result-${index}`;
+          link.setAttribute('role', 'option');
+          link.setAttribute('aria-selected', 'false');
+
+          const heading = document.createElement('strong');
+          heading.textContent = entry.title;
+          const description = document.createElement('span');
+          description.textContent = entry.description;
+          link.append(heading, description);
+
+          if (entry.category) {
+            const category = document.createElement('small');
+            category.textContent = entry.category;
+            link.append(category);
+          }
+          results.append(link);
+        });
+      }
+      setExpanded(true);
+      updateActiveResult();
+    };
+
+    const search = () => {
+      if (!input) return;
+      const query = normalize(input.value);
+      const terms = query.split(/\s+/).filter(Boolean);
+      activeIndex = -1;
+
+      if (!query) {
+        matches = [];
+        closeResults();
+        return;
+      }
+
+      matches = entries
+        .map((entry: typeof entries[number]) => {
+          const title = normalize(entry.title);
+          const description = normalize(entry.description);
+          const category = normalize(entry.category || '');
+          const keywords = normalize(entry.keywords.join(' '));
+          const searchable = `${title} ${description} ${category} ${keywords}`;
+          if (!terms.every((term) => searchable.includes(term))) return null;
+          const score = (title === query ? 1000 : 0)
+            + (title.startsWith(query) ? 200 : 0)
+            + (title.includes(query) ? 100 : 0)
+            + (keywords.includes(query) ? 40 : 0)
+            + (category.includes(query) ? 20 : 0)
+            + (entry.priority || 0);
+          return { entry, score };
+        })
+        .filter(Boolean)
+        .sort((a: { score: number }, b: { score: number }) => b.score - a.score)
+        .slice(0, 8)
+        .map((result: { entry: typeof entries[number] }) => result.entry);
+      renderResults();
+    };
+
+    toggle?.addEventListener('click', () => {
+      const shouldOpen = !root.classList.contains('is-open');
+      root.classList.toggle('is-open', shouldOpen);
+      toggle.setAttribute('aria-expanded', String(shouldOpen));
+      if (shouldOpen) {
+        if (navigationToggle) navigationToggle.checked = false;
+        input?.focus();
+        if (input?.value.trim()) search();
+      } else {
+        closeResults();
+      }
+    });
+
+    input?.addEventListener('input', search);
+    input?.addEventListener('focus', () => {
+      if (input.value.trim()) search();
+    });
+    input?.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowDown' && matches.length) {
+        event.preventDefault();
+        activeIndex = (activeIndex + 1) % matches.length;
+        updateActiveResult();
+      } else if (event.key === 'ArrowUp' && matches.length) {
+        event.preventDefault();
+        activeIndex = activeIndex <= 0 ? matches.length - 1 : activeIndex - 1;
+        updateActiveResult();
+      } else if (event.key === 'Enter' && matches.length) {
+        event.preventDefault();
+        window.location.assign(matches[activeIndex >= 0 ? activeIndex : 0].url);
+      } else if (event.key === 'Escape') {
+        event.preventDefault();
+        if (isMobile()) closeMobileSearch(true);
+        else closeResults();
+      }
+    });
+
+    navigationToggle?.addEventListener('change', () => {
+      if (navigationToggle.checked) closeMobileSearch(false);
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!root.contains(event.target as Node)) {
+        if (isMobile()) closeMobileSearch(false);
+        else closeResults();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === '/' && document.activeElement !== input && !event.metaKey && !event.ctrlKey && !event.altKey) {
+        event.preventDefault();
+        if (isMobile()) {
+          root.classList.add('is-open');
+          toggle?.setAttribute('aria-expanded', 'true');
+          if (navigationToggle) navigationToggle.checked = false;
+        }
+        input?.focus();
+      }
+    });
+  }
+</script>
+
+<style>
+  .site-search { position: relative; flex: 0 0 auto; }
+  .search-toggle { width: 44px; height: 44px; display: none; place-items: center; padding: 0; border: 1px solid var(--border); border-radius: 10px; color: var(--ink); background: var(--surface); cursor: pointer; touch-action: manipulation; }
+  svg { fill: none; stroke: currentColor; stroke-linecap: round; stroke-width: 1.8; }
+  .search-panel { position: relative; width: clamp(180px, 18vw, 240px); }
+  .search-field { position: relative; display: flex; align-items: center; }
+  .search-field > svg { position: absolute; left: 13px; color: var(--muted); pointer-events: none; }
+  input { width: 100%; height: 44px; padding: 0 38px 0 40px; border: 1px solid var(--border); border-radius: 11px; color: var(--ink); background: #fff; font-size: .84rem; outline-offset: 2px; }
+  input::placeholder { color: #877970; }
+  input:focus { border-color: #c89c85; box-shadow: 0 0 0 3px rgb(198 83 46 / 10%); }
+  input::-webkit-search-cancel-button { cursor: pointer; }
+  kbd { position: absolute; right: 10px; min-width: 20px; padding: 1px 5px; border: 1px solid var(--border); border-bottom-width: 2px; border-radius: 5px; color: #8a7b72; background: var(--page); font: 600 .68rem/1.35 var(--font-body); text-align: center; pointer-events: none; }
+  .search-results { position: absolute; top: calc(100% + 8px); right: 0; z-index: 60; width: min(370px, calc(100vw - 32px)); max-height: min(480px, calc(100vh - 100px)); overflow-y: auto; padding: 7px; border: 1px solid var(--border); border-radius: 13px; background: var(--surface); box-shadow: var(--shadow); }
+  .search-results :global(a) { min-height: 72px; display: grid; gap: 3px; padding: 10px 12px; border-radius: 9px; color: var(--ink); text-decoration: none; }
+  .search-results :global(a:hover), .search-results :global(a[aria-selected='true']) { background: var(--accent-soft); }
+  .search-results :global(strong) { font-size: .88rem; line-height: 1.35; }
+  .search-results :global(span) { color: var(--muted); font-size: .76rem; line-height: 1.4; }
+  .search-results :global(small) { color: var(--accent-dark); font-size: .66rem; font-weight: 750; letter-spacing: .05em; text-transform: uppercase; }
+  .search-results :global(.no-results) { margin: 0; padding: 18px 12px; color: var(--muted); font-size: .82rem; text-align: center; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); }
+
+  @media (min-width: 961px) and (max-width: 1100px) {
+    .search-panel { width: 170px; }
+    kbd { display: none; }
+    input { padding-right: 12px; }
+  }
+
+  @media (max-width: 960px) {
+    .search-toggle { display: grid; }
+    .search-panel { position: absolute; top: calc(100% + 11px); right: -52px; width: min(420px, calc(100vw - 32px)); display: none; padding: 12px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); }
+    .site-search.is-open .search-panel { display: block; }
+    input { height: 48px; font-size: 1rem; }
+    kbd { display: none; }
+    .search-results { position: static; width: 100%; max-height: min(55vh, 360px); margin-top: 8px; border: 0; border-top: 1px solid var(--border); border-radius: 0; box-shadow: none; }
+  }
+
+  @media (max-width: 480px) {
+    .search-panel { position: fixed; top: 65px; left: 16px; right: 16px; width: auto; }
+  }
+</style>

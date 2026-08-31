@@ -1,0 +1,44 @@
+---
+import { googleIntegrations } from '../config/google';
+
+const { adsense, analytics, searchConsole } = googleIntegrations;
+const adsenseScriptURL = adsense.enabled
+  ? `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(adsense.clientId)}`
+  : undefined;
+const analyticsScriptURL = analytics.enabled
+  ? `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(analytics.measurementId)}`
+  : undefined;
+---
+
+{searchConsole.enabled && (
+  <meta name="google-site-verification" content={searchConsole.verificationToken} />
+)}
+
+{adsense.enabled && (
+  <>
+    <script async src={adsenseScriptURL} crossorigin="anonymous"></script>
+    <script is:inline>
+      window.addEventListener('load', () => {
+        document.querySelectorAll('ins.adsbygoogle').forEach(() => {
+          try {
+            (window.adsbygoogle = window.adsbygoogle || []).push({});
+          } catch (error) {
+            console.warn('AdSense unit could not be initialized.', error);
+          }
+        });
+      }, { once: true });
+    </script>
+  </>
+)}
+
+{analytics.enabled && (
+  <>
+    <script async src={analyticsScriptURL}></script>
+    <script is:inline define:vars={{ gaMeasurementId: analytics.measurementId }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', gaMeasurementId);
+    </script>
+  </>
+)}

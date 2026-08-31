@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  kicker?: string;
+  relatedLinks?: { label: string; href: string }[];
+}
+
+const { title, description, kicker = 'Karinderya Wiki', relatedLinks = [] } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} breadcrumbs={[{ label: 'Home', href: '/' }, { label: title }]}>
+  <div class="narrow">
+    <header class="page-hero">
+      <p class="kicker">{kicker}</p>
+      <h1>{title}</h1>
+      <p class="lead">{description}</p>
+    </header>
+    <article class="content-panel"><slot /></article>
+    {relatedLinks.length > 0 && (
+      <nav class="related" aria-label="Related pages">
+        <h2>Related pages</h2>
+        <div>{relatedLinks.map((item) => <a href={item.href}>{item.label}</a>)}</div>
+      </nav>
+    )}
+  </div>
+</BaseLayout>
+
+<style>
+  .related { margin: 32px 0; }
+  .related h2 { margin: 0 0 14px; font-size: 1.15rem; }
+  .related div { display: flex; flex-wrap: wrap; gap: 8px; }
+  .related a { min-height: 44px; display: inline-flex; align-items: center; padding: 8px 13px; border: 1px solid var(--border); border-radius: 999px; color: var(--accent-dark); background: var(--surface); font-size: .82rem; font-weight: 700; text-decoration: none; }
+</style>

@@ -1,0 +1,18 @@
+---
+import ContentPage from '../../components/ContentPage.astro';
+import VerificationStatus from '../../components/VerificationStatus.astro';
+import FAQ from '../../components/FAQ.astro';
+const faqItems = [
+  { question: 'What is currently known about the Chiller?', answer: 'Public community coverage associates the Chiller name with a recent Worker and Chiller update. A reliable description of its function, location, and upgrade behavior is not yet available.' },
+  { question: 'Is the reported repair price confirmed?', answer: 'No. The approximately 200,000 Cash or 99 Robux option comes from limited community reporting and remains Reported / To be verified.' },
+  { question: 'Is the Chiller capacity known?', answer: 'No. Storage capacity, cooling behavior, recipe effects, and any capacity upgrades remain To be verified.' },
+];
+---
+<ContentPage title="Karinderya Chiller" description="Track cautious public reporting about the Karinderya Chiller, repair options, and unresolved mechanics." kicker="Equipment watch" intro="The Chiller is associated with recent Worker and Chiller coverage, but its mechanics remain unresolved." parent={{ label: 'Equipment', href: '/equipment/' }} relatedLinks={[{ label: 'Workers', href: '/workers/' }, { label: 'Updates', href: '/updates/' }, { label: 'Equipment', href: '/equipment/' }]} sourceIds={['worker-chiller']}>
+  <VerificationStatus status="Reported" notes="Verification status: Reported / To be verified. The repair values come from limited community reporting and are not independently confirmed." />
+  <h2>Reported repair option</h2>
+  <p>Some community guides report an option around <strong>&#8369;200,000 or 99 Robux</strong>. This is not presented as a confirmed or permanent price.</p>
+  <h2>Still unknown</h2>
+  <ul><li>Exact function</li><li>Storage capacity</li><li>Cooling formula</li><li>Upgrade behavior</li><li>Exact location</li><li>Exact permanent repair cost</li></ul>
+  <FAQ items={faqItems} />
+</ContentPage>

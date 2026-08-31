@@ -1,0 +1,18 @@
+---
+import EntityPage from '../../components/EntityPage.astro';
+import { tableEntities, type EntityRecord } from '../../data/entities';
+
+export function getStaticPaths() {
+  return tableEntities.map((entity) => ({ params: { slug: entity.slug }, props: { entity } }));
+}
+
+interface Props { entity: EntityRecord }
+const { entity } = Astro.props;
+---
+
+<EntityPage
+  {...entity}
+  kicker="Furniture profile"
+  parent={{ label: 'Furniture', href: '/furniture/' }}
+  relatedLinks={[{ label: 'Furniture overview', href: '/furniture/' }, { label: 'Tables', href: '/furniture/tables/' }, { label: 'Chairs', href: '/furniture/chairs/' }, { label: 'Sell furniture guide', href: '/guides/how-to-sell-furniture/' }]}
+/>

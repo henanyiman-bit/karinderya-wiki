@@ -1,0 +1,15 @@
+---
+import ContentPage from '../../components/ContentPage.astro';
+import VerificationStatus from '../../components/VerificationStatus.astro';
+---
+<ContentPage title="Karinderya Beginner Guide" description="Learn the supported basics of serving customers, cooking orders, stocking ingredients, and progressing your Karinderya." kicker="Getting started" intro="A practical first-shift guide built from broad, well-supported gameplay concepts rather than an unproven optimal route." parent={{ label: 'Guides', href: '/guides/' }} relatedLinks={[{ label: 'Codes', href: '/codes/' }, { label: 'Food', href: '/food/' }, { label: 'Recipes', href: '/recipes/' }, { label: 'Workers', href: '/workers/' }, { label: 'Equipment', href: '/equipment/' }, { label: 'Grocery', href: '/grocery/' }, { label: 'Furniture', href: '/furniture/' }, { label: 'Decorations', href: '/decorations/' }]} sourceIds={['roblox-game', 'beginner-guide', 'codex-menu', 'wiki-furniture']}>
+  <VerificationStatus status="Community Verified" notes="This guide summarizes widely documented systems. It does not claim a mathematically proven fastest route." />
+  <h2>Learn the service loop</h2>
+  <ol><li>Seat or assign customers when the current interface allows it.</li><li>Read the customer order before committing ingredients.</li><li>Cook the order on an available stove.</li><li>Serve the completed order and continue the customer flow.</li></ol>
+  <h2>Keep ingredients available</h2>
+  <p>Use the <a href="/grocery/">Grocery</a> to replace ingredients your current menu needs. Public sources document categories and selected prices, but restock timing and recipe yields remain under verification.</p>
+  <h2>Upgrade around the bottleneck</h2>
+  <p>Better stoves are described as reducing cooking time, while better furniture is described as improving tip chance and reducing customer departures. Multiple cooking stations may help process orders in parallel. No exact optimization formula is claimed.</p>
+  <h2>Progress through documented systems</h2>
+  <p>Customer service contributes to menu progression. Workers may change Manual Assign behavior, and current codes can provide Cash or items. Review the linked pages before relying on update-sensitive prices or rewards.</p>
+</ContentPage>

@@ -1,17 +1,57 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AdSlot from '../components/AdSlot.astro';
+import WikiCard from '../components/WikiCard.astro';
 
+const categories = [
+  { title: 'Food & Recipes', description: 'Browse documented menu groups and observed customer orders.', href: '/food/', icon: 'F' },
+  { title: 'Workers', description: 'Review publicly observed worker contracts and cautions.', href: '/workers/', icon: 'W' },
+  { title: 'Equipment', description: 'Explore stove tiers and cautious Chiller documentation.', href: '/equipment/', icon: 'E' },
+  { title: 'Grocery & Ingredients', description: 'Check observed grocery listings and documented ingredients.', href: '/grocery/', icon: 'G' },
+  { title: 'Furniture', description: 'Browse table and chair families, prices, and resale examples.', href: '/furniture/', icon: 'T' },
+  { title: 'Decorations', description: 'Explore Tiles, counters, and Choopy Mystery Box information.', href: '/decorations/', icon: 'D' },
+];
+const guides = [
+  { title: 'Beginner Guide', description: 'Learn the supported service loop and early progression systems.', href: '/guides/beginner-guide/', icon: '1', status: 'Community Verified' },
+  { title: '5-Star Guide', description: 'Practical guidance without an invented star-rating formula.', href: '/guides/5-star-guide/', icon: '5', status: 'Verification-first' },
+  { title: 'Counter Upgrades', description: 'Review known counters and the observed ElegantWood listing.', href: '/guides/counter-upgrades/', icon: 'C', status: 'Reported' },
+];
 ---
-
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Karinderya Wiki" description="An independent English wiki for the Karinderya Roblox experience, with verified guides to codes, food, recipes, workers, equipment, and updates.">
+  <section class="hero"><div class="container hero-inner">
+    <div><p class="kicker">Independent Roblox game guide</p><h1>Karinderya <em>Wiki</em></h1><p class="lead">Your English-language reference for running the kitchen, learning the systems, and keeping up with Karinderya.</p><div class="hero-actions"><a class="button primary" href="#explore">Explore the wiki</a><a class="button secondary" href="/codes/">Check codes</a></div><p class="verification-note"><span></span> Game details carry a clear verification status.</p></div>
+    <div class="hero-art" aria-hidden="true"><div class="sun"></div><div class="plate">K</div></div>
+  </div></section>
+  <div class="container"><AdSlot placement="top" /></div>
+  <section class="section update-section"><div class="container content-layout">
+    <div class="main-column"><div class="section-heading"><div><p class="section-kicker">What's new</p><h2>Latest Update</h2></div><a href="/updates/">All updates -&gt;</a></div><article class="feature-card"><div><span>Community documented</span><h3>Decorations Pt. 1</h3><p>Public sources document Tiles, Counter Upgrade, Table Tops, Dishwasher, Choopy delivery, and two current code strings.</p></div><a href="/updates/decorations-part-1/">View update summary -&gt;</a></article><AdSlot placement="content-1" /></div>
+    <aside class="sidebar"><div class="section-heading"><div><p class="section-kicker">Quick check</p><h2>Active Codes</h2></div></div><div class="code-card"><span class="code-icon">%</span><div><strong>50KCCU</strong><p>50,000 Cash - Reported reward</p></div></div><a class="sidebar-link" href="/codes/">Open codes page -&gt;</a><AdSlot placement="desktop-sidebar" /></aside>
+  </div></section>
+  <section class="section explore-section" id="explore"><div class="container"><div class="section-heading"><div><p class="section-kicker">Explore the game</p><h2>Build your restaurant knowledge</h2><p>Use each verification label to judge update-sensitive details.</p></div></div><div class="card-grid">{categories.map((card) => <WikiCard {...card} />)}</div></div></section>
+  <section class="section trust-section"><div class="container trust-panel"><div><p class="section-kicker">Source transparency</p><h2>How this wiki handles game information</h2><p>Karinderya Wiki compiles information from official Roblox listings and publicly available gameplay or community documentation. Update-sensitive or conflicting information is labeled by verification status, and repeated mirror claims are not treated as independent confirmation.</p></div><a class="button secondary" href="/verification/">Read our verification method</a></div></section>
+  <div class="container"><AdSlot placement="content-2" /></div>
+  <section class="section"><div class="container"><div class="section-heading"><div><p class="section-kicker">Helpful reads</p><h2>Popular Guides</h2></div><a href="/guides/">Browse guides -&gt;</a></div><div class="card-grid">{guides.map((card) => <WikiCard {...card} />)}</div></div></section>
+  <section class="section latest-section"><div class="container"><div class="section-heading"><div><p class="section-kicker">Recently added</p><h2>Latest Pages</h2></div></div><div class="latest-list"><a href="/updates/decorations-part-1/"><span>Decorations Part 1</span><small>Source-backed update record</small><b>-&gt;</b></a><a href="/guides/how-to-sell-furniture/"><span>Sell Furniture</span><small>Cautious resale guide</small><b>-&gt;</b></a><a href="/ingredients/rice/"><span>Rice</span><small>Ingredient profile</small><b>-&gt;</b></a></div><AdSlot placement="bottom" /></div></section>
+</BaseLayout>
+<style>
+  .hero { overflow: hidden; padding: clamp(54px, 9vw, 108px) 0 64px; background: radial-gradient(circle at 78% 50%, #ffe2c6 0, #fff4e9 24%, transparent 52%), linear-gradient(135deg, #fffaf5, #f7eee6); }
+  .hero-inner { display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: 40px; }
+  .kicker,.section-kicker { margin: 0 0 10px; color: var(--accent-dark); font-size: .72rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+  h1 { margin: 0; font-weight: 850; } h1 em { color: var(--accent); font-style: normal; }
+  .lead { max-width: 650px; margin: 20px 0 0; color: var(--muted); font-size: clamp(1rem,2vw,1.2rem); }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .button { min-height: 44px; display: inline-flex; align-items: center; padding: 11px 17px; border-radius: 10px; font-size: .88rem; font-weight: 750; text-decoration: none; }
+  .primary { color: white; background: var(--accent); } .secondary { color: var(--ink); border: 1px solid var(--border); background: var(--surface); }
+  .verification-note { display: flex; align-items: center; gap: 8px; margin: 20px 0 0; color: #796b62; font-size: .76rem; }.verification-note span { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
+  .hero-art { position: relative; min-height: 310px; display: grid; place-items: center; }.sun { position: absolute; width: 300px; height: 300px; border: 1px solid #f1c494; border-radius: 50%; }.sun::before { position: absolute; content: ''; inset: 35px; border: 1px dashed #e5a765; border-radius: 50%; }
+  .plate { position: relative; width: 180px; height: 180px; display: grid; place-items: center; border: 22px solid #fffdfa; border-radius: 50%; color: white; background: var(--accent); box-shadow: var(--shadow); font: 850 4rem/1 var(--font-heading); transform: rotate(-8deg); }
+  .content-layout { display: grid; grid-template-columns: minmax(0,1fr) 320px; gap: 24px; }.update-section { padding-top: 56px; }
+  .feature-card { min-height: 220px; display: flex; flex-direction: column; justify-content: space-between; padding: clamp(24px,4vw,38px); border-radius: var(--radius); color: white; background: linear-gradient(135deg,#482e23,#7a3a25); box-shadow: var(--shadow); }.feature-card span { color: #ffceb4; font-size: .68rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }.feature-card h3 { margin: 10px 0; font-size: clamp(1.35rem,3vw,2rem); }.feature-card p { margin: 0; color: #e4d3ca; }.feature-card a { min-height: 44px; display: inline-flex; align-items: center; margin-top: 20px; color: white; font-weight: 750; text-decoration: none; }
+  .sidebar { padding: 22px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }.code-card { display: flex; gap: 12px; padding: 15px; border-radius: 12px; background: var(--accent-soft); }.code-icon { width: 34px; height: 34px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 9px; color: white; background: var(--accent); font-weight: 800; }.code-card p { margin: 3px 0 0; color: var(--muted); font-size: .76rem; }.sidebar-link { min-height: 44px; display: flex; align-items: center; color: var(--accent-dark); font-size: .78rem; font-weight: 750; text-decoration: none; }
+  .explore-section { margin-top: 24px; padding: 64px 0; background: #f2ebe5; }.latest-list { border-top: 1px solid var(--border); }.latest-list a { display: grid; grid-template-columns: 1fr 1fr auto; align-items: center; gap: 16px; padding: 16px 5px; border-bottom: 1px solid var(--border); color: var(--ink); text-decoration: none; }.latest-list small { color: var(--muted); }.latest-list b { color: var(--accent); }
+  .trust-section { padding-bottom: 8px; }.trust-panel { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: clamp(22px,4vw,34px); border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }.trust-panel h2 { margin: 0; }.trust-panel p:not(.section-kicker) { max-width: 760px; margin: 10px 0 0; color: var(--muted); }.trust-panel .button { flex: 0 0 auto; }
+  @media (max-width:900px) { .content-layout { grid-template-columns: 1fr; }.sidebar { grid-row: 2; } }
+  @media (max-width:700px) { .hero-inner { grid-template-columns: 1fr; }.hero-art { min-height: 220px; }.sun { width: 210px; height: 210px; }.plate { width: 140px; height: 140px; border-width: 17px; font-size: 3rem; } }
+  @media (max-width:700px) { .trust-panel { align-items: flex-start; flex-direction: column; } }
+  @media (max-width:520px) { .latest-list a { grid-template-columns: 1fr auto; }.latest-list small { display:none; } }
+</style>

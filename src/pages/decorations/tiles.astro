@@ -1,0 +1,14 @@
+---
+import ContentPage from '../../components/ContentPage.astro';
+import VerificationStatus from '../../components/VerificationStatus.astro';
+---
+<ContentPage title="Karinderya Tiles Database" description="Review the documented Karinderya Tile count, observed pricing, and availability notes without thin item pages." kicker="Decorations database" intro="All currently documented Tile information is kept on one page while individual designs await stronger records." parent={{ label: 'Decorations', href: '/decorations/' }} relatedLinks={[{ label: 'Decorations', href: '/decorations/' }, { label: 'Counter upgrades', href: '/guides/counter-upgrades/' }, { label: 'Choopy Mystery Box', href: '/guides/choopy-mystery-box/' }]} sourceIds={['wiki-decorations']}>
+  <VerificationStatus status="Reported" notes="One retained community guide includes public interface captures showing 21 designs and the listed purchase options. Stock-dependent Cash availability may change." />
+  <h2>Observed Tile listing</h2>
+  <div class="table-scroll"><table><thead><tr><th scope="col">Field</th><th scope="col">Publicly observed value</th><th scope="col">Status</th></tr></thead><tbody>
+    <tr><th scope="row">Tile designs</th><td>21</td><td>Reported</td></tr>
+    <tr><th scope="row">Cash option</th><td>&#8369;500,000 when available</td><td>Reported</td></tr>
+    <tr><th scope="row">Robux option</th><td>159 Robux</td><td>Reported</td></tr>
+  </tbody></table></div>
+  <p class="notice">These values are publicly observed, not guaranteed permanent. The site intentionally does not create 21 thin Tile pages at this stage.</p>
+</ContentPage>

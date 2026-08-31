@@ -1,0 +1,40 @@
+---
+import ContentPage from '../components/ContentPage.astro';
+import { sourceCatalog, verificationDefinitions, type SourceId } from '../data/sources';
+
+const sourceIds = Object.keys(sourceCatalog) as SourceId[];
+---
+
+<ContentPage
+  title="Verification & Sources"
+  description="Learn how Karinderya Wiki evaluates public sources, labels uncertain information, and records research dates."
+  kicker="Editorial methodology"
+  intro="How this unofficial wiki separates official statements, community evidence, reported claims, and unresolved information."
+  relatedLinks={[{ label: 'About the wiki', href: '/about/' }, { label: 'Latest updates', href: '/updates/' }, { label: 'Contact and corrections', href: '/contact/' }]}
+  sourceIds={sourceIds}
+>
+  <h2>How information is collected</h2>
+  <p>Karinderya Wiki summarizes creator-controlled Roblox listings and publicly accessible gameplay or community documentation. Facts are rewritten in original language and linked to the public pages used for the current research batch.</p>
+
+  <h2>Verification levels</h2>
+  <dl class="definitions">
+    {Object.entries(verificationDefinitions).map(([label, definition]) => <div><dt>{label}</dt><dd>{definition}</dd></div>)}
+  </dl>
+  <p>Repeated copies of the same claim across mirror sites do not automatically count as independent confirmation.</p>
+
+  <h2>What “Last checked” means</h2>
+  <p>The date records when a public source was reviewed for this research batch. It does not mean the wiki personally reproduced the result in the game, and it does not guarantee that update-sensitive information remains current afterward.</p>
+
+  <h2>Testing and conflicting information</h2>
+  <p>This site does not currently perform in-game testing. When public sources disagree, the disagreement is noted and the affected detail is labeled Reported or To be verified rather than resolved by guesswork.</p>
+
+  <h2>Independence</h2>
+  <p>Karinderya Wiki is an unofficial fan-made resource. It is not affiliated with or endorsed by Roblox Corporation, SILOG, or the Karinderya developers.</p>
+</ContentPage>
+
+<style>
+  .definitions { display: grid; gap: 10px; margin: 18px 0; }
+  .definitions div { padding: 14px 16px; border: 1px solid var(--border); border-radius: 10px; background: #fffaf5; }
+  dt { color: var(--ink); font-weight: 800; }
+  dd { margin: 4px 0 0; color: var(--muted); }
+</style>

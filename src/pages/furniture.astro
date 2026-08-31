@@ -1,0 +1,14 @@
+---
+import WikiPage from '../components/WikiPage.astro';
+const cards = [
+  { title: 'Tables', description: 'Browse documented furniture families, selected Cash prices, and cautious resale examples.', href: '/furniture/tables/', icon: 'T', status: 'Reported' },
+  { title: 'Chairs', description: 'Review publicly reported chair families without invented prices or tip percentages.', href: '/furniture/chairs/', icon: 'C', status: 'Reported' },
+  { title: 'Decorations', description: 'Explore Tiles, counters, Table Tops, Dishwasher, and Choopy features.', href: '/decorations/', icon: 'D', status: 'Reported' },
+  { title: 'Plank Table', description: 'Review the observed purchase and resale values for this documented table.', href: '/furniture/plank-table/', icon: 'P', status: 'Reported' },
+  { title: 'Wood Table', description: 'Review one documented purchase and resale transaction without a universal formula.', href: '/furniture/wood-table/', icon: 'W', status: 'Reported' },
+  { title: 'Red Wooden Table', description: 'Check the observed purchase price and unresolved resale information.', href: '/furniture/red-wooden-table/', icon: 'R', status: 'Reported' },
+];
+---
+<WikiPage title="Furniture" description="Browse publicly documented Karinderya table and chair families, observed prices, and upgrade notes." kicker="Dining room reference" intro="Furniture names and observed shop values, with numerical effects left under verification." cards={cards} note="Public shop dialogue describes better tables and chairs as improving tip chance and reducing the chance that customers leave. Exact percentages are To be verified." sourceIds={['wiki-furniture']} relatedLinks={[{ label: 'Tables', href: '/furniture/tables/' }, { label: 'Chairs', href: '/furniture/chairs/' }, { label: 'Sell furniture guide', href: '/guides/how-to-sell-furniture/' }, { label: 'Beginner guide', href: '/guides/beginner-guide/' }]}>
+  <p>Documented families include Plank, Wood, Red Wooden, Integrated, Elegant Wooden, Parsons, Slat-back, and Royal. Availability and Cash pricing can rotate, so individual pages only show values supported by public captures.</p>
+</WikiPage>

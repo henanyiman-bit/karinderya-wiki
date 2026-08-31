@@ -1,0 +1,40 @@
+---
+import { adsenseSlots, googleIntegrations, type AdPlacement } from '../config/google';
+
+interface Props {
+  placement: AdPlacement | 'sidebar';
+  class?: string;
+}
+
+const { placement, class: className = '' } = Astro.props;
+const normalizedPlacement: AdPlacement = placement === 'sidebar' ? 'desktop-sidebar' : placement;
+const slotId = adsenseSlots[normalizedPlacement];
+const isLive = Boolean(googleIntegrations.adsense.enabled && slotId);
+const showDevelopmentPlaceholder = import.meta.env.DEV && !isLive;
+---
+
+{isLive ? (
+  <aside class:list={['ad-slot', 'is-live', `ad-${normalizedPlacement}`, className]} aria-label="Advertisement" data-ad-placement={normalizedPlacement}>
+    <ins
+      class="adsbygoogle"
+      data-ad-client={googleIntegrations.adsense.clientId}
+      data-ad-slot={slotId}
+      data-ad-format="auto"
+      data-full-width-responsive="true"
+    ></ins>
+  </aside>
+) : showDevelopmentPlaceholder ? (
+  <aside class:list={['ad-slot', 'is-placeholder', `ad-${normalizedPlacement}`, className]} aria-label="Advertisement placeholder" data-ad-placement={normalizedPlacement}>
+    <span>Advertisement</span>
+  </aside>
+) : null}
+
+<style>
+  .ad-slot { width: 100%; min-width: 0; display: grid; place-items: center; overflow: hidden; }
+  .is-placeholder { min-height: 48px; contain: layout paint; border: 1px dashed #dccfc4; border-radius: 10px; color: #7c6e65; background: #faf7f3; font-size: .67rem; letter-spacing: .11em; text-align: center; text-transform: uppercase; }
+  .is-live { min-height: 90px; }
+  .adsbygoogle { width: 100%; min-width: 0; display: block; }
+  .ad-desktop-sidebar.is-placeholder { min-height: 120px; }
+  .ad-desktop-sidebar.is-live { min-height: 250px; }
+  @media (max-width: 900px) { .ad-desktop-sidebar { display: none; } }
+</style>

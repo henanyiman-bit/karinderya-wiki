@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Page Not Found" description="The requested page could not be found on Karinderya Wiki." noindex={true}>
+  <section class="not-found container">
+    <span>404</span>
+    <h1>Order not found</h1>
+    <p>This page may have moved, or it has not been added to the wiki yet.</p>
+    <nav class="actions" aria-label="Page not found links">
+      <a href="/">Return home</a>
+      <a href="/codes/">Codes</a>
+      <a href="/food/">Food</a>
+      <a href="/workers/">Workers</a>
+      <a href="/guides/">Guides</a>
+    </nav>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found { min-height: 58vh; display: grid; place-content: center; justify-items: center; text-align: center; }
+  .not-found > span { color: var(--accent); font-size: .8rem; font-weight: 850; letter-spacing: .18em; }
+  h1 { margin: 8px 0 10px; font-size: clamp(2.3rem, 6vw, 4rem); }
+  p { margin: 0; color: var(--muted); }
+  .actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+  .actions a { min-height: 44px; display: inline-flex; align-items: center; padding: 10px 15px; border: 1px solid var(--border); border-radius: 10px; color: var(--ink); background: var(--surface); font-size: .85rem; font-weight: 700; text-decoration: none; }
+  .actions a:first-child { color: white; border-color: var(--accent); background: var(--accent); }
+</style>

@@ -1,0 +1,11 @@
+---
+import WikiPage from '../components/WikiPage.astro';
+const cards = [
+  { title: 'Tiles', description: 'Review the 21 documented designs and observed Cash or Robux options in one database page.', href: '/decorations/tiles/', icon: 'T', status: 'Reported' },
+  { title: 'Counter Upgrades', description: 'Compare known counter names and the observed ElegantWood upgrade.', href: '/guides/counter-upgrades/', icon: 'C', status: 'Reported' },
+  { title: 'Choopy Mystery Box', description: 'Review the observed Normal box cost, delivery time, and random-reward warning.', href: '/guides/choopy-mystery-box/', icon: 'M', status: 'Reported' },
+];
+---
+<WikiPage title="Decorations" description="Explore the publicly documented Karinderya Decorations Pt. 1 features, Tiles, counters, and Choopy delivery." kicker="Customization reference" intro="A verification-first guide to visible Decorations Pt. 1 systems." cards={cards} note="Observed prices, wait times, and availability can change between updates." sourceIds={['wiki-decorations', 'roblox-game']} relatedLinks={[{ label: 'Tiles', href: '/decorations/tiles/' }, { label: 'Counter upgrades', href: '/guides/counter-upgrades/' }, { label: 'Choopy Mystery Box', href: '/guides/choopy-mystery-box/' }]}>
+  <p>Public sources document Tiles, Counter Upgrade, Table Tops, Dishwasher, and Choopy Mystery Box delivery as part of Decorations Pt. 1. No cosmetic effect is treated as a hidden gameplay statistic.</p>
+</WikiPage>

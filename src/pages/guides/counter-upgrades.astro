@@ -1,0 +1,14 @@
+---
+import ContentPage from '../../components/ContentPage.astro';
+import VerificationStatus from '../../components/VerificationStatus.astro';
+---
+<ContentPage title="Karinderya Counter Upgrades Guide" description="Review documented Karinderya counter names and the observed ElegantWood Counter cost and upgrade time." kicker="Decorations guide" intro="Known counter choices and observed upgrade terms, without invented statistics." parent={{ label: 'Guides', href: '/guides/' }} relatedLinks={[{ label: 'Decorations', href: '/decorations/' }, { label: 'Tiles', href: '/decorations/tiles/' }, { label: 'Furniture', href: '/furniture/' }]} sourceIds={['wiki-decorations']}>
+  <VerificationStatus status="Reported" notes="Counter names, the ElegantWood listing, and the displayed upgrade time appear in one retained community guide with public interface captures. Values may change." />
+  <h2>Known counter examples</h2>
+  <div class="table-scroll"><table><thead><tr><th scope="col">Counter</th><th scope="col">Observed information</th><th scope="col">Status</th></tr></thead><tbody>
+    <tr><th scope="row">Default Counter</th><td>Known counter option</td><td>Reported</td></tr>
+    <tr><th scope="row">RedWood Counter</th><td>Known counter option</td><td>Reported</td></tr>
+    <tr><th scope="row">ElegantWood Counter</th><td>&#8369;80,000; observed upgrade time: 10 minutes</td><td>Reported</td></tr>
+  </tbody></table></div>
+  <p class="notice">Missing prices, unlock requirements, and counter statistics remain To be verified.</p>
+</ContentPage>

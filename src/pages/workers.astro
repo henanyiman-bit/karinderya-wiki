@@ -1,0 +1,24 @@
+---
+import ContentPage from '../components/ContentPage.astro';
+import VerificationStatus from '../components/VerificationStatus.astro';
+import FAQ from '../components/FAQ.astro';
+const faqItems = [
+  { question: 'How long do Workers last?', answer: 'Public sources show temporary contracts measured in days, including an observed three-day General Worker offer. Other durations remain reported and should be checked against the current hiring panel.' },
+  { question: 'Are Worker prices permanent?', answer: 'No permanent price schedule is established. Prices and durations shown here are dated observations and may change between updates or offers.' },
+  { question: 'What is known about Manual Assign?', answer: 'A public hiring panel includes a warning that Manual Assign may be disabled or changed after hiring. The exact behavior across Worker types and game versions is not independently confirmed.' },
+];
+---
+<ContentPage title="Karinderya Workers & Contracts" description="Review publicly observed Karinderya worker contracts, durations, and cautious gameplay notes." kicker="Staff reference" intro="Public captures document temporary Worker offers, but terms can change between updates." relatedLinks={[{ label: 'Beginner guide', href: '/guides/beginner-guide/' }, { label: 'Equipment', href: '/equipment/' }, { label: 'Chiller', href: '/equipment/chiller/' }]} sourceIds={['worker-guide', 'worker-chiller', 'beginner-guide']}>
+  <VerificationStatus status="Reported" notes="General Worker terms are supported by dated gameplay footage. Epic and YouTube Creator offers remain community documented and need broader confirmation." />
+  <h2>Publicly documented Worker contracts</h2>
+  <div class="table-scroll"><table><thead><tr><th scope="col">Worker</th><th scope="col">Observed cost</th><th scope="col">Observed duration</th><th scope="col">Status</th></tr></thead><tbody>
+    <tr><th scope="row">General Worker</th><td>&#8369;300</td><td>3 days</td><td>Community Verified<br /><small>Community observed</small></td></tr>
+    <tr><th scope="row">Epic Worker</th><td>&#8369;1,000</td><td>1 day</td><td>Reported<br /><small>Community documented</small></td></tr>
+    <tr><th scope="row">YouTube Creator Worker</th><td>&#8369;5,000</td><td>2 days</td><td>Reported<br /><small>Community documented</small></td></tr>
+  </tbody></table></div>
+  <h2>Manual Assign behavior</h2>
+  <p>Some public gameplay reports indicate that hiring a Worker can disable or change Manual Assign customer behavior.</p>
+  <VerificationStatus status="Reported" notes="The public hiring interface includes a Manual Assign warning, but the exact behavior across versions is not established." />
+  <p class="notice">These are observed temporary contracts, not permanent prices or durations. Worker speed, efficiency percentages, spawn schedules, and pathing remain To be verified.</p>
+  <FAQ items={faqItems} />
+</ContentPage>
