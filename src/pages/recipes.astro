@@ -1,51 +1,65 @@
 ---
 import ContentPage from '../components/ContentPage.astro';
-import FAQ from '../components/FAQ.astro';
-
-const faqItems = [
-  { question: 'How do I know which ingredients to use?', answer: 'Read the ingredient combination shown on the customer ticket and prepare that order using the listed items.' },
-  { question: 'Where can I buy ingredients?', answer: 'Use the Grocery to restock ingredients. The Grocery and Ingredients pages list the items currently covered by this wiki.' },
-  { question: 'What should I upgrade if orders are cooking too slowly?', answer: 'Compare stove tiers and consider whether a faster stove or an additional cooking station better fits your current kitchen.' },
-];
+import WikiCard from '../components/WikiCard.astro';
 ---
-<ContentPage title="Karinderya Recipes & Orders" description="Browse Karinderya customer orders, ingredient combinations, and cooking-system guidance." kicker="Cooking guide" intro="Use customer tickets to prepare the correct ingredient combinations." relatedLinks={[{ label: 'Food menu groups', href: '/food/' }, { label: 'Grocery', href: '/grocery/' }, { label: 'Equipment', href: '/equipment/' }]} sourceIds={['codex-menu', 'wiki-menu']} tableOfContents>
-  <h2 id="recipe-system">Recipe System</h2>
-  <p>Karinderya connects customer orders, ingredients, cooking equipment, and menu progression. Each customer ticket shows the items needed for that order and the displayed ticket value.</p>
-  <p>Menu groups and customer-count milestones are covered on the <a href="/food/">Food page</a>.</p>
 
-  <h2 id="how-orders-work">How Orders Work</h2>
-  <ol>
-    <li>Read the customer ticket before preparing the order.</li>
-    <li>Check that the required ingredients are available.</li>
-    <li>Use an available stove to prepare the order.</li>
-    <li>Serve the completed order and continue the customer flow.</li>
-  </ol>
+<ContentPage
+  title="Karinderya Recipes & Orders"
+  seoTitle="Karinderya Recipes Guide & Cooking Flow | Karinderya Wiki"
+  description="Learn how Recipes connect ingredients, cooking, and food orders in Karinderya with beginner-friendly guides and restaurant workflow tips."
+  kicker="Recipe hub"
+  intro="Explore how recipes connect customer orders with ingredients, cooking, food, and serving."
+  relatedLinks={[
+    { label: 'Beginner Guide', href: '/guides/beginner-guide/', description: 'Learn how recipes fit into the complete restaurant service loop.' },
+    { label: 'Cooking and Serving Guide', href: '/guides/cooking-and-serving/', description: 'Follow an order from the customer request through cooking and serving.' },
+    { label: 'Ingredient Guide', href: '/ingredients/', description: 'Browse the ingredient directory and connected cooking information.' },
+    { label: 'Equipment Guide', href: '/equipment/', description: 'Explore the restaurant tools used during food preparation.' },
+  ]}
+  relatedHeading="Related Guides"
+  sourceIds={['codex-menu', 'wiki-menu']}
+  tableOfContents
+>
+  <h2 id="introduction">Introduction</h2>
+  <p>Recipes connect several parts of restaurant service in Karinderya. A customer order identifies the food being requested, ingredients support its preparation, Grocery helps organize supplies, and cooking turns those requirements into food that can be served.</p>
+  <p>This hub brings those topics together without duplicating the individual category pages. Use the <a href="/food/">Food Directory</a> to browse the wider menu section, the <a href="/ingredients/">Ingredient Guide</a> for ingredient entries, and the <a href="/grocery/">Grocery</a> page for restocking information.</p>
 
-  <h2 id="customer-orders">Customer Orders</h2>
-  <p>The table shows two customer-ticket combinations and their displayed values.</p>
-  <div class="table-scroll"><table><thead><tr><th scope="col">Order</th><th scope="col">Displayed items</th><th scope="col">Ticket value</th></tr></thead><tbody>
-    <tr><th scope="row">Order 1</th><td>1 Rice + 1 Condiments</td><td>&#8369;35</td></tr>
-    <tr><th scope="row">Order 2</th><td>1 Rice + 1 Egg + 1 Condiments</td><td>&#8369;75</td></tr>
-  </tbody></table></div>
-
-  <h2 id="ingredient-usage">Ingredient Usage</h2>
+  <h2 id="how-recipes-work">How Recipes Work</h2>
+  <p>A recipe helps connect what a customer requests with the restaurant resources and cooking work needed to complete that order. The relationship can be read as:</p>
+  <p><strong>Order → Ingredients → Cooking → Food → Serving</strong></p>
   <ul>
-    <li><a href="/ingredients/rice/">Rice</a> appears in both tickets.</li>
-    <li><a href="/ingredients/condiments/">Condiments</a> appear in both tickets.</li>
-    <li><a href="/ingredients/eggs/">Egg</a> appears in the second ticket.</li>
-  </ul>
-  <p>Use the individual ingredient pages for grocery information and related order references.</p>
-
-  <h2 id="using-the-order-list">Using the Order List</h2>
-  <p>Read each row as a customer ticket: the middle column shows the ingredient combination, and the value column shows the ticket total. Match the displayed items instead of relying on the order value alone.</p>
-
-  <h2 id="cooking-tips">Cooking Tips</h2>
-  <ul>
-    <li>Restock frequently used ingredients before accepting a busy queue of orders.</li>
-    <li>Read the full ticket so similar orders are not confused.</li>
-    <li>Keep an available stove ready when several customers are waiting.</li>
-    <li>Use the Food page to review menu groups and progression milestones.</li>
+    <li><strong>Order:</strong> identifies the food requested by the customer.</li>
+    <li><strong>Ingredients:</strong> connect the request with the supplies used by the restaurant.</li>
+    <li><strong>Cooking:</strong> places the order into the kitchen workflow.</li>
+    <li><strong>Food:</strong> represents the prepared order before it reaches the customer.</li>
+    <li><strong>Serving:</strong> completes the restaurant workflow for that order.</li>
   </ul>
 
-  <FAQ items={faqItems} />
+  <h2 id="featured-content">Featured Content</h2>
+  <div class="card-grid">
+    <WikiCard title="Cooking and Serving Guide" description="Follow the complete restaurant workflow from reading an order to serving the customer." href="/guides/cooking-and-serving/" icon="C" />
+    <WikiCard title="Ingredient Guide" description="Browse ingredient entries and learn where they connect with cooking information." href="/ingredients/" icon="I" />
+    <WikiCard title="Food Directory" description="Explore food categories and the wider menu section of the Wiki." href="/food/" icon="F" />
+  </div>
+
+  <h2 id="recipe-directory">Recipe Directory</h2>
+  <p>Use these Wiki sections to move between recipes and the systems connected to them. Each entry has a separate role in the restaurant workflow.</p>
+  <div class="card-grid">
+    <WikiCard title="Food Directory" description="Browse menu groups and food-related Wiki content." href="/food/" icon="F" />
+    <WikiCard title="Ingredient Directory" description="Open the directory of individual restaurant ingredients." href="/ingredients/" icon="I" />
+    <WikiCard title="Grocery" description="Review the Wiki section used for ingredient restocking information." href="/grocery/" icon="G" />
+    <WikiCard title="Cooking Equipment" description="Browse Stoves, the Chiller, and other equipment topics covered by the Wiki." href="/equipment/" icon="E" />
+  </div>
+
+  <h2 id="cooking-and-order-flow">Cooking and Order Flow</h2>
+  <p>Begin with the customer order and read the complete request before moving into food preparation. Use the ingredient and food sections when you need context for what is shown, then keep the order connected with the correct cooking task.</p>
+  <p>Once the food is prepared, continue through the normal serving workflow and make sure it reaches the intended customer. When several restaurant tasks need attention, keep each order easy to identify from the request through service.</p>
+
+  <h2 id="gameplay-tips">Gameplay Tips</h2>
+  <ul>
+    <li>Read the complete customer order before selecting ingredients or beginning preparation.</li>
+    <li>Check the Ingredient Directory when an item in an order is unfamiliar.</li>
+    <li>Keep the cooking area organized so active orders remain easy to follow.</li>
+    <li>Match prepared food with the intended customer before completing service.</li>
+    <li>Use the Food, Grocery, and Equipment sections for information outside the recipe directory.</li>
+  </ul>
 </ContentPage>

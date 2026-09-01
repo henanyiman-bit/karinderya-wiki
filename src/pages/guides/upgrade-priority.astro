@@ -1,0 +1,74 @@
+---
+import ContentPage from '../../components/ContentPage.astro';
+import FAQ from '../../components/FAQ.astro';
+import { siteImages } from '../../data/images';
+
+const faqItems = [
+  { question: 'What should I improve first?', answer: 'Start with the restaurant area that most often interrupts service. The right choice depends on the problem you can observe in your current setup.' },
+  { question: 'Is there one best improvement order?', answer: 'No single order fits every restaurant. Review supplies, kitchen organization, dining layout, and staffing before choosing.' },
+  { question: 'How do I know whether a change helped?', answer: 'Make one clear change, follow the next service cycle, and compare the workflow with the problem you originally noticed.' },
+];
+---
+
+<ContentPage
+  title="Karinderya Upgrade Priority Guide"
+  description="Plan Karinderya restaurant improvements by identifying workflow problems and choosing equipment, furniture, or staffing around current needs."
+  kicker="Restaurant planning guide"
+  intro="Choose restaurant improvements around visible service needs instead of following a fixed order."
+  parent={{ label: 'Guides', href: '/guides/' }}
+  tableOfContents
+  heroImage={siteImages.equipmentHero}
+  previousPage={{ label: 'Restaurant Layout Guide', href: '/guides/restaurant-layout/' }}
+  relatedLinks={[
+    { label: 'Equipment Hub', href: '/equipment/', description: 'Browse cooking equipment and restaurant tools.' },
+    { label: 'Furniture Hub', href: '/furniture/', description: 'Explore Tables, Chairs, and layout planning.' },
+    { label: 'Restaurant Layout Guide', href: '/guides/restaurant-layout/', description: 'Organize dining, kitchen, and movement areas.' },
+    { label: 'Beginner Guide', href: '/guides/beginner-guide/', description: 'Review the complete restaurant service loop.' },
+  ]}
+>
+  <h2 id="introduction">Introduction</h2>
+  <p>Restaurant planning works best when each change answers a visible problem. Rather than copying a universal list, follow the service workflow, identify where management becomes difficult, and choose the category that addresses that area.</p>
+
+  <h2 id="overview">Overview</h2>
+  <p>Karinderya connects ingredients, cooking equipment, dining furniture, Workers, and player movement. A problem in one area may look similar to a problem in another, so observe the full service loop before deciding what to change.</p>
+
+  <h2 id="how-it-works">How It Works</h2>
+  <p>An improvement is useful when it makes the restaurant easier to operate. Equipment belongs to kitchen work, Furniture shapes the dining area, Workers support restaurant management, and layout affects how players move between tasks. Use the corresponding Hub to understand each category before making a decision.</p>
+
+  <h2 id="planning-process">Planning Process</h2>
+  <ol>
+    <li>Follow several customer interactions from the dining area through cooking and serving.</li>
+    <li>Note the task or area that repeatedly becomes difficult to manage.</li>
+    <li>Check whether the issue belongs to supplies, equipment, furniture, staffing, or layout.</li>
+    <li>Open the related Wiki Hub and review the available information.</li>
+    <li>Make one focused change.</li>
+    <li>Observe the next service cycle before changing another system.</li>
+  </ol>
+
+  <h2 id="choosing-a-category">Choosing a Category</h2>
+  <ul>
+    <li><strong>Supplies:</strong> review Ingredients, Recipes, and Grocery information.</li>
+    <li><strong>Kitchen:</strong> review the Equipment Hub and Stoves Directory.</li>
+    <li><strong>Dining area:</strong> review Furniture, Tables, Chairs, and layout guidance.</li>
+    <li><strong>Restaurant management:</strong> review Workers and co-op organization.</li>
+    <li><strong>Customization:</strong> review appearance changes after the main workflow is organized.</li>
+  </ul>
+
+  <h2 id="gameplay-tips">Gameplay Tips</h2>
+  <ul>
+    <li>Choose around the problem you can observe, not the most noticeable option.</li>
+    <li>Keep the kitchen and dining area connected as one workflow.</li>
+    <li>Use small, focused changes so the result is easier to understand.</li>
+    <li>Return to the related Hub whenever you need category-specific information.</li>
+  </ul>
+
+  <h2 id="common-mistakes">Common Mistakes</h2>
+  <ul>
+    <li>Changing several restaurant systems at once.</li>
+    <li>Focusing on appearance while a basic workflow problem remains.</li>
+    <li>Assuming every restaurant needs the same next improvement.</li>
+    <li>Changing equipment when the actual issue is supplies or layout.</li>
+  </ul>
+
+  <FAQ items={faqItems} />
+</ContentPage>

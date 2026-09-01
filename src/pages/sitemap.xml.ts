@@ -10,7 +10,9 @@ const routes = [
   '/decorations/', '/decorations/tiles/', '/equipment/stoves/', '/equipment/deluxe-stove/',
   '/equipment/basic-stove/', '/equipment/standard-stove/', '/equipment/chiller/',
   '/guides/beginner-guide/', '/guides/5-star-guide/',
-  '/guides/counter-upgrades/', '/guides/choopy-mystery-box/', '/verification/',
+  '/guides/co-op-guide/', '/guides/cooking-and-serving/', '/guides/how-to-hire-workers/',
+  '/guides/restaurant-layout/', '/guides/upgrade-priority/',
+  '/guides/counter-upgrades/', '/guides/choopy-mystery-box/',
   '/guides/how-to-sell-furniture/', '/guides/shop-restock/',
   '/updates/decorations-part-1/',
 ];

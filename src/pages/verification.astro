@@ -1,30 +1,65 @@
 ---
-import ContentPage from '../components/ContentPage.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+import RelatedContent from '../components/RelatedContent.astro';
+
+const title = 'Wiki Information';
+const description = 'Learn what Karinderya Wiki covers and find the main game databases and player guides.';
 ---
 
-<ContentPage
-  title="Wiki Information"
-  description="Learn what Karinderya Wiki covers and find the main game databases and player guides."
-  kicker="Wiki guide"
-  intro="A quick introduction to this player-focused Karinderya game wiki."
-  relatedLinks={[{ label: 'About the wiki', href: '/about/' }, { label: 'Beginner guide', href: '/guides/beginner-guide/' }, { label: 'Latest updates', href: '/updates/' }]}
-  tableOfContents
+<BaseLayout
+  title={title}
+  description={description}
+  breadcrumbs={[{ label: 'Home', href: '/' }, { label: title }]}
+  noindex
 >
-  <h2 id="about-this-wiki">About This Wiki</h2>
-  <p>Karinderya Wiki is an English-language player resource for the Karinderya Roblox experience. It organizes codes, food, ingredients, workers, equipment, furniture, decorations, updates, and gameplay guides into easy-to-browse pages.</p>
+  <div class="container article-wrap">
+    <header class="page-hero">
+      <p class="kicker">Wiki guide</p>
+      <h1>{title}</h1>
+      <p class="lead">A quick introduction to this player-focused Karinderya game wiki.</p>
+    </header>
 
-  <h2 id="browse-the-database">Browse the Database</h2>
-  <ul>
-    <li><a href="/codes/">Codes</a> lists reward codes and redemption guidance.</li>
-    <li><a href="/food/">Food</a>, <a href="/recipes/">Recipes</a>, and <a href="/ingredients/">Ingredients</a> cover the kitchen and customer orders.</li>
-    <li><a href="/workers/">Workers</a> covers temporary staff contracts.</li>
-    <li><a href="/equipment/">Equipment</a> and <a href="/furniture/">Furniture</a> cover restaurant upgrades.</li>
-    <li><a href="/guides/">Guides</a> provides practical help for running a Karinderya.</li>
-  </ul>
+    <div class="article-layout">
+      <TableOfContents articleId="article-content" />
+      <article id="article-content" class="content-panel article-content">
+        <h2 id="about-this-wiki">About This Wiki</h2>
+        <p>Karinderya Wiki is an English-language player resource for the Karinderya Roblox experience. It organizes codes, food, ingredients, workers, equipment, furniture, decorations, updates, and gameplay guides into easy-to-browse pages.</p>
 
-  <h2 id="game-updates">Game Updates</h2>
-  <p>Karinderya can change over time. The <a href="/updates/">Updates section</a> groups new features with the related database and guide pages so players can quickly find what changed.</p>
+        <h2 id="browse-the-database">Browse the Database</h2>
+        <ul>
+          <li><a href="/codes/">Codes</a> lists reward codes and redemption guidance.</li>
+          <li><a href="/food/">Food</a>, <a href="/recipes/">Recipes</a>, and <a href="/ingredients/">Ingredients</a> cover the kitchen and customer orders.</li>
+          <li><a href="/workers/">Workers</a> covers temporary staff contracts.</li>
+          <li><a href="/equipment/">Equipment</a> and <a href="/furniture/">Furniture</a> cover restaurant upgrades.</li>
+          <li><a href="/guides/">Guides</a> provides practical help for running a Karinderya.</li>
+        </ul>
 
-  <h2 id="independent-player-resource">Independent Player Resource</h2>
-  <p>Karinderya Wiki is a fan-made player resource and is not affiliated with Roblox Corporation, SILOG, or the Karinderya development team.</p>
-</ContentPage>
+        <h2 id="game-updates">Game Updates</h2>
+        <p>Karinderya can change over time. The <a href="/updates/">Updates section</a> groups new features with the related database and guide pages so players can quickly find what changed.</p>
+
+        <h2 id="independent-player-resource">Independent Player Resource</h2>
+        <p>Karinderya Wiki is a fan-made player resource and is not affiliated with Roblox Corporation, SILOG, or the Karinderya development team.</p>
+      </article>
+    </div>
+
+    <RelatedContent
+      items={[
+        { label: 'About the wiki', href: '/about/' },
+        { label: 'Beginner guide', href: '/guides/beginner-guide/' },
+        { label: 'Latest updates', href: '/updates/' },
+      ]}
+    />
+  </div>
+</BaseLayout>
+
+<style>
+  .article-wrap { max-width: 1180px; }
+  .article-layout { display: grid; grid-template-columns: minmax(0, 1fr) 240px; grid-template-areas: "article toc"; align-items: start; gap: 24px; }
+  .article-content { grid-area: article; }
+  .article-layout > :global(.toc-shell) { grid-area: toc; }
+  .article-content :global(h2) { scroll-margin-top: 90px; }
+  @media (max-width: 900px) {
+    .article-layout { grid-template-columns: minmax(0, 1fr); grid-template-areas: "toc" "article"; }
+  }
+</style>

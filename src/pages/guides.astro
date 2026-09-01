@@ -1,14 +1,79 @@
 ---
-import WikiPage from '../components/WikiPage.astro';
-const cards = [
-  { title: 'Beginner Guide', description: 'Learn the service loop, ingredient stocking, upgrades, and progression basics.', href: '/guides/beginner-guide/', icon: '1' },
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AdSlot from '../components/AdSlot.astro';
+import WikiCard from '../components/WikiCard.astro';
+
+const guides = [
+  { title: 'Beginner Guide', description: 'Learn the service loop, ingredient planning, equipment use, and restaurant basics.', href: '/guides/beginner-guide/', icon: '1' },
   { title: '5-Star Guide', description: 'Build a smoother restaurant while working toward the five-star goal.', href: '/guides/5-star-guide/', icon: '5' },
-  { title: 'Counter Upgrades', description: 'Compare Default, RedWood, and ElegantWood counter options.', href: '/guides/counter-upgrades/', icon: 'C' },
-  { title: 'Choopy Mystery Box', description: 'Check the Normal box price, delivery time, and random reward warning.', href: '/guides/choopy-mystery-box/', icon: 'M' },
-  { title: 'How to Sell Furniture', description: 'Learn how furniture resale works and review example values.', href: '/guides/how-to-sell-furniture/', icon: 'S' },
-  { title: 'Shop Restock', description: 'Plan grocery, furniture, and equipment purchases around current inventory.', href: '/guides/shop-restock/', icon: 'R' },
+  { title: 'Counter Planning', description: 'Learn how counters fit into kitchen organization and restaurant layout planning.', href: '/guides/counter-upgrades/', icon: 'C' },
+  { title: 'Choopy Mystery Box', description: 'Learn how the Choopy interface fits into restaurant customization and planning.', href: '/guides/choopy-mystery-box/', icon: 'M' },
+  { title: 'Furniture Management', description: 'Plan furniture changes while keeping dining areas clear and practical.', href: '/guides/how-to-sell-furniture/', icon: 'F' },
+  { title: 'Shop Restock', description: 'Organize grocery, furniture, and equipment needs around restaurant workflow.', href: '/guides/shop-restock/', icon: 'R' },
+  { title: 'Co-op Guide', description: 'Divide restaurant tasks and coordinate a smoother shift with other players.', href: '/guides/co-op-guide/', icon: 'O' },
+  { title: 'Cooking and Serving', description: 'Move customer orders through ingredients, stoves, and table service.', href: '/guides/cooking-and-serving/', icon: 'K' },
+  { title: 'How to Hire Workers', description: 'Learn how Worker support and Manual Assign fit restaurant management.', href: '/guides/how-to-hire-workers/', icon: 'H' },
+  { title: 'Restaurant Layout', description: 'Plan practical dining, kitchen, and movement areas.', href: '/guides/restaurant-layout/', icon: 'L' },
+  { title: 'Upgrade Priority', description: 'Choose the next improvement around the current restaurant bottleneck.', href: '/guides/upgrade-priority/', icon: 'U' },
+];
+const guideByHref = new Map(guides.map((guide) => [guide.href, guide]));
+const categories = [
+  { title: 'Getting Started', description: 'Learn the restaurant loop and the systems you will use first.', guideHrefs: ['/guides/beginner-guide/', '/guides/co-op-guide/'] },
+  { title: 'Restaurant Operations', description: 'Keep service organized and build a smoother restaurant workflow.', guideHrefs: ['/guides/cooking-and-serving/', '/guides/how-to-hire-workers/', '/guides/restaurant-layout/'] },
+  { title: 'Equipment and Upgrades', description: 'Plan improvements that support cooking and customer service.', guideHrefs: ['/guides/upgrade-priority/', '/guides/counter-upgrades/'] },
+  { title: 'Resources and Planning', description: 'Coordinate restocks, customization, and restaurant management decisions.', guideHrefs: ['/guides/shop-restock/', '/guides/choopy-mystery-box/'] },
+  { title: 'Restaurant Goals', description: 'Use focused goals to guide the next stage of your restaurant.', guideHrefs: ['/guides/5-star-guide/', '/guides/upgrade-priority/'] },
+  { title: 'Customization', description: 'Manage furniture choices and restaurant appearance changes.', guideHrefs: ['/guides/restaurant-layout/', '/guides/how-to-sell-furniture/', '/guides/counter-upgrades/'] },
 ];
 ---
-<WikiPage title="Guides" description="Read beginner-friendly Karinderya Roblox guides for restaurant service, upgrades, and progression." kicker="Learn the game" intro="Task-focused walkthroughs for building and managing your restaurant." cards={cards} note="Use these guides to plan your next upgrade and solve common service bottlenecks." relatedLinks={[{ label: 'Food', href: '/food/' }, { label: 'Workers', href: '/workers/' }, { label: 'Equipment', href: '/equipment/' }, { label: 'Furniture', href: '/furniture/' }]}>
-  <p>Start with the Beginner Guide, then use focused guides for the five-star goal, counter upgrades, Choopy Mystery Boxes, furniture resale, and shop-restock planning.</p>
-</WikiPage>
+<BaseLayout title="Guides" description="Explore Karinderya guides for cooking, workers, equipment, furniture, layout, and restaurant management." breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Guides' }]}>
+  <div class="container">
+    <header class="page-hero"><p class="kicker">Learn the game</p><h1>Guides</h1><p class="lead">Task-focused walkthroughs for building, managing, upgrading, and customizing your restaurant.</p></header>
+    <AdSlot placement="top" />
+
+    <section class="featured" aria-labelledby="featured-heading">
+      <div><p class="section-kicker">Recommended first</p><h2 id="featured-heading">Featured Guide</h2><p>Start with an introduction to restaurant service, ingredient planning, equipment, and everyday management.</p><a class="featured-link" href="/guides/beginner-guide/">Read the Beginner Guide <span aria-hidden="true">-&gt;</span></a></div>
+      <div class="featured-steps" aria-label="Beginner guide topics"><span>Service loop</span><span>Ingredients</span><span>Equipment</span><span>Planning</span></div>
+    </section>
+
+    <section class="section" aria-labelledby="categories-heading"><div class="section-heading"><div><p class="section-kicker">Browse by goal</p><h2 id="categories-heading">Guide Categories</h2><p>Choose a topic based on what you want to improve next.</p></div></div>
+      <div class="category-grid">{categories.map((category) => <section class="guide-category"><h3>{category.title}</h3><p>{category.description}</p><ul>{category.guideHrefs.map((href) => { const guide = guideByHref.get(href); return guide && <li><a href={guide.href}>{guide.title}<span aria-hidden="true">-&gt;</span></a></li>; })}</ul></section>)}</div>
+    </section>
+
+    <AdSlot placement="content-1" />
+
+    <section class="section directory" aria-labelledby="directory-heading"><div class="section-heading"><div><p class="section-kicker">All walkthroughs</p><h2 id="directory-heading">Guide Directory</h2><p>Browse every guide currently available in the Wiki.</p></div></div><div class="card-grid">{guides.map((guide) => <WikiCard {...guide} />)}</div></section>
+
+    <nav class="related" aria-label="Related wiki sections"><h2>Continue exploring</h2><div><a href="/food/">Food</a><a href="/workers/">Workers</a><a href="/equipment/">Equipment</a><a href="/furniture/">Furniture</a></div></nav>
+    <AdSlot placement="bottom" />
+  </div>
+</BaseLayout>
+
+<style>
+  .section-kicker { margin: 0 0 9px; color: var(--accent-dark); font-size: .7rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+  .featured { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(240px, .65fr); gap: 26px; align-items: center; margin: 28px 0 14px; padding: clamp(24px, 5vw, 42px); border-radius: var(--radius); color: white; background: linear-gradient(135deg, #482e23, #7a3a25); box-shadow: var(--shadow); }
+  .featured .section-kicker { color: #ffceb4; }
+  .featured h2 { margin: 0; font-size: clamp(1.5rem, 3vw, 2.15rem); }
+  .featured p { max-width: 660px; color: #eadbd3; }
+  .featured-link { min-height: 44px; display: inline-flex; align-items: center; gap: 10px; color: white; font-weight: 800; text-decoration: none; }
+  .featured-link span { color: #ffceb4; }
+  .featured-steps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+  .featured-steps span { min-height: 44px; display: grid; place-items: center; padding: 9px; border: 1px solid rgb(255 255 255 / 18%); border-radius: 10px; color: #f7e9e0; background: rgb(255 255 255 / 7%); font-size: .78rem; font-weight: 700; text-align: center; }
+  .category-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .guide-category { min-width: 0; padding: 22px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+  .guide-category h3 { margin: 0; font-size: 1.05rem; }
+  .guide-category > p { min-height: 3em; margin: 8px 0 16px; color: var(--muted); font-size: .84rem; line-height: 1.5; }
+  .guide-category ul { margin: 0; padding: 0; border-top: 1px solid var(--border); list-style: none; }
+  .guide-category li { border-bottom: 1px solid var(--border); }
+  .guide-category a { min-height: 44px; display: flex; align-items: center; justify-content: space-between; gap: 10px; color: var(--ink); font-size: .83rem; font-weight: 700; text-decoration: none; }
+  .guide-category a span { color: var(--accent); }
+  .guide-category a:hover { color: var(--accent-dark); }
+  .directory { padding-top: 42px; }
+  .related { margin: 36px 0; }
+  .related h2 { margin: 0 0 14px; font-size: 1.15rem; }
+  .related div { display: flex; flex-wrap: wrap; gap: 8px; }
+  .related a { min-height: 44px; display: inline-flex; align-items: center; padding: 8px 13px; border: 1px solid var(--border); border-radius: 999px; color: var(--accent-dark); background: var(--surface); font-size: .82rem; font-weight: 700; text-decoration: none; }
+  .related a:hover { border-color: #dec3b4; background: var(--accent-soft); }
+  @media (max-width: 860px) { .featured { grid-template-columns: 1fr; }.category-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 560px) { .category-grid { grid-template-columns: 1fr; }.guide-category > p { min-height: 0; }.featured-steps { grid-template-columns: 1fr; } }
+</style>

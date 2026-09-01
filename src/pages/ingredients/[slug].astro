@@ -1,5 +1,5 @@
 ---
-import EntityPage from '../../components/EntityPage.astro';
+import ContentPage from '../../components/ContentPage.astro';
 import { ingredientEntities, type EntityRecord } from '../../data/entities';
 
 export function getStaticPaths() {
@@ -8,11 +8,44 @@ export function getStaticPaths() {
 
 interface Props { entity: EntityRecord }
 const { entity } = Astro.props;
+const navigationOrder = ['rice', 'eggs', 'vegetables', 'bangus', 'pork', 'beef', 'condiments'];
+const currentIndex = navigationOrder.indexOf(entity.slug);
+const findEntity = (slug?: string) => ingredientEntities.find((item) => item.slug === slug);
+const previousEntity = findEntity(navigationOrder[currentIndex - 1]);
+const nextEntity = findEntity(navigationOrder[currentIndex + 1]);
+const shortTitle = (title: string) => title.replace('Karinderya ', '');
+const ingredientName = shortTitle(entity.title);
 ---
 
-<EntityPage
-  {...entity}
+<ContentPage
+  title={entity.title}
+  description={entity.description}
   kicker="Ingredient profile"
+  intro={entity.intro}
   parent={{ label: 'Ingredients', href: '/ingredients/' }}
-  relatedLinks={[{ label: 'All ingredients', href: '/ingredients/' }, { label: 'Grocery', href: '/grocery/' }, { label: 'Customer orders', href: '/recipes/' }]}
-/>
+  heroImage={entity.heroImage}
+  tableOfContents
+  previousPage={previousEntity ? { label: shortTitle(previousEntity.title), href: `/ingredients/${previousEntity.slug}/` } : undefined}
+  nextPage={nextEntity ? { label: shortTitle(nextEntity.title), href: `/ingredients/${nextEntity.slug}/` } : undefined}
+  relatedLinks={[
+    { label: 'Ingredients Hub', href: '/ingredients/', description: 'Browse the ingredient directory and learn how ingredients fit into restaurant workflow.' },
+    { label: 'Recipe Guide', href: '/recipes/', description: 'Learn how recipes connect ingredients with cooking and food.' },
+    { label: 'Food Guide', href: '/food/', description: 'Explore how prepared food fits into restaurant service.' },
+    { label: 'Grocery Guide', href: '/grocery/', description: 'Review the Grocery as part of ingredient planning and preparation.' },
+  ]}
+>
+  <h2 id="introduction">Introduction</h2>
+  <p>{entity.overview}</p>
+
+  <h2 id="overview">Overview</h2>
+  <ul>{entity.known.map((item) => <li>{item}</li>)}</ul>
+
+  <h2 id="how-it-works">How It Works</h2>
+  <p>{ingredientName} sits within the ingredient side of the restaurant workflow. The Grocery provides context for ingredient planning, Recipes explain where ingredients fit into cooking, and the Food guide follows the prepared result into service.</p>
+
+  <h2 id="usage">Usage</h2>
+  <ul>{entity.howToUse?.map((item) => <li>{item}</li>)}</ul>
+
+  <h2 id="gameplay-tips">Gameplay Tips</h2>
+  <ul>{entity.tips?.map((item) => <li>{item}</li>)}</ul>
+</ContentPage>

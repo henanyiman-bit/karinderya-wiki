@@ -1,17 +1,15 @@
 ---
 import ContentPage from './ContentPage.astro';
+import QuickFacts from './QuickFacts.astro';
 import type { VerificationStatus as Status } from './VerificationStatus.astro';
 import type { BreadcrumbItem } from './Breadcrumb.astro';
 import type { SourceId } from '../data/sources';
+import type { ResponsiveImageAsset } from '../data/images';
+import type { RelatedContentItem } from './RelatedContent.astro';
 
 interface DetailRow {
   label: string;
   value: string;
-}
-
-interface LinkItem {
-  label: string;
-  href: string;
 }
 
 interface Props {
@@ -20,19 +18,29 @@ interface Props {
   kicker: string;
   intro: string;
   overview: string;
-  parent: BreadcrumbItem;
-  status: Status;
-  statusNotes: string;
-  observedData: DetailRow[];
-  known: string[];
-  unknown: string[];
-  sourceIds: SourceId[];
-  relatedLinks: LinkItem[];
+  parent?: BreadcrumbItem;
+  parents?: BreadcrumbItem[];
+  status?: Status;
+  statusNotes?: string;
+  observedData?: DetailRow[];
+  known?: string[];
+  unknown?: string[];
+  sourceIds?: SourceId[];
+  relatedLinks: RelatedContentItem[];
+  previousPage?: RelatedContentItem;
+  nextPage?: RelatedContentItem;
   note?: string;
+  heroImage?: ResponsiveImageAsset;
+  howToGet?: string[];
+  howToUse?: string[];
+  tips?: string[];
 }
 
 const props = Astro.props;
-const details = props.observedData.filter((row) => row.value.trim().toLowerCase() !== 'to be verified');
+const details = (props.observedData ?? []).filter((row) => {
+  const value = row.value.trim().toLowerCase();
+  return value !== 'to be verified' && !row.label.toLowerCase().includes('ratio');
+});
 ---
 
 <ContentPage
@@ -41,32 +49,37 @@ const details = props.observedData.filter((row) => row.value.trim().toLowerCase(
   kicker={props.kicker}
   intro={props.intro}
   parent={props.parent}
+  parents={props.parents}
   sourceIds={props.sourceIds}
   relatedLinks={props.relatedLinks}
+  heroImage={props.heroImage}
+  tableOfContents
+  previousPage={props.previousPage}
+  nextPage={props.nextPage}
 >
+  <h2 id="introduction">Introduction</h2>
   <p>{props.overview}</p>
 
-  {details.length > 0 && (
-    <>
-      <h2>Details</h2>
-      <div class="table-scroll">
-        <table class="entity-data">
-          <tbody>{details.map((row) => <tr><th scope="row">{row.label}</th><td>{row.value}</td></tr>)}</tbody>
-        </table>
-      </div>
-    </>
+  <QuickFacts facts={details} />
+
+  {(props.howToGet?.length ?? 0) > 0 && (
+    <section>
+      <h2 id="how-to-get">How to Get</h2>
+      <ul>{props.howToGet?.map((item) => <li>{item}</li>)}</ul>
+    </section>
   )}
 
-  {props.known.length > 0 && (
-    <section class="gameplay-details">
-      <h2>Gameplay Information</h2>
-      <ul>{props.known.map((item) => <li>{item}</li>)}</ul>
+  {(props.howToUse?.length ?? 0) > 0 && (
+    <section>
+      <h2 id="how-to-use">How to Use</h2>
+      <ul>{props.howToUse?.map((item) => <li>{item}</li>)}</ul>
+    </section>
+  )}
+
+  {(props.tips?.length ?? 0) > 0 && (
+    <section>
+      <h2 id="gameplay-tips">Gameplay Tips</h2>
+      <ul>{props.tips?.map((item) => <li>{item}</li>)}</ul>
     </section>
   )}
 </ContentPage>
-
-<style>
-  .entity-data { min-width: 460px; }
-  .entity-data th { width: 42%; }
-  .gameplay-details { margin-top: 30px; }
-</style>

@@ -1,11 +1,39 @@
 ---
 import ContentPage from '../../components/ContentPage.astro';
+import { siteImages } from '../../data/images';
 ---
-<ContentPage title="Karinderya Chairs" description="Browse Karinderya chair families and learn how dining furniture supports your restaurant." kicker="Furniture database" intro="Browse chair families and learn how dining furniture affects the restaurant." parent={{ label: 'Furniture', href: '/furniture/' }} relatedLinks={[{ label: 'Tables', href: '/furniture/tables/' }, { label: 'Furniture overview', href: '/furniture/' }, { label: 'Beginner guide', href: '/guides/beginner-guide/' }]} sourceIds={['wiki-furniture']}>
-  <h2>Chair Families</h2>
-  <p>Plank, Wood, Red Wooden, Integrated, Elegant Wooden, Parsons, Slat-back, and Royal.</p>
-  <h2>How Chairs Work</h2>
-  <p>Chairs are part of the restaurant furniture system. Better dining furniture is associated with improved tip chance and a lower chance that customers leave.</p>
-  <h2>Furniture Tips</h2>
-  <p>Choose chairs alongside matching table upgrades and check the current shop before planning a full dining-room replacement.</p>
+
+<ContentPage
+  title="Karinderya Chairs"
+  description="Learn how chairs fit into Karinderya furniture, dining-area organization, and restaurant layout planning."
+  kicker="Furniture category"
+  intro="Explore the role of chairs in the dining area and connect this category with Tables and layout guidance."
+  parent={{ label: 'Karinderya Furniture', href: '/furniture/' }}
+  relatedLinks={[
+    { label: 'Furniture Hub', href: '/furniture/', description: 'Browse Furniture categories and restaurant-planning information.' },
+    { label: 'Tables Directory', href: '/furniture/tables/', description: 'Browse the table entries currently available in the Wiki.' },
+    { label: 'Restaurant Layout Guide', href: '/guides/restaurant-layout/', description: 'Plan customer, work, and movement areas across the restaurant.' },
+  ]}
+  heroImage={siteImages.furnitureHero}
+  tableOfContents
+>
+  <h2 id="introduction">Introduction</h2>
+  <p>Chairs are part of the Furniture system used in the restaurant dining area. This category explains how chairs relate to Tables, customer space, and the wider layout.</p>
+
+  <h2 id="overview">Overview</h2>
+  <p>The Chairs page is a category entry rather than a list of individual chair articles. Use it to understand where chairs belong in Furniture navigation and to continue into the Tables directory or Restaurant Layout Guide.</p>
+
+  <h2 id="how-chairs-work">How Chairs Work</h2>
+  <p>Chairs help establish where the customer area begins and how it is arranged around tables. A clear chair arrangement also makes the boundary between dining space, movement paths, and work areas easier to recognize.</p>
+
+  <h2 id="usage">Usage</h2>
+  <p>Plan chairs together with the surrounding tables and the space players use during service. Adjust their placement when the dining area becomes difficult to navigate or understand.</p>
+
+  <h2 id="gameplay-tips">Gameplay Tips</h2>
+  <ul>
+    <li>Keep chairs grouped with the dining area they belong to.</li>
+    <li>Leave clear paths between customer seating and restaurant work areas.</li>
+    <li>Review the complete room after moving part of the seating arrangement.</li>
+    <li>Use the Tables directory and Restaurant Layout Guide for connected planning information.</li>
+  </ul>
 </ContentPage>

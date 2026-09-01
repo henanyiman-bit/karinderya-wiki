@@ -1,32 +1,46 @@
 ---
 import ContentPage from '../../components/ContentPage.astro';
-import FAQ from '../../components/FAQ.astro';
-const faqItems = [
-  { question: 'Which stove tiers are listed?', answer: 'The stove progression covered by this wiki is Basic Stove, Standard Stove, and Deluxe Stove.' },
-  { question: 'Where does Deluxe Stove fit?', answer: 'Deluxe Stove follows Basic and Standard in the three-tier progression.' },
-  { question: 'Why use more than one stove?', answer: 'Multiple cooking stations allow more than one order to be prepared in parallel.' },
-];
+import WikiCard from '../../components/WikiCard.astro';
+import { siteImages } from '../../data/images';
 ---
-<ContentPage title="Karinderya Stoves" description="Compare Karinderya Basic, Standard, and Deluxe Stove tiers for your kitchen." kicker="Equipment database" intro="Compare the Basic, Standard, and Deluxe cooking-station progression." parent={{ label: 'Equipment', href: '/equipment/' }} relatedLinks={[{ label: 'Deluxe Stove', href: '/equipment/deluxe-stove/' }, { label: 'Equipment', href: '/equipment/' }, { label: 'Recipes', href: '/recipes/' }]} sourceIds={['wiki-furniture', 'deluxe-guide']} tableOfContents>
-  <h2 id="stove-overview">Stove Overview</h2>
-  <p>Stoves are cooking stations used to prepare customer orders. The progression covered here contains three named tiers: Basic Stove, Standard Stove, and Deluxe Stove. Higher tiers are described as reducing cooking time.</p>
 
-  <h2 id="basic-stove">Basic Stove</h2>
-  <p><a href="/equipment/basic-stove/">Basic Stove</a> is the first item in the three-tier order and serves as the starting point for the stove progression.</p>
+<ContentPage
+  title="Karinderya Stoves"
+  description="Browse Karinderya Stoves and learn how cooking equipment fits into the kitchen and restaurant workflow."
+  kicker="Equipment directory"
+  intro="Browse the Stove directory and connect each cooking-equipment entry with the wider restaurant workflow."
+  parent={{ label: 'Equipment', href: '/equipment/' }}
+  heroImage={siteImages.equipmentHero}
+  tableOfContents
+  relatedLinks={[
+    { label: 'Equipment Hub', href: '/equipment/', description: 'Browse restaurant equipment categories and related guides.' },
+    { label: 'Cooking and Serving Guide', href: '/guides/cooking-and-serving/', description: 'Follow the restaurant workflow from preparation through customer service.' },
+    { label: 'Beginner Guide', href: '/guides/beginner-guide/', description: 'Learn the main restaurant systems and navigation paths.' },
+  ]}
+>
+  <h2 id="introduction">Introduction</h2>
+  <p>Stoves are grouped together in the Equipment section because they support the cooking part of restaurant service. This page acts as the directory for the Stove entries currently covered by the Wiki.</p>
 
-  <h2 id="standard-stove">Standard Stove</h2>
-  <p><a href="/equipment/standard-stove/">Standard Stove</a> appears after Basic Stove and before Deluxe Stove, making it the middle step in the progression.</p>
+  <h2 id="overview">Overview</h2>
+  <p>The Stove directory keeps individual equipment articles separate from broader kitchen guidance. Open an entry for information about that named Stove, or use the related guides to follow the complete preparation and serving workflow.</p>
 
-  <h2 id="deluxe-stove">Deluxe Stove</h2>
-  <p><a href="/equipment/deluxe-stove/">Deluxe Stove</a> is the highest tier in this list. It is also included in the <code>2MVISITS</code> code reward.</p>
+  <h2 id="how-equipment-works">How Equipment Works</h2>
+  <p>Cooking equipment connects the kitchen with the rest of restaurant service. Ingredients and recipes provide preparation context, while the cooking and serving guide explains how kitchen tasks continue into customer service.</p>
 
-  <h2 id="choosing-a-stove">Choosing a Stove</h2>
-  <ol>
-    <li>Basic Stove comes before Standard Stove.</li>
-    <li>Standard Stove comes before Deluxe Stove.</li>
-    <li>Higher tiers are broadly described as reducing cooking time.</li>
-  </ol>
-  <p>Higher tiers help reduce cooking time, while additional stations let the kitchen handle orders in parallel. Choose between upgrading a stove and adding another station based on the current needs of your restaurant.</p>
+  <h2 id="directory">Directory</h2>
+  <div class="card-grid">
+    <WikiCard title="Basic Stove" description="Open the Basic Stove equipment entry." href="/equipment/basic-stove/" icon="B" />
+    <WikiCard title="Standard Stove" description="Open the Standard Stove equipment entry." href="/equipment/standard-stove/" icon="S" />
+    <WikiCard title="Deluxe Stove" description="Open the Deluxe Stove equipment entry." href="/equipment/deluxe-stove/" icon="D" />
+  </div>
 
-  <FAQ items={faqItems} />
+  <h2 id="usage">Usage</h2>
+  <p>Use this directory to identify a Stove by name and open its dedicated article. For broader kitchen planning, continue to the Equipment Hub or Cooking and Serving Guide.</p>
+
+  <h2 id="gameplay-tips">Gameplay Tips</h2>
+  <ul>
+    <li>Keep the cooking area connected with the ingredient and serving parts of the restaurant workflow.</li>
+    <li>Use the individual Stove entries when you need focused information about a named piece of equipment.</li>
+    <li>Review the complete service flow before changing how kitchen work areas are organized.</li>
+  </ul>
 </ContentPage>

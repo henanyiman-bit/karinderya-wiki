@@ -1,6 +1,7 @@
 ---
-import EntityPage from '../../components/EntityPage.astro';
+import ContentPage from '../../components/ContentPage.astro';
 import { tableEntities, type EntityRecord } from '../../data/entities';
+import { siteImages } from '../../data/images';
 
 export function getStaticPaths() {
   return tableEntities.map((entity) => ({ params: { slug: entity.slug }, props: { entity } }));
@@ -8,11 +9,41 @@ export function getStaticPaths() {
 
 interface Props { entity: EntityRecord }
 const { entity } = Astro.props;
+const currentIndex = tableEntities.findIndex((item) => item.slug === entity.slug);
+const previousEntity = tableEntities[currentIndex - 1];
+const nextEntity = tableEntities[currentIndex + 1];
+const shortTitle = (title: string) => title.replace('Karinderya ', '');
+const itemName = shortTitle(entity.title);
 ---
 
-<EntityPage
-  {...entity}
+<ContentPage
+  title={entity.title}
+  description={entity.description}
   kicker="Furniture profile"
+  intro={entity.intro}
   parent={{ label: 'Furniture', href: '/furniture/' }}
-  relatedLinks={[{ label: 'Furniture overview', href: '/furniture/' }, { label: 'Tables', href: '/furniture/tables/' }, { label: 'Chairs', href: '/furniture/chairs/' }, { label: 'Sell furniture guide', href: '/guides/how-to-sell-furniture/' }]}
-/>
+  heroImage={siteImages.furnitureHero}
+  tableOfContents
+  previousPage={previousEntity ? { label: shortTitle(previousEntity.title), href: `/furniture/${previousEntity.slug}/` } : undefined}
+  nextPage={nextEntity ? { label: shortTitle(nextEntity.title), href: `/furniture/${nextEntity.slug}/` } : undefined}
+  relatedLinks={[
+    { label: 'Furniture Hub', href: '/furniture/', description: 'Browse Furniture categories and restaurant layout information.' },
+    { label: 'Tables Directory', href: '/furniture/tables/', description: 'Browse every table entry currently available in the Wiki.' },
+    { label: 'Restaurant Layout Guide', href: '/guides/restaurant-layout/', description: 'Plan customer, work, and movement areas across the restaurant.' },
+  ]}
+>
+  <h2 id="introduction">Introduction</h2>
+  <p>{entity.overview}</p>
+
+  <h2 id="overview">Overview</h2>
+  <ul>{entity.known.map((item) => <li>{item}</li>)}</ul>
+
+  <h2 id="how-it-works">How It Works</h2>
+  <p>{itemName} belongs to the Tables category and is used as part of the restaurant dining area. Its placement contributes to how the customer area is organized and how that space connects with regular movement through the restaurant.</p>
+
+  <h2 id="usage">Usage</h2>
+  <ul>{entity.howToUse?.map((item) => <li>{item}</li>)}</ul>
+
+  <h2 id="gameplay-tips">Gameplay Tips</h2>
+  <ul>{entity.tips?.map((item) => <li>{item}</li>)}</ul>
+</ContentPage>

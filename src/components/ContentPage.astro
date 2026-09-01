@@ -3,13 +3,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import type { BreadcrumbItem } from './Breadcrumb.astro';
 import TableOfContents from './TableOfContents.astro';
 import ResponsiveImage from './ResponsiveImage.astro';
+import RelatedContent, { type RelatedContentItem } from './RelatedContent.astro';
+import EntityNavigation from './EntityNavigation.astro';
 import type { SourceId } from '../data/sources';
 import type { ResponsiveImageAsset } from '../data/images';
-
-interface RelatedLink {
-  label: string;
-  href: string;
-}
 
 interface Props {
   title: string;
@@ -18,7 +15,11 @@ interface Props {
   kicker?: string;
   intro: string;
   parent?: BreadcrumbItem;
-  relatedLinks?: RelatedLink[];
+  parents?: BreadcrumbItem[];
+  relatedLinks?: RelatedContentItem[];
+  previousPage?: RelatedContentItem;
+  nextPage?: RelatedContentItem;
+  relatedHeading?: string;
   sourceIds?: SourceId[];
   tableOfContents?: boolean;
   heroImage?: ResponsiveImageAsset;
@@ -31,13 +32,17 @@ const {
   kicker = 'Karinderya Wiki',
   intro,
   parent,
+  parents,
   relatedLinks = [],
+  previousPage,
+  nextPage,
+  relatedHeading = 'Related Content',
   tableOfContents = false,
   heroImage,
 } = Astro.props;
 const breadcrumbs: BreadcrumbItem[] = [
   { label: 'Home', href: '/' },
-  ...(parent ? [parent] : []),
+  ...(parents ?? (parent ? [parent] : [])),
   { label: title },
 ];
 ---
@@ -56,12 +61,8 @@ const breadcrumbs: BreadcrumbItem[] = [
       {tableOfContents && <TableOfContents articleId="article-content" />}
       <article id="article-content" class="content-panel article-content"><slot /></article>
     </div>
-    {relatedLinks.length > 0 && (
-      <nav class="related" aria-label="Related pages">
-        <h2>Related pages</h2>
-        <div>{relatedLinks.map((item) => <a href={item.href}>{item.label}</a>)}</div>
-      </nav>
-    )}
+    <EntityNavigation previousPage={previousPage} nextPage={nextPage} />
+    <RelatedContent items={relatedLinks} heading={relatedHeading} />
   </div>
 </BaseLayout>
 
@@ -82,11 +83,6 @@ const breadcrumbs: BreadcrumbItem[] = [
   .article-content :global(.fact-card) { padding: 16px; border: 1px solid var(--border); border-radius: 12px; background: #fffaf5; }
   .article-content :global(.fact-card h3) { margin: 0 0 6px; font-size: 1rem; }
   .article-content :global(.fact-card p) { margin: 0; }
-  .related { margin: 32px 0; }
-  .related h2 { margin: 0 0 14px; font-size: 1.15rem; }
-  .related div { display: flex; flex-wrap: wrap; gap: 8px; }
-  .related a { min-height: 44px; display: inline-flex; align-items: center; padding: 8px 13px; border: 1px solid var(--border); border-radius: 999px; color: var(--accent-dark); background: var(--surface); font-size: .82rem; font-weight: 700; text-decoration: none; }
-  .related a:hover { border-color: #dec3b4; background: var(--accent-soft); }
   @media (max-width: 900px) { .article-layout.with-toc { grid-template-columns: minmax(0, 1fr); grid-template-areas: "toc" "article"; } }
   @media (max-width: 760px) { .page-hero.has-image { grid-template-columns: minmax(0, 1fr); } :global(.content-hero-image img) { max-height: 340px; } }
   @media (max-width: 600px) { .article-content :global(.fact-grid) { grid-template-columns: 1fr; } }

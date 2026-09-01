@@ -1,32 +1,56 @@
 ---
 import ContentPage from '../components/ContentPage.astro';
 import FAQ from '../components/FAQ.astro';
+import WikiCard from '../components/WikiCard.astro';
 import { siteImages } from '../data/images';
 const faqItems = [
-  { question: 'How long do Workers last?', answer: 'Worker contracts use durations measured in days. The current table lists three days for General Worker, one day for Epic Worker, and two days for YouTube Creator Worker.' },
-  { question: 'Are Worker prices permanent?', answer: 'Worker offers can change between updates, so check the hiring panel before spending Cash.' },
-  { question: 'What should I know about Manual Assign?', answer: 'The hiring panel includes a Manual Assign warning. Read it before confirming a Worker contract if you prefer to assign customers yourself.' },
+  { question: 'What are Workers used for?', answer: 'Workers support restaurant management by helping with parts of the service workflow. Review the current hiring interface to understand the options available in your game.' },
+  { question: 'When should I consider hiring a Worker?', answer: 'Consider a Worker when a repeated restaurant task is making it difficult to keep the rest of the service flow organized.' },
+  { question: 'What is a Worker Contract?', answer: 'A Contract contains the conditions shown for a Worker offer. Read the complete offer in the hiring interface before making a decision.' },
+  { question: 'What does Manual Assign do?', answer: 'Manual Assign relates to how the player controls task or customer assignment. Check the current interface explanation before changing this option.' },
+  { question: 'Can Workers replace restaurant upgrades?', answer: 'Workers support restaurant operation, but ingredients, cooking equipment, furniture, and a practical layout still need to be managed separately.' },
 ];
 ---
-<ContentPage title="Karinderya Workers & Contracts" seoTitle="Karinderya Workers Guide & Contracts | Karinderya Wiki" description="Compare Karinderya worker contracts, durations, and restaurant staffing tips." kicker="Staff guide" intro="Compare temporary Worker offers and learn how contracts fit into restaurant service." relatedLinks={[{ label: 'Beginner guide', href: '/guides/beginner-guide/' }, { label: 'Equipment', href: '/equipment/' }, { label: 'Chiller', href: '/equipment/chiller/' }]} sourceIds={['worker-guide', 'worker-chiller', 'beginner-guide']} tableOfContents heroImage={siteImages.workersHero}>
-  <h2 id="worker-overview">Worker Overview</h2>
-  <p>Workers are temporary hires that can help operate a Karinderya. Their offers use timed contracts measured in days, so a Worker should be treated as short-term restaurant help rather than a permanent unlock.</p>
+<ContentPage title="Karinderya Workers & Contracts" seoTitle="Karinderya Workers Guide & Contracts | Karinderya Wiki" description="Learn how Workers, Contracts, and Manual Assign work in Karinderya, with beginner tips and related restaurant management guides." kicker="Staff guide" intro="Learn how Workers fit into restaurant management and find guides for hiring and organizing your service flow." relatedLinks={[{ label: 'How to Hire Workers', href: '/guides/how-to-hire-workers/', description: 'Follow the hiring decision and contract-review process.' }, { label: 'Co-op Guide', href: '/guides/co-op-guide/', description: 'Compare Worker support with active player coordination.' }, { label: 'Upgrade Priority Guide', href: '/guides/upgrade-priority/', description: 'Decide whether staffing matches the restaurant area that needs attention.' }, { label: 'Beginner Guide', href: '/guides/beginner-guide/', description: 'Review the complete restaurant service loop.' }]} relatedHeading="Related Guides" sourceIds={['worker-guide', 'worker-chiller', 'beginner-guide']} tableOfContents heroImage={siteImages.workersHero}>
+  <h2 id="introduction">Introduction</h2>
+  <p>Workers are part of restaurant management in Karinderya. They can support the service workflow when the player needs help keeping restaurant tasks organized. This hub explains the main Worker concepts and connects each topic with the guides used to plan a hire.</p>
 
-  <h2 id="worker-types">Worker Types</h2>
-  <div class="table-scroll"><table><thead><tr><th scope="col">Worker</th><th scope="col">Cost</th><th scope="col">Duration</th></tr></thead><tbody>
-    <tr><th scope="row">General Worker</th><td>&#8369;300</td><td>3 days</td></tr>
-    <tr><th scope="row">Epic Worker</th><td>&#8369;1,000</td><td>1 day</td></tr>
-    <tr><th scope="row">YouTube Creator Worker</th><td>&#8369;5,000</td><td>2 days</td></tr>
-  </tbody></table></div>
+  <h2 id="how-the-worker-system-works">How the Worker System Works</h2>
+  <p>The Worker system gives players another way to manage the restaurant workload. A Worker may be useful when attention is repeatedly pulled away from cooking, serving, or another part of the service loop.</p>
+  <p>Before using the system, identify the task that needs support and read the options shown in the current hiring interface. Workers do not replace ingredient planning, suitable equipment, or a restaurant layout that is easy to operate. Use the <a href="/guides/how-to-hire-workers/">How to Hire Workers guide</a> for a complete hiring walkthrough.</p>
 
-  <h2 id="hiring-workers">Hiring Workers</h2>
-  <p>Worker offers show both a Cash cost and a contract duration. Check the current hiring panel before spending Cash because offers can change between game versions. When the contract ends, the Worker should no longer be treated as active restaurant staff.</p>
+  <h2 id="featured-content">Featured Content</h2>
+  <div class="card-grid">
+    <WikiCard title="How to Hire Workers" description="Review a Worker offer and prepare the restaurant before making a hiring decision." href="/guides/how-to-hire-workers/" icon="H" />
+    <WikiCard title="Co-op Guide" description="Organize active players around customer, cooking, and serving tasks." href="/guides/co-op-guide/" icon="C" />
+    <WikiCard title="Upgrade Priority" description="Compare staffing with ingredient, equipment, furniture, and layout needs." href="/guides/upgrade-priority/" icon="U" />
+  </div>
+
+  <h2 id="contracts">Contracts</h2>
+  <p>A Contract contains the conditions presented with a Worker offer. Review the complete hiring panel before accepting so the Worker fits the way you want to manage the restaurant.</p>
+  <p>Contract details should be read directly from the current game interface. This page focuses on how Contracts fit into restaurant planning rather than listing conditions that may differ between offers.</p>
 
   <h2 id="manual-assign">Manual Assign</h2>
-  <p>The hiring interface includes a warning related to Manual Assign. Read that warning before confirming a hire, especially if you prefer to assign customers yourself.</p>
+  <p>Manual Assign relates to keeping direct control over task or customer assignment. It is useful to review when deciding how much of the restaurant workflow you want to manage yourself.</p>
+  <p>Read the explanation shown by the current interface before changing this option, then choose the approach that best fits your service routine.</p>
 
-  <h2 id="using-workers">Using Workers</h2>
-  <p>Workers are most relevant when the restaurant has enough activity for additional help. Compare the displayed contract length and cost with the tasks you want assistance with before accepting an offer.</p>
+  <h2 id="worker-directory">Worker Directory</h2>
+  <p>Use this directory to move between the main Worker topics and the guides that explain them in more detail.</p>
+  <ul>
+    <li><a href="#how-the-worker-system-works">Worker System</a> — understand how Worker support fits into restaurant operation.</li>
+    <li><a href="#contracts">Contracts</a> — learn what to review when considering a Worker offer.</li>
+    <li><a href="#manual-assign">Manual Assign</a> — understand how assignment choices relate to player control.</li>
+    <li><a href="/guides/how-to-hire-workers/">Hiring Guide</a> — follow the complete preparation and hiring process.</li>
+  </ul>
+
+  <h2 id="gameplay-tips">Gameplay Tips</h2>
+  <ul>
+    <li>Identify the restaurant task that needs support before opening the hiring interface.</li>
+    <li>Read the full Worker offer and any assignment instructions before confirming a choice.</li>
+    <li>Keep ingredients, cooking equipment, furniture, and movement paths organized alongside Worker planning.</li>
+    <li>After making a change, watch the complete service flow and adjust how you divide tasks.</li>
+    <li>Use the hiring guide for step-by-step help and return to this directory for related Worker topics.</li>
+  </ul>
 
   <FAQ items={faqItems} />
 </ContentPage>

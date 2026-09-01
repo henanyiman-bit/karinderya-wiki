@@ -2,39 +2,56 @@
 import WikiPage from '../components/WikiPage.astro';
 import FAQ from '../components/FAQ.astro';
 import { siteImages } from '../data/images';
+
 const cards = [
-  { title: 'Tiles', description: 'Browse 21 designs and their Cash or Robux purchase options.', href: '/decorations/tiles/', icon: 'T' },
-  { title: 'Counter Upgrades', description: 'Compare counter options, including the ElegantWood upgrade.', href: '/guides/counter-upgrades/', icon: 'C' },
-  { title: 'Choopy Mystery Box', description: 'Check the Normal box cost, delivery time, and random-reward warning.', href: '/guides/choopy-mystery-box/', icon: 'M' },
+  { title: 'Tiles', description: 'Explore surface customization and its role in restaurant layout planning.', href: '/decorations/tiles/', icon: 'T' },
+  { title: 'Counter Planning', description: 'Learn how counter placement supports an organized kitchen workspace.', href: '/guides/counter-upgrades/', icon: 'C' },
+  { title: 'Choopy Mystery Box', description: 'Learn how the Choopy interface fits into restaurant customization.', href: '/guides/choopy-mystery-box/', icon: 'M' },
 ];
 
 const faqItems = [
-  { question: 'What is included in Decorations Part 1?', answer: 'The update covers Tiles, Counter Upgrades, Table Tops, Dishwasher options, and Choopy Mystery Box delivery.' },
-  { question: 'Where can I compare Tile options?', answer: 'Open the Tiles database to review the available designs and their displayed purchase options.' },
-  { question: 'Are Choopy Mystery Box rewards predictable?', answer: 'The Normal box gives a random mystery reward, so do not plan a purchase around receiving one specific item.' },
+  { question: 'What are Decorations in Karinderya?', answer: 'Decorations are customization elements used to shape the visual style and organization of a restaurant.' },
+  { question: 'Where can I learn about Tiles?', answer: 'Open the Tiles page for an introduction to surface customization and layout use.' },
+  { question: 'Are Decorations the same as Furniture?', answer: 'No. Furniture covers functional dining-area items, while Decorations focuses on visual customization. Both can be considered together when planning a restaurant layout.' },
 ];
 ---
-<WikiPage title="Decorations" description="Explore Karinderya Decorations Pt. 1 features, Tiles, counters, and Choopy delivery." kicker="Customization guide" intro="Customize your restaurant with the Decorations Pt. 1 systems." cards={cards} note="Prices, wait times, and availability can change between updates." sourceIds={['wiki-decorations', 'roblox-game']} relatedLinks={[{ label: 'Tiles', href: '/decorations/tiles/' }, { label: 'Counter upgrades', href: '/guides/counter-upgrades/' }, { label: 'Choopy Mystery Box', href: '/guides/choopy-mystery-box/' }]} heroImage={siteImages.decorationsHero} tableOfContents>
-  <p>Decorations Pt. 1 expands restaurant customization with Tiles, Counter Upgrades, Table Tops, Dishwasher options, and Choopy Mystery Box delivery.</p>
 
-  <h2 id="decoration-categories">Decoration Categories</h2>
+<WikiPage
+  title="Karinderya Decorations"
+  description="Explore Karinderya decorations, Tiles, customization, and restaurant layout planning."
+  kicker="Customization directory"
+  intro="Use the Decorations section to explore visual customization and connect decorative choices with restaurant layout planning."
+  copyHeading="Introduction"
+  cards={cards}
+  relatedLinks={[
+    { label: 'Furniture', href: '/furniture/' },
+    { label: 'Tiles', href: '/decorations/tiles/' },
+    { label: 'Restaurant Layout Guide', href: '/guides/restaurant-layout/' },
+    { label: 'Counter Planning', href: '/guides/counter-upgrades/' },
+  ]}
+  heroImage={siteImages.decorationsHero}
+  tableOfContents
+>
+  <p>Decorations provide a way to organize the visual identity of a restaurant. This Wiki section connects decorative entries with Furniture and layout guides so players can find the right information for each part of the space.</p>
+
+  <h2 id="overview">Overview</h2>
+  <p>Decoration pages focus on appearance, placement, and navigation between customization topics. They do not replace the Furniture directory, which covers tables and chairs, or the Equipment directory, which covers tools used in restaurant operations.</p>
+
+  <h2 id="how-decorations-work">How Decorations Work</h2>
+  <p>Players can treat Decorations as one layer of restaurant planning. Visual surfaces and customization elements can be considered alongside dining areas, kitchen workspaces, and clear movement paths.</p>
+
+  <h2 id="decoration-directory">Decoration Directory</h2>
+  <p>Start with <a href="/decorations/tiles/">Tiles</a> for surface customization. For workspace organization, use the <a href="/guides/counter-upgrades/">Counter Planning guide</a>. The <a href="/guides/choopy-mystery-box/">Choopy Mystery Box guide</a> explains that customization interface in a separate player-focused article.</p>
+
+  <h2 id="layout-planning">Layout Planning</h2>
+  <p>Plan decorations around the restaurant's functional areas. Keep the dining area readable, leave the kitchen workflow clear, and use a consistent visual direction so customization supports the overall layout.</p>
+
+  <h2 id="gameplay-tips">Gameplay Tips</h2>
   <ul>
-    <li><strong>Tiles:</strong> visual options for changing the restaurant's surfaces.</li>
-    <li><strong>Counter Upgrades:</strong> counter choices such as Default, RedWood, and ElegantWood.</li>
-    <li><strong>Table Tops:</strong> customization options connected to dining furniture.</li>
-    <li><strong>Dishwasher:</strong> an additional Decorations Part 1 feature.</li>
-    <li><strong>Choopy Mystery Box:</strong> a delivery option with a random reward.</li>
-  </ul>
-
-  <h2 id="how-to-choose-decorations">How to Choose Decorations</h2>
-  <p>Compare the displayed cost, wait time, and appearance before confirming a purchase. Use the focused Tiles, Counter Upgrades, and Choopy pages when you need details for a specific category.</p>
-
-  <h2 id="customization-tips">Customization Tips</h2>
-  <ul>
-    <li>Choose a visual direction before spending Cash across several categories.</li>
-    <li>Check whether a purchase uses Cash or Robux.</li>
-    <li>Leave enough Cash for ingredients and restaurant upgrades.</li>
-    <li>Treat mystery-box rewards as random rather than guaranteed.</li>
+    <li>Decide which area of the restaurant you want to organize before changing its appearance.</li>
+    <li>Keep movement paths visible while arranging decorative elements.</li>
+    <li>Use the Furniture directory for tables and chairs rather than mixing those entries into this section.</li>
+    <li>Review the Restaurant Layout Guide when planning several areas at once.</li>
   </ul>
 
   <FAQ items={faqItems} />

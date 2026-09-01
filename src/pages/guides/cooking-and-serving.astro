@@ -1,0 +1,71 @@
+---
+import ContentPage from '../../components/ContentPage.astro';
+import FAQ from '../../components/FAQ.astro';
+import { siteImages } from '../../data/images';
+
+const faqItems = [
+  { question: 'Where should I begin with an order?', answer: 'Read the current order information first, then follow the restaurant workflow through ingredients, cooking, food, and serving.' },
+  { question: 'Where can I review ingredient information?', answer: 'Use the Ingredients Hub for the directory and individual ingredient entries.' },
+  { question: 'Where can I review cooking equipment?', answer: 'Use the Equipment Hub and Stoves Directory for cooking-equipment pages.' },
+];
+---
+
+<ContentPage
+  title="Karinderya Cooking and Serving Guide"
+  description="Follow the Karinderya restaurant workflow from an order through ingredients, cooking, food preparation, and serving."
+  kicker="Kitchen workflow guide"
+  intro="Keep each order moving through preparation and service without losing track of the next task."
+  parent={{ label: 'Guides', href: '/guides/' }}
+  tableOfContents
+  heroImage={siteImages.foodHero}
+  previousPage={{ label: 'Co-op Guide', href: '/guides/co-op-guide/' }}
+  nextPage={{ label: 'How to Hire Workers', href: '/guides/how-to-hire-workers/' }}
+  relatedLinks={[
+    { label: 'Recipes', href: '/recipes/', description: 'Learn how Recipes connect ingredients, cooking, and food.' },
+    { label: 'Ingredients', href: '/ingredients/', description: 'Browse the Ingredient directory and entity pages.' },
+    { label: 'Equipment', href: '/equipment/', description: 'Explore cooking equipment and restaurant tools.' },
+    { label: 'Food', href: '/food/', description: 'Review how prepared food connects with restaurant service.' },
+  ]}
+>
+  <h2 id="introduction">Introduction</h2>
+  <p>Cooking and serving connect customer needs with the kitchen and dining area. A clear workflow helps players understand what the restaurant is handling now and which task should happen next.</p>
+
+  <h2 id="overview">Overview</h2>
+  <p>This guide explains the general restaurant flow. Recipes, Ingredients, Food, and Equipment remain separate Wiki sections so each topic can be explored without placing unsupported details into one article.</p>
+
+  <h2 id="how-it-works">How It Works</h2>
+  <p>The restaurant workflow moves through five connected stages:</p>
+  <ol>
+    <li><strong>Order:</strong> read the information currently shown for the customer.</li>
+    <li><strong>Ingredients:</strong> identify the ingredient information connected with preparation.</li>
+    <li><strong>Cooking:</strong> use the kitchen and its available equipment.</li>
+    <li><strong>Food:</strong> keep the prepared item associated with the current service task.</li>
+    <li><strong>Serving:</strong> return to the dining area and complete the customer interaction.</li>
+  </ol>
+
+  <h2 id="cooking-and-serving-process">Cooking and Serving Process</h2>
+  <h3 id="read-the-order">Read the Order</h3>
+  <p>Pause long enough to understand the current request before moving into preparation. When several tasks are visible, keep each one clearly associated with the correct customer.</p>
+  <h3 id="prepare-the-kitchen">Prepare the Kitchen</h3>
+  <p>Review Ingredients and Equipment information, then keep the active kitchen task easy to identify. Organize the work area so prepared food is not confused with another task.</p>
+  <h3 id="complete-service">Complete Service</h3>
+  <p>Move from the kitchen back to the dining area and finish the current customer interaction before taking on more work than the team can follow.</p>
+
+  <h2 id="gameplay-tips">Gameplay Tips</h2>
+  <ul>
+    <li>Read the current order information before beginning preparation.</li>
+    <li>Keep ingredients, cooking equipment, and prepared food visually organized.</li>
+    <li>Use clear handoffs when playing with teammates.</li>
+    <li>Finish visible tasks before adding more restaurant work.</li>
+  </ul>
+
+  <h2 id="common-mistakes">Common Mistakes</h2>
+  <ul>
+    <li>Starting preparation before reading the current order.</li>
+    <li>Losing track of which prepared food belongs with the active task.</li>
+    <li>Leaving the kitchen and dining route difficult to follow.</li>
+    <li>Having multiple players repeat the same task while another area waits.</li>
+  </ul>
+
+  <FAQ items={faqItems} />
+</ContentPage>

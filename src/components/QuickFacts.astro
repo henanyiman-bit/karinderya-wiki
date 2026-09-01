@@ -1,0 +1,32 @@
+---
+interface Fact {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  facts: Fact[];
+  heading?: string;
+}
+
+const { facts, heading = 'Quick Facts' } = Astro.props;
+---
+
+{facts.length > 0 && (
+  <aside class="quick-facts" aria-labelledby="quick-facts-heading">
+    <h2 id="quick-facts-heading">{heading}</h2>
+    <dl>
+      {facts.map((fact) => <div><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}
+    </dl>
+  </aside>
+)}
+
+<style>
+  .quick-facts { margin: 24px 0 30px; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius); background: #fffaf5; }
+  h2 { margin: 0; padding: 15px 18px; color: white; background: linear-gradient(135deg, #5b3426, #7a3a25); font-size: 1rem; }
+  dl { margin: 0; }
+  dl div { display: grid; grid-template-columns: minmax(110px, .42fr) minmax(0, 1fr); gap: 16px; padding: 12px 18px; border-top: 1px solid var(--border); }
+  dt { color: var(--ink); font-size: .82rem; font-weight: 800; }
+  dd { min-width: 0; margin: 0; color: var(--muted); font-size: .84rem; overflow-wrap: anywhere; }
+  @media (max-width: 480px) { dl div { grid-template-columns: 1fr; gap: 4px; } }
+</style>

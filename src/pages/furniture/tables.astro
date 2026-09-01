@@ -1,19 +1,49 @@
 ---
 import ContentPage from '../../components/ContentPage.astro';
+import WikiCard from '../../components/WikiCard.astro';
+import { siteImages } from '../../data/images';
+
+const tableEntries = [
+  { title: 'Plank Table', description: 'Open the Plank Table entry and review its role in the dining area.', href: '/furniture/plank-table/', icon: 'P' },
+  { title: 'Wood Table', description: 'Browse the Wood Table entry and its furniture-layout information.', href: '/furniture/wood-table/', icon: 'W' },
+  { title: 'Red Wooden Table', description: 'Explore the Red Wooden Table entry and related furniture pages.', href: '/furniture/red-wooden-table/', icon: 'R' },
+];
 ---
-<ContentPage title="Karinderya Tables" description="Compare Karinderya table families, Cash prices, and resale examples." kicker="Furniture database" intro="Browse table options for upgrading your restaurant dining area." parent={{ label: 'Furniture', href: '/furniture/' }} relatedLinks={[{ label: 'Chairs', href: '/furniture/chairs/' }, { label: 'Furniture overview', href: '/furniture/' }, { label: 'Counter upgrades', href: '/guides/counter-upgrades/' }]} sourceIds={['wiki-furniture']}>
-  <h2>Table Families</h2>
-  <p>Plank, Wood, Red Wooden, Integrated, Elegant Wooden, Parsons, Slat-back, and Royal.</p>
-  <h2>Cash Prices</h2>
-  <div class="table-scroll"><table><thead><tr><th scope="col">Table</th><th scope="col">Buy price</th></tr></thead><tbody>
-    <tr><th scope="row">Plank Table</th><td>&#8369;130</td></tr>
-    <tr><th scope="row">Wood Table</th><td>&#8369;365</td></tr>
-    <tr><th scope="row">Red Wooden Table</th><td>&#8369;415</td></tr>
-  </tbody></table></div>
-  <h2>Resale Examples</h2>
-  <div class="table-scroll"><table><thead><tr><th scope="col">Table</th><th scope="col">Buy</th><th scope="col">Sell</th><th scope="col">Recovery</th></tr></thead><tbody>
-    <tr><th scope="row">Plank Table</th><td>&#8369;130</td><td>&#8369;26</td><td>20%</td></tr>
-    <tr><th scope="row">Wood Table</th><td>&#8369;365</td><td>&#8369;73</td><td>20%</td></tr>
-  </tbody></table></div>
-  <p class="notice">These examples show the resale values for the listed tables. Check an item's current sell value before replacing furniture.</p>
+
+<ContentPage
+  title="Karinderya Tables"
+  description="Browse Karinderya table entries and learn how tables fit into dining-area and restaurant layout planning."
+  kicker="Furniture directory"
+  intro="Use the Tables directory to find existing table entries and connect them with restaurant layout guidance."
+  parent={{ label: 'Karinderya Furniture', href: '/furniture/' }}
+  relatedLinks={[
+    { label: 'Furniture Hub', href: '/furniture/', description: 'Browse Furniture categories and layout-planning information.' },
+    { label: 'Chairs', href: '/furniture/chairs/', description: 'Continue to the Chairs category and dining-area guidance.' },
+    { label: 'Restaurant Layout Guide', href: '/guides/restaurant-layout/', description: 'Plan customer, work, and movement areas across the restaurant.' },
+  ]}
+  heroImage={siteImages.furnitureHero}
+  tableOfContents
+>
+  <h2 id="introduction">Introduction</h2>
+  <p>Tables are part of the Furniture system used to organize the restaurant dining area. This page is the directory for the table entries currently available in the Wiki.</p>
+
+  <h2 id="overview">Overview</h2>
+  <p>Each table entry has its own page for item-focused information. Use this directory to move from the Furniture Hub to a specific table without mixing table information with Chairs, Equipment, or Decorations.</p>
+
+  <h2 id="how-tables-work">How Tables Work</h2>
+  <p>Tables help define the customer area and its relationship with the rest of the restaurant. Their placement should keep the dining area recognizable while preserving practical movement between customer and work areas.</p>
+
+  <h2 id="table-directory">Table Directory</h2>
+  <div class="card-grid">{tableEntries.map((item) => <WikiCard {...item} />)}</div>
+
+  <h2 id="usage-and-layout">Usage and Layout</h2>
+  <p>Use tables as part of a clear dining-area plan. Consider the surrounding chairs, regular movement paths, and the connection between customer seating and restaurant service before changing an arrangement.</p>
+
+  <h2 id="gameplay-tips">Gameplay Tips</h2>
+  <ul>
+    <li>Keep the table area visually separate from cooking and other work areas.</li>
+    <li>Leave practical movement paths around the dining area.</li>
+    <li>Open an individual table entry for item-focused navigation and related pages.</li>
+    <li>Observe how the restaurant is used after adjusting part of the table arrangement.</li>
+  </ul>
 </ContentPage>

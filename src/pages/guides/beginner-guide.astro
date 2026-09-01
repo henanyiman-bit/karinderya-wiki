@@ -1,14 +1,76 @@
 ---
 import ContentPage from '../../components/ContentPage.astro';
+import FAQ from '../../components/FAQ.astro';
 import { siteImages } from '../../data/images';
+
+const faqItems = [
+  { question: 'What should I do first in Karinderya?', answer: 'Follow the current tutorial prompts and learn one complete customer-service cycle before changing several restaurant systems.' },
+  { question: 'Which Wiki section should a new player open first?', answer: 'Start with the Guides Hub, then use Recipes, Ingredients, Equipment, Workers, and Furniture when those topics appear during play.' },
+  { question: 'Where can I find ingredient information?', answer: 'Use the Ingredients Hub for individual entries and the Recipes page for the wider cooking workflow.' },
+];
 ---
-<ContentPage title="Karinderya Beginner Guide" seoTitle="Karinderya Beginner Guide | Karinderya Roblox Wiki" description="Learn the basics of serving customers, cooking orders, stocking ingredients, and progressing your Karinderya." kicker="Getting started" intro="A practical first-shift guide to the main restaurant systems." parent={{ label: 'Guides', href: '/guides/' }} relatedLinks={[{ label: 'Codes', href: '/codes/' }, { label: 'Food', href: '/food/' }, { label: 'Recipes', href: '/recipes/' }, { label: 'Workers', href: '/workers/' }, { label: 'Equipment', href: '/equipment/' }, { label: 'Grocery', href: '/grocery/' }, { label: 'Furniture', href: '/furniture/' }, { label: 'Decorations', href: '/decorations/' }]} sourceIds={['roblox-game', 'beginner-guide', 'codex-menu', 'wiki-furniture']} tableOfContents heroImage={siteImages.beginnerGuideHero}>
-  <h2 id="learn-the-service-loop">Learn the service loop</h2>
-  <ol><li>Seat or assign customers when the current interface allows it.</li><li>Read the customer order before committing ingredients.</li><li>Cook the order on an available stove.</li><li>Serve the completed order and continue the customer flow.</li></ol>
-  <h2 id="keep-ingredients-available">Keep ingredients available</h2>
-  <p>Use the <a href="/grocery/">Grocery</a> to replace ingredients your current menu needs. Check the current in-game listings when planning purchases because availability can change between updates.</p>
-  <h2 id="upgrade-around-the-bottleneck">Upgrade around the bottleneck</h2>
-  <p>Better stoves can reduce cooking time, while better furniture can improve the dining area. Multiple cooking stations may help process orders in parallel.</p>
-  <h2 id="progress-through-documented-systems">Build on core systems</h2>
-  <p>Customer service contributes to menu progression. Workers may change Manual Assign behavior, and current codes can provide Cash or items. Review the linked pages as your restaurant grows.</p>
+
+<ContentPage
+  title="Karinderya Beginner Guide"
+  seoTitle="Karinderya Beginner Guide | Karinderya Roblox Wiki"
+  description="Learn the Karinderya restaurant workflow, serve customers, organize cooking, and navigate the main Wiki categories."
+  kicker="Getting started guide"
+  intro="Learn the main restaurant workflow and use the Wiki to explore each game system."
+  parent={{ label: 'Guides', href: '/guides/' }}
+  tableOfContents
+  heroImage={siteImages.beginnerGuideHero}
+  relatedLinks={[
+    { label: 'Guides Hub', href: '/guides/', description: 'Browse every player guide by topic.' },
+    { label: 'Recipes', href: '/recipes/', description: 'Learn how Recipes connect ingredients, cooking, and food.' },
+    { label: 'Equipment', href: '/equipment/', description: 'Browse cooking equipment and restaurant tools.' },
+    { label: 'Workers', href: '/workers/', description: 'Review Worker management and related guidance.' },
+    { label: 'Furniture', href: '/furniture/', description: 'Explore Tables, Chairs, and layout planning.' },
+  ]}
+>
+  <h2 id="introduction">Introduction</h2>
+  <p>Karinderya centers on operating a restaurant and keeping customer service connected with the kitchen. New players should first learn one complete service cycle, then use the Wiki categories when a particular system needs more explanation.</p>
+
+  <h2 id="overview">Overview</h2>
+  <p>The main workflow connects customers, orders, Ingredients, cooking equipment, Food, and serving. Furniture shapes the dining area, Workers can support management, and Guides explain how these systems fit together.</p>
+
+  <h2 id="how-it-works">How It Works</h2>
+  <p>A restaurant task usually begins with customer information and moves toward preparation and service. Read what the game currently shows, keep the active task easy to identify, and complete the workflow before taking on more work than you can follow.</p>
+
+  <h2 id="first-service-process">First Service Process</h2>
+  <ol>
+    <li>Follow the tutorial and interface prompts shown by the current game.</li>
+    <li>Identify the customer and read the current order information.</li>
+    <li>Review the ingredients and kitchen equipment connected with preparation.</li>
+    <li>Keep the active cooking task easy to identify.</li>
+    <li>Return to the dining area and complete service.</li>
+    <li>Repeat the workflow and note which Wiki category you want to explore next.</li>
+  </ol>
+
+  <h2 id="using-the-wiki">Using the Wiki</h2>
+  <ul>
+    <li><strong>Food and Recipes:</strong> understand the cooking and serving relationship.</li>
+    <li><strong>Ingredients and Grocery:</strong> review materials used by the restaurant workflow.</li>
+    <li><strong>Equipment:</strong> browse Stoves, the Chiller, and restaurant tools.</li>
+    <li><strong>Workers:</strong> learn about restaurant management support.</li>
+    <li><strong>Furniture:</strong> plan Tables, Chairs, and dining-area layout.</li>
+  </ul>
+
+  <h2 id="gameplay-tips">Gameplay Tips</h2>
+  <ul>
+    <li>Learn one complete service cycle before handling several tasks.</li>
+    <li>Keep the kitchen and dining route easy to follow.</li>
+    <li>Review ingredient information before beginning preparation.</li>
+    <li>Change one part of restaurant organization at a time.</li>
+    <li>Use the <a href="/guides/co-op-guide/">Co-op Guide</a> when playing with teammates.</li>
+  </ul>
+
+  <h2 id="common-mistakes">Common Mistakes</h2>
+  <ul>
+    <li>Skipping current tutorial or interface instructions.</li>
+    <li>Starting preparation before reading the active order.</li>
+    <li>Changing several restaurant areas before learning the basic workflow.</li>
+    <li>Focusing on customization while work areas remain unclear.</li>
+  </ul>
+
+  <FAQ items={faqItems} />
 </ContentPage>

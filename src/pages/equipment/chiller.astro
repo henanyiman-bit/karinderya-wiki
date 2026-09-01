@@ -1,15 +1,39 @@
 ---
 import ContentPage from '../../components/ContentPage.astro';
-import FAQ from '../../components/FAQ.astro';
-const faqItems = [
-  { question: 'What is the Chiller?', answer: 'The Chiller is an equipment feature associated with the Worker and Chiller update.' },
-  { question: 'How do I repair the Chiller?', answer: 'Use the repair interaction shown by the Chiller and review the current Cash or Robux option before confirming.' },
-];
+import { siteImages } from '../../data/images';
 ---
-<ContentPage title="Karinderya Chiller" description="Learn about the Karinderya Chiller and its repair options." kicker="Equipment guide" intro="Learn about the Chiller and its repair interaction." parent={{ label: 'Equipment', href: '/equipment/' }} relatedLinks={[{ label: 'Workers', href: '/workers/' }, { label: 'Updates', href: '/updates/' }, { label: 'Equipment', href: '/equipment/' }]} sourceIds={['worker-chiller']}>
-  <h2>Chiller Overview</h2>
-  <p>The Chiller is an equipment feature connected with the Worker and Chiller update.</p>
-  <h2>Repairing the Chiller</h2>
-  <p>The repair interaction can present Cash or Robux options. Review the values shown in the current game before confirming a repair.</p>
-  <FAQ items={faqItems} />
+
+<ContentPage
+  title="Karinderya Chiller"
+  description="Explore the Chiller in Karinderya and learn how this equipment entry fits into restaurant organization and workflow."
+  kicker="Equipment profile"
+  intro="The Chiller is a standalone entry in the Karinderya Equipment directory."
+  parent={{ label: 'Equipment', href: '/equipment/' }}
+  heroImage={siteImages.equipmentHero}
+  tableOfContents
+  relatedLinks={[
+    { label: 'Equipment Hub', href: '/equipment/', description: 'Browse restaurant equipment categories and usage guidance.' },
+    { label: 'Cooking and Serving Guide', href: '/guides/cooking-and-serving/', description: 'Follow the restaurant workflow from preparation through customer service.' },
+    { label: 'Restaurant Layout Guide', href: '/guides/restaurant-layout/', description: 'Plan clear work areas and movement routes around the restaurant.' },
+    { label: 'Beginner Guide', href: '/guides/beginner-guide/', description: 'Learn the main restaurant systems and how they connect.' },
+  ]}
+>
+  <h2 id="introduction">Introduction</h2>
+  <p>The Chiller is covered as an Equipment entity rather than part of the Stove directory. Its dedicated page provides a direct route back to the Equipment Hub and related restaurant guides.</p>
+
+  <h2 id="overview">Overview</h2>
+  <p>The Chiller represents a separate restaurant-equipment topic in the Wiki. Keeping it in its own entry makes it easier to distinguish from cooking stations while browsing equipment information.</p>
+
+  <h2 id="how-it-works">How It Works</h2>
+  <p>The Equipment directory organizes restaurant tools by their role in the wider workspace. The Chiller entry connects with restaurant organization guidance without assigning properties that are not presented on this page.</p>
+
+  <h2 id="usage">Usage</h2>
+  <p>Use this page when navigating Chiller information, then continue to the Equipment Hub or related guides for wider restaurant context.</p>
+
+  <h2 id="gameplay-tips">Gameplay Tips</h2>
+  <ul>
+    <li>Keep restaurant work areas clear and easy to identify.</li>
+    <li>Consider how equipment placement fits with regular movement through the restaurant.</li>
+    <li>Use the related guides when planning the surrounding workspace and service flow.</li>
+  </ul>
 </ContentPage>

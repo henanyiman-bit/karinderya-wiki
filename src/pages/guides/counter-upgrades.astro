@@ -1,37 +1,63 @@
 ---
 import ContentPage from '../../components/ContentPage.astro';
 import FAQ from '../../components/FAQ.astro';
+import { siteImages } from '../../data/images';
 
 const faqItems = [
-  { question: 'Which counter options are listed?', answer: 'The current counter list includes Default Counter, RedWood Counter, and ElegantWood Counter.' },
-  { question: 'How much does the ElegantWood Counter cost?', answer: 'The listed ElegantWood Counter upgrade costs ₱80,000 and shows an upgrade time of 10 minutes.' },
-  { question: 'Should I spend all my Cash on a counter upgrade?', answer: 'Keep enough Cash for ingredients and other restaurant needs before confirming a large decoration purchase.' },
+  { question: 'What is a Counter in the Wiki?', answer: 'Counters are organized as part of restaurant customization and layout planning.' },
+  { question: 'How should I choose a Counter option?', answer: 'Review the choices currently shown in the game and consider how each one fits the restaurant layout.' },
+  { question: 'Where can I browse related customization pages?', answer: 'Use the Decorations Hub for Tiles, Counters, and other connected topics.' },
 ];
 ---
-<ContentPage title="Karinderya Counter Upgrades Guide" description="Compare Karinderya counter choices, including the ElegantWood Counter cost and upgrade time." kicker="Decorations guide" intro="Compare counter choices and plan your next restaurant upgrade." parent={{ label: 'Guides', href: '/guides/' }} relatedLinks={[{ label: 'Decorations', href: '/decorations/' }, { label: 'Tiles', href: '/decorations/tiles/' }, { label: 'Furniture', href: '/furniture/' }]} sourceIds={['wiki-decorations']} tableOfContents>
-  <h2 id="counter-overview">Counter Overview</h2>
-  <p>Counters are part of restaurant customization. The available progression includes the starting Default Counter and upgrade options such as RedWood and ElegantWood.</p>
 
-  <h2 id="counter-options">Counter Options</h2>
-  <div class="table-scroll"><table><thead><tr><th scope="col">Counter</th><th scope="col">Details</th></tr></thead><tbody>
-    <tr><th scope="row">Default Counter</th><td>Starting counter option</td></tr>
-    <tr><th scope="row">RedWood Counter</th><td>Counter upgrade option</td></tr>
-    <tr><th scope="row">ElegantWood Counter</th><td>&#8369;80,000; upgrade time: 10 minutes</td></tr>
-  </tbody></table></div>
+<ContentPage
+  title="Karinderya Counter Planning Guide"
+  description="Learn how Counters fit into Karinderya restaurant customization, workspace organization, and layout planning."
+  kicker="Decorations guide"
+  intro="Plan Counter changes around the restaurant workspace and current customization options."
+  parent={{ label: 'Guides', href: '/guides/' }}
+  tableOfContents
+  heroImage={siteImages.decorationsHero}
+  relatedLinks={[
+    { label: 'Decorations', href: '/decorations/', description: 'Browse restaurant customization categories.' },
+    { label: 'Tiles', href: '/decorations/tiles/', description: 'Review the Tiles customization directory.' },
+    { label: 'Furniture Hub', href: '/furniture/', description: 'Explore Furniture categories and dining-area planning.' },
+    { label: 'Restaurant Layout Guide', href: '/guides/restaurant-layout/', description: 'Coordinate work areas and movement routes.' },
+  ]}
+>
+  <h2 id="introduction">Introduction</h2>
+  <p>Counters are part of the restaurant’s customization and workspace planning. This guide explains how to review Counter options through the current interface and consider them alongside the surrounding layout.</p>
 
-  <h2 id="how-to-upgrade">How to Upgrade</h2>
+  <h2 id="overview">Overview</h2>
+  <p>A Counter can shape how a restaurant work area looks and reads. Keep Counter decisions connected with Furniture, Equipment, and movement routes so customization does not make important interactions difficult to identify.</p>
+
+  <h2 id="how-it-works">How It Works</h2>
+  <p>The current customization interface shows the Counter choices available to the player. Review the name, appearance, and instructions displayed on screen, then consider how the selected option fits with the rest of the restaurant workspace.</p>
+
+  <h2 id="planning-process">Planning Process</h2>
   <ol>
-    <li>Open the Counter Upgrade option when it is available.</li>
-    <li>Compare the displayed counter choice, cost, and upgrade time.</li>
-    <li>Make sure the purchase will not leave the restaurant short on ingredient Cash.</li>
-    <li>Confirm the upgrade you want and allow the displayed upgrade time to complete.</li>
+    <li>Review the current Counter area and surrounding restaurant layout.</li>
+    <li>Open the Counter customization interface.</li>
+    <li>Read the available choices and prompts.</li>
+    <li>Consider visibility and movement around the work area.</li>
+    <li>Confirm the option that fits the current restaurant plan.</li>
+    <li>Review the surrounding layout after the change.</li>
   </ol>
 
-  <h2 id="upgrade-tips">Upgrade Tips</h2>
+  <h2 id="gameplay-tips">Gameplay Tips</h2>
   <ul>
-    <li>Plan expensive visual upgrades around essential grocery and equipment purchases.</li>
-    <li>Check the selected counter name before confirming.</li>
-    <li>Use the Decorations page to compare counters with other customization choices.</li>
+    <li>Keep the Counter area easy to identify during restaurant service.</li>
+    <li>Coordinate customization with nearby Furniture and Equipment.</li>
+    <li>Change one visual area at a time.</li>
+    <li>Use the Decorations Hub to navigate related customization topics.</li>
+  </ul>
+
+  <h2 id="common-mistakes">Common Mistakes</h2>
+  <ul>
+    <li>Choosing appearance without considering the surrounding workspace.</li>
+    <li>Changing several layout elements before reviewing the result.</li>
+    <li>Assuming the current interface matches an earlier game version.</li>
+    <li>Letting customization hide a frequently used interaction.</li>
   </ul>
 
   <FAQ items={faqItems} />

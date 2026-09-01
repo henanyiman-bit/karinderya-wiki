@@ -1,41 +1,66 @@
 ---
 import WikiPage from '../components/WikiPage.astro';
-import FAQ from '../components/FAQ.astro';
+import WikiCard from '../components/WikiCard.astro';
 import { siteImages } from '../data/images';
-const cards = [
-  { title: 'Tables', description: 'Browse table families, selected Cash prices, and resale examples.', href: '/furniture/tables/', icon: 'T' },
-  { title: 'Chairs', description: 'Compare chair families for upgrading the dining area.', href: '/furniture/chairs/', icon: 'C' },
-  { title: 'Decorations', description: 'Explore Tiles, counters, Table Tops, Dishwasher, and Choopy features.', href: '/decorations/', icon: 'D' },
-  { title: 'Plank Table', description: 'Review the Plank Table purchase and resale values.', href: '/furniture/plank-table/', icon: 'P' },
-  { title: 'Wood Table', description: 'Review the Wood Table purchase and resale values.', href: '/furniture/wood-table/', icon: 'W' },
-  { title: 'Red Wooden Table', description: 'Check the Red Wooden Table purchase price and progression details.', href: '/furniture/red-wooden-table/', icon: 'R' },
-];
 
-const faqItems = [
-  { question: 'What furniture should I upgrade first?', answer: 'Start with the part of the dining area that is limiting service, then compare the current shop price with the Cash available for ingredients and equipment.' },
-  { question: 'Can furniture be sold?', answer: 'Furniture can have a resale value. Check the amount shown by the game before confirming a sale.' },
-  { question: 'Do all furniture items use the same resale percentage?', answer: 'Do not assume one percentage applies to every item. Review the value displayed for the selected furniture before selling it.' },
+const cards = [
+  { title: 'Tables', description: 'Browse the table category and its existing furniture entries.', href: '/furniture/tables/', icon: 'T' },
+  { title: 'Chairs', description: 'Open the chair category and review its place in the dining area.', href: '/furniture/chairs/', icon: 'C' },
 ];
 ---
-<WikiPage title="Furniture" description="Browse Karinderya table and chair families, prices, and upgrade notes." kicker="Dining room guide" intro="Compare furniture options for upgrading your restaurant dining area." cards={cards} note="Better tables and chairs can improve tip chance and reduce the chance that customers leave." sourceIds={['wiki-furniture']} relatedLinks={[{ label: 'Tables', href: '/furniture/tables/' }, { label: 'Chairs', href: '/furniture/chairs/' }, { label: 'Sell furniture guide', href: '/guides/how-to-sell-furniture/' }, { label: 'Beginner guide', href: '/guides/beginner-guide/' }]} heroImage={siteImages.furnitureHero} tableOfContents>
-  <p>Furniture shapes the dining area and gives players another path for improving their restaurant. Available families include Plank, Wood, Red Wooden, Integrated, Elegant Wooden, Parsons, Slat-back, and Royal.</p>
+
+<WikiPage
+  title="Karinderya Furniture"
+  seoTitle="Karinderya Furniture Guide & Directory | Karinderya Wiki"
+  description="Explore Karinderya furniture categories and learn how tables, chairs, and restaurant layouts support gameplay planning."
+  kicker="Dining area hub"
+  intro="Browse furniture categories and learn how tables, chairs, and restaurant layout choices shape usable space."
+  cards={cards}
+  sourceIds={['wiki-furniture']}
+  relatedLinks={[
+    { label: 'Beginner Guide', href: '/guides/beginner-guide/', description: 'Learn how furniture fits into the complete restaurant service loop.' },
+    { label: 'Restaurant Layout Guide', href: '/guides/restaurant-layout/', description: 'Plan customer, work, and movement areas before arranging furniture.' },
+    { label: 'Upgrade Priority Guide', href: '/guides/upgrade-priority/', description: 'Compare furniture changes with the other parts of the restaurant that need attention.' },
+    { label: 'Cooking and Serving Guide', href: '/guides/cooking-and-serving/', description: 'See how furniture placement connects with the wider service workflow.' },
+  ]}
+  heroImage={siteImages.furnitureHero}
+  tableOfContents
+  browseHeading="Furniture Directory"
+  copyHeading="Introduction"
+  relatedHeading="Related Guides"
+>
+  <p>Furniture organizes the areas used by customers and players inside the restaurant. Tables and chairs belong to the dining area, while equipment supports restaurant tasks and decorations focus on visual customization.</p>
+  <p>This hub keeps those topics separate and provides the main entry point for furniture categories, layout guidance, and restaurant-planning information.</p>
 
   <h2 id="how-furniture-works">How Furniture Works</h2>
-  <p>Tables and chairs are restaurant upgrades with different shop values and progression levels. Better furniture can improve tip chance and reduce the chance that customers leave, while selling older pieces can recover part of their value.</p>
+  <p>Tables and chairs help define where customers use the dining area. Their placement also affects how clearly players can recognize customer space, work space, and the paths between them.</p>
+  <p>Layout planning focuses on arranging those areas around the way the restaurant is actually used. Replacement is part of that process: move or replace furniture when the current arrangement makes an area difficult to understand or operate.</p>
 
-  <h2 id="tables-and-chairs">Tables and Chairs</h2>
-  <p>Use the <a href="/furniture/tables/">Tables database</a> to compare table families and selected prices. The <a href="/furniture/chairs/">Chairs page</a> lists the chair families available for the dining area.</p>
+  <h2 id="featured-content">Featured Content</h2>
+  <div class="card-grid">
+    <WikiCard title="Furniture Directory" description="Browse the Tables and Chairs categories covered by the Wiki." href="#browse-heading" icon="F" />
+    <WikiCard title="Layout Guide" description="Learn how to organize dining, work, and movement areas." href="/guides/restaurant-layout/" icon="L" />
+    <WikiCard title="Restaurant Planning Guide" description="Compare furniture changes with other restaurant needs before reorganizing a space." href="/guides/upgrade-priority/" icon="P" />
+  </div>
 
-  <h2 id="upgrade-strategy">Upgrade Strategy</h2>
+  <h2 id="layout-planning">Layout Planning</h2>
+  <p>Plan the restaurant as a set of connected areas. Each area should have a clear purpose while still fitting into the complete customer-service workflow.</p>
+
+  <h3 id="operating-space">Operating Space</h3>
+  <p>Operating space covers the paths players use while moving between restaurant tasks. Keep frequently used routes easy to follow and avoid placing furniture where it makes regular interactions difficult.</p>
+
+  <h3 id="customer-area">Customer Area</h3>
+  <p>The customer area contains the dining furniture used during service. Arrange tables and chairs so the area remains visually clear and can be reached without confusing it with the kitchen or other work areas.</p>
+
+  <h3 id="work-area">Work Area</h3>
+  <p>The work area contains cooking, serving, and other operational features. Keep its purpose distinct from the dining area while preserving a practical connection between food preparation and customer service.</p>
+
+  <h2 id="gameplay-tips">Gameplay Tips</h2>
   <ul>
-    <li>Keep enough Cash available for ingredients before buying furniture.</li>
-    <li>Upgrade in manageable steps instead of replacing the whole dining area at once.</li>
-    <li>Check the current purchase and resale values before replacing an item.</li>
-    <li>Balance dining-room upgrades with stove capacity and service needs.</li>
+    <li>Give dining, work, and movement areas a clear purpose.</li>
+    <li>Keep commonly used paths free from furniture that interrupts regular movement.</li>
+    <li>Observe how the restaurant is used after moving or replacing an item.</li>
+    <li>Adjust a limited part of the layout at a time so the result is easier to evaluate.</li>
+    <li>Use the Furniture, Equipment, and Decorations sections for their separate planning roles.</li>
   </ul>
-
-  <h2 id="selling-furniture">Selling Furniture</h2>
-  <p>Select the furniture you want to replace and review the resale value shown by the game before confirming. The <a href="/guides/how-to-sell-furniture/">selling guide</a> includes table examples and a short replacement checklist.</p>
-
-  <FAQ items={faqItems} />
 </WikiPage>

@@ -1,0 +1,74 @@
+---
+import ContentPage from '../../components/ContentPage.astro';
+import FAQ from '../../components/FAQ.astro';
+import { siteImages } from '../../data/images';
+
+const faqItems = [
+  { question: 'Is there one best restaurant layout?', answer: 'No single arrangement fits every restaurant. Plan around the furniture, equipment, and movement routes in your current space.' },
+  { question: 'How should I separate the kitchen and dining area?', answer: 'Keep each area visually clear while preserving a direct path between cooking, completed food, and customer service.' },
+  { question: 'When should I adjust the layout?', answer: 'Review the layout when players have difficulty finding interactions, following routes, or keeping work areas organized.' },
+];
+---
+
+<ContentPage
+  title="Karinderya Restaurant Layout Guide"
+  description="Plan a practical Karinderya restaurant layout with clear dining areas, kitchen workspaces, and movement routes."
+  kicker="Restaurant planning guide"
+  intro="Arrange restaurant spaces so dining, cooking, and serving areas remain easy to understand."
+  parent={{ label: 'Guides', href: '/guides/' }}
+  tableOfContents
+  heroImage={siteImages.furnitureHero}
+  previousPage={{ label: 'How to Hire Workers', href: '/guides/how-to-hire-workers/' }}
+  nextPage={{ label: 'Upgrade Priority Guide', href: '/guides/upgrade-priority/' }}
+  relatedLinks={[
+    { label: 'Furniture Hub', href: '/furniture/', description: 'Browse Furniture categories and planning guidance.' },
+    { label: 'Tables', href: '/furniture/tables/', description: 'Explore the Tables directory and individual entries.' },
+    { label: 'Chairs', href: '/furniture/chairs/', description: 'Review Chairs as part of the dining area.' },
+    { label: 'Equipment Hub', href: '/equipment/', description: 'Browse kitchen equipment and restaurant tools.' },
+    { label: 'Cooking and Serving Guide', href: '/guides/cooking-and-serving/', description: 'Follow the workflow between kitchen and dining areas.' },
+  ]}
+>
+  <h2 id="introduction">Introduction</h2>
+  <p>A clear layout helps players understand where restaurant tasks happen. The goal is not to copy one perfect arrangement, but to organize the dining area, kitchen, and movement routes around the space currently available.</p>
+
+  <h2 id="overview">Overview</h2>
+  <p>Furniture identifies customer areas, equipment identifies kitchen work areas, and open routes connect those spaces. Layout planning keeps these roles readable so players can move from one task to the next without losing track of the restaurant workflow.</p>
+
+  <h2 id="how-it-works">How It Works</h2>
+  <p>Each part of the restaurant has a different purpose. The dining area supports customer-facing tasks, the kitchen supports preparation, and movement routes connect the two. Decorations can shape the appearance of the space without replacing clear organization.</p>
+
+  <h2 id="space-planning">Space Planning</h2>
+  <h3 id="dining-area">Dining Area</h3>
+  <p>Group Tables and Chairs so the customer area is easy to recognize. Keep enough open space to see the furniture and approach the interactions used during service.</p>
+  <h3 id="kitchen-area">Kitchen Area</h3>
+  <p>Keep cooking equipment together as a readable work area. Arrange the surrounding space so players can identify equipment and continue toward the dining area.</p>
+  <h3 id="movement-routes">Movement Routes</h3>
+  <p>Preserve simple paths between customers, kitchen work, and completed food. If a route becomes confusing, adjust one area and follow the workflow again.</p>
+
+  <h2 id="layout-review-process">Layout Review Process</h2>
+  <ol>
+    <li>Identify the dining, kitchen, and customization areas.</li>
+    <li>Follow the normal route between customer service and cooking.</li>
+    <li>Look for furniture or equipment that makes an interaction difficult to see.</li>
+    <li>Adjust one area while keeping the other workspaces stable.</li>
+    <li>Run through the same route again and refine the arrangement if needed.</li>
+  </ol>
+
+  <h2 id="gameplay-tips">Gameplay Tips</h2>
+  <ul>
+    <li>Keep important restaurant interactions visible.</li>
+    <li>Use Tables and Chairs to define the dining area clearly.</li>
+    <li>Keep kitchen equipment connected with the serving route.</li>
+    <li>Plan customization around the functional work areas.</li>
+  </ul>
+
+  <h2 id="common-mistakes">Common Mistakes</h2>
+  <ul>
+    <li>Changing the entire restaurant arrangement at once.</li>
+    <li>Placing appearance elements where they hide an important interaction.</li>
+    <li>Mixing customer and kitchen areas until neither is easy to identify.</li>
+    <li>Leaving no clear route between cooking and serving.</li>
+  </ul>
+
+  <FAQ items={faqItems} />
+</ContentPage>

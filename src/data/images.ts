@@ -21,6 +21,18 @@ const portraitHero = (folder: string, filename: string, alt: string): Responsive
   ],
 });
 
+const entityPortrait = (folder: string, filename: string, alt: string): ResponsiveImageAsset => ({
+  alt,
+  fallback: `/images/${folder}/${filename}.png`,
+  width: 1086,
+  height: 1448,
+  webp: [
+    { src: `/images/${folder}/${filename}-480.webp`, width: 480 },
+    { src: `/images/${folder}/${filename}-768.webp`, width: 768 },
+    { src: `/images/${folder}/${filename}.webp`, width: 1086 },
+  ],
+});
+
 export const siteImages = {
   homeHero: {
     alt: 'Karinderya restaurant counter with dishes and wiki guide signage',
@@ -42,4 +54,17 @@ export const siteImages = {
   decorationsHero: portraitHero('decorations', 'decorations-hero', 'Decorated Karinderya restaurant interior with plants and counters'),
   beginnerGuideHero: portraitHero('guides', 'beginner-guide-hero', 'Karinderya beginner guide scene with a restaurant character and task boards'),
   updatesHero: portraitHero('updates', 'updates-hero', 'Karinderya update board displayed beside prepared dishes'),
+} satisfies Record<string, ResponsiveImageAsset>;
+
+export const entityImages = {
+  rice: entityPortrait('ingredients', 'rice', 'Rice ingredient entry for Karinderya'),
+  condiments: entityPortrait('ingredients', 'condiments', 'Condiments ingredient entry for Karinderya'),
+  eggs: entityPortrait('ingredients', 'eggs', 'Eggs ingredient entry for Karinderya'),
+  vegetables: entityPortrait('ingredients', 'vegetables', 'Vegetables ingredient entry for Karinderya'),
+  bangus: entityPortrait('ingredients', 'bangus', 'Bangus ingredient entry for Karinderya'),
+  pork: entityPortrait('ingredients', 'pork', 'Pork ingredient entry for Karinderya'),
+  beef: entityPortrait('ingredients', 'beef', 'Beef ingredient entry for Karinderya'),
+  basicStove: entityPortrait('equipment', 'basic-stove', 'Basic Stove equipment entry for Karinderya'),
+  standardStove: entityPortrait('equipment', 'standard-stove', 'Standard Stove equipment entry for Karinderya'),
+  deluxeStove: entityPortrait('equipment', 'deluxe-stove', 'Deluxe Stove equipment entry for Karinderya'),
 } satisfies Record<string, ResponsiveImageAsset>;

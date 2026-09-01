@@ -1,37 +1,62 @@
 ---
 import ContentPage from '../../components/ContentPage.astro';
 import FAQ from '../../components/FAQ.astro';
+import { siteImages } from '../../data/images';
 
 const faqItems = [
-  { question: 'How much does the Normal Choopy Mystery Box cost?', answer: 'The Normal box is listed at ₱10,000.' },
-  { question: 'How long does Normal delivery take?', answer: 'The displayed delivery time for the Normal option is five minutes.' },
-  { question: 'Can I choose the reward?', answer: 'The box is presented as a random mystery reward, so a particular result should not be expected.' },
+  { question: 'What should I check before using a Mystery Box option?', answer: 'Read the current interface carefully and review every detail shown for the option before confirming.' },
+  { question: 'Can Mystery Box information change?', answer: 'Event and interface details can change with game updates. Use the information currently displayed in the game.' },
+  { question: 'Where can I review related customization content?', answer: 'Use the Decorations page for the wider customization directory and connected guides.' },
 ];
 ---
-<ContentPage title="Karinderya Choopy Mystery Box Guide" description="Learn about the Normal Choopy Mystery Box price, delivery time, and random reward behavior." kicker="Decorations guide" intro="A quick guide to the Normal Choopy delivery option." parent={{ label: 'Guides', href: '/guides/' }} relatedLinks={[{ label: 'Decorations', href: '/decorations/' }, { label: 'Tiles', href: '/decorations/tiles/' }, { label: 'Counter upgrades', href: '/guides/counter-upgrades/' }]} sourceIds={['wiki-decorations']} tableOfContents>
-  <h2 id="choopy-overview">Choopy Mystery Box Overview</h2>
-  <p>Choopy provides a delivery option connected to Decorations Part 1. The Normal box uses Cash, has a displayed delivery time, and gives a random mystery reward.</p>
 
-  <h2 id="normal-box-details">Normal Box Details</h2>
-  <div class="table-scroll"><table><tbody>
-    <tr><th scope="row">Price</th><td>&#8369;10,000</td></tr>
-    <tr><th scope="row">Delivery time</th><td>5 minutes</td></tr>
-    <tr><th scope="row">Reward</th><td>Random / mystery reward</td></tr>
-  </tbody></table></div>
+<ContentPage
+  title="Karinderya Choopy Mystery Box Guide"
+  description="Learn how to review Choopy Mystery Box information in Karinderya and connect it with current customization content."
+  kicker="Decorations guide"
+  intro="Understand Choopy Mystery Box options by reading the current game interface and update information."
+  parent={{ label: 'Guides', href: '/guides/' }}
+  tableOfContents
+  heroImage={siteImages.decorationsHero}
+  relatedLinks={[
+    { label: 'Decorations', href: '/decorations/', description: 'Browse customization categories and connected pages.' },
+    { label: 'Tiles', href: '/decorations/tiles/', description: 'Review the Tiles customization directory.' },
+    { label: 'Counter Guide', href: '/guides/counter-upgrades/', description: 'Plan Counter changes around the restaurant layout.' },
+    { label: 'Latest Updates', href: '/updates/', description: 'Browse current Wiki update summaries.' },
+  ]}
+>
+  <h2 id="introduction">Introduction</h2>
+  <p>Choopy Mystery Box content belongs to the wider Decorations section of Karinderya. Because event details and interface options can change, this guide focuses on how to read the current information rather than preserving fixed values.</p>
+
+  <h2 id="overview">Overview</h2>
+  <p>A Mystery Box presents an option through the game interface. Treat the visible labels, instructions, and confirmation prompts as the current reference. Use the Decorations Hub to understand where Choopy fits within restaurant customization.</p>
 
   <h2 id="how-it-works">How It Works</h2>
+  <p>Open the current Choopy interface and review the information shown for the available option. The interface may describe the selection and what happens after confirmation. Do not assume that details remembered from an earlier update still apply.</p>
+
+  <h2 id="review-process">Review Process</h2>
   <ol>
-    <li>Choose the Normal Choopy Mystery Box option.</li>
-    <li>Review the displayed Cash cost and delivery time.</li>
-    <li>Confirm only when the restaurant can spare the purchase cost.</li>
-    <li>Wait for the delivery and collect the random reward.</li>
+    <li>Open the Choopy interaction available in the current game.</li>
+    <li>Read the name and description of the option shown on screen.</li>
+    <li>Review every confirmation message before continuing.</li>
+    <li>Check the Updates section when the interface changes after a game release.</li>
+    <li>Return to the Decorations Hub for related customization topics.</li>
   </ol>
 
-  <h2 id="mystery-box-tips">Mystery Box Tips</h2>
+  <h2 id="gameplay-tips">Gameplay Tips</h2>
   <ul>
-    <li>Keep enough Cash for ingredients and necessary upgrades.</li>
-    <li>Do not buy the box expecting one particular reward.</li>
-    <li>Account for the delivery time when planning other purchases.</li>
+    <li>Use the current interface as the main reference for event details.</li>
+    <li>Read every label before confirming an option.</li>
+    <li>Keep Mystery Box content separate from regular Furniture and Equipment planning.</li>
+    <li>Review update summaries when Choopy options appear different.</li>
+  </ul>
+
+  <h2 id="common-mistakes">Common Mistakes</h2>
+  <ul>
+    <li>Relying on details remembered from an earlier version.</li>
+    <li>Skipping the confirmation message.</li>
+    <li>Assuming every Mystery Box option behaves the same way.</li>
+    <li>Confusing event content with the regular Decorations directory.</li>
   </ul>
 
   <FAQ items={faqItems} />

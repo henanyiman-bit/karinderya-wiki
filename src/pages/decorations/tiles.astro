@@ -1,11 +1,37 @@
 ---
 import ContentPage from '../../components/ContentPage.astro';
+import { siteImages } from '../../data/images';
 ---
-<ContentPage title="Karinderya Tiles Database" description="Browse Karinderya Tile designs, pricing, and availability in one database page." kicker="Decorations database" intro="Compare Tile designs and purchase options for customizing your restaurant." parent={{ label: 'Decorations', href: '/decorations/' }} relatedLinks={[{ label: 'Decorations', href: '/decorations/' }, { label: 'Counter upgrades', href: '/guides/counter-upgrades/' }, { label: 'Choopy Mystery Box', href: '/guides/choopy-mystery-box/' }]} sourceIds={['wiki-decorations']}>
-  <h2>Tile Listing</h2>
-  <div class="table-scroll"><table><thead><tr><th scope="col">Field</th><th scope="col">Value</th></tr></thead><tbody>
-    <tr><th scope="row">Tile designs</th><td>21</td></tr>
-    <tr><th scope="row">Cash option</th><td>&#8369;500,000 when available</td></tr>
-    <tr><th scope="row">Robux option</th><td>159 Robux</td></tr>
-  </tbody></table></div>
+
+<ContentPage
+  title="Karinderya Tiles"
+  description="Learn how Tiles fit into Karinderya decoration, surface customization, and restaurant layout planning."
+  kicker="Decoration entry"
+  intro="Tiles are part of the Decorations section and help define the visual treatment of restaurant surfaces."
+  parent={{ label: 'Decorations', href: '/decorations/' }}
+  relatedLinks={[
+    { label: 'Decorations', href: '/decorations/' },
+    { label: 'Furniture', href: '/furniture/' },
+    { label: 'Restaurant Layout Guide', href: '/guides/restaurant-layout/' },
+    { label: 'Counter Planning', href: '/guides/counter-upgrades/' },
+  ]}
+  tableOfContents
+  heroImage={siteImages.decorationsHero}
+>
+  <h2 id="overview">Overview</h2>
+  <p>Tiles are a decoration category used when planning the appearance of restaurant surfaces. This page explains their place in the Wiki and links to broader layout and customization information.</p>
+
+  <h2 id="how-it-works">How It Works</h2>
+  <p>Tile choices belong to the visual layer of restaurant planning. Consider them alongside the surrounding furniture, counters, and the separation between dining and kitchen areas.</p>
+
+  <h2 id="usage">Usage</h2>
+  <p>Use Tiles to support a consistent visual direction across the restaurant. When working on a larger redesign, plan functional areas first and then review how surface choices fit the finished layout.</p>
+
+  <h2 id="gameplay-tips">Gameplay Tips</h2>
+  <ul>
+    <li>Choose a clear visual direction before changing multiple areas.</li>
+    <li>Keep furniture placement and movement paths readable.</li>
+    <li>Review the Decorations hub when looking for another customization topic.</li>
+    <li>Use the Restaurant Layout Guide for broader space-planning help.</li>
+  </ul>
 </ContentPage>

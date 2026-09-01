@@ -1,36 +1,72 @@
 ---
 import ContentPage from '../../components/ContentPage.astro';
 import FAQ from '../../components/FAQ.astro';
+import { siteImages } from '../../data/images';
 
 const faqItems = [
-  { question: 'Is there one guaranteed fastest route to five stars?', answer: 'There is no single route listed here. Improve the part of your restaurant that is currently slowing service or limiting customer flow.' },
-  { question: 'Should I upgrade furniture or stoves first?', answer: 'Upgrade the kitchen when cooking delays are the problem. Choose furniture when the dining area needs improvement and service is already keeping up.' },
-  { question: 'Can Workers help with progression?', answer: 'Workers can provide temporary restaurant help. Compare the contract cost and duration with the tasks you want help managing.' },
+  { question: 'Is there one best route toward five stars?', answer: 'No single plan fits every restaurant. Focus on clear service, organized work areas, and the part of the workflow that currently needs attention.' },
+  { question: 'What should I review when service becomes difficult?', answer: 'Follow the full order workflow and check supplies, kitchen organization, dining layout, and task management.' },
+  { question: 'Can appearance changes replace restaurant organization?', answer: 'Appearance is one part of the restaurant. Keep the main service workflow readable before focusing on customization.' },
 ];
 ---
-<ContentPage title="Karinderya 5-Star Guide" description="Use practical service, kitchen, furniture, and stocking tips while working toward a five-star Karinderya." kicker="Progression guide" intro="Build a smoother restaurant operation as you work toward the five-star goal." parent={{ label: 'Guides', href: '/guides/' }} relatedLinks={[{ label: 'Beginner guide', href: '/guides/beginner-guide/' }, { label: 'Equipment', href: '/equipment/' }, { label: 'Furniture', href: '/furniture/' }]} sourceIds={['roblox-game', 'beginner-guide']} tableOfContents>
-  <h2 id="five-star-overview">Five-Star Overview</h2>
-  <p>Progress comes from improving the restaurant as a complete operation. Keep customers moving, maintain ingredient stock, and upgrade the area that is creating the largest delay.</p>
 
-  <h2 id="service-flow">Improve Service Flow</h2>
+<ContentPage
+  title="Karinderya 5-Star Guide"
+  description="Plan a well-organized Karinderya restaurant by improving service workflow, work areas, order handling, and restaurant management."
+  kicker="Restaurant performance guide"
+  intro="Work toward a well-managed restaurant by keeping every part of service connected."
+  parent={{ label: 'Guides', href: '/guides/' }}
+  tableOfContents
+  heroImage={siteImages.beginnerGuideHero}
+  relatedLinks={[
+    { label: 'Beginner Guide', href: '/guides/beginner-guide/', description: 'Learn the main restaurant service loop.' },
+    { label: 'Cooking and Serving Guide', href: '/guides/cooking-and-serving/', description: 'Follow an order through preparation and service.' },
+    { label: 'Restaurant Layout Guide', href: '/guides/restaurant-layout/', description: 'Organize dining, kitchen, and movement areas.' },
+    { label: 'Upgrade Priority Guide', href: '/guides/upgrade-priority/', description: 'Choose improvements around current restaurant needs.' },
+  ]}
+>
+  <h2 id="introduction">Introduction</h2>
+  <p>The five-star goal is easier to approach when the restaurant operates as one connected system. Keep customer service, ingredients, cooking, serving, layout, and task management organized rather than focusing on a single item or shortcut.</p>
+
+  <h2 id="overview">Overview</h2>
+  <p>Restaurant performance depends on how clearly players can follow the service workflow. Observe what happens from the moment a customer needs attention until food is served, then improve the area that repeatedly interrupts that process.</p>
+
+  <h2 id="how-it-works">How It Works</h2>
+  <p>Each restaurant system supports another. Ingredients connect with Recipes, cooking equipment supports preparation, Furniture defines the dining area, and Workers or co-op players help organize active tasks. Strong management keeps these parts understandable during service.</p>
+
+  <h2 id="restaurant-planning-process">Restaurant Planning Process</h2>
+  <ol>
+    <li>Follow a complete customer-service cycle.</li>
+    <li>Identify the point where work becomes difficult to organize.</li>
+    <li>Open the related Wiki Hub for that restaurant area.</li>
+    <li>Make one focused adjustment.</li>
+    <li>Observe the next service cycle before making another change.</li>
+  </ol>
+
+  <h2 id="service-focus-areas">Service Focus Areas</h2>
   <ul>
-    <li>Read customer tickets before committing ingredients.</li>
-    <li>Keep frequently used ingredients available.</li>
-    <li>Avoid leaving completed orders waiting longer than necessary.</li>
-    <li>Use Workers when temporary help fits your current restaurant plan.</li>
+    <li><strong>Orders:</strong> keep the requested food and current task easy to identify.</li>
+    <li><strong>Kitchen:</strong> organize ingredients, equipment, and completed food clearly.</li>
+    <li><strong>Dining area:</strong> keep customer spaces and serving routes readable.</li>
+    <li><strong>Management:</strong> divide tasks between players and Worker support where appropriate.</li>
+    <li><strong>Layout:</strong> preserve clear work areas and movement routes.</li>
   </ul>
 
-  <h2 id="kitchen-upgrades">Plan Kitchen Upgrades</h2>
-  <p>Upgrade a stove when cooking time is holding back orders. Add another cooking station when preparing orders in parallel would help more than replacing one stove.</p>
+  <h2 id="gameplay-tips">Gameplay Tips</h2>
+  <ul>
+    <li>Improve the workflow one restaurant area at a time.</li>
+    <li>Keep commonly used interactions easy to identify.</li>
+    <li>Review ingredient information before service becomes difficult to manage.</li>
+    <li>Use related Guides instead of relying on a universal restaurant plan.</li>
+  </ul>
 
-  <h2 id="dining-area">Improve the Dining Area</h2>
-  <p>Better tables and chairs can improve tip chance and reduce customer departures. Compare furniture costs with other priorities so the restaurant still has enough Cash for ingredients and equipment.</p>
-
-  <h2 id="progression-tips">Progression Tips</h2>
-  <ul><li>Improve service flow and address visible bottlenecks.</li><li>Reduce cooking delays with suitable stove capacity.</li><li>Use better furniture when it becomes available.</li><li>Maintain enough ingredient stock for the menu you can serve.</li><li>Use multiple cooking stations where they help your current order flow.</li></ul>
-
-  <h2 id="how-to-improve">How to Improve</h2>
-  <p>Watch for the part of the restaurant that slows down service. Upgrade the kitchen when orders wait for cooking, improve seating when the dining area becomes limiting, and restock ingredients before they interrupt the menu.</p>
+  <h2 id="common-mistakes">Common Mistakes</h2>
+  <ul>
+    <li>Focusing on one restaurant area while ignoring the complete workflow.</li>
+    <li>Changing several systems before observing the result.</li>
+    <li>Letting appearance choices make important work areas difficult to read.</li>
+    <li>Adding more active tasks than the team can follow clearly.</li>
+  </ul>
 
   <FAQ items={faqItems} />
 </ContentPage>

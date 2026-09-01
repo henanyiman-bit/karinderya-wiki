@@ -1,39 +1,63 @@
 ---
 import ContentPage from '../../components/ContentPage.astro';
 import FAQ from '../../components/FAQ.astro';
+import { siteImages } from '../../data/images';
 
 const faqItems = [
-  { question: 'What should I buy first?', answer: 'Prioritize ingredients needed by the current menu, then spend remaining Cash on equipment, furniture, or decorations that fit your next upgrade.' },
-  { question: 'What if an item is not available?', answer: 'Recheck the shop later and keep enough Cash ready for the item you need. Use an available alternative only if it still supports your current plan.' },
-  { question: 'How much Cash should I keep?', answer: 'There is no single amount for every restaurant. Keep enough to restock the ingredients used by your current menu before planning optional upgrades.' },
+  { question: 'What should I review in the shop?', answer: 'Read the current shop information and compare it with the materials and restaurant categories you need.' },
+  { question: 'Does the Wiki list a fixed shop schedule?', answer: 'No. Use the information currently shown in the game rather than assuming a universal schedule.' },
+  { question: 'Where can I review ingredient entries?', answer: 'Use the Ingredients Hub for the directory and individual ingredient pages.' },
 ];
 ---
-<ContentPage title="Karinderya Shop Restock Guide" description="Plan grocery, furniture, and equipment purchases around the current Karinderya shop inventory." kicker="Planning guide" intro="A practical guide to checking stock and planning purchases." parent={{ label: 'Guides', href: '/guides/' }} relatedLinks={[{ label: 'Grocery', href: '/grocery/' }, { label: 'Ingredients', href: '/ingredients/' }, { label: 'Furniture', href: '/furniture/' }, { label: 'Equipment', href: '/equipment/' }]} sourceIds={['codex-menu', 'wiki-furniture', 'wiki-money']} tableOfContents>
-  <h2 id="shop-overview">Shop Overview</h2>
-  <p>Karinderya includes grocery inventory, furniture, and equipment listings. Availability and values may change as the game receives updates.</p>
 
-  <h2 id="restock-planning">Restock Planning</h2>
+<ContentPage
+  title="Karinderya Shop Restock Guide"
+  description="Plan Karinderya restaurant resources by reviewing current shop information, ingredient needs, and related Wiki categories."
+  kicker="Resource management guide"
+  intro="Use current shop information to plan materials around the needs of the restaurant workflow."
+  parent={{ label: 'Guides', href: '/guides/' }}
+  tableOfContents
+  heroImage={siteImages.ingredientsHero}
+  relatedLinks={[
+    { label: 'Grocery', href: '/grocery/', description: 'Review the Grocery and its connection with ingredients.' },
+    { label: 'Ingredients', href: '/ingredients/', description: 'Browse the Ingredient directory and entity pages.' },
+    { label: 'Recipes', href: '/recipes/', description: 'Learn how ingredients connect with cooking and food.' },
+    { label: 'Equipment', href: '/equipment/', description: 'Browse restaurant tools and cooking equipment.' },
+  ]}
+>
+  <h2 id="introduction">Introduction</h2>
+  <p>Resource management begins with understanding what the restaurant currently needs. Use the shop information shown in the game, then connect materials with Ingredients, Recipes, cooking, and the wider service workflow.</p>
+
+  <h2 id="overview">Overview</h2>
+  <p>The shop can present materials and other restaurant categories through its current interface. Because the available information may change, this guide focuses on planning habits instead of a fixed schedule or item list.</p>
+
+  <h2 id="how-it-works">How It Works</h2>
+  <p>Review the restaurant first, then open the current shop interface and read what is shown. Match the available information with the Wiki category that explains the relevant part of gameplay, such as Ingredients, Equipment, Furniture, or Decorations.</p>
+
+  <h2 id="resource-planning-process">Resource Planning Process</h2>
   <ol>
-    <li>Review the ingredients used by the current menu.</li>
-    <li>Check the Grocery before stock becomes too low for upcoming orders.</li>
-    <li>Buy essential ingredients before optional furniture or decoration upgrades.</li>
-    <li>Keep some Cash available when waiting for a needed item to return.</li>
+    <li>Review the ingredients and restaurant areas currently in use.</li>
+    <li>Identify the material or category that needs attention.</li>
+    <li>Open the current shop interface.</li>
+    <li>Read the available labels and item information.</li>
+    <li>Use the related Wiki Hub for additional context.</li>
+    <li>Return to the restaurant workflow and review the next need.</li>
   </ol>
 
-  <h2 id="purchase-priorities">Purchase Priorities</h2>
+  <h2 id="gameplay-tips">Gameplay Tips</h2>
   <ul>
-    <li><strong>Ingredients:</strong> protect the restaurant's ability to complete current orders.</li>
-    <li><strong>Equipment:</strong> address cooking delays or limited station capacity.</li>
-    <li><strong>Furniture:</strong> improve the dining area when service and stocking are stable.</li>
-    <li><strong>Decorations:</strong> customize the restaurant after essential needs are covered.</li>
+    <li>Review ingredient information before it interrupts preparation.</li>
+    <li>Use the Recipes and Food pages to understand the wider cooking workflow.</li>
+    <li>Keep optional customization separate from immediate restaurant needs.</li>
+    <li>Rely on the current interface when shop information changes.</li>
   </ul>
 
-  <h2 id="shopping-tips">Shopping Tips</h2>
-  <p>Use the <a href="/grocery/">Grocery page</a> to compare ingredient listings, then visit the Furniture and Equipment sections before spending on restaurant upgrades.</p>
+  <h2 id="common-mistakes">Common Mistakes</h2>
   <ul>
-    <li>Check the displayed price again before confirming a purchase.</li>
-    <li>Avoid spending the full Cash balance on one optional upgrade.</li>
-    <li>Plan around the restaurant's current bottleneck rather than buying every available item.</li>
+    <li>Following an old shop list without checking the current interface.</li>
+    <li>Reviewing materials without connecting them to restaurant needs.</li>
+    <li>Changing several restaurant categories before observing the workflow.</li>
+    <li>Assuming every server or update presents the same information.</li>
   </ul>
 
   <FAQ items={faqItems} />

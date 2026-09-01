@@ -1,11 +1,40 @@
 ---
 import ContentPage from '../../components/ContentPage.astro';
+import { entityImages } from '../../data/images';
 ---
-<ContentPage title="Karinderya Deluxe Stove" description="Learn about the Karinderya Deluxe Stove and how it fits into cooking-equipment progression." kicker="Equipment profile" intro="A higher-tier cooking station for developing your restaurant." parent={{ label: 'Equipment', href: '/equipment/' }} relatedLinks={[{ label: 'All stoves', href: '/equipment/stoves/' }, { label: 'Codes', href: '/codes/' }, { label: 'Beginner guide', href: '/guides/beginner-guide/' }]} sourceIds={['codex-codes', 'wiki-furniture', 'deluxe-guide']}>
-  <h2>Overview</h2>
-  <p>Deluxe Stove is a higher-tier stove used for cooking. Upgraded stoves are designed to reduce cooking time, making them useful when the kitchen becomes a service bottleneck.</p>
-  <h2>How to Get</h2>
-  <p>The Deluxe Stove is included among the <code>2MVISITS</code> code rewards. Visit the <a href="/codes/">Codes page</a> for the current code list and redemption steps.</p>
-  <h2>How to Use</h2>
-  <p>Place the stove in the cooking area and use it as part of the normal order workflow. Consider adding or upgrading cooking stations when waiting orders begin to outpace the kitchen.</p>
+
+<ContentPage
+  title="Karinderya Deluxe Stove"
+  description="Explore the Deluxe Stove in Karinderya and learn how this equipment entry connects with kitchen and restaurant workflow."
+  kicker="Equipment profile"
+  intro="The Deluxe Stove is a named cooking-equipment entry in the Karinderya Stove directory."
+  parents={[{ label: 'Equipment', href: '/equipment/' }, { label: 'Stoves', href: '/equipment/stoves/' }]}
+  heroImage={entityImages.deluxeStove}
+  tableOfContents
+  previousPage={{ label: 'Standard Stove', href: '/equipment/standard-stove/' }}
+  relatedLinks={[
+    { label: 'Equipment Hub', href: '/equipment/', description: 'Browse restaurant equipment categories and usage guidance.' },
+    { label: 'Stoves Directory', href: '/equipment/stoves/', description: 'Browse every Stove entry currently covered by the Wiki.' },
+    { label: 'Cooking and Serving Guide', href: '/guides/cooking-and-serving/', description: 'Follow cooking as part of the complete restaurant service workflow.' },
+    { label: 'Beginner Guide', href: '/guides/beginner-guide/', description: 'Learn the main restaurant systems and how they connect.' },
+  ]}
+>
+  <h2 id="introduction">Introduction</h2>
+  <p>The Deluxe Stove belongs to the Stoves section of the Equipment directory. This article identifies the named item and connects it with the Wiki’s kitchen and restaurant guides.</p>
+
+  <h2 id="overview">Overview</h2>
+  <p>As cooking equipment, the Deluxe Stove is associated with the preparation part of restaurant service. Its directory entry is kept separate from broader guidance about recipes, ingredients, and serving.</p>
+
+  <h2 id="how-it-works">How It Works</h2>
+  <p>The Stove category connects equipment information with ingredients, recipes, cooking, and serving. The Cooking and Serving Guide explains that complete workflow, while this page remains focused on the Deluxe Stove entry.</p>
+
+  <h2 id="usage">Usage</h2>
+  <p>Use the Deluxe Stove entry when reviewing cooking equipment or navigating between the Stove directory and wider restaurant guides.</p>
+
+  <h2 id="gameplay-tips">Gameplay Tips</h2>
+  <ul>
+    <li>Keep the cooking area connected with ingredient preparation and serving routes.</li>
+    <li>Use the Equipment Hub when reviewing other restaurant tools and work areas.</li>
+    <li>Consult the Cooking and Serving Guide for the full order workflow.</li>
+  </ul>
 </ContentPage>

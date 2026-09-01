@@ -1,60 +1,56 @@
 ---
 import ContentPage from '../components/ContentPage.astro';
 import FAQ from '../components/FAQ.astro';
-import { currentCodes } from '../data/codes';
 import { siteImages } from '../data/images';
 
 const faqItems = [
-  { question: 'Why is my Karinderya code not working?', answer: 'Check capitalization and remove accidental spaces first. A code may also have been used already or may have expired after a game update.' },
-  { question: 'Do Karinderya codes expire?', answer: 'Codes can expire or be removed after updates. If a code no longer works, check its spelling and whether you already redeemed it.' },
-  { question: 'Where can new Karinderya codes appear?', answer: 'New codes may arrive alongside game updates. Check this page again when a new update is released.' },
+  { question: 'Why is a Karinderya code not accepted?', answer: 'Check the spelling, capitalization, and any extra spaces. A code may also have changed or may already have been used on the account.' },
+  { question: 'Can Karinderya codes change?', answer: 'Yes. Code availability may change over time, so check current game information before trying a code.' },
+  { question: 'Where should I look for code-related updates?', answer: 'Use the Updates section of this Wiki to review pages connected with changes to the game.' },
 ];
 ---
 
 <ContentPage
-  title={'Karinderya Codes \u2013 Latest Working Codes & Rewards'}
-  seoTitle="Karinderya Codes Guide & Rewards | Karinderya Wiki"
-  description="Find the latest Karinderya Roblox codes, rewards, redemption steps, and update information."
-  kicker="Rewards reference"
-  intro="Browse current code strings, rewards, and redemption guidance."
-  relatedLinks={[{ label: 'Beginner guide', href: '/guides/beginner-guide/' }, { label: 'Latest updates', href: '/updates/' }]}
-  sourceIds={['roblox-game', 'codex-codes', 'destructoid-codes', 'nerdschalk-codes', 'wiki-decorations']}
+  title="Karinderya Codes Guide"
+  description="Learn how the Karinderya code system works, how to enter codes, and what to check when a code is not accepted."
+  kicker="Code help"
+  intro="Use this guide to understand the Karinderya code system and the basic steps for entering a code."
+  relatedLinks={[
+    { label: 'Beginner Guide', href: '/guides/beginner-guide/' },
+    { label: 'Updates', href: '/updates/' },
+    { label: 'Guides', href: '/guides/' },
+  ]}
   tableOfContents
   heroImage={siteImages.codesHero}
 >
-  <h2 id="active-codes">Active Codes</h2>
-  <p>These are the latest codes included in the wiki. Code availability can change after game updates, and a code already used on an account cannot normally be redeemed again.</p>
-  <div class="table-scroll">
-    <table>
-      <thead><tr><th scope="col">Code</th><th scope="col">Reward</th></tr></thead>
-      <tbody>
-        {currentCodes.map((item) => (
-          <tr>
-            <th scope="row"><code>{item.code}</code></th>
-            <td>{item.reward}{item.note && <small>{item.note}</small>}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
+  <h2 id="overview">Overview</h2>
+  <p>Codes are text strings entered through the game's code interface. Their availability may change over time, so this page focuses on using the system rather than maintaining a permanent list.</p>
 
-  <h2 id="expired-codes">Expired Codes</h2>
-  <p>No expired codes are currently listed. If a code above stops working, first check its spelling and whether it was already redeemed. Availability can change without advance notice.</p>
+  <h2 id="how-codes-work">How Codes Work</h2>
+  <p>A code must be entered in the form currently recognized by the game. Spelling, capitalization, account history, and changes to the game can affect whether an entry is accepted.</p>
 
-  <h2 id="how-to-redeem-codes">How to Redeem Codes</h2>
+  <h2 id="how-to-use-codes">How to Use Codes</h2>
   <ol>
-    <li>Open Karinderya and locate the current code-redemption interface.</li>
-    <li>Enter the code exactly as written, including capitalization, and remove spaces before or after the string.</li>
-    <li>Submit the code once and read the message shown by the game.</li>
-    <li>If it fails, check for a typing error or previous redemption before treating the code as potentially expired.</li>
+    <li>Open Karinderya and locate the current code interface.</li>
+    <li>Enter the code exactly as shown in current game information.</li>
+    <li>Remove spaces before or after the text.</li>
+    <li>Submit the entry once and read the message displayed by the game.</li>
   </ol>
 
-  <h2 id="rewards-information">Rewards Information</h2>
-  <p>Code rewards can include Cash, furniture, equipment, Concrete, and Cash Potions. Rewards are delivered by the game when a valid code is accepted.</p>
+  <h2 id="troubleshooting">Troubleshooting</h2>
+  <ul>
+    <li>Check every character and match capitalization.</li>
+    <li>Make sure no extra spaces were included.</li>
+    <li>Consider whether the account has already used the same code.</li>
+    <li>Check current game information because code availability can change.</li>
+  </ul>
+
+  <h2 id="gameplay-tips">Gameplay Tips</h2>
+  <ul>
+    <li>Enter codes carefully instead of submitting several variations quickly.</li>
+    <li>Read the in-game response before trying the same entry again.</li>
+    <li>Use the Updates section to continue exploring game changes and Wiki coverage.</li>
+  </ul>
 
   <FAQ items={faqItems} />
 </ContentPage>
-
-<style>
-  small { display: block; max-width: 420px; margin-top: 6px; color: var(--muted); }
-</style>

@@ -1,0 +1,74 @@
+---
+import ContentPage from '../../components/ContentPage.astro';
+import FAQ from '../../components/FAQ.astro';
+import { siteImages } from '../../data/images';
+
+const faqItems = [
+  { question: 'Do all players need to follow the same task?', answer: 'No. Teammates can divide visible restaurant work and change focus when another area needs attention.' },
+  { question: 'What should a group organize first?', answer: 'Start with the current customer-service workflow and make sure each active task has a clear owner.' },
+  { question: 'How are Workers different from teammates?', answer: 'Players coordinate directly with one another. Use the Workers Hub for information about Worker support inside restaurant management.' },
+];
+---
+
+<ContentPage
+  title="Karinderya Co-op Guide"
+  description="Learn how to organize a Karinderya co-op session, divide restaurant tasks, and coordinate service with other players."
+  kicker="Team play guide"
+  intro="Coordinate teammates around the restaurant work that needs attention now."
+  parent={{ label: 'Guides', href: '/guides/' }}
+  tableOfContents
+  heroImage={siteImages.beginnerGuideHero}
+  nextPage={{ label: 'Cooking and Serving Guide', href: '/guides/cooking-and-serving/' }}
+  relatedLinks={[
+    { label: 'Workers Hub', href: '/workers/', description: 'Review Worker support as a separate restaurant-management topic.' },
+    { label: 'Beginner Guide', href: '/guides/beginner-guide/', description: 'Learn the complete restaurant service loop.' },
+    { label: 'Cooking and Serving Guide', href: '/guides/cooking-and-serving/', description: 'Follow an order through preparation and service.' },
+    { label: 'Restaurant Layout Guide', href: '/guides/restaurant-layout/', description: 'Keep team movement routes easy to follow.' },
+  ]}
+>
+  <h2 id="introduction">Introduction</h2>
+  <p>Co-op play becomes easier to manage when teammates communicate about visible restaurant tasks. Use roles as flexible labels for the current session rather than assuming every group must follow one fixed setup.</p>
+
+  <h2 id="overview">Overview</h2>
+  <p>The restaurant workflow includes customer attention, order information, ingredients, cooking, serving, and supplies. Teammates can watch different parts of that workflow and change focus whenever another area needs help.</p>
+
+  <h2 id="how-it-works">How It Works</h2>
+  <p>Players coordinate directly by deciding who will follow each visible task. The exact division can change with the restaurant, group size, and current workload. The goal is simply to prevent several teammates from repeating one action while another task is overlooked.</p>
+
+  <h2 id="team-planning-process">Team Planning Process</h2>
+  <ol>
+    <li>Review the restaurant workflow together.</li>
+    <li>Identify the active customer, kitchen, serving, and supply tasks.</li>
+    <li>Choose a temporary focus for each player.</li>
+    <li>Use short messages when an order or work area needs attention.</li>
+    <li>Change focus when another part of the restaurant becomes harder to manage.</li>
+    <li>Reduce active work when the team loses track of the current tasks.</li>
+  </ol>
+
+  <h2 id="team-roles">Team Roles</h2>
+  <ul>
+    <li><strong>Dining area:</strong> keep customer-facing tasks visible.</li>
+    <li><strong>Kitchen:</strong> follow preparation and cooking tasks.</li>
+    <li><strong>Serving:</strong> connect prepared food with the dining area.</li>
+    <li><strong>Supplies:</strong> review ingredient needs when service allows.</li>
+  </ul>
+  <p>These are planning labels, not mandatory game roles. Change them whenever the current restaurant needs a different arrangement.</p>
+
+  <h2 id="gameplay-tips">Gameplay Tips</h2>
+  <ul>
+    <li>Use clear messages when handing a task to another player.</li>
+    <li>Keep the kitchen and dining route easy for teammates to read.</li>
+    <li>Finish visible work before increasing the number of active tasks.</li>
+    <li>Use the Workers Hub when comparing player coordination with Worker support.</li>
+  </ul>
+
+  <h2 id="common-mistakes">Common Mistakes</h2>
+  <ul>
+    <li>Having several players follow the same task.</li>
+    <li>Keeping one team arrangement when the restaurant needs change.</li>
+    <li>Moving Furniture or Equipment without telling teammates.</li>
+    <li>Assuming every group should divide work in the same way.</li>
+  </ul>
+
+  <FAQ items={faqItems} />
+</ContentPage>

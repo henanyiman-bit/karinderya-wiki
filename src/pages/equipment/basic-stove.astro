@@ -1,23 +1,40 @@
 ---
-import EntityPage from '../../components/EntityPage.astro';
+import ContentPage from '../../components/ContentPage.astro';
+import { entityImages } from '../../data/images';
 ---
-<EntityPage
+
+<ContentPage
   title="Karinderya Basic Stove"
-  description="Learn about the Karinderya Basic Stove and its place in cooking-equipment progression."
+  description="Explore the Basic Stove in Karinderya and learn how this equipment entry connects with kitchen and restaurant workflow."
   kicker="Equipment profile"
-  intro="The entry point in the Basic, Standard, and Deluxe stove progression."
-  overview="Basic Stove is the starting cooking-equipment tier and is used to prepare customer orders."
-  parent={{ label: 'Equipment', href: '/equipment/' }}
-  status="Community Verified"
-  statusNotes="The item name and cooking-equipment role are supported by multiple public gameplay sources. Current price and numerical performance are not established."
-  observedData={[
-    { label: 'Tier', value: 'Basic Stove' },
-    { label: 'Progression position', value: 'Before Standard Stove and Deluxe Stove' },
-    { label: 'Current Cash price', value: 'To be verified' },
+  intro="The Basic Stove is a named cooking-equipment entry in the Karinderya Stove directory."
+  parents={[{ label: 'Equipment', href: '/equipment/' }, { label: 'Stoves', href: '/equipment/stoves/' }]}
+  heroImage={entityImages.basicStove}
+  tableOfContents
+  nextPage={{ label: 'Standard Stove', href: '/equipment/standard-stove/' }}
+  relatedLinks={[
+    { label: 'Equipment Hub', href: '/equipment/', description: 'Browse restaurant equipment categories and usage guidance.' },
+    { label: 'Stoves Directory', href: '/equipment/stoves/', description: 'Browse every Stove entry currently covered by the Wiki.' },
+    { label: 'Cooking and Serving Guide', href: '/guides/cooking-and-serving/', description: 'Follow cooking as part of the complete restaurant service workflow.' },
+    { label: 'Beginner Guide', href: '/guides/beginner-guide/', description: 'Learn the main restaurant systems and how they connect.' },
   ]}
-  known={['Basic Stove is the first stove tier.', 'Stoves are used for cooking.', 'Upgraded stoves can reduce cooking time.']}
-  unknown={['Exact cooking time or multiplier', 'Current Cash price', 'Unlock requirement', 'Exact throughput or capacity']}
-  sourceIds={['wiki-furniture', 'deluxe-guide']}
-  relatedLinks={[{ label: 'Standard Stove', href: '/equipment/standard-stove/' }, { label: 'Deluxe Stove', href: '/equipment/deluxe-stove/' }, { label: 'All stoves', href: '/equipment/stoves/' }]}
-  note="Any numerical stove comparison remains To be verified."
-/>
+>
+  <h2 id="introduction">Introduction</h2>
+  <p>The Basic Stove belongs to the Stoves section of the Equipment directory. Its article provides a focused reference for the named item without duplicating the broader kitchen guides.</p>
+
+  <h2 id="overview">Overview</h2>
+  <p>As cooking equipment, the Basic Stove is associated with the preparation part of restaurant service. The Stoves directory links it with the other named Stove entries in the Wiki.</p>
+
+  <h2 id="how-it-works">How It Works</h2>
+  <p>The Stove category connects equipment information with ingredients, recipes, cooking, and serving. The Cooking and Serving Guide explains that complete workflow, while this page remains focused on the Basic Stove entry.</p>
+
+  <h2 id="usage">Usage</h2>
+  <p>Use the Basic Stove entry when reviewing cooking equipment or navigating between the Stove directory and wider restaurant guides.</p>
+
+  <h2 id="gameplay-tips">Gameplay Tips</h2>
+  <ul>
+    <li>Keep cooking equipment within a clearly organized kitchen work area.</li>
+    <li>Review ingredient and recipe information alongside the cooking workflow.</li>
+    <li>Use the Stove directory to move between individual equipment entries.</li>
+  </ul>
+</ContentPage>

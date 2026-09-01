@@ -1,17 +1,39 @@
 ---
 import ContentPage from '../components/ContentPage.astro';
+import { siteImages } from '../data/images';
 ---
-<ContentPage title="Karinderya Grocery Prices & Categories" description="Browse Karinderya grocery ingredients, package sizes, categories, and shop prices." kicker="Supply guide" intro="Browse grocery ingredients, package sizes, and shop prices." relatedLinks={[{ label: 'Ingredients', href: '/ingredients/' }, { label: 'Recipes', href: '/recipes/' }, { label: 'Beginner guide', href: '/guides/beginner-guide/' }]} sourceIds={['codex-menu', 'wiki-menu', 'wiki-money']}>
-  <h2>Grocery Prices</h2>
-  <div class="table-scroll"><table><thead><tr><th scope="col">Item</th><th scope="col">Price</th></tr></thead><tbody>
-    <tr><th scope="row">25kg Rice</th><td>&#8369;200</td></tr>
-    <tr><th scope="row">Condiments</th><td>&#8369;135</td></tr>
-    <tr><th scope="row">Eggs</th><td>&#8369;120 / dozen</td></tr>
-    <tr><th scope="row">Vegetables</th><td>&#8369;90/kg</td></tr>
-    <tr><th scope="row">Bangus</th><td>&#8369;130/kg</td></tr>
-    <tr><th scope="row">Pork</th><td>&#8369;410/kg</td></tr>
-    <tr><th scope="row">Beef</th><td>&#8369;585/kg</td></tr>
-  </tbody></table></div>
-  <h2>Grocery Categories</h2>
-  <p><strong>Low, Meats, Frozen, Drinks, Others.</strong></p>
+
+<ContentPage
+  title="Karinderya Grocery"
+  description="Learn how the Karinderya grocery connects ingredients, recipes, food, and restaurant workflow."
+  kicker="Ingredient planning"
+  intro="Use the Grocery section as a starting point for understanding the ingredients used throughout the restaurant workflow."
+  relatedLinks={[
+    { label: 'Ingredients', href: '/ingredients/' },
+    { label: 'Recipes', href: '/recipes/' },
+    { label: 'Food', href: '/food/' },
+    { label: 'Cooking and Serving Guide', href: '/guides/cooking-and-serving/' },
+  ]}
+  tableOfContents
+  heroImage={siteImages.ingredientsHero}
+>
+  <h2 id="overview">Overview</h2>
+  <p>Grocery information helps players connect restaurant supplies with the wider cooking system. The Ingredients directory identifies the materials covered by the Wiki, while the Recipes and Food sections explain where those materials fit into meal preparation and service.</p>
+
+  <h2 id="how-grocery-connects">How Grocery Connects to Cooking</h2>
+  <p>The Wiki organizes the restaurant flow as <strong>Grocery → Ingredients → Recipes → Food → Orders</strong>. Start here when planning supplies, then move to the Ingredients directory to learn about an individual ingredient or to the Recipes guide to understand the cooking workflow.</p>
+
+  <h2 id="ingredient-navigation">Ingredient Navigation</h2>
+  <p>The <a href="/ingredients/">Ingredients directory</a> is the main database for Rice, Eggs, Vegetables, Bangus, Pork, Beef, and Condiments. Each entry links back to the broader cooking sections so players can move between ingredient information and restaurant tasks without losing context.</p>
+
+  <h2 id="resource-management">Resource Management</h2>
+  <p>Review the restaurant's current needs before moving between grocery information and cooking tasks. Keeping ingredient planning connected to visible orders makes it easier to organize the kitchen without relying on a fixed route.</p>
+
+  <h2 id="gameplay-tips">Gameplay Tips</h2>
+  <ul>
+    <li>Read current orders before deciding which ingredient information to check.</li>
+    <li>Use the Ingredients directory when a material name is unfamiliar.</li>
+    <li>Use the Recipes guide for workflow help instead of treating Grocery as a recipe list.</li>
+    <li>Keep cooking, serving, and ingredient planning connected during busy restaurant sessions.</li>
+  </ul>
 </ContentPage>

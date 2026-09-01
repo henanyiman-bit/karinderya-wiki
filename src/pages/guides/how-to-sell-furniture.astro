@@ -1,37 +1,66 @@
 ---
 import ContentPage from '../../components/ContentPage.astro';
 import FAQ from '../../components/FAQ.astro';
+import { siteImages } from '../../data/images';
 
 const faqItems = [
-  { question: 'Should I sell furniture before buying a replacement?', answer: 'Check the replacement cost, current Cash, and displayed resale value first. Selling too early can remove furniture before the replacement is ready.' },
-  { question: 'Will I receive the full purchase price back?', answer: 'The resale examples return only part of the original price. Always review the amount shown by the game before confirming.' },
-  { question: 'Do all tables sell for the same percentage?', answer: 'Do not assume one percentage applies to every table. Use the resale value displayed for the selected item.' },
+  { question: 'When should I reorganize furniture?', answer: 'Review the arrangement when the dining area becomes difficult to read or when furniture no longer fits the restaurant plan.' },
+  { question: 'Should I change the whole dining area at once?', answer: 'Small changes are easier to evaluate. Adjust one section, follow the normal service route, and continue only when the new arrangement remains clear.' },
+  { question: 'Where can I browse table entries?', answer: 'Use the Tables directory for the individual table pages currently available in the Wiki.' },
 ];
 ---
-<ContentPage title="How to Sell Furniture in Karinderya" description="Learn how to review furniture resale values and plan a replacement in Karinderya." kicker="Furniture guide" intro="Use resale values to decide whether replacing a table is worth the recovered Cash." parent={{ label: 'Guides', href: '/guides/' }} relatedLinks={[{ label: 'Furniture', href: '/furniture/' }, { label: 'Tables', href: '/furniture/tables/' }, { label: 'Plank Table', href: '/furniture/plank-table/' }, { label: 'Wood Table', href: '/furniture/wood-table/' }]} sourceIds={['wiki-furniture']} tableOfContents>
-  <h2 id="selling-overview">Selling Overview</h2>
-  <p>Selling furniture can recover part of an item's purchase price and make room in an upgrade plan. Review the value shown for the selected item before confirming because the sale will not return the full purchase cost.</p>
 
-  <h2 id="how-to-sell-furniture">How to Sell Furniture</h2>
+<ContentPage
+  title="Karinderya Furniture Management Guide"
+  description="Learn how to review, rearrange, and manage existing furniture while planning a clear Karinderya restaurant layout."
+  kicker="Furniture management guide"
+  intro="Manage existing furniture around dining-area organization and restaurant layout."
+  parent={{ label: 'Guides', href: '/guides/' }}
+  tableOfContents
+  heroImage={siteImages.furnitureHero}
+  relatedLinks={[
+    { label: 'Furniture Hub', href: '/furniture/', description: 'Browse Furniture categories and planning guidance.' },
+    { label: 'Tables', href: '/furniture/tables/', description: 'Open the Tables directory and individual entries.' },
+    { label: 'Chairs', href: '/furniture/chairs/', description: 'Review Chairs as part of the dining area.' },
+    { label: 'Restaurant Layout Guide', href: '/guides/restaurant-layout/', description: 'Plan dining, kitchen, and movement areas.' },
+  ]}
+>
+  <h2 id="introduction">Introduction</h2>
+  <p>Furniture management is the process of reviewing the current dining area and deciding how existing pieces fit into the restaurant plan. Focus on organization, movement, and clear customer spaces rather than treating furniture as an isolated list of items.</p>
+
+  <h2 id="overview">Overview</h2>
+  <p>Tables and Chairs help define the dining area. As the restaurant layout changes, furniture may need to be moved, replaced, or reconsidered through the controls currently available in the game. The Furniture Hub provides category information, while this guide focuses on planning decisions.</p>
+
+  <h2 id="how-it-works">How It Works</h2>
+  <p>Use the current furniture or editing interface to select an item and review the actions shown on screen. Before changing the arrangement, identify the space you want to improve and consider how the surrounding dining and movement areas will be affected.</p>
+
+  <h2 id="furniture-management-process">Furniture Management Process</h2>
   <ol>
-    <li>Open the current furniture or editing controls.</li>
-    <li>Select the table or chair you want to replace.</li>
-    <li>Find the sell option and review the displayed resale value.</li>
-    <li>Confirm only after deciding that the recovered Cash is worth removing the item.</li>
+    <li>Review the current dining area and identify the section that needs attention.</li>
+    <li>Open the furniture controls available in the current game.</li>
+    <li>Select the relevant Table, Chair, or other furniture item.</li>
+    <li>Read the available actions before confirming a change.</li>
+    <li>Adjust the surrounding space so customer and movement areas remain clear.</li>
+    <li>Follow a normal service route and refine the arrangement if needed.</li>
   </ol>
 
-  <h2 id="resale-examples">Resale Examples</h2>
-  <div class="table-scroll"><table><thead><tr><th scope="col">Item</th><th scope="col">Buy price</th><th scope="col">Resale value</th><th scope="col">Ratio</th></tr></thead><tbody>
-    <tr><th scope="row"><a href="/furniture/plank-table/">Plank Table</a></th><td>&#8369;130</td><td>&#8369;26</td><td>Approximately 20%</td></tr>
-    <tr><th scope="row"><a href="/furniture/wood-table/">Wood Table</a></th><td>&#8369;365</td><td>&#8369;73</td><td>Approximately 20%</td></tr>
-  </tbody></table></div>
+  <h2 id="layout-planning">Layout Planning</h2>
+  <p>Keep dining furniture grouped as a recognizable customer area. Coordinate it with the kitchen and serving route, and use the <a href="/guides/restaurant-layout/">Restaurant Layout Guide</a> when a change affects more than one section of the restaurant.</p>
 
-  <h2 id="replacement-strategy">Replacement Strategy</h2>
+  <h2 id="gameplay-tips">Gameplay Tips</h2>
   <ul>
-    <li>Check the new furniture price before selling the old item.</li>
-    <li>Keep enough Cash available for ingredients and other essential purchases.</li>
-    <li>Replace furniture in stages if a full dining-room upgrade is too expensive.</li>
-    <li>Use the current displayed resale value instead of assuming every item follows one ratio.</li>
+    <li>Change one part of the dining area at a time.</li>
+    <li>Keep furniture controls and important interactions easy to identify.</li>
+    <li>Use the Tables and Chairs directories when reviewing category information.</li>
+    <li>Plan furniture alongside the wider restaurant layout.</li>
+  </ul>
+
+  <h2 id="common-mistakes">Common Mistakes</h2>
+  <ul>
+    <li>Changing several dining-area sections before reviewing the result.</li>
+    <li>Focusing on appearance while movement routes become unclear.</li>
+    <li>Managing an item without checking the actions shown by the current interface.</li>
+    <li>Treating furniture separately from kitchen and serving organization.</li>
   </ul>
 
   <FAQ items={faqItems} />

@@ -8,15 +8,76 @@ import { siteImages } from '../data/images';
 const categories = [
   { title: 'Food & Recipes', description: 'Browse menu groups, ingredients, and customer orders.', href: '/food/', icon: 'F' },
   { title: 'Workers', description: 'Compare worker contracts and restaurant staffing tips.', href: '/workers/', icon: 'W' },
-  { title: 'Equipment', description: 'Explore stove tiers, kitchen upgrades, and the Chiller.', href: '/equipment/', icon: 'E' },
+  { title: 'Equipment', description: 'Browse equipment categories, Stoves, the Chiller, and the cooking workflow.', href: '/equipment/', icon: 'E' },
   { title: 'Grocery & Ingredients', description: 'Check grocery listings, package sizes, and ingredients.', href: '/grocery/', icon: 'G' },
-  { title: 'Furniture', description: 'Browse table and chair families, prices, and resale examples.', href: '/furniture/', icon: 'T' },
+  { title: 'Furniture', description: 'Browse Furniture categories, Tables, Chairs, and layout-planning guidance.', href: '/furniture/', icon: 'T' },
   { title: 'Decorations', description: 'Explore Tiles, counters, and Choopy Mystery Box information.', href: '/decorations/', icon: 'D' },
 ];
 const guides = [
-  { title: 'Beginner Guide', description: 'Learn the service loop and early progression systems.', href: '/guides/beginner-guide/', icon: '1' },
+  { title: 'Beginner Guide', description: 'Learn the service loop and the main restaurant systems.', href: '/guides/beginner-guide/', icon: '1' },
   { title: '5-Star Guide', description: 'Improve restaurant service while working toward five stars.', href: '/guides/5-star-guide/', icon: '5' },
   { title: 'Counter Upgrades', description: 'Compare counter choices and the ElegantWood upgrade.', href: '/guides/counter-upgrades/', icon: 'C' },
+];
+const startHere = [
+  { step: '01', title: 'Beginner Guide', description: 'Learn the core restaurant loop and plan your first steps.', href: '/guides/beginner-guide/' },
+  { step: '02', title: 'Cooking & Recipes', description: 'Understand food, ingredients, recipes, and customer orders.', href: '/recipes/' },
+  { step: '03', title: 'Equipment Guide', description: 'Explore equipment categories, Stoves, the Chiller, and cooking workflow.', href: '/equipment/' },
+  { step: '04', title: 'Workers', description: 'Learn how workers fit into restaurant operations.', href: '/workers/' },
+  { step: '05', title: 'Furniture & Customization', description: 'Browse furniture and decorations for your restaurant.', href: '/furniture/' },
+];
+const wikiDirectory = [
+  {
+    title: 'Guides',
+    icon: 'G',
+    description: 'Walkthroughs for restaurant operations, shopping, layout, and customization.',
+    links: [
+      { label: 'Beginner Guide', href: '/guides/beginner-guide/' },
+      { label: '5-Star Guide', href: '/guides/5-star-guide/' },
+      { label: 'Counter Upgrades', href: '/guides/counter-upgrades/' },
+      { label: 'Shop Restock', href: '/guides/shop-restock/' },
+      { label: 'Furniture Planning', href: '/guides/restaurant-layout/' },
+    ],
+  },
+  {
+    title: 'Cooking',
+    icon: 'C',
+    description: 'Explore the food and ingredient systems used in restaurant service.',
+    links: [
+      { label: 'Food', href: '/food/' },
+      { label: 'Recipes', href: '/recipes/' },
+      { label: 'Ingredients', href: '/ingredients/' },
+      { label: 'Grocery', href: '/grocery/' },
+    ],
+  },
+  {
+    title: 'Equipment',
+    icon: 'E',
+    description: 'Browse kitchen equipment and the available stove pages.',
+    links: [
+      { label: 'Equipment overview', href: '/equipment/' },
+      { label: 'Stoves', href: '/equipment/stoves/' },
+      { label: 'Chiller', href: '/equipment/chiller/' },
+    ],
+  },
+  {
+    title: 'Restaurant',
+    icon: 'R',
+    description: 'Find staffing, furniture, and customization information.',
+    links: [
+      { label: 'Workers', href: '/workers/' },
+      { label: 'Furniture', href: '/furniture/' },
+      { label: 'Decorations', href: '/decorations/' },
+    ],
+  },
+  {
+    title: 'Updates',
+    icon: 'U',
+    description: 'Read update summaries and find the Wiki pages connected to each release.',
+    links: [
+      { label: 'All updates', href: '/updates/' },
+      { label: 'Decorations Part 1', href: '/updates/decorations-part-1/' },
+    ],
+  },
 ];
 ---
 <BaseLayout title="Karinderya Wiki" seoTitle="Karinderya Roblox Wiki: Codes, Guides & Game Information" description="An independent English wiki for the Karinderya Roblox experience, with player guides to codes, food, recipes, workers, equipment, and updates.">
@@ -25,14 +86,19 @@ const guides = [
     <ResponsiveImage image={siteImages.homeHero} priority sizes="(max-width: 700px) calc(100vw - 32px), 42vw" class="home-hero-image" />
   </div></section>
   <div class="container"><AdSlot placement="top" /></div>
+  <section class="section start-section" aria-labelledby="start-heading"><div class="container">
+    <div class="section-heading"><div><p class="section-kicker">New to Karinderya?</p><h2 id="start-heading">Start Here</h2><p>Follow a simple path from your first service loop to restaurant upgrades and customization.</p></div><a href="/guides/">View all guides -&gt;</a></div>
+    <ol class="journey-list">{startHere.map((item) => <li><a href={item.href}><span>{item.step}</span><div><h3>{item.title}</h3><p>{item.description}</p></div><b aria-hidden="true">-&gt;</b></a></li>)}</ol>
+  </div></section>
   <section class="section update-section"><div class="container content-layout">
-    <div class="main-column"><div class="section-heading"><div><p class="section-kicker">What's new</p><h2>Latest Update</h2></div><a href="/updates/">All updates -&gt;</a></div><article class="feature-card"><div><span>Game update</span><h3>Decorations Pt. 1</h3><p>Explore Tiles, Counter Upgrade, Table Tops, Dishwasher, Choopy delivery, and the related code strings.</p></div><a href="/updates/decorations-part-1/">View update summary -&gt;</a></article><AdSlot placement="content-1" /></div>
-    <aside class="sidebar"><div class="section-heading"><div><p class="section-kicker">Quick check</p><h2>Active Codes</h2></div></div><div class="code-card"><span class="code-icon">%</span><div><strong>50KCCU</strong><p>50,000 Cash reward</p></div></div><a class="sidebar-link" href="/codes/">Open codes page -&gt;</a><AdSlot placement="desktop-sidebar" /></aside>
+    <div class="main-column"><div class="section-heading"><div><p class="section-kicker">What's new</p><h2>Latest Update</h2></div><a href="/updates/">All updates -&gt;</a></div><article class="feature-card"><div><span>Game update</span><h3>Decorations Pt. 1</h3><p>Explore Tiles, Counter Upgrade, Table Tops, Dishwasher, Choopy delivery, and the related Wiki pages.</p></div><a href="/updates/decorations-part-1/">View update summary -&gt;</a></article><AdSlot placement="content-1" /></div>
+    <aside class="sidebar"><div class="section-heading"><div><p class="section-kicker">Player help</p><h2>Codes Guide</h2></div></div><div class="code-card"><span class="code-icon">%</span><div><strong>Redemption Guide</strong><p>Find code-entry help and troubleshooting tips.</p></div></div><a class="sidebar-link" href="/codes/">Open Codes Guide -&gt;</a><AdSlot placement="desktop-sidebar" /></aside>
   </div></section>
   <section class="section explore-section" id="explore"><div class="container"><div class="section-heading"><div><p class="section-kicker">Explore the game</p><h2>Build your restaurant knowledge</h2><p>Browse the main databases and player guides.</p></div></div><div class="card-grid">{categories.map((card) => <WikiCard {...card} />)}</div></div></section>
   <div class="container"><AdSlot placement="content-2" /></div>
   <section class="section"><div class="container"><div class="section-heading"><div><p class="section-kicker">Helpful reads</p><h2>Popular Guides</h2></div><a href="/guides/">Browse guides -&gt;</a></div><div class="card-grid">{guides.map((card) => <WikiCard {...card} />)}</div></div></section>
-  <section class="section latest-section"><div class="container"><div class="section-heading"><div><p class="section-kicker">Recently added</p><h2>Latest Pages</h2></div></div><div class="latest-list"><a href="/updates/decorations-part-1/"><span>Decorations Part 1</span><small>Update features and codes</small><b>-&gt;</b></a><a href="/guides/how-to-sell-furniture/"><span>Sell Furniture</span><small>Resale and replacement guide</small><b>-&gt;</b></a><a href="/ingredients/rice/"><span>Rice</span><small>Ingredient profile</small><b>-&gt;</b></a></div><AdSlot placement="bottom" /></div></section>
+  <section class="section directory-section" aria-labelledby="directory-heading"><div class="container"><div class="section-heading"><div><p class="section-kicker">Browse the database</p><h2 id="directory-heading">Wiki Directory</h2><p>Jump directly to guides, game systems, restaurant content, and updates.</p></div></div><div class="directory-grid">{wikiDirectory.map((group) => <section class="directory-card"><div class="directory-title"><span aria-hidden="true">{group.icon}</span><div><h3>{group.title}</h3><p>{group.description}</p></div></div><ul>{group.links.map((link) => <li><a href={link.href}>{link.label}<span aria-hidden="true">-&gt;</span></a></li>)}</ul></section>)}</div></div></section>
+  <section class="section latest-section"><div class="container"><div class="section-heading"><div><p class="section-kicker">Recently added</p><h2>Latest Pages</h2></div></div><div class="latest-list"><a href="/updates/decorations-part-1/"><span>Decorations Part 1</span><small>Update overview</small><b>-&gt;</b></a><a href="/guides/restaurant-layout/"><span>Restaurant Layout</span><small>Dining and work-area planning</small><b>-&gt;</b></a><a href="/ingredients/rice/"><span>Rice</span><small>Ingredient profile</small><b>-&gt;</b></a></div><AdSlot placement="bottom" /></div></section>
 </BaseLayout>
 <style>
   .hero { overflow: hidden; padding: clamp(54px, 9vw, 108px) 0 64px; background: radial-gradient(circle at 78% 50%, #ffe2c6 0, #fff4e9 24%, transparent 52%), linear-gradient(135deg, #fffaf5, #f7eee6); }
@@ -46,10 +112,32 @@ const guides = [
   :global(.home-hero-image) { overflow: hidden; border: 1px solid #efcfb3; border-radius: 22px; background: var(--surface); box-shadow: var(--shadow); }
   :global(.home-hero-image img) { aspect-ratio: 16 / 9; object-fit: cover; }
   .content-layout { display: grid; grid-template-columns: minmax(0,1fr) 320px; gap: 24px; }.update-section { padding-top: 56px; }
+  .start-section { padding-bottom: 10px; }
+  .journey-list { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; counter-reset: journey; }
+  .journey-list li { min-width: 0; }
+  .journey-list a { height: 100%; min-height: 168px; display: flex; flex-direction: column; gap: 12px; padding: 18px; border: 1px solid var(--border); border-radius: var(--radius); color: var(--ink); background: var(--surface); text-decoration: none; transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease; }
+  .journey-list a:hover { transform: translateY(-2px); border-color: #dec3b4; box-shadow: var(--shadow); }
+  .journey-list a > span { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 10px; color: var(--accent-dark); background: var(--accent-soft); font-size: .73rem; font-weight: 800; }
+  .journey-list h3 { margin: 0; font-size: .98rem; }
+  .journey-list p { margin: 7px 0 0; color: var(--muted); font-size: .78rem; line-height: 1.5; }
+  .journey-list b { margin-top: auto; color: var(--accent); }
   .feature-card { min-height: 220px; display: flex; flex-direction: column; justify-content: space-between; padding: clamp(24px,4vw,38px); border-radius: var(--radius); color: white; background: linear-gradient(135deg,#482e23,#7a3a25); box-shadow: var(--shadow); }.feature-card span { color: #ffceb4; font-size: .68rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }.feature-card h3 { margin: 10px 0; font-size: clamp(1.35rem,3vw,2rem); }.feature-card p { margin: 0; color: #e4d3ca; }.feature-card a { min-height: 44px; display: inline-flex; align-items: center; margin-top: 20px; color: white; font-weight: 750; text-decoration: none; }
   .sidebar { padding: 22px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }.code-card { display: flex; gap: 12px; padding: 15px; border-radius: 12px; background: var(--accent-soft); }.code-icon { width: 34px; height: 34px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 9px; color: white; background: var(--accent); font-weight: 800; }.code-card p { margin: 3px 0 0; color: var(--muted); font-size: .76rem; }.sidebar-link { min-height: 44px; display: flex; align-items: center; color: var(--accent-dark); font-size: .78rem; font-weight: 750; text-decoration: none; }
   .explore-section { margin-top: 24px; padding: 64px 0; background: #f2ebe5; }.latest-list { border-top: 1px solid var(--border); }.latest-list a { display: grid; grid-template-columns: 1fr 1fr auto; align-items: center; gap: 16px; padding: 16px 5px; border-bottom: 1px solid var(--border); color: var(--ink); text-decoration: none; }.latest-list small { color: var(--muted); }.latest-list b { color: var(--accent); }
+  .directory-section { background: #fff8f1; }
+  .directory-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .directory-card { min-width: 0; padding: 22px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+  .directory-title { display: flex; gap: 12px; }
+  .directory-title > span { width: 40px; height: 40px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 11px; color: var(--accent-dark); background: var(--accent-soft); font-weight: 800; }
+  .directory-card h3 { margin: 1px 0 0; }
+  .directory-card p { margin: 7px 0 0; color: var(--muted); font-size: .82rem; line-height: 1.5; }
+  .directory-card ul { margin: 18px 0 0; padding: 0; border-top: 1px solid var(--border); list-style: none; }
+  .directory-card li { border-bottom: 1px solid var(--border); }
+  .directory-card a { min-height: 44px; display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--ink); font-size: .84rem; font-weight: 700; text-decoration: none; }
+  .directory-card a span { color: var(--accent); }
+  .directory-card a:hover { color: var(--accent-dark); }
+  @media (max-width:1050px) { .journey-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }.directory-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (max-width:900px) { .content-layout { grid-template-columns: 1fr; }.sidebar { grid-row: 2; } }
-  @media (max-width:700px) { .hero-inner { grid-template-columns: 1fr; } }
+  @media (max-width:700px) { .hero-inner { grid-template-columns: 1fr; }.journey-list { grid-template-columns: 1fr; }.journey-list a { min-height: 0; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; }.journey-list b { margin-top: 0; }.directory-grid { grid-template-columns: 1fr; } }
   @media (max-width:520px) { .latest-list a { grid-template-columns: 1fr auto; }.latest-list small { display:none; } }
 </style>

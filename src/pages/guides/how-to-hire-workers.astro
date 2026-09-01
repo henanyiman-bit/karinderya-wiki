@@ -1,0 +1,69 @@
+---
+import ContentPage from '../../components/ContentPage.astro';
+import FAQ from '../../components/FAQ.astro';
+import { siteImages } from '../../data/images';
+
+const faqItems = [
+  { question: 'When should I add a Worker?', answer: 'Consider a Worker when one part of restaurant management repeatedly needs attention. Review the current hiring options and choose around the task you want help managing.' },
+  { question: 'Which Worker should I choose?', answer: 'Use the information shown by the current interface and match the available option with the needs of your restaurant.' },
+  { question: 'What does Manual Assign mean?', answer: 'Manual Assign relates to how customer assignments are handled. Read the current prompt before confirming so the setting matches how you prefer to manage service.' },
+];
+---
+
+<ContentPage
+  title="How to Hire Workers in Karinderya"
+  description="Learn how to review Worker options, plan restaurant staffing, and understand Manual Assign in Karinderya."
+  kicker="Worker management guide"
+  intro="Choose Worker support around the restaurant tasks that need the most attention."
+  parent={{ label: 'Guides', href: '/guides/' }}
+  tableOfContents
+  heroImage={siteImages.workersHero}
+  previousPage={{ label: 'Cooking and Serving Guide', href: '/guides/cooking-and-serving/' }}
+  nextPage={{ label: 'Restaurant Layout Guide', href: '/guides/restaurant-layout/' }}
+  relatedLinks={[
+    { label: 'Workers Hub', href: '/workers/', description: 'Review the Worker system and its place in restaurant management.' },
+    { label: 'Co-op Guide', href: '/guides/co-op-guide/', description: 'Coordinate restaurant tasks with other players.' },
+    { label: 'Beginner Guide', href: '/guides/beginner-guide/', description: 'Learn the complete restaurant service workflow.' },
+    { label: 'Upgrade Priority Guide', href: '/guides/upgrade-priority/', description: 'Plan improvements around the restaurant area needing attention.' },
+  ]}
+>
+  <h2 id="introduction">Introduction</h2>
+  <p>Workers can support restaurant management when several tasks compete for attention. This guide focuses on reading the current hiring interface, identifying the help your restaurant needs, and keeping Worker decisions connected with the wider service workflow.</p>
+
+  <h2 id="overview">Overview</h2>
+  <p>A Worker decision begins with the restaurant, not with a fixed ranking. Watch service, identify the area that is difficult to manage, and then review the options currently shown in the game. The <a href="/workers/">Workers Hub</a> explains the system, while this guide covers the player decision process.</p>
+
+  <h2 id="how-it-works">How It Works</h2>
+  <p>The hiring interface presents the information available for the current Worker option. Read every label and prompt before confirming. Worker support should complement ingredient preparation, cooking, serving, and customer management rather than replace a clear restaurant plan.</p>
+
+  <h2 id="hiring-process">Hiring Process</h2>
+  <ol>
+    <li>Observe a normal service period and identify the task that repeatedly needs attention.</li>
+    <li>Open the current Worker hiring interface.</li>
+    <li>Read the Worker information and any instructions shown on screen.</li>
+    <li>Review the Manual Assign prompt when it appears.</li>
+    <li>Choose only when the available option matches the restaurant task you identified.</li>
+    <li>Return to service and check whether task organization is clearer.</li>
+  </ol>
+
+  <h2 id="manual-assign">Manual Assign</h2>
+  <p>Manual Assign concerns direct control over customer assignments. If you prefer to organize that part of service yourself, pause at the prompt and review the current setting before continuing. Keep the choice aligned with the way you and any co-op teammates divide restaurant work.</p>
+
+  <h2 id="gameplay-tips">Gameplay Tips</h2>
+  <ul>
+    <li>Identify a specific management need before reviewing Worker options.</li>
+    <li>Read the complete hiring interface instead of choosing by name alone.</li>
+    <li>Keep ingredient, kitchen, dining-area, and layout needs in view.</li>
+    <li>Use the <a href="/guides/co-op-guide/">Co-op Guide</a> when active players can divide tasks directly.</li>
+  </ul>
+
+  <h2 id="common-mistakes">Common Mistakes</h2>
+  <ul>
+    <li>Adding Worker support before identifying the restaurant task that needs help.</li>
+    <li>Ignoring the Manual Assign prompt.</li>
+    <li>Expecting a Worker to solve missing materials or an unclear layout.</li>
+    <li>Changing several parts of restaurant management at the same time.</li>
+  </ul>
+
+  <FAQ items={faqItems} />
+</ContentPage>

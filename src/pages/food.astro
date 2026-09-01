@@ -1,14 +1,73 @@
 ---
 import ContentPage from '../components/ContentPage.astro';
+import WikiCard from '../components/WikiCard.astro';
 import { siteImages } from '../data/images';
 ---
-<ContentPage title="Karinderya Food & Menu Groups" description="Browse Karinderya menu groups, dishes, and customer-count unlocks." kicker="Kitchen guide" intro="Browse menu groups, dishes, and customer-count milestones." relatedLinks={[{ label: 'Recipes', href: '/recipes/' }, { label: 'Ingredients', href: '/ingredients/' }, { label: 'Grocery', href: '/grocery/' }]} sourceIds={['codex-menu', 'wiki-menu']} heroImage={siteImages.foodHero}>
-  <h2>Menu Groups</h2>
-  <div class="table-scroll"><table><thead><tr><th scope="col">Menu group</th><th scope="col">Dishes or unlock</th></tr></thead><tbody>
-    <tr><th scope="row">LUGAW</th><td>Plain and Goto</td></tr>
-    <tr><th scope="row">SILOG MEALS</th><td>Unlocks at 100 customers</td></tr>
-    <tr><th scope="row">SILOG MEALS 2</th><td>Unlocks at 400 customers</td></tr>
-    <tr><th scope="row">LUTONG BAHAY</th><td>Unlocks at 670 customers</td></tr>
-    <tr><th scope="row">PASTA SOSYAL</th><td>Unlocks at 1,994 customers</td></tr>
-  </tbody></table></div>
+
+<ContentPage
+  title="Karinderya Food"
+  seoTitle="Karinderya Food Guide & Directory | Karinderya Wiki"
+  description="Explore Karinderya food categories and learn how food connects with recipes, ingredients, and restaurant service."
+  kicker="Food hub"
+  intro="Browse food-related Wiki sections and learn how menu information connects with cooking and restaurant service."
+  relatedLinks={[
+    { label: 'Beginner Guide', href: '/guides/beginner-guide/', description: 'Learn where food fits into the complete restaurant service loop.' },
+    { label: 'Cooking and Serving Guide', href: '/guides/cooking-and-serving/', description: 'Follow food from the customer order through preparation and service.' },
+    { label: 'Recipe Guide', href: '/recipes/', description: 'Understand how recipes connect orders, ingredients, cooking, and food.' },
+    { label: 'Ingredient Guide', href: '/ingredients/', description: 'Browse ingredient entries and their place in food preparation.' },
+  ]}
+  relatedHeading="Related Guides"
+  sourceIds={['codex-menu', 'wiki-menu']}
+  heroImage={siteImages.foodHero}
+  tableOfContents
+>
+  <h2 id="introduction">Introduction</h2>
+  <p>Food is the part of the restaurant workflow that connects preparation with customer service. This hub organizes food-related information and helps players move between the pages used to understand an order.</p>
+  <ul>
+    <li><strong>Food</strong> covers prepared menu items and their place in restaurant service.</li>
+    <li><strong>Recipes</strong> explain how orders connect with preparation information.</li>
+    <li><strong>Ingredients</strong> identify the supplies associated with cooking.</li>
+    <li><strong>Grocery</strong> organizes information used when restocking ingredients.</li>
+  </ul>
+  <p>Use the <a href="/recipes/">Recipe Guide</a> for the complete cooking relationship and this page as the top-level Food directory.</p>
+
+  <h2 id="how-food-works">How Food Works</h2>
+  <p>Food connects the kitchen workflow with the order a customer receives. The relationship can be read as:</p>
+  <p><strong>Ingredients → Recipes → Food → Orders</strong></p>
+  <p>Ingredients supply the cooking process, Recipes organize the preparation relationship, Food represents what moves through service, and Orders connect that food with the customer request. Grocery supports this flow by helping players return to the ingredient information used for restocking.</p>
+
+  <h2 id="featured-content">Featured Content</h2>
+  <div class="card-grid">
+    <WikiCard title="Food Directory" description="Move to the central navigation for food-related Wiki information." href="#food-directory" icon="F" />
+    <WikiCard title="Recipe Guide" description="Learn how recipes connect customer orders with ingredients and cooking." href="/recipes/" icon="R" />
+    <WikiCard title="Ingredient Guide" description="Browse ingredient entries and their connections with food preparation." href="/ingredients/" icon="I" />
+  </div>
+
+  <h2 id="food-directory">Food Directory</h2>
+  <p>Food articles are organized from this directory. Use the connected sections below to find the cooking and service information currently available in the Wiki.</p>
+  <div class="card-grid">
+    <WikiCard title="Recipes and Orders" description="Explore the relationship between orders, ingredients, cooking, and food." href="/recipes/" icon="R" />
+    <WikiCard title="Ingredients" description="Open the directory of individual restaurant ingredients." href="/ingredients/" icon="I" />
+    <WikiCard title="Grocery" description="Review the Wiki section used for ingredient restocking information." href="/grocery/" icon="G" />
+    <WikiCard title="Cooking and Serving" description="Follow food through the complete customer-service workflow." href="/guides/cooking-and-serving/" icon="C" />
+  </div>
+
+  <h2 id="food-categories">Food Categories</h2>
+  <p>The Wiki organizes food information by the role it plays for the player:</p>
+  <ul>
+    <li><strong>Food entries</strong> focus on an individual prepared menu item.</li>
+    <li><strong>Recipe connections</strong> link food with the information used during preparation.</li>
+    <li><strong>Ingredient connections</strong> lead to the supplies associated with cooking.</li>
+    <li><strong>Order and service information</strong> explains how food moves from the kitchen to the customer.</li>
+  </ul>
+  <p>These sections keep food information separate from the detailed ingredient directory and the step-by-step restaurant guides.</p>
+
+  <h2 id="gameplay-tips">Gameplay Tips</h2>
+  <ul>
+    <li>Read the complete menu or order information before beginning food preparation.</li>
+    <li>Use the Recipe Guide when you need to understand how an order connects with cooking.</li>
+    <li>Check the Ingredient Guide when a required supply is unfamiliar.</li>
+    <li>Keep prepared food connected with the intended order throughout the service workflow.</li>
+    <li>Use the Grocery page for restocking information rather than treating it as a food directory.</li>
+  </ul>
 </ContentPage>

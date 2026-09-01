@@ -4,6 +4,7 @@ import AdSlot from './AdSlot.astro';
 import WikiCard from './WikiCard.astro';
 import ResponsiveImage from './ResponsiveImage.astro';
 import TableOfContents from './TableOfContents.astro';
+import RelatedContent from './RelatedContent.astro';
 import type { SourceId } from '../data/sources';
 import type { ResponsiveImageAsset } from '../data/images';
 
@@ -24,11 +25,12 @@ interface Props {
   cards: PageCard[];
   note?: string;
   sourceIds?: SourceId[];
-  relatedLinks?: { label: string; href: string }[];
+  relatedLinks?: { label: string; href: string; description?: string }[];
   heroImage?: ResponsiveImageAsset;
   tableOfContents?: boolean;
   browseHeading?: string;
   copyHeading?: string;
+  relatedHeading?: string;
 }
 
 const {
@@ -44,6 +46,7 @@ const {
   tableOfContents = false,
   browseHeading = `Browse ${title}`,
   copyHeading = 'About this section',
+  relatedHeading = 'Explore Related Sections',
 } = Astro.props;
 const defaultRelatedSections = [
   { label: 'Codes', href: '/codes/' },
@@ -89,10 +92,7 @@ const relatedSections = relatedLinks ?? defaultRelatedSections;
         </section>
       </div>
     </div>
-    <nav class="related" aria-label="Related wiki sections">
-      <h2>Explore related sections</h2>
-      <div>{relatedSections.map((item) => <a href={item.href}>{item.label}</a>)}</div>
-    </nav>
+    <RelatedContent items={relatedSections} heading={relatedHeading} />
     <AdSlot placement="bottom" />
   </div>
 </BaseLayout>
@@ -107,11 +107,6 @@ const relatedSections = relatedLinks ?? defaultRelatedSections;
   .wiki-layout.with-toc > .wiki-page-content { grid-area: content; min-width: 0; }
   .wiki-layout.with-toc > :global(.toc-shell) { grid-area: toc; }
   .wiki-page-content :global(h2), .wiki-page-content :global(h3) { scroll-margin-top: 90px; }
-  .related { margin: 32px 0; }
-  .related h2 { margin: 0 0 14px; font-size: 1.15rem; }
-  .related div { display: flex; flex-wrap: wrap; gap: 8px; }
-  .related a { min-height: 44px; display: inline-flex; align-items: center; padding: 8px 13px; border: 1px solid var(--border); border-radius: 999px; color: var(--accent-dark); background: var(--surface); font-size: .82rem; font-weight: 700; text-decoration: none; }
-  .related a:hover { border-color: #dec3b4; background: var(--accent-soft); }
   .ad-bottom { margin-top: 32px; }
   @media (max-width: 900px) { .wiki-layout.with-toc { grid-template-columns: minmax(0, 1fr); grid-template-areas: "toc" "content"; } }
   @media (max-width: 760px) { .page-hero.has-image { grid-template-columns: minmax(0, 1fr); } :global(.content-hero-image img) { max-height: 340px; } }
