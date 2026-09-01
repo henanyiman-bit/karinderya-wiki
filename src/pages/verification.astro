@@ -1,40 +1,30 @@
 ---
 import ContentPage from '../components/ContentPage.astro';
-import { sourceCatalog, verificationDefinitions, type SourceId } from '../data/sources';
-
-const sourceIds = Object.keys(sourceCatalog) as SourceId[];
 ---
 
 <ContentPage
-  title="Verification & Sources"
-  description="Learn how Karinderya Wiki evaluates public sources, labels uncertain information, and records research dates."
-  kicker="Editorial methodology"
-  intro="How this unofficial wiki separates official statements, community evidence, reported claims, and unresolved information."
-  relatedLinks={[{ label: 'About the wiki', href: '/about/' }, { label: 'Latest updates', href: '/updates/' }, { label: 'Contact and corrections', href: '/contact/' }]}
-  sourceIds={sourceIds}
+  title="Wiki Information"
+  description="Learn what Karinderya Wiki covers and find the main game databases and player guides."
+  kicker="Wiki guide"
+  intro="A quick introduction to this player-focused Karinderya game wiki."
+  relatedLinks={[{ label: 'About the wiki', href: '/about/' }, { label: 'Beginner guide', href: '/guides/beginner-guide/' }, { label: 'Latest updates', href: '/updates/' }]}
+  tableOfContents
 >
-  <h2>How information is collected</h2>
-  <p>Karinderya Wiki summarizes creator-controlled Roblox listings and publicly accessible gameplay or community documentation. Facts are rewritten in original language and linked to the public pages used for the current research batch.</p>
+  <h2 id="about-this-wiki">About This Wiki</h2>
+  <p>Karinderya Wiki is an English-language player resource for the Karinderya Roblox experience. It organizes codes, food, ingredients, workers, equipment, furniture, decorations, updates, and gameplay guides into easy-to-browse pages.</p>
 
-  <h2>Verification levels</h2>
-  <dl class="definitions">
-    {Object.entries(verificationDefinitions).map(([label, definition]) => <div><dt>{label}</dt><dd>{definition}</dd></div>)}
-  </dl>
-  <p>Repeated copies of the same claim across mirror sites do not automatically count as independent confirmation.</p>
+  <h2 id="browse-the-database">Browse the Database</h2>
+  <ul>
+    <li><a href="/codes/">Codes</a> lists reward codes and redemption guidance.</li>
+    <li><a href="/food/">Food</a>, <a href="/recipes/">Recipes</a>, and <a href="/ingredients/">Ingredients</a> cover the kitchen and customer orders.</li>
+    <li><a href="/workers/">Workers</a> covers temporary staff contracts.</li>
+    <li><a href="/equipment/">Equipment</a> and <a href="/furniture/">Furniture</a> cover restaurant upgrades.</li>
+    <li><a href="/guides/">Guides</a> provides practical help for running a Karinderya.</li>
+  </ul>
 
-  <h2>What “Last checked” means</h2>
-  <p>The date records when a public source was reviewed for this research batch. It does not mean the wiki personally reproduced the result in the game, and it does not guarantee that update-sensitive information remains current afterward.</p>
+  <h2 id="game-updates">Game Updates</h2>
+  <p>Karinderya can change over time. The <a href="/updates/">Updates section</a> groups new features with the related database and guide pages so players can quickly find what changed.</p>
 
-  <h2>Testing and conflicting information</h2>
-  <p>This site does not currently perform in-game testing. When public sources disagree, the disagreement is noted and the affected detail is labeled Reported or To be verified rather than resolved by guesswork.</p>
-
-  <h2>Independence</h2>
-  <p>Karinderya Wiki is an unofficial fan-made resource. It is not affiliated with or endorsed by Roblox Corporation, SILOG, or the Karinderya developers.</p>
+  <h2 id="independent-player-resource">Independent Player Resource</h2>
+  <p>Karinderya Wiki is a fan-made player resource and is not affiliated with Roblox Corporation, SILOG, or the Karinderya development team.</p>
 </ContentPage>
-
-<style>
-  .definitions { display: grid; gap: 10px; margin: 18px 0; }
-  .definitions div { padding: 14px 16px; border: 1px solid var(--border); border-radius: 10px; background: #fffaf5; }
-  dt { color: var(--ink); font-weight: 800; }
-  dd { margin: 4px 0 0; color: var(--muted); }
-</style>

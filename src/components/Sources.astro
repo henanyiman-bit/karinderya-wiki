@@ -17,7 +17,7 @@ const sources = getSources(ids);
     </div>
     <a class="method-link" href="/verification/">How verification works</a>
   </div>
-  <p class="source-disclaimer">Links identify public evidence used for this page. Inclusion does not imply endorsement, and community sources are not official.</p>
+  <p class="source-disclaimer">These records identify public evidence used for this page. Inclusion does not imply endorsement, and community sources are not official.</p>
   <div class="source-list">
     {sources.map((source) => (
       <article class="source-card">
@@ -25,9 +25,6 @@ const sources = getSources(ids);
         <h3>{source.sourceName}</h3>
         <p><strong>Supports:</strong> {source.supports}</p>
         {source.notes && <p class="source-note">{source.notes}</p>}
-        <a href={source.url} target="_blank" rel="noopener noreferrer external" aria-label={`Open ${source.sourceName} in a new tab`}>
-          Open source <span aria-hidden="true">-&gt;</span>
-        </a>
       </article>
     ))}
   </div>
@@ -48,6 +45,5 @@ const sources = getSources(ids);
   .source-card p { margin: 6px 0; color: var(--muted); font-size: .78rem; overflow-wrap: anywhere; }
   .source-card p strong { color: var(--ink); }
   .source-note { padding-top: 6px; border-top: 1px solid var(--border); }
-  .source-card > a { min-height: 44px; display: inline-flex; align-items: center; gap: 6px; margin-top: 5px; color: var(--accent-dark); font-size: .78rem; font-weight: 750; }
   @media (max-width: 680px) { .source-list { grid-template-columns: 1fr; } .sources-heading { align-items: start; flex-direction: column; } }
 </style>

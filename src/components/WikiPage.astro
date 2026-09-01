@@ -2,8 +2,10 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import AdSlot from './AdSlot.astro';
 import WikiCard from './WikiCard.astro';
-import Sources from './Sources.astro';
+import ResponsiveImage from './ResponsiveImage.astro';
+import TableOfContents from './TableOfContents.astro';
 import type { SourceId } from '../data/sources';
+import type { ResponsiveImageAsset } from '../data/images';
 
 export interface PageCard {
   title: string;
@@ -15,6 +17,7 @@ export interface PageCard {
 
 interface Props {
   title: string;
+  seoTitle?: string;
   description: string;
   kicker: string;
   intro: string;
@@ -22,9 +25,26 @@ interface Props {
   note?: string;
   sourceIds?: SourceId[];
   relatedLinks?: { label: string; href: string }[];
+  heroImage?: ResponsiveImageAsset;
+  tableOfContents?: boolean;
+  browseHeading?: string;
+  copyHeading?: string;
 }
 
-const { title, description, kicker, intro, cards, note, sourceIds = [], relatedLinks } = Astro.props;
+const {
+  title,
+  seoTitle,
+  description,
+  kicker,
+  intro,
+  cards,
+  note,
+  relatedLinks,
+  heroImage,
+  tableOfContents = false,
+  browseHeading = `Browse ${title}`,
+  copyHeading = 'About this section',
+} = Astro.props;
 const defaultRelatedSections = [
   { label: 'Codes', href: '/codes/' },
   { label: 'Food', href: '/food/' },
@@ -41,27 +61,34 @@ const defaultRelatedSections = [
 const relatedSections = relatedLinks ?? defaultRelatedSections;
 ---
 
-<BaseLayout title={title} description={description} breadcrumbs={[{ label: 'Home', href: '/' }, { label: title }]}>
+<BaseLayout title={title} seoTitle={seoTitle} description={description} breadcrumbs={[{ label: 'Home', href: '/' }, { label: title }]}>
   <div class="container">
-    <header class="page-hero">
-      <p class="kicker">{kicker}</p>
-      <h1>{title}</h1>
-      <p class="lead">{intro}</p>
+    <header class:list={['page-hero', { 'has-image': heroImage }]}>
+      <div>
+        <p class="kicker">{kicker}</p>
+        <h1>{title}</h1>
+        <p class="lead">{intro}</p>
+      </div>
+      {heroImage && <ResponsiveImage image={heroImage} priority sizes="(max-width: 760px) calc(100vw - 32px), 360px" class="content-hero-image" />}
     </header>
     <AdSlot placement="top" />
-    {note && <p class="notice">{note}</p>}
-    <section class="section" aria-labelledby="browse-heading">
-      <div class="section-heading"><div><h2 id="browse-heading">Browse {title}</h2><p>First-edition index pages ready to grow as verified information becomes available.</p></div></div>
-      <div class="card-grid">
-        {cards.map((card) => <WikiCard {...card} />)}
+    <div class:list={['wiki-layout', { 'with-toc': tableOfContents }]}>
+      {tableOfContents && <TableOfContents articleId="wiki-page-content" />}
+      <div id="wiki-page-content" class="wiki-page-content">
+        {note && <p class="notice">{note}</p>}
+        <section class="section" aria-labelledby="browse-heading">
+          <div class="section-heading"><div><h2 id="browse-heading">{browseHeading}</h2><p>Browse guides, databases, and related pages in this section.</p></div></div>
+          <div class="card-grid">
+            {cards.map((card) => <WikiCard {...card} />)}
+          </div>
+        </section>
+        <AdSlot placement="content-1" />
+        <section class="content-panel page-copy">
+          <h2>{copyHeading}</h2>
+          <slot />
+        </section>
       </div>
-    </section>
-    <AdSlot placement="content-1" />
-    <section class="content-panel page-copy">
-      <h2>About this section</h2>
-      <slot />
-    </section>
-    {sourceIds.length > 0 && <Sources ids={sourceIds} />}
+    </div>
     <nav class="related" aria-label="Related wiki sections">
       <h2>Explore related sections</h2>
       <div>{relatedSections.map((item) => <a href={item.href}>{item.label}</a>)}</div>
@@ -72,11 +99,20 @@ const relatedSections = relatedLinks ?? defaultRelatedSections;
 
 <style>
   .notice { margin: 18px 0 0; }
+  .page-hero.has-image { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 360px); align-items: center; gap: clamp(24px, 5vw, 56px); }
+  :global(.content-hero-image) { overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+  :global(.content-hero-image img) { aspect-ratio: 4 / 3; object-fit: cover; }
   .page-copy { margin: 32px 0; }
+  .wiki-layout.with-toc { display: grid; grid-template-columns: minmax(0, 1fr) 240px; grid-template-areas: "content toc"; align-items: start; gap: 24px; }
+  .wiki-layout.with-toc > .wiki-page-content { grid-area: content; min-width: 0; }
+  .wiki-layout.with-toc > :global(.toc-shell) { grid-area: toc; }
+  .wiki-page-content :global(h2), .wiki-page-content :global(h3) { scroll-margin-top: 90px; }
   .related { margin: 32px 0; }
   .related h2 { margin: 0 0 14px; font-size: 1.15rem; }
   .related div { display: flex; flex-wrap: wrap; gap: 8px; }
   .related a { min-height: 44px; display: inline-flex; align-items: center; padding: 8px 13px; border: 1px solid var(--border); border-radius: 999px; color: var(--accent-dark); background: var(--surface); font-size: .82rem; font-weight: 700; text-decoration: none; }
   .related a:hover { border-color: #dec3b4; background: var(--accent-soft); }
   .ad-bottom { margin-top: 32px; }
+  @media (max-width: 900px) { .wiki-layout.with-toc { grid-template-columns: minmax(0, 1fr); grid-template-areas: "toc" "content"; } }
+  @media (max-width: 760px) { .page-hero.has-image { grid-template-columns: minmax(0, 1fr); } :global(.content-hero-image img) { max-height: 340px; } }
 </style>

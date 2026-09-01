@@ -1,14 +1,41 @@
 ---
 import WikiPage from '../components/WikiPage.astro';
+import FAQ from '../components/FAQ.astro';
+import { siteImages } from '../data/images';
 const cards = [
-  { title: 'Tables', description: 'Browse documented furniture families, selected Cash prices, and cautious resale examples.', href: '/furniture/tables/', icon: 'T', status: 'Reported' },
-  { title: 'Chairs', description: 'Review publicly reported chair families without invented prices or tip percentages.', href: '/furniture/chairs/', icon: 'C', status: 'Reported' },
-  { title: 'Decorations', description: 'Explore Tiles, counters, Table Tops, Dishwasher, and Choopy features.', href: '/decorations/', icon: 'D', status: 'Reported' },
-  { title: 'Plank Table', description: 'Review the observed purchase and resale values for this documented table.', href: '/furniture/plank-table/', icon: 'P', status: 'Reported' },
-  { title: 'Wood Table', description: 'Review one documented purchase and resale transaction without a universal formula.', href: '/furniture/wood-table/', icon: 'W', status: 'Reported' },
-  { title: 'Red Wooden Table', description: 'Check the observed purchase price and unresolved resale information.', href: '/furniture/red-wooden-table/', icon: 'R', status: 'Reported' },
+  { title: 'Tables', description: 'Browse table families, selected Cash prices, and resale examples.', href: '/furniture/tables/', icon: 'T' },
+  { title: 'Chairs', description: 'Compare chair families for upgrading the dining area.', href: '/furniture/chairs/', icon: 'C' },
+  { title: 'Decorations', description: 'Explore Tiles, counters, Table Tops, Dishwasher, and Choopy features.', href: '/decorations/', icon: 'D' },
+  { title: 'Plank Table', description: 'Review the Plank Table purchase and resale values.', href: '/furniture/plank-table/', icon: 'P' },
+  { title: 'Wood Table', description: 'Review the Wood Table purchase and resale values.', href: '/furniture/wood-table/', icon: 'W' },
+  { title: 'Red Wooden Table', description: 'Check the Red Wooden Table purchase price and progression details.', href: '/furniture/red-wooden-table/', icon: 'R' },
+];
+
+const faqItems = [
+  { question: 'What furniture should I upgrade first?', answer: 'Start with the part of the dining area that is limiting service, then compare the current shop price with the Cash available for ingredients and equipment.' },
+  { question: 'Can furniture be sold?', answer: 'Furniture can have a resale value. Check the amount shown by the game before confirming a sale.' },
+  { question: 'Do all furniture items use the same resale percentage?', answer: 'Do not assume one percentage applies to every item. Review the value displayed for the selected furniture before selling it.' },
 ];
 ---
-<WikiPage title="Furniture" description="Browse publicly documented Karinderya table and chair families, observed prices, and upgrade notes." kicker="Dining room reference" intro="Furniture names and observed shop values, with numerical effects left under verification." cards={cards} note="Public shop dialogue describes better tables and chairs as improving tip chance and reducing the chance that customers leave. Exact percentages are To be verified." sourceIds={['wiki-furniture']} relatedLinks={[{ label: 'Tables', href: '/furniture/tables/' }, { label: 'Chairs', href: '/furniture/chairs/' }, { label: 'Sell furniture guide', href: '/guides/how-to-sell-furniture/' }, { label: 'Beginner guide', href: '/guides/beginner-guide/' }]}>
-  <p>Documented families include Plank, Wood, Red Wooden, Integrated, Elegant Wooden, Parsons, Slat-back, and Royal. Availability and Cash pricing can rotate, so individual pages only show values supported by public captures.</p>
+<WikiPage title="Furniture" description="Browse Karinderya table and chair families, prices, and upgrade notes." kicker="Dining room guide" intro="Compare furniture options for upgrading your restaurant dining area." cards={cards} note="Better tables and chairs can improve tip chance and reduce the chance that customers leave." sourceIds={['wiki-furniture']} relatedLinks={[{ label: 'Tables', href: '/furniture/tables/' }, { label: 'Chairs', href: '/furniture/chairs/' }, { label: 'Sell furniture guide', href: '/guides/how-to-sell-furniture/' }, { label: 'Beginner guide', href: '/guides/beginner-guide/' }]} heroImage={siteImages.furnitureHero} tableOfContents>
+  <p>Furniture shapes the dining area and gives players another path for improving their restaurant. Available families include Plank, Wood, Red Wooden, Integrated, Elegant Wooden, Parsons, Slat-back, and Royal.</p>
+
+  <h2 id="how-furniture-works">How Furniture Works</h2>
+  <p>Tables and chairs are restaurant upgrades with different shop values and progression levels. Better furniture can improve tip chance and reduce the chance that customers leave, while selling older pieces can recover part of their value.</p>
+
+  <h2 id="tables-and-chairs">Tables and Chairs</h2>
+  <p>Use the <a href="/furniture/tables/">Tables database</a> to compare table families and selected prices. The <a href="/furniture/chairs/">Chairs page</a> lists the chair families available for the dining area.</p>
+
+  <h2 id="upgrade-strategy">Upgrade Strategy</h2>
+  <ul>
+    <li>Keep enough Cash available for ingredients before buying furniture.</li>
+    <li>Upgrade in manageable steps instead of replacing the whole dining area at once.</li>
+    <li>Check the current purchase and resale values before replacing an item.</li>
+    <li>Balance dining-room upgrades with stove capacity and service needs.</li>
+  </ul>
+
+  <h2 id="selling-furniture">Selling Furniture</h2>
+  <p>Select the furniture you want to replace and review the resale value shown by the game before confirming. The <a href="/guides/how-to-sell-furniture/">selling guide</a> includes table examples and a short replacement checklist.</p>
+
+  <FAQ items={faqItems} />
 </WikiPage>

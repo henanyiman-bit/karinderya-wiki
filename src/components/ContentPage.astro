@@ -1,8 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import type { BreadcrumbItem } from './Breadcrumb.astro';
-import Sources from './Sources.astro';
+import TableOfContents from './TableOfContents.astro';
+import ResponsiveImage from './ResponsiveImage.astro';
 import type { SourceId } from '../data/sources';
+import type { ResponsiveImageAsset } from '../data/images';
 
 interface RelatedLink {
   label: string;
@@ -11,22 +13,27 @@ interface RelatedLink {
 
 interface Props {
   title: string;
+  seoTitle?: string;
   description: string;
   kicker?: string;
   intro: string;
   parent?: BreadcrumbItem;
   relatedLinks?: RelatedLink[];
   sourceIds?: SourceId[];
+  tableOfContents?: boolean;
+  heroImage?: ResponsiveImageAsset;
 }
 
 const {
   title,
+  seoTitle,
   description,
   kicker = 'Karinderya Wiki',
   intro,
   parent,
   relatedLinks = [],
-  sourceIds = [],
+  tableOfContents = false,
+  heroImage,
 } = Astro.props;
 const breadcrumbs: BreadcrumbItem[] = [
   { label: 'Home', href: '/' },
@@ -35,15 +42,20 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 ---
 
-<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs}>
-  <div class="container article-wrap">
-    <header class="page-hero">
-      <p class="kicker">{kicker}</p>
-      <h1>{title}</h1>
-      <p class="lead">{intro}</p>
+<BaseLayout title={title} seoTitle={seoTitle} description={description} breadcrumbs={breadcrumbs}>
+  <div class:list={['container', 'article-wrap', { 'has-toc': tableOfContents }]}>
+    <header class:list={['page-hero', { 'has-image': heroImage }]}>
+      <div>
+        <p class="kicker">{kicker}</p>
+        <h1>{title}</h1>
+        <p class="lead">{intro}</p>
+      </div>
+      {heroImage && <ResponsiveImage image={heroImage} priority sizes="(max-width: 760px) calc(100vw - 32px), 360px" class="content-hero-image" />}
     </header>
-    <article class="content-panel article-content"><slot /></article>
-    {sourceIds.length > 0 && <Sources ids={sourceIds} />}
+    <div class:list={['article-layout', { 'with-toc': tableOfContents }]}>
+      {tableOfContents && <TableOfContents articleId="article-content" />}
+      <article id="article-content" class="content-panel article-content"><slot /></article>
+    </div>
     {relatedLinks.length > 0 && (
       <nav class="related" aria-label="Related pages">
         <h2>Related pages</h2>
@@ -55,7 +67,14 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 <style>
   .article-wrap { max-width: 980px; }
-  .article-content :global(h2) { scroll-margin-top: 90px; }
+  .article-wrap.has-toc { max-width: 1180px; }
+  .page-hero.has-image { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 360px); align-items: center; gap: clamp(24px, 5vw, 56px); }
+  :global(.content-hero-image) { overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+  :global(.content-hero-image img) { aspect-ratio: 4 / 3; object-fit: cover; }
+  .article-layout.with-toc { display: grid; grid-template-columns: minmax(0, 1fr) 240px; grid-template-areas: "article toc"; align-items: start; gap: 24px; }
+  .article-layout.with-toc > .article-content { grid-area: article; }
+  .article-layout.with-toc > :global(.toc-shell) { grid-area: toc; }
+  .article-content :global(h2), .article-content :global(h3) { scroll-margin-top: 90px; }
   .article-content :global(code) { padding: 2px 6px; border-radius: 5px; color: var(--accent-dark); background: var(--accent-soft); font-weight: 750; }
   .article-content :global(.table-scroll) { max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .article-content :global(.table-scroll table) { min-width: 620px; }
@@ -68,5 +87,7 @@ const breadcrumbs: BreadcrumbItem[] = [
   .related div { display: flex; flex-wrap: wrap; gap: 8px; }
   .related a { min-height: 44px; display: inline-flex; align-items: center; padding: 8px 13px; border: 1px solid var(--border); border-radius: 999px; color: var(--accent-dark); background: var(--surface); font-size: .82rem; font-weight: 700; text-decoration: none; }
   .related a:hover { border-color: #dec3b4; background: var(--accent-soft); }
+  @media (max-width: 900px) { .article-layout.with-toc { grid-template-columns: minmax(0, 1fr); grid-template-areas: "toc" "article"; } }
+  @media (max-width: 760px) { .page-hero.has-image { grid-template-columns: minmax(0, 1fr); } :global(.content-hero-image img) { max-height: 340px; } }
   @media (max-width: 600px) { .article-content :global(.fact-grid) { grid-template-columns: 1fr; } }
 </style>

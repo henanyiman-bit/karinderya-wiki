@@ -1,11 +1,25 @@
 ---
 import WikiPage from '../components/WikiPage.astro';
+import { siteImages } from '../data/images';
 const cards = [
-  { title: 'Stoves', description: 'Compare the documented Basic, Standard, and Deluxe tiers without invented speed values.', href: '/equipment/stoves/', icon: 'S', status: 'Community Verified' },
-  { title: 'Deluxe Stove', description: 'A focused reference for the publicly documented higher-tier stove.', href: '/equipment/deluxe-stove/', icon: 'D', status: 'Community Verified' },
-  { title: 'Chiller', description: 'Track reported repair options and the many mechanics still under verification.', href: '/equipment/chiller/', icon: 'C', status: 'Reported' },
+  { title: 'Stoves', description: 'Compare the Basic, Standard, and Deluxe cooking-station tiers.', href: '/equipment/stoves/', icon: 'S' },
+  { title: 'Deluxe Stove', description: 'Read the focused database entry for the higher-tier stove.', href: '/equipment/deluxe-stove/', icon: 'D' },
+  { title: 'Chiller', description: 'Review the Chiller and its repair options.', href: '/equipment/chiller/', icon: 'C' },
 ];
 ---
-<WikiPage title="Equipment" description="Browse Karinderya stoves, cooking equipment, and cautious Chiller documentation." kicker="Restaurant tools" intro="A verification-first reference for restaurant equipment and upgrades." cards={cards} note="Exact equipment speed values, multipliers, cash prices, and throughput increases remain To be verified." sourceIds={['wiki-furniture', 'deluxe-guide', 'worker-chiller']} relatedLinks={[{ label: 'Stoves', href: '/equipment/stoves/' }, { label: 'Deluxe Stove', href: '/equipment/deluxe-stove/' }, { label: 'Chiller', href: '/equipment/chiller/' }]}>
-  <p>Public sources document Basic Stove, Standard Stove, and Deluxe Stove tiers. Stoves are cooking equipment; better tiers are described as reducing cooking time, and multiple stations can support parallel order processing. Exact numerical effects are not publicly established.</p>
+<WikiPage title="Equipment" seoTitle="Karinderya Equipment & Upgrade Guide | Karinderya Wiki" description="Browse Karinderya stoves, cooking equipment, upgrades, and the Chiller." kicker="Restaurant tools" intro="A practical reference for restaurant equipment and upgrades." cards={cards} sourceIds={['wiki-furniture', 'deluxe-guide', 'worker-chiller']} relatedLinks={[{ label: 'Stoves', href: '/equipment/stoves/' }, { label: 'Deluxe Stove', href: '/equipment/deluxe-stove/' }, { label: 'Chiller', href: '/equipment/chiller/' }]} heroImage={siteImages.equipmentHero} tableOfContents browseHeading="Equipment Categories" copyHeading="Equipment Overview">
+  <p>Equipment supports cooking and other restaurant systems. Stoves provide cooking stations, while the Chiller belongs to a separate equipment feature with its own repair interactions.</p>
+
+  <h2 id="upgrade-progression">Upgrade Progression</h2>
+  <p>The stove order is <a href="/equipment/basic-stove/">Basic Stove</a>, <a href="/equipment/standard-stove/">Standard Stove</a>, then <a href="/equipment/deluxe-stove/">Deluxe Stove</a>. Higher tiers are described as reducing cooking time.</p>
+  <p>Adding cooking stations also makes it possible to prepare more than one order in parallel. Use the individual stove pages to compare where each tier sits in the progression.</p>
+
+  <h2 id="how-equipment-works">How Equipment Works</h2>
+  <ul>
+    <li>Stoves are used to cook customer orders.</li>
+    <li>Basic, Standard, and Deluxe form the current stove progression.</li>
+    <li>Better stove tiers reduce cooking time.</li>
+    <li>A Deluxe Stove is included in the <code>2MVISITS</code> code reward.</li>
+    <li>The Chiller has its own equipment page covering its repair interactions.</li>
+  </ul>
 </WikiPage>

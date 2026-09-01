@@ -1,16 +1,14 @@
 ---
 import ContentPage from '../components/ContentPage.astro';
-import VerificationStatus from '../components/VerificationStatus.astro';
+import { siteImages } from '../data/images';
 ---
-<ContentPage title="Karinderya Food & Menu Groups" description="Browse publicly documented Karinderya menu groups, known dishes, and customer-count unlocks." kicker="Kitchen reference" intro="A cautious index of documented menu groups and unlock milestones." relatedLinks={[{ label: 'Recipes', href: '/recipes/' }, { label: 'Ingredients', href: '/ingredients/' }, { label: 'Grocery', href: '/grocery/' }]} sourceIds={['codex-menu', 'wiki-menu']}>
-  <VerificationStatus status="Community Verified" notes="Menu labels and thresholds are supported by public gameplay captures. They may change in later versions." />
-  <h2>Documented menu groups</h2>
-  <div class="table-scroll"><table><thead><tr><th scope="col">Menu group</th><th scope="col">Known dishes or unlock</th><th scope="col">Status</th></tr></thead><tbody>
-    <tr><th scope="row">LUGAW</th><td>Known dishes: Plain and Goto</td><td>Community Verified<br /><small>High confidence; publicly documented</small></td></tr>
-    <tr><th scope="row">SILOG MEALS</th><td>Unlock reported at 100 customers</td><td>Community Verified<br /><small>High confidence; publicly documented</small></td></tr>
-    <tr><th scope="row">SILOG MEALS 2</th><td>Unlock reported at 400 customers</td><td>Reported<br /><small>Community documented</small></td></tr>
-    <tr><th scope="row">LUTONG BAHAY</th><td>Unlock reported at 670 customers</td><td>Reported<br /><small>Community documented</small></td></tr>
-    <tr><th scope="row">PASTA SOSYAL</th><td>Unlock reported at 1,994 customers</td><td>Reported<br /><small>Community documented</small></td></tr>
+<ContentPage title="Karinderya Food & Menu Groups" description="Browse Karinderya menu groups, dishes, and customer-count unlocks." kicker="Kitchen guide" intro="Browse menu groups, dishes, and customer-count milestones." relatedLinks={[{ label: 'Recipes', href: '/recipes/' }, { label: 'Ingredients', href: '/ingredients/' }, { label: 'Grocery', href: '/grocery/' }]} sourceIds={['codex-menu', 'wiki-menu']} heroImage={siteImages.foodHero}>
+  <h2>Menu Groups</h2>
+  <div class="table-scroll"><table><thead><tr><th scope="col">Menu group</th><th scope="col">Dishes or unlock</th></tr></thead><tbody>
+    <tr><th scope="row">LUGAW</th><td>Plain and Goto</td></tr>
+    <tr><th scope="row">SILOG MEALS</th><td>Unlocks at 100 customers</td></tr>
+    <tr><th scope="row">SILOG MEALS 2</th><td>Unlocks at 400 customers</td></tr>
+    <tr><th scope="row">LUTONG BAHAY</th><td>Unlocks at 670 customers</td></tr>
+    <tr><th scope="row">PASTA SOSYAL</th><td>Unlocks at 1,994 customers</td></tr>
   </tbody></table></div>
-  <p class="notice">No additional dishes are listed without public evidence. These customer thresholds describe documented interface observations, not a permanent progression guarantee.</p>
 </ContentPage>

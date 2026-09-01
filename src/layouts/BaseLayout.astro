@@ -6,15 +6,16 @@ import GoogleIntegrations from '../components/GoogleIntegrations.astro';
 
 interface Props {
   title: string;
+  seoTitle?: string;
   description: string;
   breadcrumbs?: BreadcrumbItem[];
   noindex?: boolean;
   ogImage?: string;
 }
 
-const { title, description, breadcrumbs = [], noindex = false, ogImage } = Astro.props;
+const { title, seoTitle, description, breadcrumbs = [], noindex = false, ogImage } = Astro.props;
 const siteName = 'Karinderya Wiki';
-const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
+const fullTitle = seoTitle ?? (title === siteName ? title : `${title} | ${siteName}`);
 const siteURL = Astro.site ?? new URL('https://karinderya.ymmyi.wiki');
 const pathWithoutSlashes = Astro.url.pathname.replace(/^\/+|\/+$/g, '');
 const canonicalPath = pathWithoutSlashes ? `/${pathWithoutSlashes}/` : '/';

@@ -8,7 +8,7 @@ interface Props {
   status?: string;
 }
 
-const { title, description, href, icon = '→', eyebrow, status } = Astro.props;
+const { title, description, href, icon = '→', eyebrow } = Astro.props;
 ---
 
 <article class="wiki-card">
@@ -19,7 +19,6 @@ const { title, description, href, icon = '→', eyebrow, status } = Astro.props;
       {href ? <a href={href}>{title}<span aria-hidden="true">↗</span></a> : title}
     </h3>
     <p>{description}</p>
-    {status && <span class="status">{status}</span>}
   </div>
 </article>
 
@@ -34,6 +33,5 @@ const { title, description, href, icon = '→', eyebrow, status } = Astro.props;
   h3 a::after { position: absolute; content: ''; inset: 0; }
   h3 span { color: #b9a69b; font-size: .8rem; }
   p { margin: 8px 0 0; color: var(--muted); font-size: .86rem; line-height: 1.55; }
-  .status { display: inline-block; margin-top: 12px; padding: 4px 8px; border-radius: 999px; color: #806a5d; background: #f4eee9; font-size: .68rem; font-weight: 700; }
   .wiki-card { position: relative; }
 </style>

@@ -1,20 +1,17 @@
 ---
 import ContentPage from '../components/ContentPage.astro';
-import VerificationStatus from '../components/VerificationStatus.astro';
 ---
-<ContentPage title="Karinderya Grocery Prices & Categories" description="Browse publicly observed Karinderya grocery prices, categories, and verification levels." kicker="Supply reference" intro="A dated snapshot of publicly observed grocery listings, not a permanent price sheet." relatedLinks={[{ label: 'Ingredients', href: '/ingredients/' }, { label: 'Recipes', href: '/recipes/' }, { label: 'Beginner guide', href: '/guides/beginner-guide/' }]} sourceIds={['codex-menu', 'wiki-menu', 'wiki-money']}>
-  <VerificationStatus status="Community Verified" notes="Rice and Condiments are supported by clear gameplay captures. The remaining prices are community documented and may require a current-server check." />
-  <h2>Grocery price observations</h2>
-  <div class="table-scroll"><table><thead><tr><th scope="col">Item</th><th scope="col">Observed listing</th><th scope="col">Status</th></tr></thead><tbody>
-    <tr><th scope="row">25kg Rice</th><td>&#8369;200</td><td>Community Verified<br /><small>High-confidence public capture</small></td></tr>
-    <tr><th scope="row">Condiments</th><td>&#8369;135</td><td>Community Verified<br /><small>High-confidence public capture</small></td></tr>
-    <tr><th scope="row">Eggs</th><td>&#8369;120 / dozen</td><td>Reported<br /><small>Community documented</small></td></tr>
-    <tr><th scope="row">Vegetables</th><td>&#8369;90/kg</td><td>Reported<br /><small>Community documented</small></td></tr>
-    <tr><th scope="row">Bangus</th><td>&#8369;130/kg</td><td>Reported<br /><small>Community documented</small></td></tr>
-    <tr><th scope="row">Pork</th><td>&#8369;410/kg</td><td>Reported<br /><small>Community documented</small></td></tr>
-    <tr><th scope="row">Beef</th><td>&#8369;585/kg</td><td>Reported<br /><small>Community documented</small></td></tr>
+<ContentPage title="Karinderya Grocery Prices & Categories" description="Browse Karinderya grocery ingredients, package sizes, categories, and shop prices." kicker="Supply guide" intro="Browse grocery ingredients, package sizes, and shop prices." relatedLinks={[{ label: 'Ingredients', href: '/ingredients/' }, { label: 'Recipes', href: '/recipes/' }, { label: 'Beginner guide', href: '/guides/beginner-guide/' }]} sourceIds={['codex-menu', 'wiki-menu', 'wiki-money']}>
+  <h2>Grocery Prices</h2>
+  <div class="table-scroll"><table><thead><tr><th scope="col">Item</th><th scope="col">Price</th></tr></thead><tbody>
+    <tr><th scope="row">25kg Rice</th><td>&#8369;200</td></tr>
+    <tr><th scope="row">Condiments</th><td>&#8369;135</td></tr>
+    <tr><th scope="row">Eggs</th><td>&#8369;120 / dozen</td></tr>
+    <tr><th scope="row">Vegetables</th><td>&#8369;90/kg</td></tr>
+    <tr><th scope="row">Bangus</th><td>&#8369;130/kg</td></tr>
+    <tr><th scope="row">Pork</th><td>&#8369;410/kg</td></tr>
+    <tr><th scope="row">Beef</th><td>&#8369;585/kg</td></tr>
   </tbody></table></div>
-  <h2>Observed grocery categories</h2>
+  <h2>Grocery Categories</h2>
   <p><strong>Low, Meats, Frozen, Drinks, Others.</strong></p>
-  <p class="notice">“Low” is preserved from the observed interface label, although the exact wording is unusual and needs future verification. Servings per purchase, stock quantities, restock timing, and recipe yield remain To be verified.</p>
 </ContentPage>

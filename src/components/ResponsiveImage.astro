@@ -1,0 +1,36 @@
+---
+import type { ResponsiveImageAsset } from '../data/images';
+
+interface Props {
+  image: ResponsiveImageAsset;
+  priority?: boolean;
+  sizes?: string;
+  class?: string;
+}
+
+const {
+  image,
+  priority = false,
+  sizes = '100vw',
+  class: className,
+} = Astro.props;
+const webpSrcset = image.webp.map((source) => `${source.src} ${source.width}w`).join(', ');
+---
+
+<picture class={className}>
+  <source type="image/webp" srcset={webpSrcset} sizes={sizes} />
+  <img
+    src={image.fallback}
+    alt={image.alt}
+    width={image.width}
+    height={image.height}
+    loading={priority ? undefined : 'lazy'}
+    decoding="async"
+    fetchpriority={priority ? 'high' : undefined}
+  />
+</picture>
+
+<style>
+  picture { display: block; min-width: 0; }
+  img { width: 100%; height: auto; }
+</style>

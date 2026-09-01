@@ -1,0 +1,111 @@
+---
+interface Props {
+  articleId: string;
+}
+
+const { articleId } = Astro.props;
+---
+
+<div class="toc-shell" data-table-of-contents data-article-id={articleId} hidden>
+  <aside class="toc-desktop" aria-label="Table of contents">
+    <p class="toc-title">On this page</p>
+    <ol data-toc-list></ol>
+  </aside>
+
+  <details class="toc-mobile">
+    <summary>On this page</summary>
+    <nav aria-label="Table of contents">
+      <ol data-toc-list></ol>
+    </nav>
+  </details>
+</div>
+
+<script>
+  const excludedHeadings = new Set([
+    'related pages',
+    'explore related sections',
+  ]);
+
+  const createHeadingId = (text: string) => {
+    const slug = text
+      .normalize('NFKD')
+      .toLowerCase()
+      .replace(/[^\p{Letter}\p{Number}]+/gu, '-')
+      .replace(/^-+|-+$/g, '');
+
+    return slug || 'section';
+  };
+
+  document.querySelectorAll<HTMLElement>('[data-table-of-contents]').forEach((toc) => {
+    if (toc.dataset.ready === 'true') return;
+
+    const articleId = toc.dataset.articleId;
+    const article = articleId ? document.getElementById(articleId) : null;
+    if (!article) return;
+
+    const usedIds = new Set(
+      Array.from(document.querySelectorAll<HTMLElement>('[id]'))
+        .filter((element) => !article.contains(element))
+        .map((element) => element.id),
+    );
+    const headings = Array.from(article.querySelectorAll<HTMLHeadingElement>('h2, h3'))
+      .filter((heading) => !excludedHeadings.has(heading.textContent?.trim().toLowerCase() ?? ''));
+
+    if (headings.length === 0) return;
+
+    const entries = headings.map((heading) => {
+      const text = heading.textContent?.trim() || 'Section';
+      let id = heading.id || createHeadingId(text);
+      const baseId = id;
+      let duplicate = 2;
+
+      while (usedIds.has(id)) {
+        id = `${baseId}-${duplicate}`;
+        duplicate += 1;
+      }
+
+      heading.id = id;
+      usedIds.add(id);
+      return { id, text, level: heading.tagName === 'H3' ? 3 : 2 };
+    });
+
+    toc.querySelectorAll<HTMLOListElement>('[data-toc-list]').forEach((list) => {
+      entries.forEach(({ id, text, level }) => {
+        const item = document.createElement('li');
+        const link = document.createElement('a');
+        item.className = `toc-level-${level}`;
+        link.href = `#${encodeURIComponent(id)}`;
+        link.textContent = text;
+        item.append(link);
+        list.append(item);
+      });
+    });
+
+    toc.dataset.ready = 'true';
+    toc.hidden = false;
+  });
+</script>
+
+<style>
+  .toc-shell { position: sticky; top: 88px; align-self: start; min-width: 0; }
+  .toc-desktop { padding: 18px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); box-shadow: 0 8px 24px rgb(72 45 28 / 6%); }
+  .toc-title { margin: 0 0 10px; color: var(--ink); font-size: .78rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+  ol { display: grid; gap: 3px; margin: 0; padding: 0; list-style: none; }
+  li { min-width: 0; }
+  li.toc-level-3 { padding-left: 14px; }
+  a { display: block; padding: 6px 8px; border-radius: 7px; color: var(--muted); font-size: .82rem; line-height: 1.35; overflow-wrap: anywhere; text-decoration: none; }
+  a:hover { color: var(--accent-dark); background: var(--accent-soft); }
+  .toc-mobile { display: none; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }
+  .toc-mobile summary { min-height: 48px; display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; color: var(--ink); cursor: pointer; font-weight: 800; }
+  .toc-mobile summary::after { content: '+'; color: var(--accent); font-size: 1.2rem; }
+  .toc-mobile[open] summary::after { content: '-'; }
+  .toc-mobile nav { padding: 0 8px 10px; border-top: 1px solid var(--border); }
+  .toc-mobile ol { padding-top: 7px; }
+  .toc-mobile a { min-height: 44px; display: flex; align-items: center; padding: 9px 8px; }
+
+  @media (max-width: 900px) {
+    .toc-shell { position: static; }
+    .toc-desktop { display: none; }
+    .toc-mobile { display: block; }
+  }
+</style>

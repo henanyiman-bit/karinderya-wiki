@@ -1,11 +1,36 @@
 ---
 import ContentPage from '../../components/ContentPage.astro';
-import VerificationStatus from '../../components/VerificationStatus.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const faqItems = [
+  { question: 'Is there one guaranteed fastest route to five stars?', answer: 'There is no single route listed here. Improve the part of your restaurant that is currently slowing service or limiting customer flow.' },
+  { question: 'Should I upgrade furniture or stoves first?', answer: 'Upgrade the kitchen when cooking delays are the problem. Choose furniture when the dining area needs improvement and service is already keeping up.' },
+  { question: 'Can Workers help with progression?', answer: 'Workers can provide temporary restaurant help. Compare the contract cost and duration with the tasks you want help managing.' },
+];
 ---
-<ContentPage title="Karinderya 5-Star Guide" description="Work toward Karinderya's five-star goal with practical guidance while the exact rating formula remains unconfirmed." kicker="Progression guide" intro="Five stars are a core game goal, but public sources do not establish a guaranteed fastest method." parent={{ label: 'Guides', href: '/guides/' }} relatedLinks={[{ label: 'Beginner guide', href: '/guides/beginner-guide/' }, { label: 'Equipment', href: '/equipment/' }, { label: 'Furniture', href: '/furniture/' }]} sourceIds={['roblox-game', 'beginner-guide']}>
-  <VerificationStatus status="Official" notes="The five-star ownership goal appears in the official game description. The mechanics behind the rating remain To be verified." />
-  <h2>Practical, non-formula guidance</h2>
+<ContentPage title="Karinderya 5-Star Guide" description="Use practical service, kitchen, furniture, and stocking tips while working toward a five-star Karinderya." kicker="Progression guide" intro="Build a smoother restaurant operation as you work toward the five-star goal." parent={{ label: 'Guides', href: '/guides/' }} relatedLinks={[{ label: 'Beginner guide', href: '/guides/beginner-guide/' }, { label: 'Equipment', href: '/equipment/' }, { label: 'Furniture', href: '/furniture/' }]} sourceIds={['roblox-game', 'beginner-guide']} tableOfContents>
+  <h2 id="five-star-overview">Five-Star Overview</h2>
+  <p>Progress comes from improving the restaurant as a complete operation. Keep customers moving, maintain ingredient stock, and upgrade the area that is creating the largest delay.</p>
+
+  <h2 id="service-flow">Improve Service Flow</h2>
+  <ul>
+    <li>Read customer tickets before committing ingredients.</li>
+    <li>Keep frequently used ingredients available.</li>
+    <li>Avoid leaving completed orders waiting longer than necessary.</li>
+    <li>Use Workers when temporary help fits your current restaurant plan.</li>
+  </ul>
+
+  <h2 id="kitchen-upgrades">Plan Kitchen Upgrades</h2>
+  <p>Upgrade a stove when cooking time is holding back orders. Add another cooking station when preparing orders in parallel would help more than replacing one stove.</p>
+
+  <h2 id="dining-area">Improve the Dining Area</h2>
+  <p>Better tables and chairs can improve tip chance and reduce customer departures. Compare furniture costs with other priorities so the restaurant still has enough Cash for ingredients and equipment.</p>
+
+  <h2 id="progression-tips">Progression Tips</h2>
   <ul><li>Improve service flow and address visible bottlenecks.</li><li>Reduce cooking delays with suitable stove capacity.</li><li>Use better furniture when it becomes available.</li><li>Maintain enough ingredient stock for the menu you can serve.</li><li>Use multiple cooking stations where they help your current order flow.</li></ul>
-  <h2>Not publicly confirmed</h2>
-  <ul><li>Exact star-rating formula</li><li>Exact customer threshold</li><li>Cleanliness weighting</li><li>Furniture weighting</li><li>Service-speed formula</li><li>A guaranteed fastest route</li></ul>
+
+  <h2 id="how-to-improve">How to Improve</h2>
+  <p>Watch for the part of the restaurant that slows down service. Upgrade the kitchen when orders wait for cooking, improve seating when the dining area becomes limiting, and restock ingredients before they interrupt the menu.</p>
+
+  <FAQ items={faqItems} />
 </ContentPage>

@@ -1,11 +1,41 @@
 ---
 import WikiPage from '../components/WikiPage.astro';
+import FAQ from '../components/FAQ.astro';
+import { siteImages } from '../data/images';
 const cards = [
-  { title: 'Tiles', description: 'Review the 21 documented designs and observed Cash or Robux options in one database page.', href: '/decorations/tiles/', icon: 'T', status: 'Reported' },
-  { title: 'Counter Upgrades', description: 'Compare known counter names and the observed ElegantWood upgrade.', href: '/guides/counter-upgrades/', icon: 'C', status: 'Reported' },
-  { title: 'Choopy Mystery Box', description: 'Review the observed Normal box cost, delivery time, and random-reward warning.', href: '/guides/choopy-mystery-box/', icon: 'M', status: 'Reported' },
+  { title: 'Tiles', description: 'Browse 21 designs and their Cash or Robux purchase options.', href: '/decorations/tiles/', icon: 'T' },
+  { title: 'Counter Upgrades', description: 'Compare counter options, including the ElegantWood upgrade.', href: '/guides/counter-upgrades/', icon: 'C' },
+  { title: 'Choopy Mystery Box', description: 'Check the Normal box cost, delivery time, and random-reward warning.', href: '/guides/choopy-mystery-box/', icon: 'M' },
+];
+
+const faqItems = [
+  { question: 'What is included in Decorations Part 1?', answer: 'The update covers Tiles, Counter Upgrades, Table Tops, Dishwasher options, and Choopy Mystery Box delivery.' },
+  { question: 'Where can I compare Tile options?', answer: 'Open the Tiles database to review the available designs and their displayed purchase options.' },
+  { question: 'Are Choopy Mystery Box rewards predictable?', answer: 'The Normal box gives a random mystery reward, so do not plan a purchase around receiving one specific item.' },
 ];
 ---
-<WikiPage title="Decorations" description="Explore the publicly documented Karinderya Decorations Pt. 1 features, Tiles, counters, and Choopy delivery." kicker="Customization reference" intro="A verification-first guide to visible Decorations Pt. 1 systems." cards={cards} note="Observed prices, wait times, and availability can change between updates." sourceIds={['wiki-decorations', 'roblox-game']} relatedLinks={[{ label: 'Tiles', href: '/decorations/tiles/' }, { label: 'Counter upgrades', href: '/guides/counter-upgrades/' }, { label: 'Choopy Mystery Box', href: '/guides/choopy-mystery-box/' }]}>
-  <p>Public sources document Tiles, Counter Upgrade, Table Tops, Dishwasher, and Choopy Mystery Box delivery as part of Decorations Pt. 1. No cosmetic effect is treated as a hidden gameplay statistic.</p>
+<WikiPage title="Decorations" description="Explore Karinderya Decorations Pt. 1 features, Tiles, counters, and Choopy delivery." kicker="Customization guide" intro="Customize your restaurant with the Decorations Pt. 1 systems." cards={cards} note="Prices, wait times, and availability can change between updates." sourceIds={['wiki-decorations', 'roblox-game']} relatedLinks={[{ label: 'Tiles', href: '/decorations/tiles/' }, { label: 'Counter upgrades', href: '/guides/counter-upgrades/' }, { label: 'Choopy Mystery Box', href: '/guides/choopy-mystery-box/' }]} heroImage={siteImages.decorationsHero} tableOfContents>
+  <p>Decorations Pt. 1 expands restaurant customization with Tiles, Counter Upgrades, Table Tops, Dishwasher options, and Choopy Mystery Box delivery.</p>
+
+  <h2 id="decoration-categories">Decoration Categories</h2>
+  <ul>
+    <li><strong>Tiles:</strong> visual options for changing the restaurant's surfaces.</li>
+    <li><strong>Counter Upgrades:</strong> counter choices such as Default, RedWood, and ElegantWood.</li>
+    <li><strong>Table Tops:</strong> customization options connected to dining furniture.</li>
+    <li><strong>Dishwasher:</strong> an additional Decorations Part 1 feature.</li>
+    <li><strong>Choopy Mystery Box:</strong> a delivery option with a random reward.</li>
+  </ul>
+
+  <h2 id="how-to-choose-decorations">How to Choose Decorations</h2>
+  <p>Compare the displayed cost, wait time, and appearance before confirming a purchase. Use the focused Tiles, Counter Upgrades, and Choopy pages when you need details for a specific category.</p>
+
+  <h2 id="customization-tips">Customization Tips</h2>
+  <ul>
+    <li>Choose a visual direction before spending Cash across several categories.</li>
+    <li>Check whether a purchase uses Cash or Robux.</li>
+    <li>Leave enough Cash for ingredients and restaurant upgrades.</li>
+    <li>Treat mystery-box rewards as random rather than guaranteed.</li>
+  </ul>
+
+  <FAQ items={faqItems} />
 </WikiPage>

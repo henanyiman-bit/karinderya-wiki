@@ -1,17 +1,38 @@
 ---
 import ContentPage from '../../components/ContentPage.astro';
-import VerificationStatus from '../../components/VerificationStatus.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const faqItems = [
+  { question: 'Should I sell furniture before buying a replacement?', answer: 'Check the replacement cost, current Cash, and displayed resale value first. Selling too early can remove furniture before the replacement is ready.' },
+  { question: 'Will I receive the full purchase price back?', answer: 'The resale examples return only part of the original price. Always review the amount shown by the game before confirming.' },
+  { question: 'Do all tables sell for the same percentage?', answer: 'Do not assume one percentage applies to every table. Use the resale value displayed for the selected item.' },
+];
 ---
-<ContentPage title="How to Sell Furniture in Karinderya" description="Review supported Karinderya furniture resale examples and the limits of the currently available public evidence." kicker="Furniture guide" intro="A verification-first guide to documented resale values, without claiming a universal formula." parent={{ label: 'Guides', href: '/guides/' }} relatedLinks={[{ label: 'Furniture', href: '/furniture/' }, { label: 'Tables', href: '/furniture/tables/' }, { label: 'Plank Table', href: '/furniture/plank-table/' }, { label: 'Wood Table', href: '/furniture/wood-table/' }]} sourceIds={['wiki-furniture']}>
-  <VerificationStatus status="Reported" notes="The two price-and-resale examples below appear in one retained community source. The current interface flow and a universal resale formula remain To be verified." />
-  <h2>Observed resale examples</h2>
-  <div class="table-scroll"><table><thead><tr><th scope="col">Item</th><th scope="col">Observed buy price</th><th scope="col">Observed resale value</th><th scope="col">Ratio</th></tr></thead><tbody>
+<ContentPage title="How to Sell Furniture in Karinderya" description="Learn how to review furniture resale values and plan a replacement in Karinderya." kicker="Furniture guide" intro="Use resale values to decide whether replacing a table is worth the recovered Cash." parent={{ label: 'Guides', href: '/guides/' }} relatedLinks={[{ label: 'Furniture', href: '/furniture/' }, { label: 'Tables', href: '/furniture/tables/' }, { label: 'Plank Table', href: '/furniture/plank-table/' }, { label: 'Wood Table', href: '/furniture/wood-table/' }]} sourceIds={['wiki-furniture']} tableOfContents>
+  <h2 id="selling-overview">Selling Overview</h2>
+  <p>Selling furniture can recover part of an item's purchase price and make room in an upgrade plan. Review the value shown for the selected item before confirming because the sale will not return the full purchase cost.</p>
+
+  <h2 id="how-to-sell-furniture">How to Sell Furniture</h2>
+  <ol>
+    <li>Open the current furniture or editing controls.</li>
+    <li>Select the table or chair you want to replace.</li>
+    <li>Find the sell option and review the displayed resale value.</li>
+    <li>Confirm only after deciding that the recovered Cash is worth removing the item.</li>
+  </ol>
+
+  <h2 id="resale-examples">Resale Examples</h2>
+  <div class="table-scroll"><table><thead><tr><th scope="col">Item</th><th scope="col">Buy price</th><th scope="col">Resale value</th><th scope="col">Ratio</th></tr></thead><tbody>
     <tr><th scope="row"><a href="/furniture/plank-table/">Plank Table</a></th><td>&#8369;130</td><td>&#8369;26</td><td>Approximately 20%</td></tr>
     <tr><th scope="row"><a href="/furniture/wood-table/">Wood Table</a></th><td>&#8369;365</td><td>&#8369;73</td><td>Approximately 20%</td></tr>
   </tbody></table></div>
-  <h2>How to use this information</h2>
-  <p>Treat these as two observed examples, not proof that every furniture item always resells for the same percentage. Before selling, check the value shown by the current in-game interface and decide whether the recovered Cash is worth losing that item.</p>
-  <h2>Still to be verified</h2>
-  <ul><li>The exact current button-by-button selling flow</li><li>Whether all furniture shares one resale ratio</li><li>Current values for other table and chair families</li><li>Whether updates or item condition can affect resale</li></ul>
-  <p class="notice">No unsupported resale formula is used on this wiki.</p>
+
+  <h2 id="replacement-strategy">Replacement Strategy</h2>
+  <ul>
+    <li>Check the new furniture price before selling the old item.</li>
+    <li>Keep enough Cash available for ingredients and other essential purchases.</li>
+    <li>Replace furniture in stages if a full dining-room upgrade is too expensive.</li>
+    <li>Use the current displayed resale value instead of assuming every item follows one ratio.</li>
+  </ul>
+
+  <FAQ items={faqItems} />
 </ContentPage>

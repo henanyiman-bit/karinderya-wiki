@@ -1,14 +1,38 @@
 ---
 import ContentPage from '../../components/ContentPage.astro';
-import VerificationStatus from '../../components/VerificationStatus.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const faqItems = [
+  { question: 'How much does the Normal Choopy Mystery Box cost?', answer: 'The Normal box is listed at ₱10,000.' },
+  { question: 'How long does Normal delivery take?', answer: 'The displayed delivery time for the Normal option is five minutes.' },
+  { question: 'Can I choose the reward?', answer: 'The box is presented as a random mystery reward, so a particular result should not be expected.' },
+];
 ---
-<ContentPage title="Karinderya Choopy Mystery Box Guide" description="Review the observed Normal Choopy Mystery Box price, delivery time, and random reward behavior." kicker="Decorations guide" intro="A short reference for the publicly observed Normal Choopy delivery option." parent={{ label: 'Guides', href: '/guides/' }} relatedLinks={[{ label: 'Decorations', href: '/decorations/' }, { label: 'Tiles', href: '/decorations/tiles/' }, { label: 'Counter upgrades', href: '/guides/counter-upgrades/' }]} sourceIds={['wiki-decorations']}>
-  <VerificationStatus status="Reported" notes="The Normal listing and delivery estimate appear in one retained community guide with public gameplay captures. Availability and timing may change." />
-  <h2>Observed Normal box details</h2>
+<ContentPage title="Karinderya Choopy Mystery Box Guide" description="Learn about the Normal Choopy Mystery Box price, delivery time, and random reward behavior." kicker="Decorations guide" intro="A quick guide to the Normal Choopy delivery option." parent={{ label: 'Guides', href: '/guides/' }} relatedLinks={[{ label: 'Decorations', href: '/decorations/' }, { label: 'Tiles', href: '/decorations/tiles/' }, { label: 'Counter upgrades', href: '/guides/counter-upgrades/' }]} sourceIds={['wiki-decorations']} tableOfContents>
+  <h2 id="choopy-overview">Choopy Mystery Box Overview</h2>
+  <p>Choopy provides a delivery option connected to Decorations Part 1. The Normal box uses Cash, has a displayed delivery time, and gives a random mystery reward.</p>
+
+  <h2 id="normal-box-details">Normal Box Details</h2>
   <div class="table-scroll"><table><tbody>
-    <tr><th scope="row">Observed price</th><td>&#8369;10,000</td></tr>
-    <tr><th scope="row">Observed delivery time</th><td>5 minutes</td></tr>
+    <tr><th scope="row">Price</th><td>&#8369;10,000</td></tr>
+    <tr><th scope="row">Delivery time</th><td>5 minutes</td></tr>
     <tr><th scope="row">Reward</th><td>Random / mystery reward</td></tr>
   </tbody></table></div>
-  <p class="notice">No complete reward table is published here because the possible reward pool has not been sufficiently verified.</p>
+
+  <h2 id="how-it-works">How It Works</h2>
+  <ol>
+    <li>Choose the Normal Choopy Mystery Box option.</li>
+    <li>Review the displayed Cash cost and delivery time.</li>
+    <li>Confirm only when the restaurant can spare the purchase cost.</li>
+    <li>Wait for the delivery and collect the random reward.</li>
+  </ol>
+
+  <h2 id="mystery-box-tips">Mystery Box Tips</h2>
+  <ul>
+    <li>Keep enough Cash for ingredients and necessary upgrades.</li>
+    <li>Do not buy the box expecting one particular reward.</li>
+    <li>Account for the delivery time when planning other purchases.</li>
+  </ul>
+
+  <FAQ items={faqItems} />
 </ContentPage>

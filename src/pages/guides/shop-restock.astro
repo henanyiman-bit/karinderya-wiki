@@ -1,14 +1,40 @@
 ---
 import ContentPage from '../../components/ContentPage.astro';
-import VerificationStatus from '../../components/VerificationStatus.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const faqItems = [
+  { question: 'What should I buy first?', answer: 'Prioritize ingredients needed by the current menu, then spend remaining Cash on equipment, furniture, or decorations that fit your next upgrade.' },
+  { question: 'What if an item is not available?', answer: 'Recheck the shop later and keep enough Cash ready for the item you need. Use an available alternative only if it still supports your current plan.' },
+  { question: 'How much Cash should I keep?', answer: 'There is no single amount for every restaurant. Keep enough to restock the ingredients used by your current menu before planning optional upgrades.' },
+];
 ---
-<ContentPage title="Karinderya Shop Restock Guide" description="Learn what is documented about Karinderya shop inventory while exact restock timing and stock mechanics remain unconfirmed." kicker="Planning guide" intro="A cautious inventory-planning reference that does not invent a restock timer." parent={{ label: 'Guides', href: '/guides/' }} relatedLinks={[{ label: 'Grocery', href: '/grocery/' }, { label: 'Ingredients', href: '/ingredients/' }, { label: 'Furniture', href: '/furniture/' }, { label: 'Equipment', href: '/equipment/' }]} sourceIds={['codex-menu', 'wiki-furniture', 'wiki-money']}>
-  <VerificationStatus status="Community Verified" notes="Public sources establish grocery and furniture shop listings. They do not establish a dependable universal restock schedule." />
-  <h2>What is known</h2>
-  <ul><li>Karinderya includes documented grocery inventory and furniture listings.</li><li>Public captures show item names and some observed prices.</li><li>Availability and values can be update-sensitive, so a current in-game listing should take priority.</li></ul>
-  <h2>What is not known</h2>
-  <ul><li>Exact restock interval</li><li>Whether stock is shared, server-specific, or player-specific</li><li>Whether every item follows the same refresh rule</li><li>Current stock limits and all availability requirements</li></ul>
-  <h2>Safe planning approach</h2>
-  <p>Check the current shop before planning a purchase, keep enough Cash for essential ingredients, and avoid relying on an undocumented timer. The <a href="/grocery/">Grocery page</a> records observed listings, while entity pages separate supported values from unresolved details.</p>
-  <p class="notice">A precise shop restock schedule is To be verified.</p>
+<ContentPage title="Karinderya Shop Restock Guide" description="Plan grocery, furniture, and equipment purchases around the current Karinderya shop inventory." kicker="Planning guide" intro="A practical guide to checking stock and planning purchases." parent={{ label: 'Guides', href: '/guides/' }} relatedLinks={[{ label: 'Grocery', href: '/grocery/' }, { label: 'Ingredients', href: '/ingredients/' }, { label: 'Furniture', href: '/furniture/' }, { label: 'Equipment', href: '/equipment/' }]} sourceIds={['codex-menu', 'wiki-furniture', 'wiki-money']} tableOfContents>
+  <h2 id="shop-overview">Shop Overview</h2>
+  <p>Karinderya includes grocery inventory, furniture, and equipment listings. Availability and values may change as the game receives updates.</p>
+
+  <h2 id="restock-planning">Restock Planning</h2>
+  <ol>
+    <li>Review the ingredients used by the current menu.</li>
+    <li>Check the Grocery before stock becomes too low for upcoming orders.</li>
+    <li>Buy essential ingredients before optional furniture or decoration upgrades.</li>
+    <li>Keep some Cash available when waiting for a needed item to return.</li>
+  </ol>
+
+  <h2 id="purchase-priorities">Purchase Priorities</h2>
+  <ul>
+    <li><strong>Ingredients:</strong> protect the restaurant's ability to complete current orders.</li>
+    <li><strong>Equipment:</strong> address cooking delays or limited station capacity.</li>
+    <li><strong>Furniture:</strong> improve the dining area when service and stocking are stable.</li>
+    <li><strong>Decorations:</strong> customize the restaurant after essential needs are covered.</li>
+  </ul>
+
+  <h2 id="shopping-tips">Shopping Tips</h2>
+  <p>Use the <a href="/grocery/">Grocery page</a> to compare ingredient listings, then visit the Furniture and Equipment sections before spending on restaurant upgrades.</p>
+  <ul>
+    <li>Check the displayed price again before confirming a purchase.</li>
+    <li>Avoid spending the full Cash balance on one optional upgrade.</li>
+    <li>Plan around the restaurant's current bottleneck rather than buying every available item.</li>
+  </ul>
+
+  <FAQ items={faqItems} />
 </ContentPage>

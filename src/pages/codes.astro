@@ -1,52 +1,60 @@
 ---
 import ContentPage from '../components/ContentPage.astro';
-import VerificationStatus from '../components/VerificationStatus.astro';
 import FAQ from '../components/FAQ.astro';
 import { currentCodes } from '../data/codes';
+import { siteImages } from '../data/images';
 
 const faqItems = [
-  { question: 'Why is my Karinderya code not working?', answer: 'Check capitalization and remove accidental spaces first. A code may also have been used already or may have expired after the latest public check; this site cannot confirm account-specific redemption results.' },
-  { question: 'Do Karinderya codes expire?', answer: 'They can expire or be removed after updates. No permanent availability is promised here, and an unavailable code should be treated as expired or changed until a current public source clarifies it.' },
-  { question: 'Where can new Karinderya codes appear?', answer: 'Creator-controlled Roblox descriptions are the strongest public place to check. Community guides may document additional strings or rewards, but those entries remain labeled according to their evidence.' },
+  { question: 'Why is my Karinderya code not working?', answer: 'Check capitalization and remove accidental spaces first. A code may also have been used already or may have expired after a game update.' },
+  { question: 'Do Karinderya codes expire?', answer: 'Codes can expire or be removed after updates. If a code no longer works, check its spelling and whether you already redeemed it.' },
+  { question: 'Where can new Karinderya codes appear?', answer: 'New codes may arrive alongside game updates. Check this page again when a new update is released.' },
 ];
 ---
 
 <ContentPage
   title={'Karinderya Codes \u2013 Latest Working Codes & Rewards'}
-  description="Find the latest Karinderya Roblox codes, rewards, verification status, and update information."
+  seoTitle="Karinderya Codes Guide & Rewards | Karinderya Wiki"
+  description="Find the latest Karinderya Roblox codes, rewards, redemption steps, and update information."
   kicker="Rewards reference"
-  intro="Current publicly documented code strings and rewards, separated by verification level."
+  intro="Browse current code strings, rewards, and redemption guidance."
   relatedLinks={[{ label: 'Beginner guide', href: '/guides/beginner-guide/' }, { label: 'Latest updates', href: '/updates/' }]}
   sourceIds={['roblox-game', 'codex-codes', 'destructoid-codes', 'nerdschalk-codes', 'wiki-decorations']}
+  tableOfContents
+  heroImage={siteImages.codesHero}
 >
-  <VerificationStatus status="Reported" notes="The page contains mixed evidence levels: official code strings, community-supported rewards, and a conflicting 3MVISITS Cash value. See each row and the sources below." />
-  <p class="notice"><strong>Last checked: August 31, 2026.</strong> Codes can expire after updates and no permanent expiry schedule has been announced. If a code fails, check the spelling and treat it as potentially expired.</p>
-
-  <h2>Currently documented codes</h2>
+  <h2 id="active-codes">Active Codes</h2>
+  <p>These are the latest codes included in the wiki. Code availability can change after game updates, and a code already used on an account cannot normally be redeemed again.</p>
   <div class="table-scroll">
     <table>
-      <thead><tr><th scope="col">Code</th><th scope="col">Documented reward</th><th scope="col">Verification</th></tr></thead>
+      <thead><tr><th scope="col">Code</th><th scope="col">Reward</th></tr></thead>
       <tbody>
         {currentCodes.map((item) => (
           <tr>
             <th scope="row"><code>{item.code}</code></th>
             <td>{item.reward}{item.note && <small>{item.note}</small>}</td>
-            <td>
-              <VerificationStatus status={item.codeStatus} compact />
-              {item.rewardStatus !== item.codeStatus && <p class="reward-status">Reward: {item.rewardStatus}</p>}
-            </td>
           </tr>
         ))}
       </tbody>
     </table>
   </div>
 
-  <h2>How to use this list</h2>
-  <p>Enter code strings exactly as shown in the in-game redemption interface. This page does not label a code as permanently active; a later update may retire it without advance notice.</p>
+  <h2 id="expired-codes">Expired Codes</h2>
+  <p>No expired codes are currently listed. If a code above stops working, first check its spelling and whether it was already redeemed. Availability can change without advance notice.</p>
+
+  <h2 id="how-to-redeem-codes">How to Redeem Codes</h2>
+  <ol>
+    <li>Open Karinderya and locate the current code-redemption interface.</li>
+    <li>Enter the code exactly as written, including capitalization, and remove spaces before or after the string.</li>
+    <li>Submit the code once and read the message shown by the game.</li>
+    <li>If it fails, check for a typing error or previous redemption before treating the code as potentially expired.</li>
+  </ol>
+
+  <h2 id="rewards-information">Rewards Information</h2>
+  <p>Code rewards can include Cash, furniture, equipment, Concrete, and Cash Potions. Rewards are delivered by the game when a valid code is accepted.</p>
+
   <FAQ items={faqItems} />
 </ContentPage>
 
 <style>
   small { display: block; max-width: 420px; margin-top: 6px; color: var(--muted); }
-  .reward-status { margin: 6px 0 0; font-size: .75rem; }
 </style>

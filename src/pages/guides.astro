@@ -1,14 +1,14 @@
 ---
 import WikiPage from '../components/WikiPage.astro';
 const cards = [
-  { title: 'Beginner Guide', description: 'Learn the service loop, ingredient stocking, upgrades, and progression basics.', href: '/guides/beginner-guide/', icon: '1', status: 'Community Verified' },
-  { title: '5-Star Guide', description: 'Work toward the official goal without relying on a fabricated rating formula.', href: '/guides/5-star-guide/', icon: '5', status: 'Verification-first' },
-  { title: 'Counter Upgrades', description: 'Review Default, RedWood, and ElegantWood counter observations.', href: '/guides/counter-upgrades/', icon: 'C', status: 'Reported' },
-  { title: 'Choopy Mystery Box', description: 'Check the observed Normal box price, delivery time, and random reward warning.', href: '/guides/choopy-mystery-box/', icon: 'M', status: 'Reported' },
-  { title: 'How to Sell Furniture', description: 'Review supported resale examples without assuming a universal percentage.', href: '/guides/how-to-sell-furniture/', icon: 'S', status: 'Reported' },
-  { title: 'Shop Restock', description: 'Plan around documented inventory while exact restock timing remains unconfirmed.', href: '/guides/shop-restock/', icon: 'R', status: 'Community Verified' },
+  { title: 'Beginner Guide', description: 'Learn the service loop, ingredient stocking, upgrades, and progression basics.', href: '/guides/beginner-guide/', icon: '1' },
+  { title: '5-Star Guide', description: 'Build a smoother restaurant while working toward the five-star goal.', href: '/guides/5-star-guide/', icon: '5' },
+  { title: 'Counter Upgrades', description: 'Compare Default, RedWood, and ElegantWood counter options.', href: '/guides/counter-upgrades/', icon: 'C' },
+  { title: 'Choopy Mystery Box', description: 'Check the Normal box price, delivery time, and random reward warning.', href: '/guides/choopy-mystery-box/', icon: 'M' },
+  { title: 'How to Sell Furniture', description: 'Learn how furniture resale works and review example values.', href: '/guides/how-to-sell-furniture/', icon: 'S' },
+  { title: 'Shop Restock', description: 'Plan grocery, furniture, and equipment purchases around current inventory.', href: '/guides/shop-restock/', icon: 'R' },
 ];
 ---
-<WikiPage title="Guides" description="Read beginner-friendly Karinderya Roblox guides with transparent verification and no invented formulas." kicker="Learn the game" intro="Task-focused walkthroughs built from supported gameplay concepts." cards={cards} note="Advice is practical rather than mathematically optimal; update-sensitive values link back to their verification pages." relatedLinks={[{ label: 'Food', href: '/food/' }, { label: 'Workers', href: '/workers/' }, { label: 'Equipment', href: '/equipment/' }, { label: 'Furniture', href: '/furniture/' }]}>
+<WikiPage title="Guides" description="Read beginner-friendly Karinderya Roblox guides for restaurant service, upgrades, and progression." kicker="Learn the game" intro="Task-focused walkthroughs for building and managing your restaurant." cards={cards} note="Use these guides to plan your next upgrade and solve common service bottlenecks." relatedLinks={[{ label: 'Food', href: '/food/' }, { label: 'Workers', href: '/workers/' }, { label: 'Equipment', href: '/equipment/' }, { label: 'Furniture', href: '/furniture/' }]}>
   <p>Start with the Beginner Guide, then use focused guides for the five-star goal, counter upgrades, Choopy Mystery Boxes, furniture resale, and shop-restock planning.</p>
 </WikiPage>
