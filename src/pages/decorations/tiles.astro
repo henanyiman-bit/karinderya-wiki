@@ -1,14 +1,16 @@
 ---
-import ContentPage from '../../components/ContentPage.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EntityArticle from '../../components/v2/templates/EntityArticle.astro';
 import { siteImages } from '../../data/images';
+import { getPageSEO } from '../../utils/seo';
+const pageSEO = getPageSEO('decorations-tiles');
 ---
 
-<ContentPage
-  title="Karinderya Tiles"
-  description="Learn how Tiles fit into Karinderya decoration, surface customization, and restaurant layout planning."
+<BaseLayout pageId="decorations-tiles" breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Decorations', href: '/decorations/' }, { label: pageSEO.h1 }]}>
+<EntityArticle
+  title={pageSEO.h1}
   kicker="Decoration entry"
-  intro="Tiles are part of the Decorations section and help define the visual treatment of restaurant surfaces."
-  parent={{ label: 'Decorations', href: '/decorations/' }}
+  intro="Tiles are documented as a Karinderya surface-customization feature. Current catalog details and effects are not established here."
   relatedLinks={[
     { label: 'Decorations', href: '/decorations/' },
     { label: 'Furniture', href: '/furniture/' },
@@ -19,13 +21,13 @@ import { siteImages } from '../../data/images';
   heroImage={siteImages.decorationsHero}
 >
   <h2 id="overview">Overview</h2>
-  <p>Tiles are a decoration category used when planning the appearance of restaurant surfaces. This page explains their place in the Wiki and links to broader layout and customization information.</p>
+  <p>Tiles appear in dated Decorations Part 1 records as a restaurant customization feature. This page is intentionally limited to what those records support.</p>
 
   <h2 id="how-it-works">How It Works</h2>
-  <p>Tile choices belong to the visual layer of restaurant planning. Consider them alongside the surrounding furniture, counters, and the separation between dining and kitchen areas.</p>
+  <p>The available Tile controls, designs, and acquisition terms should be read from the current game interface. The reviewed evidence does not establish a permanent catalog or a gameplay bonus.</p>
 
   <h2 id="usage">Usage</h2>
-  <p>Use Tiles to support a consistent visual direction across the restaurant. When working on a larger redesign, plan functional areas first and then review how surface choices fit the finished layout.</p>
+  <p>Use the Tiles entry when navigating surface-customization information. For broader visual planning, continue to the Decorations Hub or Restaurant Layout Guide.</p>
 
   <h2 id="gameplay-tips">Gameplay Tips</h2>
   <ul>
@@ -34,4 +36,7 @@ import { siteImages } from '../../data/images';
     <li>Review the Decorations hub when looking for another customization topic.</li>
     <li>Use the Restaurant Layout Guide for broader space-planning help.</li>
   </ul>
-</ContentPage>
+  <h2 id="known-limitations">Known Limitations</h2>
+  <p>This page does not publish a fixed item count, price, unlock requirement, or hidden effect because those details were not confirmed by creator-owned material or a current game capture reviewed for this rebuild.</p>
+</EntityArticle>
+</BaseLayout>

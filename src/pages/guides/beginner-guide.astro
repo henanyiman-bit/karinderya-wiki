@@ -1,37 +1,42 @@
 ---
-import ContentPage from '../../components/ContentPage.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 import FAQ from '../../components/FAQ.astro';
+import GuideArticle from '../../components/v2/templates/GuideArticle.astro';
 import { siteImages } from '../../data/images';
+import { getPageSEO } from '../../utils/seo';
 
 const faqItems = [
   { question: 'What should I do first in Karinderya?', answer: 'Follow the current tutorial prompts and learn one complete customer-service cycle before changing several restaurant systems.' },
   { question: 'Which Wiki section should a new player open first?', answer: 'Start with the Guides Hub, then use Recipes, Ingredients, Equipment, Workers, and Furniture when those topics appear during play.' },
   { question: 'Where can I find ingredient information?', answer: 'Use the Ingredients Hub for individual entries and the Recipes page for the wider cooking workflow.' },
 ];
+const pageSEO = getPageSEO('guides-beginner-guide');
+const relatedLinks = [
+  { label: 'Guides Hub', href: '/guides/', description: 'Browse every player guide by topic.' },
+  { label: 'Recipes', href: '/recipes/', description: 'Learn how Recipes connect ingredients, cooking, and food.' },
+  { label: 'Equipment', href: '/equipment/', description: 'Browse cooking equipment and restaurant tools.' },
+  { label: 'Workers', href: '/workers/', description: 'Review Worker management and related guidance.' },
+  { label: 'Furniture', href: '/furniture/', description: 'Explore Tables, Chairs, and layout planning.' },
+];
 ---
 
-<ContentPage
-  title="Karinderya Beginner Guide"
-  seoTitle="Karinderya Beginner Guide | Karinderya Roblox Wiki"
-  description="Learn the Karinderya restaurant workflow, serve customers, organize cooking, and navigate the main Wiki categories."
-  kicker="Getting started guide"
-  intro="Learn the main restaurant workflow and use the Wiki to explore each game system."
-  parent={{ label: 'Guides', href: '/guides/' }}
-  tableOfContents
-  heroImage={siteImages.beginnerGuideHero}
-  relatedLinks={[
-    { label: 'Guides Hub', href: '/guides/', description: 'Browse every player guide by topic.' },
-    { label: 'Recipes', href: '/recipes/', description: 'Learn how Recipes connect ingredients, cooking, and food.' },
-    { label: 'Equipment', href: '/equipment/', description: 'Browse cooking equipment and restaurant tools.' },
-    { label: 'Workers', href: '/workers/', description: 'Review Worker management and related guidance.' },
-    { label: 'Furniture', href: '/furniture/', description: 'Explore Tables, Chairs, and layout planning.' },
-  ]}
+<BaseLayout
+  pageId="guides-beginner-guide"
+  breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Guides', href: '/guides/' }, { label: pageSEO.h1 }]}
 >
-  <h2 id="introduction">Introduction</h2>
-  <p>Karinderya centers on operating a restaurant and keeping customer service connected with the kitchen. New players should first learn one complete service cycle, then use the Wiki categories when a particular system needs more explanation.</p>
+  <GuideArticle
+    title={pageSEO.h1}
+    kicker="Getting started guide"
+    intro="Follow the current tutorial, learn one order-to-service cycle, and use the Wiki when a specific system needs more explanation."
+    tableOfContents
+    heroImage={siteImages.beginnerGuideHero}
+    relatedLinks={relatedLinks}
+  >
+    <h2 id="direct-answer">First Steps</h2>
+    <p>Start with the tutorial shown by the current game. Learn how the interface presents a customer request, cooking task, completed food, and service interaction before expanding into optional systems.</p>
 
   <h2 id="overview">Overview</h2>
-  <p>The main workflow connects customers, orders, Ingredients, cooking equipment, Food, and serving. Furniture shapes the dining area, Workers can support management, and Guides explain how these systems fit together.</p>
+  <p>Public gameplay supports a basic order, kitchen, and serving loop. The exact recipe inputs, Worker behavior, restock timing, rating rules, and equipment differences should be confirmed from their focused pages rather than assumed during the first session.</p>
 
   <h2 id="how-it-works">How It Works</h2>
   <p>A restaurant task usually begins with customer information and moves toward preparation and service. Read what the game currently shows, keep the active task easy to identify, and complete the workflow before taking on more work than you can follow.</p>
@@ -50,8 +55,8 @@ const faqItems = [
   <ul>
     <li><strong>Food and Recipes:</strong> understand the cooking and serving relationship.</li>
     <li><strong>Ingredients and Grocery:</strong> review materials used by the restaurant workflow.</li>
-    <li><strong>Equipment:</strong> browse Stoves, the Chiller, and restaurant tools.</li>
-    <li><strong>Workers:</strong> learn about restaurant management support.</li>
+    <li><strong>Equipment:</strong> browse the Stove directory and the current limited Chiller entry.</li>
+    <li><strong>Workers:</strong> review the system and its version-sensitive hiring guide.</li>
     <li><strong>Furniture:</strong> plan Tables, Chairs, and dining-area layout.</li>
   </ul>
 
@@ -72,5 +77,6 @@ const faqItems = [
     <li>Focusing on customization while work areas remain unclear.</li>
   </ul>
 
-  <FAQ items={faqItems} />
-</ContentPage>
+    <FAQ slot="faq" items={faqItems} />
+  </GuideArticle>
+</BaseLayout>

@@ -1,7 +1,9 @@
 ---
-import ContentPage from '../../components/ContentPage.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GuideArticle from '../../components/v2/templates/GuideArticle.astro';
 import FAQ from '../../components/FAQ.astro';
 import { siteImages } from '../../data/images';
+import { getPageSEO } from '../../utils/seo';
 
 const faqItems = [
   { question: 'What should I improve first?', answer: 'Start with the restaurant area that most often interrupts service. The right choice depends on the problem you can observe in your current setup.' },
@@ -10,12 +12,11 @@ const faqItems = [
 ];
 ---
 
-<ContentPage
-  title="Karinderya Upgrade Priority Guide"
-  description="Plan Karinderya restaurant improvements by identifying workflow problems and choosing equipment, furniture, or staffing around current needs."
+<BaseLayout pageId="guides-upgrade-priority" breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Guides', href: '/guides/' }, { label: getPageSEO('guides-upgrade-priority').h1 }]}>
+<GuideArticle
+  title={getPageSEO('guides-upgrade-priority').h1}
   kicker="Restaurant planning guide"
   intro="Choose restaurant improvements around visible service needs instead of following a fixed order."
-  parent={{ label: 'Guides', href: '/guides/' }}
   tableOfContents
   heroImage={siteImages.equipmentHero}
   previousPage={{ label: 'Restaurant Layout Guide', href: '/guides/restaurant-layout/' }}
@@ -26,14 +27,14 @@ const faqItems = [
     { label: 'Beginner Guide', href: '/guides/beginner-guide/', description: 'Review the complete restaurant service loop.' },
   ]}
 >
-  <h2 id="introduction">Introduction</h2>
-  <p>Restaurant planning works best when each change answers a visible problem. Rather than copying a universal list, follow the service workflow, identify where management becomes difficult, and choose the category that addresses that area.</p>
+  <h2 id="direct-answer">Direct Answer</h2>
+  <p>There is no verified universal upgrade ranking for Karinderya. Choose the next change by identifying the visible task that is blocking your current service loop, then check the focused Hub before using currency or changing the layout.</p>
 
   <h2 id="overview">Overview</h2>
   <p>Karinderya connects ingredients, cooking equipment, dining furniture, Workers, and player movement. A problem in one area may look similar to a problem in another, so observe the full service loop before deciding what to change.</p>
 
   <h2 id="how-it-works">How It Works</h2>
-  <p>An improvement is useful when it makes the restaurant easier to operate. Equipment belongs to kitchen work, Furniture shapes the dining area, Workers support restaurant management, and layout affects how players move between tasks. Use the corresponding Hub to understand each category before making a decision.</p>
+  <p>Different Wiki categories answer different problems: Equipment covers restaurant tools, Furniture covers Tables and Chairs, Grocery covers ingredient sourcing, and Workers covers staffing concepts. This guide does not claim that one category always has the best return.</p>
 
   <h2 id="planning-process">Planning Process</h2>
   <ol>
@@ -70,5 +71,6 @@ const faqItems = [
     <li>Changing equipment when the actual issue is supplies or layout.</li>
   </ul>
 
-  <FAQ items={faqItems} />
-</ContentPage>
+  <FAQ slot="faq" items={faqItems} />
+</GuideArticle>
+</BaseLayout>

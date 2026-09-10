@@ -1,7 +1,9 @@
 ---
 import InfoPage from '../components/InfoPage.astro';
+import PageHeader from '../components/v2/layout/PageHeader.astro';
+import PageShell from '../components/v2/layout/PageShell.astro';
 ---
-<InfoPage title="Privacy Policy" description="Read the privacy policy for Karinderya Wiki and learn how website data may be handled." kicker="Site policy" relatedLinks={[{ label: 'Terms of Use', href: '/terms/' }, { label: 'Disclaimer', href: '/disclaimer/' }, { label: 'Contact', href: '/contact/' }]}>
+<InfoPage pageId="privacy-policy" v2 pageShell={PageShell} pageHeader={PageHeader} kicker="Site policy" relatedLinks={[{ label: 'Terms of Use', href: '/terms/' }, { label: 'Disclaimer', href: '/disclaimer/' }, { label: 'Contact', href: '/contact/' }]}>
   <p><strong>Last updated:</strong> August 31, 2026</p>
   <h2>Information collected</h2>
   <p>This static first edition does not provide user accounts or a working contact form. Standard hosting logs may record technical information such as IP address, browser type, requested pages, and timestamps for security and reliability.</p>

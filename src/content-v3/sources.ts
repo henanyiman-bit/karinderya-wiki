@@ -1,0 +1,126 @@
+import type { SourceRecord } from './types';
+
+// Internal research ledger. Nothing in this file is rendered on public pages.
+export const v3Sources: SourceRecord[] = [
+  {
+    id: 'official-roblox-game-2026-09-09',
+    title: '[🔥] Karinderya!',
+    url: 'https://www.roblox.com/games/116497287371701/Karinderya',
+    sourceType: 'official-roblox', tier: 1, publisher: 'SILOG / Roblox', accessedAt: '2026-09-09',
+    notes: 'Current public description identifies the game as a co-op restaurant simulator and lists DECOPART1, BRGYPERMIT, and 100KCCU. It does not state rewards or guarantee redemption.',
+  },
+  {
+    id: 'official-discord-directory-2026-09-09',
+    title: 'Karinderya | Official Discord',
+    url: 'https://discord.com/servers/karinderya-or-official-discord-1125158673480683532',
+    sourceType: 'official-community', tier: 1, publisher: 'Karinderya | Official', accessedAt: '2026-09-09',
+    notes: 'Confirms an official community exists. Public directory text is not sufficient evidence for individual rewards or mechanics.',
+  },
+  {
+    id: 'community-code-captures-2026-08-30',
+    title: 'Karinderya Codes — dated in-game capture report',
+    url: 'https://karinderiacodex.com/codes/all-codes/',
+    sourceType: 'gameplay-capture', tier: 2, publisher: 'Karinderia Codex', accessedAt: '2026-09-09',
+    notes: 'Claims dated redemption screenshots for five legacy strings. Captures are not owned by this project and do not establish current status.',
+  },
+  {
+    id: 'community-current-codes-2026-09-09',
+    title: 'How to Redeem Codes in Karinderya',
+    url: 'https://karinderya.org/guides/redeem-codes/',
+    sourceType: 'community-wiki', tier: 3, publisher: 'Karinderya Field Guide', accessedAt: '2026-09-09',
+    notes: 'Cross-checks the current official-description strings and reports conflicting DECOPART1 potion rewards.',
+  },
+  {
+    id: 'community-update-timeline-2026-09-09',
+    title: 'Karinderya Roblox updates & timeline',
+    url: 'https://karinderya-roblox.wiki/updates',
+    sourceType: 'community-wiki', tier: 3, publisher: 'Karinderya Roblox Wiki', accessedAt: '2026-09-09',
+    notes: 'Reports Roblox universe timestamps and historical code-description changes. Useful for discovery, not a substitute for creator patch notes.',
+  },
+  {
+    id: 'community-decorations-guide-2026-09-02',
+    title: 'Karinderya Decorations Guide',
+    url: 'https://karinderya.org/guides/decorations/',
+    sourceType: 'community-wiki', tier: 3, publisher: 'Karinderya Field Guide', accessedAt: '2026-09-09',
+    notes: 'Reports a dated gameplay sequence for Phone → Choopy → delivery → table Customize. Prices, timers, item pool and effects remain unresolved.',
+  },
+  {
+    id: 'community-decorations-roundup-2026-09-07',
+    title: 'Karinderya Decorations Guide',
+    url: 'https://karinderyagame.wiki/guides/decorations/',
+    sourceType: 'guide-site', tier: 3, publisher: 'Karinderya Game Wiki', accessedAt: '2026-09-09',
+    notes: 'Reports Tiles, Counter Upgrade, Table Tops, Dishwasher and Choopy. Exact values and effects require higher-tier confirmation.',
+  },
+  {
+    id: 'community-worker-capture-2026-08-23',
+    title: 'How to Hire a Worker in Karinderya',
+    url: 'https://karinderya.org/guides/workers/',
+    sourceType: 'gameplay-capture', tier: 2, publisher: 'Karinderya Field Guide', accessedAt: '2026-09-09',
+    notes: 'Reports dated footage of a Worker NPC outside Grocery, contract panel and Manual Assign warning. Terms may be version-sensitive.',
+  },
+  {
+    id: 'community-sell-furniture-2026-09-09',
+    title: 'How to Sell Furniture in Karinderya',
+    url: 'https://karinderya.wiki/guides/sell-furniture/',
+    sourceType: 'community-wiki', tier: 3, publisher: 'Karinderya Wiki', accessedAt: '2026-09-09',
+    notes: 'Explicitly says the current button path, unlock condition, and sale value were not established.',
+  },
+  {
+    id: 'community-worker-chiller-2026-08-29',
+    title: 'Karinderya Worker + Chiller Event Watch',
+    url: 'https://karinderyagame.wiki/updates/worker-chiller/',
+    sourceType: 'community-wiki', tier: 3, publisher: 'Karinderya Game Wiki', accessedAt: '2026-09-09',
+    notes: 'Reports a Worker + Chiller event label but says SILOG did not publish a numbered patch note documenting Chiller mechanics.',
+  },
+  {
+    id: 'competitor-reference-2026-09-09',
+    title: 'Karinderya Wiki — Codes, Guides & Gameplay Tips',
+    url: 'https://karinderya.online/en/',
+    sourceType: 'guide-site', tier: 3, publisher: 'Karinderya.online', accessedAt: '2026-09-09',
+    notes: 'SERP competitor and topic-discovery source. Contains numerous unsupported formulas, tiers, rewards and mechanics; never treat as fact authority.',
+  },
+  {
+    id: 'community-shop-restock-2026-09-02',
+    title: 'Karinderya Grocery & Restock Guide',
+    url: 'https://karinderya.org/guides/shop-restocks/',
+    sourceType: 'gameplay-capture', tier: 2, publisher: 'Karinderya Field Guide', accessedAt: '2026-09-09',
+    notes: 'Dated capture shows Grocery categories, listings and stock state. It explicitly does not establish a universal refresh interval.',
+  },
+  {
+    id: 'community-placement-ui-2026-08-29',
+    title: 'Karinderya Beginner’s Guide — placement UI capture',
+    url: 'https://earnaldo.com/blog/karinderya-beginner-guide',
+    sourceType: 'gameplay-capture', tier: 2, publisher: 'Earnaldo', accessedAt: '2026-09-09',
+    notes: 'Reports readable Basic Stove, Standard Stove and Deluxe Stove labels in dated placement footage. Performance and current acquisition claims remain unverified.',
+  },
+  {
+    id: 'community-ingredients-2026-09-02',
+    title: 'Karinderya Ingredients & Grocery archive',
+    url: 'https://karinderya.org/wiki/ingredients/',
+    sourceType: 'gameplay-capture', tier: 2, publisher: 'Karinderya Field Guide', accessedAt: '2026-09-09',
+    notes: 'Dated Grocery material confirms readable Rice and Condiments listings. Other entity names, recipes, yields and current availability need separate evidence.',
+  },
+  {
+    id: 'community-furniture-list-2026-09-02',
+    title: 'Karinderya Furniture Guide',
+    url: 'https://karinderyawiki.com/guides/furniture-guide',
+    sourceType: 'community-wiki', tier: 3, publisher: 'Karinderya Wiki', accessedAt: '2026-09-09',
+    notes: 'Uses Plank Table, Wood Table and Red Wooden Table names, but also makes unsupported price, resale and effect claims. Names require in-game or creator confirmation.',
+  },
+  {
+    id: 'community-coop-server-capacity-2026-09-09',
+    title: 'Karinderya Co-op Guide',
+    url: 'https://karinderyawiki.com/guides/coop-guide',
+    sourceType: 'community-wiki', tier: 3, publisher: 'Karinderya Wiki', accessedAt: '2026-09-09',
+    notes: 'Reports a six-player server capacity and normal Roblox joining. Useful as a cross-check only; shared ownership, cash, inventory, progress and host rules remain undocumented.',
+  },
+  {
+    id: 'community-layout-guide-2026-09-09',
+    title: 'Karinderya Restaurant Layout Guide',
+    url: 'https://karinderyagame.wiki/guides/restaurant-layout/',
+    sourceType: 'guide-site', tier: 3, publisher: 'Karinderya Game Wiki', accessedAt: '2026-09-09',
+    notes: 'Provides layout-topic discovery but includes unsupported pathing, efficiency and optimization claims. It is not sufficient evidence for hidden bonuses or a best layout.',
+  },
+];
+
+export const sourceById = new Map(v3Sources.map((source) => [source.id, source]));

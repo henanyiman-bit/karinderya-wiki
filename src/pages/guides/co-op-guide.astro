@@ -1,21 +1,23 @@
 ---
-import ContentPage from '../../components/ContentPage.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GuideArticle from '../../components/v2/templates/GuideArticle.astro';
 import FAQ from '../../components/FAQ.astro';
 import { siteImages } from '../../data/images';
+import { getPageSEO } from '../../utils/seo';
 
 const faqItems = [
-  { question: 'Do all players need to follow the same task?', answer: 'No. Teammates can divide visible restaurant work and change focus when another area needs attention.' },
-  { question: 'What should a group organize first?', answer: 'Start with the current customer-service workflow and make sure each active task has a clear owner.' },
+  { question: 'Does Karinderya support co-op?', answer: 'Yes. The official Roblox description calls Karinderya a co-op restaurant simulator.' },
+  { question: 'How many players can share a server?', answer: 'Third-party Roblox metadata reports a six-player server cap, but this guide does not treat that as a permanent creator promise.' },
+  { question: 'Are Cash, inventory, and progress shared?', answer: 'The official description does not document those rules. Check them in the current game before planning a shared session.' },
   { question: 'How are Workers different from teammates?', answer: 'Players coordinate directly with one another. Use the Workers Hub for information about Worker support inside restaurant management.' },
 ];
 ---
 
-<ContentPage
-  title="Karinderya Co-op Guide"
-  description="Learn how to organize a Karinderya co-op session, divide restaurant tasks, and coordinate service with other players."
+<BaseLayout pageId="guides-co-op-guide" breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Guides', href: '/guides/' }, { label: getPageSEO('guides-co-op-guide').h1 }]}>
+<GuideArticle
+  title={getPageSEO('guides-co-op-guide').h1}
   kicker="Team play guide"
-  intro="Coordinate teammates around the restaurant work that needs attention now."
-  parent={{ label: 'Guides', href: '/guides/' }}
+  intro="Karinderya officially supports co-op play, while ownership, shared resources, and progression rules still require current in-game confirmation."
   tableOfContents
   heroImage={siteImages.beginnerGuideHero}
   nextPage={{ label: 'Cooking and Serving Guide', href: '/guides/cooking-and-serving/' }}
@@ -26,14 +28,14 @@ const faqItems = [
     { label: 'Restaurant Layout Guide', href: '/guides/restaurant-layout/', description: 'Keep team movement routes easy to follow.' },
   ]}
 >
-  <h2 id="introduction">Introduction</h2>
-  <p>Co-op play becomes easier to manage when teammates communicate about visible restaurant tasks. Use roles as flexible labels for the current session rather than assuming every group must follow one fixed setup.</p>
+  <h2 id="does-karinderya-support-co-op">Does Karinderya Support Co-op?</h2>
+  <p>Yes. SILOG’s official Roblox description identifies Karinderya as a “Co-op Restaurant Simulator.” That confirms multiplayer as part of the game, but it does not define shared Cash, inventory, restaurant ownership, rating, Worker access, or host progression.</p>
 
   <h2 id="overview">Overview</h2>
-  <p>The restaurant workflow includes customer attention, order information, ingredients, cooking, serving, and supplies. Teammates can watch different parts of that workflow and change focus whenever another area needs help.</p>
+  <p>Players join through Roblox’s multiplayer environment. Public Roblox metadata reported by third-party trackers shows a six-player server capacity, but server capacity alone does not prove that all six players share every restaurant system.</p>
 
-  <h2 id="how-it-works">How It Works</h2>
-  <p>Players coordinate directly by deciding who will follow each visible task. The exact division can change with the restaurant, group size, and current workload. The goal is simply to prevent several teammates from repeating one action while another task is overlooked.</p>
+  <h2 id="how-it-works">What Players Can Do Together</h2>
+  <p>The official listing confirms the co-op format. Dated gameplay also shows players present in the restaurant environment, but the exact permissions for cooking, serving, building, and management have not been documented by the developer. Treat the current prompts as the authority for what a guest can do.</p>
 
   <h2 id="team-planning-process">Team Planning Process</h2>
   <ol>
@@ -54,6 +56,9 @@ const faqItems = [
   </ul>
   <p>These are planning labels, not mandatory game roles. Change them whenever the current restaurant needs a different arrangement.</p>
 
+  <h2 id="shared-systems">What Is Shared</h2>
+  <p>Shared Cash, inventory, Workers, rating, restaurant ownership, and saved progress are not confirmed by the official description. Test these systems with the current host and guests before making purchases or assuming that an action affects every player.</p>
+
   <h2 id="gameplay-tips">Gameplay Tips</h2>
   <ul>
     <li>Use clear messages when handing a task to another player.</li>
@@ -70,5 +75,6 @@ const faqItems = [
     <li>Assuming every group should divide work in the same way.</li>
   </ul>
 
-  <FAQ items={faqItems} />
-</ContentPage>
+  <FAQ slot="faq" items={faqItems} />
+</GuideArticle>
+</BaseLayout>

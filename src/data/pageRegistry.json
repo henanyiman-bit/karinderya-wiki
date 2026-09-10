@@ -1,0 +1,899 @@
+{
+  "site": "https://karinderya.ymmyi.wiki",
+  "trailingSlash": "always",
+  "pages": [
+    {
+      "id": "home",
+      "path": "/",
+      "pageType": "homepage",
+      "contentKey": "home",
+      "parentId": null,
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 100,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Roblox Wiki: Codes, Guides & Game Information",
+        "h1": "Karinderya Wiki",
+        "description": "An independent English wiki for the Karinderya Roblox experience, with player guides to codes, food, recipes, workers, equipment, and updates.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "codes",
+      "path": "/codes/",
+      "pageType": "guide",
+      "contentKey": "codes",
+      "parentId": "home",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 90,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Codes Guide | Karinderya Wiki",
+        "h1": "Karinderya Codes Guide",
+        "description": "Learn how the Karinderya code system works, how to enter codes, and what to check when a code is not accepted.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "food",
+      "path": "/food/",
+      "pageType": "category",
+      "contentKey": "food",
+      "parentId": "home",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 85,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Food Guide & Directory | Karinderya Wiki",
+        "h1": "Karinderya Food",
+        "description": "Explore Karinderya food categories and learn how food connects with recipes, ingredients, and restaurant service.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "recipes",
+      "path": "/recipes/",
+      "pageType": "category",
+      "contentKey": "recipes",
+      "parentId": "home",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 85,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Recipes Guide & Cooking Flow | Karinderya Wiki",
+        "h1": "Karinderya Recipes & Orders",
+        "description": "Learn how Recipes connect ingredients, cooking, and food orders in Karinderya with beginner-friendly guides and restaurant workflow tips.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "workers",
+      "path": "/workers/",
+      "pageType": "category",
+      "contentKey": "workers",
+      "parentId": "home",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 80,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Workers Guide & Contracts | Karinderya Wiki",
+        "h1": "Karinderya Workers & Contracts",
+        "description": "Learn how Workers, Contracts, and Manual Assign work in Karinderya, with beginner tips and related restaurant management guides.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "equipment",
+      "path": "/equipment/",
+      "pageType": "category",
+      "contentKey": "equipment",
+      "parentId": "home",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 80,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Equipment Guide & Directory | Karinderya Wiki",
+        "h1": "Equipment",
+        "description": "Explore Karinderya equipment, including Stoves and the Chiller, and learn how restaurant tools fit into cooking and service management.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "guides",
+      "path": "/guides/",
+      "pageType": "directory",
+      "contentKey": "guides",
+      "parentId": "home",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 80,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Guides | Karinderya Wiki",
+        "h1": "Guides",
+        "description": "Explore Karinderya guides for cooking, workers, equipment, furniture, layout, and restaurant management.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "updates",
+      "path": "/updates/",
+      "pageType": "directory",
+      "contentKey": "updates",
+      "parentId": "home",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 75,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Updates | Karinderya Wiki",
+        "h1": "Karinderya Updates",
+        "description": "Browse dated Karinderya update records with clearly separated official information and community-reported changes.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "about",
+      "path": "/about/",
+      "pageType": "information",
+      "contentKey": "about",
+      "parentId": "home",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 20,
+      "legacyPaths": [],
+      "seo": {
+        "title": "About | Karinderya Wiki",
+        "h1": "About",
+        "description": "Learn about the purpose, editorial approach, and independence of Karinderya Wiki.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "contact",
+      "path": "/contact/",
+      "pageType": "information",
+      "contentKey": "contact",
+      "parentId": "home",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": false,
+      "navigationPriority": 0,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Contact | Karinderya Wiki",
+        "h1": "Contact",
+        "description": "Find out how to contact Karinderya Wiki about corrections, feedback, and site questions.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "privacy-policy",
+      "path": "/privacy-policy/",
+      "pageType": "policy",
+      "contentKey": "privacy-policy",
+      "parentId": "home",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": false,
+      "navigationPriority": 0,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Privacy Policy | Karinderya Wiki",
+        "h1": "Privacy Policy",
+        "description": "Read the privacy policy for Karinderya Wiki and learn how website data may be handled.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "terms",
+      "path": "/terms/",
+      "pageType": "policy",
+      "contentKey": "terms",
+      "parentId": "home",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": false,
+      "navigationPriority": 0,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Terms of Use | Karinderya Wiki",
+        "h1": "Terms of Use",
+        "description": "Review the terms that apply when using the independent Karinderya Wiki website.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "disclaimer",
+      "path": "/disclaimer/",
+      "pageType": "policy",
+      "contentKey": "disclaimer",
+      "parentId": "home",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": false,
+      "navigationPriority": 0,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Disclaimer | Karinderya Wiki",
+        "h1": "Disclaimer",
+        "description": "Read the independence, accuracy, and game-information disclaimer for Karinderya Wiki.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "grocery",
+      "path": "/grocery/",
+      "pageType": "category",
+      "contentKey": "grocery",
+      "parentId": "home",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 82,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Grocery | Karinderya Wiki",
+        "h1": "Karinderya Grocery",
+        "description": "Learn how the Karinderya grocery connects ingredients, recipes, food, and restaurant workflow.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "ingredients",
+      "path": "/ingredients/",
+      "pageType": "category",
+      "contentKey": "ingredients",
+      "parentId": "home",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 78,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Ingredients Guide & Directory | Karinderya Wiki",
+        "h1": "Karinderya Ingredients",
+        "description": "Explore Karinderya ingredients and learn how they connect with grocery, recipes, cooking, and restaurant food systems.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "furniture",
+      "path": "/furniture/",
+      "pageType": "category",
+      "contentKey": "furniture",
+      "parentId": "home",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 82,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Furniture Guide & Directory | Karinderya Wiki",
+        "h1": "Karinderya Furniture",
+        "description": "Explore Karinderya furniture categories and learn how tables, chairs, and restaurant layouts support gameplay planning.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "furniture-tables",
+      "path": "/furniture/tables/",
+      "pageType": "directory",
+      "contentKey": "furniture-tables",
+      "parentId": "furniture",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 76,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Tables | Karinderya Wiki",
+        "h1": "Karinderya Tables",
+        "description": "Browse Karinderya table entries and learn how tables fit into dining-area and restaurant layout planning.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "furniture-chairs",
+      "path": "/furniture/chairs/",
+      "pageType": "directory",
+      "contentKey": "furniture-chairs",
+      "parentId": "furniture",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 70,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Chairs | Karinderya Wiki",
+        "h1": "Karinderya Chairs",
+        "description": "Review the Karinderya Chairs category, its relationship to furniture and tables, and which chair entries still need confirmation.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "ingredient-rice",
+      "path": "/ingredients/rice/",
+      "pageType": "entity",
+      "contentKey": "ingredients-rice",
+      "parentId": "ingredients",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 70,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Rice | Karinderya Wiki",
+        "h1": "Karinderya Rice",
+        "description": "Explore Rice in Karinderya and learn how this ingredient connects with grocery planning, recipes, cooking, and food service.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "ingredient-condiments",
+      "path": "/ingredients/condiments/",
+      "pageType": "entity",
+      "contentKey": "ingredients-condiments",
+      "parentId": "ingredients",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 69,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Condiments | Karinderya Wiki",
+        "h1": "Karinderya Condiments",
+        "description": "Explore Condiments in Karinderya and learn how this ingredient category connects with grocery planning, recipes, cooking, and food service.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "ingredient-eggs",
+      "path": "/ingredients/eggs/",
+      "pageType": "entity",
+      "contentKey": "ingredients-eggs",
+      "parentId": "ingredients",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 68,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Eggs | Karinderya Wiki",
+        "h1": "Karinderya Eggs",
+        "description": "Explore Eggs in Karinderya and learn how this ingredient connects with grocery planning, recipes, cooking, and food service.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "ingredient-vegetables",
+      "path": "/ingredients/vegetables/",
+      "pageType": "entity",
+      "contentKey": "ingredients-vegetables",
+      "parentId": "ingredients",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 68,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Vegetables | Karinderya Wiki",
+        "h1": "Karinderya Vegetables",
+        "description": "Explore Vegetables in Karinderya and learn how this ingredient category connects with grocery planning, recipes, cooking, and food service.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "ingredient-bangus",
+      "path": "/ingredients/bangus/",
+      "pageType": "entity",
+      "contentKey": "ingredients-bangus",
+      "parentId": "ingredients",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 68,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Bangus | Karinderya Wiki",
+        "h1": "Karinderya Bangus",
+        "description": "Explore Bangus in Karinderya and learn how this ingredient connects with grocery planning, recipes, cooking, and food service.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "ingredient-pork",
+      "path": "/ingredients/pork/",
+      "pageType": "entity",
+      "contentKey": "ingredients-pork",
+      "parentId": "ingredients",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 68,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Pork | Karinderya Wiki",
+        "h1": "Karinderya Pork",
+        "description": "Explore Pork in Karinderya and learn how this ingredient connects with grocery planning, recipes, cooking, and food service.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "ingredient-beef",
+      "path": "/ingredients/beef/",
+      "pageType": "entity",
+      "contentKey": "ingredients-beef",
+      "parentId": "ingredients",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 68,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Beef | Karinderya Wiki",
+        "h1": "Karinderya Beef",
+        "description": "Explore Beef in Karinderya and learn how this ingredient connects with grocery planning, recipes, cooking, and food service.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "furniture-plank-table",
+      "path": "/furniture/plank-table/",
+      "pageType": "entity",
+      "contentKey": "furniture-plank-table",
+      "parentId": "furniture-tables",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 72,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Plank Table | Karinderya Wiki",
+        "h1": "Karinderya Plank Table",
+        "description": "Learn how the Karinderya Plank Table fits into the Tables directory, dining area, and restaurant layout.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "furniture-wood-table",
+      "path": "/furniture/wood-table/",
+      "pageType": "entity",
+      "contentKey": "furniture-wood-table",
+      "parentId": "furniture-tables",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 72,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Wood Table | Karinderya Wiki",
+        "h1": "Karinderya Wood Table",
+        "description": "Learn how the Karinderya Wood Table fits into the Tables directory, dining area, and restaurant layout.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "furniture-red-wooden-table",
+      "path": "/furniture/red-wooden-table/",
+      "pageType": "entity",
+      "contentKey": "furniture-red-wooden-table",
+      "parentId": "furniture-tables",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 70,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Red Wooden Table | Karinderya Wiki",
+        "h1": "Karinderya Red Wooden Table",
+        "description": "Learn how the Karinderya Red Wooden Table fits into the Tables directory, dining area, and restaurant layout.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "decorations",
+      "path": "/decorations/",
+      "pageType": "category",
+      "contentKey": "decorations",
+      "parentId": "home",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 82,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Decorations | Karinderya Wiki",
+        "h1": "Karinderya Decorations",
+        "description": "Explore Karinderya decorations, Tiles, customization, and restaurant layout planning.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "decorations-tiles",
+      "path": "/decorations/tiles/",
+      "pageType": "entity",
+      "contentKey": "decorations-tiles",
+      "parentId": "decorations",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 74,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Tiles | Karinderya Wiki",
+        "h1": "Karinderya Tiles",
+        "description": "Learn how Tiles fit into Karinderya decoration, surface customization, and restaurant layout planning.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "equipment-stoves",
+      "path": "/equipment/stoves/",
+      "pageType": "directory",
+      "contentKey": "equipment-stoves",
+      "parentId": "equipment",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 78,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Stoves | Karinderya Wiki",
+        "h1": "Karinderya Stoves",
+        "description": "Browse Karinderya Stoves and learn how cooking equipment fits into the kitchen and restaurant workflow.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "equipment-deluxe-stove",
+      "path": "/equipment/deluxe-stove/",
+      "pageType": "entity",
+      "contentKey": "equipment-deluxe-stove",
+      "parentId": "equipment-stoves",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 74,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Deluxe Stove | Karinderya Wiki",
+        "h1": "Karinderya Deluxe Stove",
+        "description": "Explore the Deluxe Stove in Karinderya and learn how this equipment entry connects with kitchen and restaurant workflow.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "equipment-basic-stove",
+      "path": "/equipment/basic-stove/",
+      "pageType": "entity",
+      "contentKey": "equipment-basic-stove",
+      "parentId": "equipment-stoves",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 72,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Basic Stove | Karinderya Wiki",
+        "h1": "Karinderya Basic Stove",
+        "description": "Explore the Basic Stove in Karinderya and learn how this equipment entry connects with kitchen and restaurant workflow.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "equipment-standard-stove",
+      "path": "/equipment/standard-stove/",
+      "pageType": "entity",
+      "contentKey": "equipment-standard-stove",
+      "parentId": "equipment-stoves",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 72,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Standard Stove | Karinderya Wiki",
+        "h1": "Karinderya Standard Stove",
+        "description": "Explore the Standard Stove in Karinderya and learn how this equipment entry connects with kitchen and restaurant workflow.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "equipment-chiller",
+      "path": "/equipment/chiller/",
+      "pageType": "entity",
+      "contentKey": "equipment-chiller",
+      "parentId": "equipment",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 72,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Chiller | Karinderya Wiki",
+        "h1": "Karinderya Chiller",
+        "description": "Review what is currently known about the Karinderya Chiller and which functions, locations, and acquisition details remain unconfirmed.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "guides-beginner-guide",
+      "path": "/guides/beginner-guide/",
+      "pageType": "guide",
+      "contentKey": "guides-beginner-guide",
+      "parentId": "guides",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 86,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Beginner Guide | Karinderya Roblox Wiki",
+        "h1": "Karinderya Beginner Guide",
+        "description": "Learn the Karinderya restaurant workflow, serve customers, organize cooking, and navigate the main Wiki categories.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "guides-5-star-guide",
+      "path": "/guides/5-star-guide/",
+      "pageType": "guide",
+      "contentKey": "guides-5-star-guide",
+      "parentId": "guides",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 76,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya 5-Star Guide | Karinderya Wiki",
+        "h1": "Karinderya 5-Star Guide",
+        "description": "Plan a well-organized Karinderya restaurant by improving service workflow, work areas, order handling, and restaurant management.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "guides-co-op-guide",
+      "path": "/guides/co-op-guide/",
+      "pageType": "guide",
+      "contentKey": "guides-co-op-guide",
+      "parentId": "guides",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 80,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Co-op Guide | Karinderya Wiki",
+        "h1": "Karinderya Co-op Guide",
+        "description": "Learn how to organize a Karinderya co-op session, divide restaurant tasks, and coordinate service with other players.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "guides-cooking-and-serving",
+      "path": "/guides/cooking-and-serving/",
+      "pageType": "guide",
+      "contentKey": "guides-cooking-and-serving",
+      "parentId": "guides",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 80,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Cooking and Serving Guide | Karinderya Wiki",
+        "h1": "Karinderya Cooking and Serving Guide",
+        "description": "Follow the Karinderya restaurant workflow from an order through ingredients, cooking, food preparation, and serving.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "guides-how-to-hire-workers",
+      "path": "/guides/how-to-hire-workers/",
+      "pageType": "guide",
+      "contentKey": "guides-how-to-hire-workers",
+      "parentId": "guides",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 79,
+      "legacyPaths": [],
+      "seo": {
+        "title": "How to Hire Workers in Karinderya | Karinderya Wiki",
+        "h1": "How to Hire Workers in Karinderya",
+        "description": "Learn how to review Worker options, plan restaurant staffing, and understand Manual Assign in Karinderya.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "guides-restaurant-layout",
+      "path": "/guides/restaurant-layout/",
+      "pageType": "guide",
+      "contentKey": "guides-restaurant-layout",
+      "parentId": "guides",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 78,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Restaurant Layout Guide | Karinderya Wiki",
+        "h1": "Karinderya Restaurant Layout Guide",
+        "description": "Plan a practical Karinderya restaurant layout with clear dining areas, kitchen workspaces, and movement routes.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "guides-upgrade-priority",
+      "path": "/guides/upgrade-priority/",
+      "pageType": "guide",
+      "contentKey": "guides-upgrade-priority",
+      "parentId": "guides",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 79,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Upgrade Priority Guide | Karinderya Wiki",
+        "h1": "Karinderya Upgrade Priority Guide",
+        "description": "Plan Karinderya restaurant improvements by identifying workflow problems and choosing equipment, furniture, or staffing around current needs.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "guides-counter-upgrades",
+      "path": "/guides/counter-upgrades/",
+      "pageType": "guide",
+      "contentKey": "guides-counter-upgrades",
+      "parentId": "guides",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 72,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Counter Guide | Karinderya Wiki",
+        "h1": "Karinderya Counter Guide",
+        "description": "Review the documented Karinderya Counter Upgrade feature, current evidence, and details that still require in-game confirmation.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "guides-choopy-mystery-box",
+      "path": "/guides/choopy-mystery-box/",
+      "pageType": "guide",
+      "contentKey": "guides-choopy-mystery-box",
+      "parentId": "guides",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 72,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Choopy Mystery Box Guide | Karinderya Wiki",
+        "h1": "Karinderya Choopy Mystery Box Guide",
+        "description": "Learn how dated gameplay shows the Karinderya Choopy access, delivery, and item-placement flow without relying on unconfirmed rewards.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "guides-how-to-sell-furniture",
+      "path": "/guides/how-to-sell-furniture/",
+      "pageType": "guide",
+      "contentKey": "guides-how-to-sell-furniture",
+      "parentId": "guides",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 78,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Can You Sell Furniture in Karinderya? | Wiki",
+        "h1": "Can You Sell Furniture in Karinderya?",
+        "description": "Find out whether furniture selling is confirmed in Karinderya and how to check the actions available in the current game interface.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "guides-shop-restock",
+      "path": "/guides/shop-restock/",
+      "pageType": "guide",
+      "contentKey": "guides-shop-restock",
+      "parentId": "guides",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 76,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Shop Restock Guide | Karinderya Wiki",
+        "h1": "Karinderya Shop Restock Guide",
+        "description": "Plan Karinderya restaurant resources by reviewing current shop information, ingredient needs, and related Wiki categories.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    },
+    {
+      "id": "updates-decorations-part-1",
+      "path": "/updates/decorations-part-1/",
+      "pageType": "update",
+      "contentKey": "updates-decorations-part-1",
+      "parentId": "updates",
+      "indexable": true,
+      "includeInSitemap": true,
+      "searchable": true,
+      "navigationPriority": 79,
+      "legacyPaths": [],
+      "seo": {
+        "title": "Karinderya Decorations Part 1 Update | Karinderya Wiki",
+        "h1": "Karinderya Decorations Part 1 Update",
+        "description": "Review the dated Karinderya Decorations Part 1 record, documented customization changes, related codes, and evidence limits.",
+        "ogType": "website",
+        "ogImageKey": null
+      }
+    }
+  ]
+}

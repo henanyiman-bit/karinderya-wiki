@@ -1,0 +1,148 @@
+---
+import PageHeader from '../layout/PageHeader.astro';
+import PageShell from '../layout/PageShell.astro';
+import AdSlot from '../../AdSlot.astro';
+import RelatedContent, { type RelatedContentItem } from '../../RelatedContent.astro';
+import ResponsiveImage from '../../ResponsiveImage.astro';
+import TableOfContents from '../../TableOfContents.astro';
+import WikiCard from '../../WikiCard.astro';
+import type { ResponsiveImageAsset } from '../../../data/images';
+
+interface CategoryCard {
+  title: string;
+  description: string;
+  href?: string;
+  icon?: string;
+  status?: string;
+}
+
+interface Props {
+  title: string;
+  intro: string;
+  kicker?: string;
+  heroImage?: ResponsiveImageAsset;
+  relatedLinks?: RelatedContentItem[];
+  relatedHeading?: string;
+  tableOfContents?: boolean;
+  cards?: CategoryCard[];
+  browseHeading?: string;
+  copyHeading?: string;
+  note?: string;
+  adSlots?: boolean;
+}
+
+const {
+  title,
+  intro,
+  kicker,
+  heroImage,
+  relatedLinks = [],
+  relatedHeading = 'Related Content',
+  tableOfContents = false,
+  cards = [],
+  browseHeading,
+  copyHeading = 'About this section',
+  note,
+  adSlots = false,
+} = Astro.props;
+const hasDirectory = cards.length > 0;
+const resolvedBrowseHeading = browseHeading ?? `Browse ${title}`;
+---
+
+<PageShell
+  sidebar={tableOfContents}
+  sidebarAriaLabel="Page navigation"
+  class="v2-category-hub"
+>
+  <PageHeader title={title} intro={intro} eyebrow={kicker}>
+    {heroImage && (
+      <ResponsiveImage
+        slot="media"
+        image={heroImage}
+        priority
+        sizes="(max-width: 760px) calc(100vw - 32px), 320px"
+        class="v2-category-hub__image"
+      />
+    )}
+  </PageHeader>
+
+  {adSlots && <AdSlot placement="top" />}
+
+  {hasDirectory ? (
+    <div id="article-content" class="v2-category-hub__content">
+      {note && <p class="notice">{note}</p>}
+      <section class="section" aria-labelledby="browse-heading">
+        <div class="section-heading">
+          <div>
+            <h2 id="browse-heading">{resolvedBrowseHeading}</h2>
+            <p>Browse guides, databases, and related pages in this section.</p>
+          </div>
+        </div>
+        <div class="card-grid">
+          {cards.map((card) => <WikiCard {...card} />)}
+        </div>
+      </section>
+      {adSlots && <AdSlot placement="content-1" />}
+      <section class="content-panel v2-category-hub__copy">
+        <h2>{copyHeading}</h2>
+        <slot />
+      </section>
+    </div>
+  ) : (
+    <article id="article-content" class="content-panel v2-category-hub__content">
+      <slot />
+    </article>
+  )}
+
+  <RelatedContent items={relatedLinks} heading={relatedHeading} />
+  {adSlots && <AdSlot placement="bottom" />}
+
+  {tableOfContents && (
+    <TableOfContents slot="sidebar" articleId="article-content" />
+  )}
+</PageShell>
+
+<style>
+  .v2-category-hub {
+    padding-block: var(--v2-space-3) var(--v2-space-7);
+  }
+
+  :global(.v2-category-hub__image) {
+    overflow: hidden;
+    border: 1px solid var(--v2-border-color);
+    border-radius: var(--v2-radius-large);
+    box-shadow: var(--v2-shadow-soft);
+  }
+
+  :global(.v2-category-hub__image img) {
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .v2-category-hub__content {
+    min-width: 0;
+  }
+
+  .v2-category-hub__copy {
+    margin-block: var(--v2-space-6);
+  }
+
+  .v2-category-hub__content :global(h2),
+  .v2-category-hub__content :global(h3) {
+    scroll-margin-top: var(--v2-sidebar-sticky-top);
+  }
+
+  .v2-category-hub__content :global(.card-grid) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: 680px) {
+    .v2-category-hub {
+      padding-block-start: 0;
+    }
+
+    .v2-category-hub__content :global(.card-grid) {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

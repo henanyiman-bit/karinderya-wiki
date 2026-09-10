@@ -1,45 +1,50 @@
 ---
-import ContentPage from '../components/ContentPage.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 import WikiCard from '../components/WikiCard.astro';
+import CategoryHub from '../components/v2/templates/CategoryHub.astro';
 import { ingredientEntities } from '../data/entities';
 import { siteImages } from '../data/images';
+import { getPageSEO } from '../utils/seo';
 
 const ingredientOrder = ['rice', 'eggs', 'vegetables', 'bangus', 'pork', 'beef', 'condiments'];
 const ingredientDirectory = ingredientOrder
   .map((slug) => ingredientEntities.find((item) => item.slug === slug))
   .filter((item) => item !== undefined);
+const pageSEO = getPageSEO('ingredients');
+const relatedLinks = [
+  { label: 'Beginner Guide', href: '/guides/beginner-guide/', description: 'Learn where ingredients fit into the complete restaurant service loop.' },
+  { label: 'Recipe Guide', href: '/recipes/', description: 'Understand how ingredients connect with recipes, cooking, food, and orders.' },
+  { label: 'Cooking and Serving Guide', href: '/guides/cooking-and-serving/', description: 'Follow ingredients through preparation and the customer-service workflow.' },
+  { label: 'Food Guide', href: '/food/', description: 'Explore the wider food category and its connected Wiki sections.' },
+];
 ---
 
-<ContentPage
-  title="Karinderya Ingredients"
-  seoTitle="Karinderya Ingredients Guide & Directory | Karinderya Wiki"
-  description="Explore Karinderya ingredients and learn how they connect with grocery, recipes, cooking, and restaurant food systems."
-  kicker="Ingredient hub"
-  intro="Browse ingredient entries and learn how supplies connect Grocery information with recipes, food, and customer orders."
-  relatedLinks={[
-    { label: 'Beginner Guide', href: '/guides/beginner-guide/', description: 'Learn where ingredients fit into the complete restaurant service loop.' },
-    { label: 'Recipe Guide', href: '/recipes/', description: 'Understand how ingredients connect with recipes, cooking, food, and orders.' },
-    { label: 'Cooking and Serving Guide', href: '/guides/cooking-and-serving/', description: 'Follow ingredients through preparation and the customer-service workflow.' },
-    { label: 'Food Guide', href: '/food/', description: 'Explore the wider food category and its connected Wiki sections.' },
-  ]}
-  relatedHeading="Related Guides"
-  sourceIds={['codex-menu', 'wiki-menu', 'wiki-money']}
-  heroImage={siteImages.ingredientsHero}
-  tableOfContents
+<BaseLayout
+  pageId="ingredients"
+  breadcrumbs={[{ label: 'Home', href: '/' }, { label: pageSEO.h1 }]}
 >
+  <CategoryHub
+    title={pageSEO.h1}
+    kicker="Ingredient hub"
+    intro="Browse the Karinderya ingredient directory and open an individual entry for focused Wiki information."
+    relatedLinks={relatedLinks}
+    relatedHeading="Related Guides"
+    heroImage={siteImages.ingredientsHero}
+    tableOfContents
+  >
   <h2 id="introduction">Introduction</h2>
-  <p>Ingredients are the foundation that connects Grocery information with recipes, cooking, food, and customer orders in Karinderya. This hub organizes individual ingredient entries and helps players move between each related Wiki section.</p>
+  <p>This hub is the directory for individual ingredients currently covered by the Karinderya Wiki. It helps players find a named ingredient first, then move to the separate Grocery, Recipe, Food, or cooking guide when broader context is needed.</p>
   <p>Use the directory for information about a specific ingredient, the <a href="/recipes/">Recipe Guide</a> for preparation relationships, and the <a href="/food/">Food Guide</a> for the wider food category.</p>
 
   <h2 id="how-ingredients-work">How Ingredients Work</h2>
-  <p>Ingredient information moves through several connected restaurant systems:</p>
+  <p>Ingredient entries sit between several separate Wiki topics:</p>
   <p><strong>Grocery → Ingredients → Recipes → Food → Orders</strong></p>
   <ul>
-    <li><strong>Grocery</strong> organizes the store-facing side of ingredient management.</li>
-    <li><strong>Ingredients</strong> identify the individual supplies connected with preparation.</li>
-    <li><strong>Recipes</strong> connect ingredient information with the cooking workflow.</li>
-    <li><strong>Food</strong> organizes prepared menu information.</li>
-    <li><strong>Orders</strong> bring those systems together during customer service.</li>
+    <li><strong>Grocery</strong> covers sourcing and management questions.</li>
+    <li><strong>Ingredients</strong> provides the individual item directory.</li>
+    <li><strong>Recipes</strong> covers documented preparation relationships.</li>
+    <li><strong>Food</strong> covers prepared restaurant items.</li>
+    <li><strong>Orders</strong> are handled in the task-focused cooking and serving guide.</li>
   </ul>
 
   <h2 id="featured-content">Featured Content</h2>
@@ -54,7 +59,7 @@ const ingredientDirectory = ingredientOrder
   <div class="card-grid">
     {ingredientDirectory.map((item) => {
       const name = item.title.replace('Karinderya ', '');
-      return <WikiCard title={name} description={`Open the ${name} ingredient entry and browse its related Wiki sections.`} href={`/ingredients/${item.slug}/`} icon={name.charAt(0)} />;
+      return <WikiCard title={name} description={`Open the ${name} ingredient entry.`} href={`/ingredients/${item.slug}/`} icon={name.charAt(0)} />;
     })}
   </div>
 
@@ -70,4 +75,5 @@ const ingredientDirectory = ingredientOrder
     <li>Use the Grocery Guide when the restaurant needs supplies and the Food Guide for prepared menu information.</li>
     <li>Return to the Cooking and Serving Guide when you need the complete customer-service workflow.</li>
   </ul>
-</ContentPage>
+  </CategoryHub>
+</BaseLayout>

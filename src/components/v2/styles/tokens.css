@@ -1,0 +1,38 @@
+:root {
+  --v2-page-max-width: 1200px;
+  --v2-content-max-width: 800px;
+  --v2-sidebar-width: 260px;
+  --v2-layout-gap: 32px;
+  --v2-page-padding-desktop: 24px;
+  --v2-page-padding-mobile: 16px;
+
+  --v2-font-size-body: 1rem;
+  --v2-font-size-small: 0.875rem;
+  --v2-font-size-h1: clamp(2rem, 4vw, 3rem);
+  --v2-font-size-h2: clamp(1.5rem, 3vw, 1.875rem);
+  --v2-font-size-h3: clamp(1.125rem, 2vw, 1.3125rem);
+  --v2-font-size-label: 0.8125rem;
+  --v2-line-height-body: 1.7;
+  --v2-line-height-heading: 1.2;
+
+  --v2-space-1: 0.25rem;
+  --v2-space-2: 0.5rem;
+  --v2-space-3: 0.75rem;
+  --v2-space-4: 1rem;
+  --v2-space-5: 1.5rem;
+  --v2-space-6: 2rem;
+  --v2-space-7: 3rem;
+
+  --v2-radius-small: 0.5rem;
+  --v2-radius-medium: 0.75rem;
+  --v2-radius-large: 1.125rem;
+
+  --v2-page-background: var(--page, #f8f5f1);
+  --v2-card-background: var(--surface, #fffdfa);
+  --v2-muted-surface: #f3eee9;
+  --v2-border-color: var(--border, #eadfd7);
+  --v2-text-color: var(--ink, #2d2622);
+  --v2-muted-color: var(--muted, #71655e);
+  --v2-shadow-soft: 0 8px 24px rgb(55 38 28 / 8%);
+  --v2-sidebar-sticky-top: 88px;
+}

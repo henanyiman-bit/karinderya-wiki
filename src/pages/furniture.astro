@@ -1,7 +1,10 @@
 ---
-import WikiPage from '../components/WikiPage.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 import WikiCard from '../components/WikiCard.astro';
+import CategoryHub from '../components/v2/templates/CategoryHub.astro';
 import { siteImages } from '../data/images';
+import { getPageSEO } from '../utils/seo';
+const pageSEO = getPageSEO('furniture');
 
 const cards = [
   { title: 'Tables', description: 'Browse the table category and its existing furniture entries.', href: '/furniture/tables/', icon: 'T' },
@@ -9,14 +12,12 @@ const cards = [
 ];
 ---
 
-<WikiPage
-  title="Karinderya Furniture"
-  seoTitle="Karinderya Furniture Guide & Directory | Karinderya Wiki"
-  description="Explore Karinderya furniture categories and learn how tables, chairs, and restaurant layouts support gameplay planning."
+<BaseLayout pageId="furniture" breadcrumbs={[{ label: 'Home', href: '/' }, { label: pageSEO.h1 }]}>
+<CategoryHub
+  title={pageSEO.h1}
   kicker="Dining area hub"
-  intro="Browse furniture categories and learn how tables, chairs, and restaurant layout choices shape usable space."
+  intro="Browse the Tables and Chairs directories and find guidance for restaurant layout and furniture management."
   cards={cards}
-  sourceIds={['wiki-furniture']}
   relatedLinks={[
     { label: 'Beginner Guide', href: '/guides/beginner-guide/', description: 'Learn how furniture fits into the complete restaurant service loop.' },
     { label: 'Restaurant Layout Guide', href: '/guides/restaurant-layout/', description: 'Plan customer, work, and movement areas before arranging furniture.' },
@@ -28,19 +29,21 @@ const cards = [
   browseHeading="Furniture Directory"
   copyHeading="Introduction"
   relatedHeading="Related Guides"
+  adSlots
 >
-  <p>Furniture organizes the areas used by customers and players inside the restaurant. Tables and chairs belong to the dining area, while equipment supports restaurant tasks and decorations focus on visual customization.</p>
+  <p>Furniture is the Wiki category for Tables, Chairs, and their relationship with restaurant layout. Equipment remains a separate category for restaurant tools, while Decorations covers visual customization.</p>
   <p>This hub keeps those topics separate and provides the main entry point for furniture categories, layout guidance, and restaurant-planning information.</p>
 
   <h2 id="how-furniture-works">How Furniture Works</h2>
-  <p>Tables and chairs help define where customers use the dining area. Their placement also affects how clearly players can recognize customer space, work space, and the paths between them.</p>
-  <p>Layout planning focuses on arranging those areas around the way the restaurant is actually used. Replacement is part of that process: move or replace furniture when the current arrangement makes an area difficult to understand or operate.</p>
+  <p>Tables and Chairs are organized as separate directories. The Tables directory links to the table entries currently present in the Wiki; the Chairs directory remains a category page because individual Chair names have not been confirmed for publication.</p>
+  <p>Layout planning connects furniture with customer areas, work areas, and movement paths. The Wiki does not assign hidden effects or guaranteed outcomes to a furniture arrangement.</p>
 
   <h2 id="featured-content">Featured Content</h2>
   <div class="card-grid">
     <WikiCard title="Furniture Directory" description="Browse the Tables and Chairs categories covered by the Wiki." href="#browse-heading" icon="F" />
     <WikiCard title="Layout Guide" description="Learn how to organize dining, work, and movement areas." href="/guides/restaurant-layout/" icon="L" />
     <WikiCard title="Restaurant Planning Guide" description="Compare furniture changes with other restaurant needs before reorganizing a space." href="/guides/upgrade-priority/" icon="P" />
+    <WikiCard title="Can You Sell Furniture?" description="Review the current answer and options for managing unwanted furniture." href="/guides/how-to-sell-furniture/" icon="?" />
   </div>
 
   <h2 id="layout-planning">Layout Planning</h2>
@@ -63,4 +66,8 @@ const cards = [
     <li>Adjust a limited part of the layout at a time so the result is easier to evaluate.</li>
     <li>Use the Furniture, Equipment, and Decorations sections for their separate planning roles.</li>
   </ul>
-</WikiPage>
+
+  <h2 id="furniture-management">Furniture Management</h2>
+  <p>The Wiki has not confirmed a current selling workflow. Use <a href="/guides/how-to-sell-furniture/">Can You Sell Furniture?</a> for the focused problem-solving page without assuming that a Sell action is available.</p>
+</CategoryHub>
+</BaseLayout>

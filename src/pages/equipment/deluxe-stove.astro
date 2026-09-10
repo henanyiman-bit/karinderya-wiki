@@ -1,14 +1,16 @@
 ---
-import ContentPage from '../../components/ContentPage.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EntityArticle from '../../components/v2/templates/EntityArticle.astro';
 import { entityImages } from '../../data/images';
+import { getPageSEO } from '../../utils/seo';
+const pageSEO = getPageSEO('equipment-deluxe-stove');
 ---
 
-<ContentPage
-  title="Karinderya Deluxe Stove"
-  description="Explore the Deluxe Stove in Karinderya and learn how this equipment entry connects with kitchen and restaurant workflow."
+<BaseLayout pageId="equipment-deluxe-stove" breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Equipment', href: '/equipment/' }, { label: 'Stoves', href: '/equipment/stoves/' }, { label: pageSEO.h1 }]}>
+<EntityArticle
+  title={pageSEO.h1}
   kicker="Equipment profile"
   intro="The Deluxe Stove is a named cooking-equipment entry in the Karinderya Stove directory."
-  parents={[{ label: 'Equipment', href: '/equipment/' }, { label: 'Stoves', href: '/equipment/stoves/' }]}
   heroImage={entityImages.deluxeStove}
   tableOfContents
   previousPage={{ label: 'Standard Stove', href: '/equipment/standard-stove/' }}
@@ -19,17 +21,17 @@ import { entityImages } from '../../data/images';
     { label: 'Beginner Guide', href: '/guides/beginner-guide/', description: 'Learn the main restaurant systems and how they connect.' },
   ]}
 >
-  <h2 id="introduction">Introduction</h2>
-  <p>The Deluxe Stove belongs to the Stoves section of the Equipment directory. This article identifies the named item and connects it with the Wiki’s kitchen and restaurant guides.</p>
+  <h2 id="short-answer">Short Answer</h2>
+  <p>Deluxe Stove is a named stove shown in dated Karinderya placement footage. Historical community records also associate it with old milestone codes, but those records do not establish its current acquisition route.</p>
 
   <h2 id="overview">Overview</h2>
-  <p>As cooking equipment, the Deluxe Stove is associated with the preparation part of restaurant service. Its directory entry is kept separate from broader guidance about recipes, ingredients, and serving.</p>
+  <p>The available capture confirms the name and Stoves category. Reliable current evidence does not establish its price, cooking-time difference, capacity, or unlock requirement.</p>
 
   <h2 id="how-it-works">How It Works</h2>
-  <p>The Stove category connects equipment information with ingredients, recipes, cooking, and serving. The Cooking and Serving Guide explains that complete workflow, while this page remains focused on the Deluxe Stove entry.</p>
+  <p>Select the Deluxe Stove from owned inventory when it is present, then place it through the current customization interface. Follow current cooking prompts rather than assuming performance from the name.</p>
 
-  <h2 id="usage">Usage</h2>
-  <p>Use the Deluxe Stove entry when reviewing cooking equipment or navigating between the Stove directory and wider restaurant guides.</p>
+  <h2 id="usage">How Players Obtain It</h2>
+  <p>Old community code records are historical context only. Check current official code listings, owned inventory, and the live shop; this page does not present an expired milestone reward as a current method.</p>
 
   <h2 id="gameplay-tips">Gameplay Tips</h2>
   <ul>
@@ -37,4 +39,5 @@ import { entityImages } from '../../data/images';
     <li>Use the Equipment Hub when reviewing other restaurant tools and work areas.</li>
     <li>Consult the Cooking and Serving Guide for the full order workflow.</li>
   </ul>
-</ContentPage>
+</EntityArticle>
+</BaseLayout>

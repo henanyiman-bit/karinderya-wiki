@@ -1,7 +1,9 @@
 ---
-import ContentPage from '../../components/ContentPage.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GuideArticle from '../../components/v2/templates/GuideArticle.astro';
 import FAQ from '../../components/FAQ.astro';
 import { siteImages } from '../../data/images';
+import { getPageSEO } from '../../utils/seo';
 
 const faqItems = [
   { question: 'Is there one best restaurant layout?', answer: 'No single arrangement fits every restaurant. Plan around the furniture, equipment, and movement routes in your current space.' },
@@ -10,12 +12,11 @@ const faqItems = [
 ];
 ---
 
-<ContentPage
-  title="Karinderya Restaurant Layout Guide"
-  description="Plan a practical Karinderya restaurant layout with clear dining areas, kitchen workspaces, and movement routes."
+<BaseLayout pageId="guides-restaurant-layout" breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Guides', href: '/guides/' }, { label: getPageSEO('guides-restaurant-layout').h1 }]}>
+<GuideArticle
+  title={getPageSEO('guides-restaurant-layout').h1}
   kicker="Restaurant planning guide"
-  intro="Arrange restaurant spaces so dining, cooking, and serving areas remain easy to understand."
-  parent={{ label: 'Guides', href: '/guides/' }}
+  intro="Use visible interactions and movement problems to decide what to change without relying on an unverified best layout."
   tableOfContents
   heroImage={siteImages.furnitureHero}
   previousPage={{ label: 'How to Hire Workers', href: '/guides/how-to-hire-workers/' }}
@@ -28,22 +29,22 @@ const faqItems = [
     { label: 'Cooking and Serving Guide', href: '/guides/cooking-and-serving/', description: 'Follow the workflow between kitchen and dining areas.' },
   ]}
 >
-  <h2 id="introduction">Introduction</h2>
-  <p>A clear layout helps players understand where restaurant tasks happen. The goal is not to copy one perfect arrangement, but to organize the dining area, kitchen, and movement routes around the space currently available.</p>
+  <h2 id="what-layout-changes-affect">What Layout Changes Affect</h2>
+  <p>Layout changes the physical arrangement of furniture, equipment, and customization items. Available evidence does not establish a universal optimal layout, hidden rating bonus, profit multiplier, or guaranteed customer-pathing result.</p>
 
   <h2 id="overview">Overview</h2>
-  <p>Furniture identifies customer areas, equipment identifies kitchen work areas, and open routes connect those spaces. Layout planning keeps these roles readable so players can move from one task to the next without losing track of the restaurant workflow.</p>
+  <p>Use the controls and placement feedback shown by the current game. Plan around interactions that are actually visible, then test the route again after changing one area.</p>
 
   <h2 id="how-it-works">How It Works</h2>
-  <p>Each part of the restaurant has a different purpose. The dining area supports customer-facing tasks, the kitchen supports preparation, and movement routes connect the two. Decorations can shape the appearance of the space without replacing clear organization.</p>
+  <p>The Tables, Chairs, Stoves, Counter, and Decorations pages identify the Wiki topics currently associated with layout. Their exact effects on customers, Workers, rating, or service speed are not assumed here.</p>
 
   <h2 id="space-planning">Space Planning</h2>
   <h3 id="dining-area">Dining Area</h3>
-  <p>Group Tables and Chairs so the customer area is easy to recognize. Keep enough open space to see the furniture and approach the interactions used during service.</p>
+  <p>Use the current placement interface to arrange the table and chair items available to you. The Wiki has not verified a fixed seating formula or a complete official item list.</p>
   <h3 id="kitchen-area">Kitchen Area</h3>
-  <p>Keep cooking equipment together as a readable work area. Arrange the surrounding space so players can identify equipment and continue toward the dining area.</p>
+  <p>Place cooking equipment where its current prompts remain accessible. No verified distance formula or performance bonus is assigned to stove placement.</p>
   <h3 id="movement-routes">Movement Routes</h3>
-  <p>Preserve simple paths between customers, kitchen work, and completed food. If a route becomes confusing, adjust one area and follow the workflow again.</p>
+  <p>Follow the route you actually use between visible interactions. Customer and Worker pathfinding effects have not been confirmed, so judge changes from the current session rather than a claimed universal layout.</p>
 
   <h2 id="layout-review-process">Layout Review Process</h2>
   <ol>
@@ -70,5 +71,6 @@ const faqItems = [
     <li>Leaving no clear route between cooking and serving.</li>
   </ul>
 
-  <FAQ items={faqItems} />
-</ContentPage>
+  <FAQ slot="faq" items={faqItems} />
+</GuideArticle>
+</BaseLayout>

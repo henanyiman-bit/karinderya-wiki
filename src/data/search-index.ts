@@ -1,3 +1,6 @@
+import { getPageById, getSearchablePages } from '../utils/registry';
+import { searchMetadata } from './search-metadata';
+
 export interface SearchEntry {
   title: string;
   description: string;
@@ -7,111 +10,70 @@ export interface SearchEntry {
   priority?: number;
 }
 
-export const searchIndex: SearchEntry[] = [
-  {
-    title: 'Karinderya Wiki',
-    description: 'Explore the English-language Karinderya Roblox Wiki and its main game guides.',
-    url: '/',
-    category: 'Wiki',
-    keywords: ['home', 'roblox', 'karinderya', 'restaurant', 'wiki'],
-    priority: 100,
-  },
-  {
-    title: 'Karinderya Codes Guide',
-    description: 'Learn how the code system works, how to enter codes, and how to troubleshoot an entry.',
-    url: '/codes/',
-    category: 'Codes',
-    keywords: ['code', 'codes', 'redeem', 'code guide', 'troubleshooting', 'game information'],
-    priority: 90,
-  },
-  {
-    title: 'Food',
-    description: 'Browse the food index, dish categories, and ingredient information.',
-    url: '/food/',
-    category: 'Food & Recipes',
-    keywords: ['food', 'dish', 'dishes', 'ingredients', 'menu', 'cooking'],
-    priority: 85,
-  },
-  {
-    title: 'Recipes',
-    description: 'Explore the recipe index, ingredients guide, and cooking references.',
-    url: '/recipes/',
-    category: 'Food & Recipes',
-    keywords: ['recipe', 'recipes', 'ingredients', 'cooking', 'dish', 'food'],
-    priority: 85,
-  },
-  {
-    title: 'Workers',
-    description: 'Learn about worker roles, hiring, and restaurant staff management.',
-    url: '/workers/',
-    category: 'Workers',
-    keywords: ['worker', 'workers', 'staff', 'hiring', 'management', 'roles'],
-    priority: 80,
-  },
-  {
-    title: 'Equipment',
-    description: 'Browse kitchen equipment, restaurant tools, setup guidance, and upgrades.',
-    url: '/equipment/',
-    category: 'Equipment',
-    keywords: ['equipment', 'tools', 'kitchen', 'setup', 'upgrades', 'restaurant'],
-    priority: 80,
-  },
-  {
-    title: 'Guides',
-    description: 'Browse player guides for cooking, workers, equipment, furniture, layout, and restaurant management.',
-    url: '/guides/',
-    category: 'Guides',
-    keywords: ['guide', 'guides', 'workflow', 'planning', 'management', 'restaurant', 'cooking'],
-    priority: 80,
-  },
-  {
-    title: 'Updates',
-    description: 'Follow Karinderya updates, feature summaries, and release notes.',
-    url: '/updates/',
-    category: 'Updates',
-    keywords: ['update', 'updates', 'release', 'version', 'changes', 'changelog'],
-    priority: 75,
-  },
-  {
-    title: 'About Karinderya Wiki',
-    description: 'Learn about the wiki, its player-focused purpose, and its independent status.',
-    url: '/about/',
-    category: 'About',
-    keywords: ['about', 'independent', 'unofficial', 'wiki', 'players'],
-    priority: 20,
-  },
-  { title: 'Karinderya Grocery', description: 'Learn how Grocery connects ingredients, recipes, food, and restaurant workflow.', url: '/grocery/', category: 'Food & Recipes', keywords: ['grocery', 'ingredients', 'recipes', 'food', 'restaurant workflow', 'resource management'], priority: 82 },
-  { title: 'Ingredients', description: 'Browse ingredient profiles, grocery listings, and related customer orders.', url: '/ingredients/', category: 'Food & Recipes', keywords: ['ingredients', 'rice', 'condiments', 'eggs', 'meat', 'fish'], priority: 78 },
-  { title: 'Rice', description: 'Explore Rice and its connection with grocery planning, recipes, cooking, and food service.', url: '/ingredients/rice/', category: 'Ingredients', keywords: ['rice', 'grocery', 'ingredient', 'recipes', 'cooking', 'food'], priority: 70 },
-  { title: 'Condiments', description: 'Explore Condiments and their connection with grocery planning, recipes, cooking, and food service.', url: '/ingredients/condiments/', category: 'Ingredients', keywords: ['condiments', 'grocery', 'ingredient', 'seasoning', 'recipes', 'cooking', 'food'], priority: 69 },
-  { title: 'Eggs', description: 'Explore Eggs and their connection with grocery planning, recipes, cooking, and food service.', url: '/ingredients/eggs/', category: 'Ingredients', keywords: ['eggs', 'egg', 'grocery', 'ingredient', 'recipes', 'cooking', 'food'], priority: 68 },
-  { title: 'Vegetables', description: 'Explore Vegetables and their connection with grocery planning, recipes, cooking, and food service.', url: '/ingredients/vegetables/', category: 'Ingredients', keywords: ['vegetables', 'vegetable', 'grocery', 'ingredient', 'recipes', 'cooking', 'food'], priority: 68 },
-  { title: 'Bangus', description: 'Explore Bangus and its connection with grocery planning, recipes, cooking, and food service.', url: '/ingredients/bangus/', category: 'Ingredients', keywords: ['bangus', 'fish', 'grocery', 'ingredient', 'recipes', 'cooking', 'food'], priority: 68 },
-  { title: 'Pork', description: 'Explore Pork and its connection with grocery planning, recipes, cooking, and food service.', url: '/ingredients/pork/', category: 'Ingredients', keywords: ['pork', 'meat', 'grocery', 'ingredient', 'recipes', 'cooking', 'food'], priority: 68 },
-  { title: 'Beef', description: 'Explore Beef and its connection with grocery planning, recipes, cooking, and food service.', url: '/ingredients/beef/', category: 'Ingredients', keywords: ['beef', 'meat', 'grocery', 'ingredient', 'recipes', 'cooking', 'food'], priority: 68 },
-  { title: 'Furniture', description: 'Explore furniture, restaurant layout, dining-area organization, and planning guidance.', url: '/furniture/', category: 'Furniture', keywords: ['furniture', 'restaurant layout', 'dining area', 'planning'], priority: 82 },
-  { title: 'Tables', description: 'Browse tables and learn how furniture fits into dining-area layout.', url: '/furniture/tables/', category: 'Furniture', keywords: ['tables', 'furniture', 'dining area', 'layout'], priority: 76 },
-  { title: 'Plank Table', description: 'Explore the Plank Table entry and its role in dining-area layout.', url: '/furniture/plank-table/', category: 'Furniture', keywords: ['plank table', 'table', 'furniture', 'dining area', 'layout'], priority: 72 },
-  { title: 'Wood Table', description: 'Explore the Wood Table entry and its role in dining-area layout.', url: '/furniture/wood-table/', category: 'Furniture', keywords: ['wood table', 'table', 'furniture', 'dining area', 'layout'], priority: 72 },
-  { title: 'Red Wooden Table', description: 'Explore the Red Wooden Table entry and its role in dining-area layout.', url: '/furniture/red-wooden-table/', category: 'Furniture', keywords: ['red wooden table', 'table', 'furniture', 'dining area', 'layout'], priority: 70 },
-  { title: 'Chairs', description: 'Browse the Plank, Wood, Parsons, Royal, and Slat-back chair families.', url: '/furniture/chairs/', category: 'Furniture', keywords: ['chair', 'plank', 'wood', 'parsons', 'royal', 'slat-back'], priority: 70 },
-  { title: 'Karinderya Decorations', description: 'Explore decorations, Tiles, customization, and restaurant layout planning.', url: '/decorations/', category: 'Decorations', keywords: ['decorations', 'tiles', 'customization', 'restaurant', 'layout', 'planning'], priority: 82 },
-  { title: 'Karinderya Tiles', description: 'Learn how Tiles fit into decoration, surface customization, and restaurant layout planning.', url: '/decorations/tiles/', category: 'Decorations', keywords: ['tiles', 'decorations', 'customization', 'restaurant', 'layout'], priority: 74 },
-  { title: 'Stoves', description: 'Browse the Karinderya Stove equipment directory and connect cooking stations with the kitchen workflow.', url: '/equipment/stoves/', category: 'Equipment', keywords: ['stove', 'stoves', 'equipment', 'kitchen', 'cooking workflow', 'equipment directory'], priority: 78 },
-  { title: 'Basic Stove', description: 'Explore the Basic Stove and its place in Karinderya kitchen and restaurant usage.', url: '/equipment/basic-stove/', category: 'Equipment', keywords: ['basic stove', 'stove', 'equipment', 'kitchen', 'cooking workflow', 'restaurant usage'], priority: 72 },
-  { title: 'Standard Stove', description: 'Explore the Standard Stove and its place in Karinderya kitchen and restaurant usage.', url: '/equipment/standard-stove/', category: 'Equipment', keywords: ['standard stove', 'stove', 'equipment', 'kitchen', 'cooking workflow', 'restaurant usage'], priority: 72 },
-  { title: 'Deluxe Stove', description: 'Explore the Deluxe Stove and its place in Karinderya kitchen and restaurant usage.', url: '/equipment/deluxe-stove/', category: 'Equipment', keywords: ['deluxe stove', 'stove', 'equipment', 'kitchen', 'cooking workflow', 'restaurant usage'], priority: 74 },
-  { title: 'Chiller', description: 'Explore the Chiller as part of the Karinderya equipment directory and restaurant workflow.', url: '/equipment/chiller/', category: 'Equipment', keywords: ['chiller', 'equipment', 'restaurant usage', 'restaurant workflow', 'equipment directory'], priority: 72 },
-  { title: 'Beginner Guide', description: 'Learn the restaurant workflow and navigate the main Karinderya Wiki categories.', url: '/guides/beginner-guide/', category: 'Guides', keywords: ['beginner guide', 'restaurant', 'workflow', 'cooking', 'workers', 'equipment', 'furniture'], priority: 86 },
-  { title: '5-Star Guide', description: 'Plan restaurant service, work areas, order handling, and management around the five-star goal.', url: '/guides/5-star-guide/', category: 'Guides', keywords: ['5 star guide', 'restaurant', 'workflow', 'management', 'cooking', 'layout'], priority: 76 },
-  { title: 'Counter Planning Guide', description: 'Learn how Counters fit into restaurant customization and layout planning.', url: '/guides/counter-upgrades/', category: 'Guides', keywords: ['counter guide', 'restaurant', 'layout', 'furniture', 'decorations', 'planning'], priority: 72 },
-  { title: 'Choopy Mystery Box Guide', description: 'Review Choopy Mystery Box information through the current game interface.', url: '/guides/choopy-mystery-box/', category: 'Guides', keywords: ['choopy guide', 'mystery box', 'restaurant', 'decorations', 'management'], priority: 72 },
-  { title: 'Furniture Management Guide', description: 'Manage existing furniture and plan clear dining and movement areas.', url: '/guides/how-to-sell-furniture/', category: 'Guides', keywords: ['furniture guide', 'furniture', 'tables', 'chairs', 'restaurant', 'layout', 'management'], priority: 78 },
-  { title: 'Shop Restock Guide', description: 'Plan restaurant resources by reviewing current shop and ingredient information.', url: '/guides/shop-restock/', category: 'Guides', keywords: ['shop guide', 'resources', 'ingredients', 'restaurant', 'workflow', 'management'], priority: 76 },
-  { title: 'Co-op Guide', description: 'Coordinate restaurant tasks and service workflow with other players.', url: '/guides/co-op-guide/', category: 'Guides', keywords: ['co-op guide', 'team', 'restaurant', 'workflow', 'workers', 'management'], priority: 80 },
-  { title: 'Cooking and Serving Guide', description: 'Follow the restaurant workflow through ingredients, cooking, food, and serving.', url: '/guides/cooking-and-serving/', category: 'Guides', keywords: ['cooking guide', 'serving', 'restaurant', 'workflow', 'ingredients', 'equipment', 'food'], priority: 80 },
-  { title: 'How to Hire Workers', description: 'Plan Worker support around restaurant management needs and Manual Assign.', url: '/guides/how-to-hire-workers/', category: 'Guides', keywords: ['workers guide', 'manual assign', 'restaurant', 'workers', 'management', 'workflow'], priority: 79 },
-  { title: 'Restaurant Layout Guide', description: 'Plan dining areas, kitchen workspaces, and movement routes.', url: '/guides/restaurant-layout/', category: 'Guides', keywords: ['restaurant layout', 'kitchen', 'tables', 'chairs', 'equipment', 'furniture', 'planning'], priority: 78 },
-  { title: 'Upgrade Priority Guide', description: 'Plan equipment, furniture, staffing, and restaurant improvements around current needs.', url: '/guides/upgrade-priority/', category: 'Guides', keywords: ['upgrade guide', 'restaurant', 'equipment', 'furniture', 'workers', 'management', 'planning'], priority: 79 },
-  { title: 'Decorations Part 1 Update', description: 'Review the Decorations Part 1 features, codes, and related guides.', url: '/updates/decorations-part-1/', category: 'Updates', keywords: ['decorations part 1', 'decopart1', '50kccu', 'tiles', 'counter', 'dishwasher'], priority: 79 },
-];
+const searchablePages = getSearchablePages();
+const metadataByPageId = new Map<string, (typeof searchMetadata)[number]>();
+
+for (const metadata of searchMetadata) {
+  if (metadataByPageId.has(metadata.pageId)) {
+    throw new Error(`Duplicate search metadata for pageId "${metadata.pageId}".`);
+  }
+
+  const page = getPageById(metadata.pageId);
+
+  if (!page) {
+    throw new Error(`Search metadata references unknown pageId "${metadata.pageId}".`);
+  }
+
+  if (!page.searchable) {
+    throw new Error(`Search metadata cannot include non-searchable page "${metadata.pageId}".`);
+  }
+
+  metadataByPageId.set(metadata.pageId, metadata);
+}
+
+for (const page of searchablePages) {
+  if (!metadataByPageId.has(page.id)) {
+    throw new Error(`Searchable page "${page.id}" is missing search metadata.`);
+  }
+}
+
+if (metadataByPageId.size !== searchablePages.length) {
+  throw new Error('Search metadata count does not match the searchable page registry count.');
+}
+
+const metadataOrder = new Map(searchMetadata.map((metadata, index) => [metadata.pageId, index]));
+const orderedSearchablePages = [...searchablePages].sort(
+  (left, right) => metadataOrder.get(left.id)! - metadataOrder.get(right.id)!,
+);
+
+export const searchIndex: SearchEntry[] = orderedSearchablePages.map((page) => {
+  const metadata = metadataByPageId.get(page.id)!;
+
+  return {
+    title: metadata.title ?? page.seo.h1,
+    description: metadata.description ?? page.seo.description,
+    url: page.path,
+    category: metadata.category,
+    keywords: [...metadata.keywords],
+    priority: page.navigationPriority,
+  };
+});
+
+const searchUrls = searchIndex.map((entry) => entry.url);
+const duplicateUrls = searchUrls.filter((url, index) => searchUrls.indexOf(url) !== index);
+
+if (duplicateUrls.length > 0) {
+  throw new Error(`Duplicate search index URLs: ${[...new Set(duplicateUrls)].join(', ')}.`);
+}
+
+for (const [index, entry] of searchIndex.entries()) {
+  const registryPage = orderedSearchablePages[index];
+
+  if (entry.url !== registryPage.path) {
+    throw new Error(`Search index URL does not match Registry path for "${registryPage.id}".`);
+  }
+}
+
+if (searchIndex.length !== searchablePages.length) {
+  throw new Error('Search index count does not match the searchable page registry count.');
+}

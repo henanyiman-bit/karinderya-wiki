@@ -1,14 +1,16 @@
 ---
-import ContentPage from '../../components/ContentPage.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EntityArticle from '../../components/v2/templates/EntityArticle.astro';
 import { siteImages } from '../../data/images';
+import { getPageSEO } from '../../utils/seo';
+const pageSEO = getPageSEO('equipment-chiller');
 ---
 
-<ContentPage
-  title="Karinderya Chiller"
-  description="Explore the Chiller in Karinderya and learn how this equipment entry fits into restaurant organization and workflow."
+<BaseLayout pageId="equipment-chiller" breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Equipment', href: '/equipment/' }, { label: pageSEO.h1 }]}>
+<EntityArticle
+  title={pageSEO.h1}
   kicker="Equipment profile"
-  intro="The Chiller is a standalone entry in the Karinderya Equipment directory."
-  parent={{ label: 'Equipment', href: '/equipment/' }}
+  intro="Chiller is a name reported in Karinderya update coverage, but its current function and availability are not yet established by reliable evidence."
   heroImage={siteImages.equipmentHero}
   tableOfContents
   relatedLinks={[
@@ -18,22 +20,19 @@ import { siteImages } from '../../data/images';
     { label: 'Beginner Guide', href: '/guides/beginner-guide/', description: 'Learn the main restaurant systems and how they connect.' },
   ]}
 >
-  <h2 id="introduction">Introduction</h2>
-  <p>The Chiller is covered as an Equipment entity rather than part of the Stove directory. Its dedicated page provides a direct route back to the Equipment Hub and related restaurant guides.</p>
+  <h2 id="direct-answer">Direct Answer</h2>
+  <p>Community update records associate a feature named <strong>Chiller</strong> with Karinderya. The material reviewed for this rebuild does not establish its current location, acquisition method, or gameplay function.</p>
 
   <h2 id="overview">Overview</h2>
-  <p>The Chiller represents a separate restaurant-equipment topic in the Wiki. Keeping it in its own entry makes it easier to distinguish from cooking stations while browsing equipment information.</p>
+  <p>This URL is retained as an Equipment entry so confirmed Chiller information has a stable destination. It remains separate from the Stove directory because no reliable evidence reviewed here identifies it as a Stove.</p>
 
-  <h2 id="how-it-works">How It Works</h2>
-  <p>The Equipment directory organizes restaurant tools by their role in the wider workspace. The Chiller entry connects with restaurant organization guidance without assigning properties that are not presented on this page.</p>
+  <h2 id="what-is-confirmed">What Is Confirmed</h2>
+  <p>The Chiller name appears in dated community coverage of Karinderya. No creator-owned patch note or current in-game capture reviewed for this page confirms more detailed behavior.</p>
 
-  <h2 id="usage">Usage</h2>
-  <p>Use this page when navigating Chiller information, then continue to the Equipment Hub or related guides for wider restaurant context.</p>
+  <h2 id="what-is-unconfirmed">What Is Not Yet Confirmed</h2>
+  <ul><li>Its exact current in-game name and location.</li><li>How it is obtained.</li><li>Whether it stores ingredients, affects food, or performs another task.</li><li>Any price, repair requirement, capacity, speed, or performance effect.</li></ul>
 
-  <h2 id="gameplay-tips">Gameplay Tips</h2>
-  <ul>
-    <li>Keep restaurant work areas clear and easy to identify.</li>
-    <li>Consider how equipment placement fits with regular movement through the restaurant.</li>
-    <li>Use the related guides when planning the surrounding workspace and service flow.</li>
-  </ul>
-</ContentPage>
+  <h2 id="related-systems">Related Systems</h2>
+  <p>Use the <a href="/equipment/">Equipment Hub</a> for confirmed restaurant tools. The <a href="/ingredients/">Ingredients</a>, <a href="/food/">Food</a>, and <a href="/guides/cooking-and-serving/">Cooking and Serving</a> pages explain adjacent systems without assigning the Chiller an unsupported role.</p>
+</EntityArticle>
+</BaseLayout>

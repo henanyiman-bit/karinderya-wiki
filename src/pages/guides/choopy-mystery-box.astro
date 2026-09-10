@@ -1,63 +1,63 @@
 ---
-import ContentPage from '../../components/ContentPage.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GuideArticle from '../../components/v2/templates/GuideArticle.astro';
 import FAQ from '../../components/FAQ.astro';
 import { siteImages } from '../../data/images';
+import { getPageSEO } from '../../utils/seo';
 
 const faqItems = [
-  { question: 'What should I check before using a Mystery Box option?', answer: 'Read the current interface carefully and review every detail shown for the option before confirming.' },
-  { question: 'Can Mystery Box information change?', answer: 'Event and interface details can change with game updates. Use the information currently displayed in the game.' },
-  { question: 'Where can I review related customization content?', answer: 'Use the Decorations page for the wider customization directory and connected guides.' },
+  { question: 'How do players access Choopy?', answer: 'A dated gameplay record shows Choopy opened from the Phone interface. Check the current Phone menu because its labels and availability may change.' },
+  { question: 'Where does a Choopy delivery appear?', answer: 'In the dated gameplay record reviewed for this guide, the delivered box appeared outside the restaurant entrance. This location should be treated as version-specific.' },
+  { question: 'How is a received item placed?', answer: 'The same dated record shows an item being placed through a table Customize control. Follow the controls shown in the current game.' },
 ];
 ---
 
-<ContentPage
-  title="Karinderya Choopy Mystery Box Guide"
-  description="Learn how to review Choopy Mystery Box information in Karinderya and connect it with current customization content."
+<BaseLayout pageId="guides-choopy-mystery-box" breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Guides', href: '/guides/' }, { label: getPageSEO('guides-choopy-mystery-box').h1 }]}>
+<GuideArticle
+  title={getPageSEO('guides-choopy-mystery-box').h1}
   kicker="Decorations guide"
-  intro="Understand Choopy Mystery Box options by reading the current game interface and update information."
-  parent={{ label: 'Guides', href: '/guides/' }}
+  intro="A dated gameplay record shows Choopy as a Phone-based delivery interaction connected with restaurant customization."
   tableOfContents
   heroImage={siteImages.decorationsHero}
   relatedLinks={[
     { label: 'Decorations', href: '/decorations/', description: 'Browse customization categories and connected pages.' },
     { label: 'Tiles', href: '/decorations/tiles/', description: 'Review the Tiles customization directory.' },
     { label: 'Counter Guide', href: '/guides/counter-upgrades/', description: 'Plan Counter changes around the restaurant layout.' },
-    { label: 'Latest Updates', href: '/updates/', description: 'Browse current Wiki update summaries.' },
+    { label: 'Decorations Part 1', href: '/updates/decorations-part-1/', description: 'Read the dated update record connected with this period.' },
   ]}
 >
-  <h2 id="introduction">Introduction</h2>
-  <p>Choopy Mystery Box content belongs to the wider Decorations section of Karinderya. Because event details and interface options can change, this guide focuses on how to read the current information rather than preserving fixed values.</p>
+  <h2 id="what-choopy-is">What Choopy Is</h2>
+  <p>Choopy appears in dated community gameplay as a way to receive an item for restaurant customization. “Mystery Box” is a common community description, but this guide does not assume that wording, a fixed item pool, or the same interface will remain permanent.</p>
 
-  <h2 id="overview">Overview</h2>
-  <p>A Mystery Box presents an option through the game interface. Treat the visible labels, instructions, and confirmation prompts as the current reference. Use the Decorations Hub to understand where Choopy fits within restaurant customization.</p>
+  <h2 id="access">How Players Access Choopy</h2>
+  <p>A gameplay record dated September 2, 2026 shows the player opening Choopy through the Phone interface. Open the current Phone menu and use only the option and confirmation details visible in your server.</p>
 
-  <h2 id="how-it-works">How It Works</h2>
-  <p>Open the current Choopy interface and review the information shown for the available option. The interface may describe the selection and what happens after confirmation. Do not assume that details remembered from an earlier update still apply.</p>
-
-  <h2 id="review-process">Review Process</h2>
+  <h2 id="delivery">How Delivery Works</h2>
   <ol>
-    <li>Open the Choopy interaction available in the current game.</li>
-    <li>Read the name and description of the option shown on screen.</li>
-    <li>Review every confirmation message before continuing.</li>
-    <li>Check the Updates section when the interface changes after a game release.</li>
-    <li>Return to the Decorations Hub for related customization topics.</li>
+    <li>Open the Phone and select the Choopy option shown by the current interface.</li>
+    <li>Read the live confirmation before making a selection.</li>
+    <li>After the interface reports a delivery, check the area outside the restaurant entrance.</li>
+    <li>Interact with the delivered box using the prompt shown in the game.</li>
   </ol>
 
-  <h2 id="gameplay-tips">Gameplay Tips</h2>
+  <h2 id="placement">How to Place a Received Item</h2>
+  <p>The dated record shows the player approaching a table, opening <strong>Customize</strong>, selecting an available position, and placing the received item. If the current controls differ, follow the labels in your server rather than the older sequence.</p>
+
+  <h2 id="unconfirmed">What Is Still Unconfirmed</h2>
   <ul>
-    <li>Use the current interface as the main reference for event details.</li>
-    <li>Read every label before confirming an option.</li>
-    <li>Keep Mystery Box content separate from regular Furniture and Equipment planning.</li>
-    <li>Review update summaries when Choopy options appear different.</li>
+    <li>A permanent box price or delivery timer.</li>
+    <li>The complete item pool, probabilities, or guaranteed outcomes.</li>
+    <li>Whether “Mystery Box” is the permanent official feature name.</li>
+    <li>Whether Choopy was formally introduced by the exact Decorations Part 1 patch.</li>
   </ul>
 
-  <h2 id="common-mistakes">Common Mistakes</h2>
+  <h2 id="troubleshooting">Troubleshooting</h2>
   <ul>
-    <li>Relying on details remembered from an earlier version.</li>
-    <li>Skipping the confirmation message.</li>
-    <li>Assuming every Mystery Box option behaves the same way.</li>
-    <li>Confusing event content with the regular Decorations directory.</li>
+    <li>If the option is missing, check the current Phone interface and an updated server.</li>
+    <li>If delivery is reported but no box is visible, check outside the restaurant entrance before repeating an action.</li>
+    <li>If placement is unavailable, approach a table and review its current Customize controls.</li>
   </ul>
 
-  <FAQ items={faqItems} />
-</ContentPage>
+  <FAQ slot="faq" items={faqItems} />
+</GuideArticle>
+</BaseLayout>

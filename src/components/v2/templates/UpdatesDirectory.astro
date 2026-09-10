@@ -1,0 +1,7 @@
+---
+import PageHeader from '../layout/PageHeader.astro';import PageShell from '../layout/PageShell.astro';import RelatedContent,{type RelatedContentItem} from '../../RelatedContent.astro';import ResponsiveImage from '../../ResponsiveImage.astro';import type{ResponsiveImageAsset}from '../../../data/images';
+interface Props{title:string;intro?:string;kicker?:string;heroImage?:ResponsiveImageAsset;relatedLinks?:RelatedContentItem[]}
+const{title,intro,kicker,heroImage,relatedLinks=[]}=Astro.props;
+---
+<PageShell sidebar={false} class="v2-updates-directory"><PageHeader title={title} intro={intro} eyebrow={kicker}>{heroImage&&<ResponsiveImage slot="media" image={heroImage} priority sizes="(max-width:760px) calc(100vw - 32px),320px" class="v2-updates-directory__image"/>}</PageHeader><article class="content-panel v2-updates-directory__content"><slot/></article><RelatedContent items={relatedLinks}/></PageShell>
+<style>.v2-updates-directory{padding-block:var(--v2-space-3) var(--v2-space-7)}.v2-updates-directory__content{min-width:0}:global(.v2-updates-directory__image){overflow:hidden;border:1px solid var(--v2-border-color);border-radius:var(--v2-radius-large);box-shadow:var(--v2-shadow-soft)}:global(.v2-updates-directory__image img){aspect-ratio:4/3;object-fit:cover}</style>

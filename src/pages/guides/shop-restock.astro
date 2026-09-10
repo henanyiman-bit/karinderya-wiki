@@ -1,7 +1,9 @@
 ---
-import ContentPage from '../../components/ContentPage.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GuideArticle from '../../components/v2/templates/GuideArticle.astro';
 import FAQ from '../../components/FAQ.astro';
 import { siteImages } from '../../data/images';
+import { getPageSEO } from '../../utils/seo';
 
 const faqItems = [
   { question: 'What should I review in the shop?', answer: 'Read the current shop information and compare it with the materials and restaurant categories you need.' },
@@ -10,12 +12,11 @@ const faqItems = [
 ];
 ---
 
-<ContentPage
-  title="Karinderya Shop Restock Guide"
-  description="Plan Karinderya restaurant resources by reviewing current shop information, ingredient needs, and related Wiki categories."
+<BaseLayout pageId="guides-shop-restock" breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Guides', href: '/guides/' }, { label: getPageSEO('guides-shop-restock').h1 }]}>
+<GuideArticle
+  title={getPageSEO('guides-shop-restock').h1}
   kicker="Resource management guide"
-  intro="Use current shop information to plan materials around the needs of the restaurant workflow."
-  parent={{ label: 'Guides', href: '/guides/' }}
+  intro="Check the stock shown in your current server and avoid relying on an unverified universal restock timer."
   tableOfContents
   heroImage={siteImages.ingredientsHero}
   relatedLinks={[
@@ -25,14 +26,14 @@ const faqItems = [
     { label: 'Equipment', href: '/equipment/', description: 'Browse restaurant tools and cooking equipment.' },
   ]}
 >
-  <h2 id="introduction">Introduction</h2>
-  <p>Resource management begins with understanding what the restaurant currently needs. Use the shop information shown in the game, then connect materials with Ingredients, Recipes, cooking, and the wider service workflow.</p>
+  <h2 id="direct-answer">Direct Answer</h2>
+  <p>Public gameplay shows shop listings and unavailable stock, but the material reviewed does not establish one universal restock interval or whether refresh state is global, server-specific, or player-specific. Treat the current shop display as authoritative.</p>
 
   <h2 id="overview">Overview</h2>
-  <p>The shop can present materials and other restaurant categories through its current interface. Because the available information may change, this guide focuses on planning habits instead of a fixed schedule or item list.</p>
+  <p>The Shop and Grocery interfaces organize items used by the restaurant. Their visible categories, stock, quantities, and timing can be version-sensitive, so this guide explains how to check the live state instead of publishing a permanent schedule.</p>
 
-  <h2 id="how-it-works">How It Works</h2>
-  <p>Review the restaurant first, then open the current shop interface and read what is shown. Match the available information with the Wiki category that explains the relevant part of gameplay, such as Ingredients, Equipment, Furniture, or Decorations.</p>
+  <h2 id="how-it-works">What Is Confirmed</h2>
+  <p>Dated gameplay captures show item listings with stock information and cases where an item is unavailable. They do not prove a fixed refresh interval. Review the restaurant first, then read the current Shop or Grocery interface and use the matching Wiki category for context.</p>
 
   <h2 id="resource-planning-process">Resource Planning Process</h2>
   <ol>
@@ -52,7 +53,7 @@ const faqItems = [
     <li>Rely on the current interface when shop information changes.</li>
   </ul>
 
-  <h2 id="common-mistakes">Common Mistakes</h2>
+  <h2 id="common-mistakes">Restock Troubleshooting</h2>
   <ul>
     <li>Following an old shop list without checking the current interface.</li>
     <li>Reviewing materials without connecting them to restaurant needs.</li>
@@ -60,5 +61,6 @@ const faqItems = [
     <li>Assuming every server or update presents the same information.</li>
   </ul>
 
-  <FAQ items={faqItems} />
-</ContentPage>
+  <FAQ slot="faq" items={faqItems} />
+</GuideArticle>
+</BaseLayout>

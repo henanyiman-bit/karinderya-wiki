@@ -1,14 +1,16 @@
 ---
-import ContentPage from '../../components/ContentPage.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EntityArticle from '../../components/v2/templates/EntityArticle.astro';
 import { entityImages } from '../../data/images';
+import { getPageSEO } from '../../utils/seo';
+const pageSEO = getPageSEO('equipment-standard-stove');
 ---
 
-<ContentPage
-  title="Karinderya Standard Stove"
-  description="Explore the Standard Stove in Karinderya and learn how this equipment entry connects with kitchen and restaurant workflow."
+<BaseLayout pageId="equipment-standard-stove" breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Equipment', href: '/equipment/' }, { label: 'Stoves', href: '/equipment/stoves/' }, { label: pageSEO.h1 }]}>
+<EntityArticle
+  title={pageSEO.h1}
   kicker="Equipment profile"
   intro="The Standard Stove is a named cooking-equipment entry in the Karinderya Stove directory."
-  parents={[{ label: 'Equipment', href: '/equipment/' }, { label: 'Stoves', href: '/equipment/stoves/' }]}
   heroImage={entityImages.standardStove}
   tableOfContents
   previousPage={{ label: 'Basic Stove', href: '/equipment/basic-stove/' }}
@@ -20,17 +22,17 @@ import { entityImages } from '../../data/images';
     { label: 'Beginner Guide', href: '/guides/beginner-guide/', description: 'Learn the main restaurant systems and how they connect.' },
   ]}
 >
-  <h2 id="introduction">Introduction</h2>
-  <p>The Standard Stove belongs to the Stoves section of the Equipment directory. It has its own article so players can identify the item and continue to related kitchen information.</p>
+  <h2 id="short-answer">Short Answer</h2>
+  <p>Standard Stove is a named stove shown in dated Karinderya placement footage. It appears in the same Stoves inventory as the Basic and Deluxe entries.</p>
 
   <h2 id="overview">Overview</h2>
-  <p>As cooking equipment, the Standard Stove is associated with the preparation part of restaurant service. The page connects back to the Stove category and the wider Equipment Hub.</p>
+  <p>The capture confirms the displayed name and category, but it does not provide a reliable permanent price, cooking-time difference, capacity, or unlock rule.</p>
 
   <h2 id="how-it-works">How It Works</h2>
-  <p>The Stove category connects equipment information with ingredients, recipes, cooking, and serving. The Cooking and Serving Guide explains that complete workflow, while this page remains focused on the Standard Stove entry.</p>
+  <p>Select the Standard Stove from owned inventory when it is present, then place it through the current customization interface. Use current in-game prompts for cooking behavior.</p>
 
-  <h2 id="usage">Usage</h2>
-  <p>Use the Standard Stove entry when reviewing cooking equipment or navigating between the Stove directory and wider restaurant guides.</p>
+  <h2 id="usage">How Players Obtain It</h2>
+  <p>The current acquisition route has not been confirmed from a creator-owned source. Check the live inventory and shop instead of treating Standard as a required step in a fixed upgrade sequence.</p>
 
   <h2 id="gameplay-tips">Gameplay Tips</h2>
   <ul>
@@ -38,4 +40,5 @@ import { entityImages } from '../../data/images';
     <li>Consider the complete preparation and serving workflow when organizing restaurant tasks.</li>
     <li>Use the related navigation to compare Wiki coverage without assuming unlisted item properties.</li>
   </ul>
-</ContentPage>
+</EntityArticle>
+</BaseLayout>

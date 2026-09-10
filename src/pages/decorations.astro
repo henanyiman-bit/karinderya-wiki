@@ -1,7 +1,10 @@
 ---
-import WikiPage from '../components/WikiPage.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 import FAQ from '../components/FAQ.astro';
+import CategoryHub from '../components/v2/templates/CategoryHub.astro';
 import { siteImages } from '../data/images';
+import { getPageSEO } from '../utils/seo';
+const pageSEO = getPageSEO('decorations');
 
 const cards = [
   { title: 'Tiles', description: 'Explore surface customization and its role in restaurant layout planning.', href: '/decorations/tiles/', icon: 'T' },
@@ -10,17 +13,17 @@ const cards = [
 ];
 
 const faqItems = [
-  { question: 'What are Decorations in Karinderya?', answer: 'Decorations are customization elements used to shape the visual style and organization of a restaurant.' },
+  { question: 'What does the Decorations section cover?', answer: 'It organizes customization topics currently documented by the Wiki, including Tiles, Counter information, and Choopy.' },
   { question: 'Where can I learn about Tiles?', answer: 'Open the Tiles page for an introduction to surface customization and layout use.' },
   { question: 'Are Decorations the same as Furniture?', answer: 'No. Furniture covers functional dining-area items, while Decorations focuses on visual customization. Both can be considered together when planning a restaurant layout.' },
 ];
 ---
 
-<WikiPage
-  title="Karinderya Decorations"
-  description="Explore Karinderya decorations, Tiles, customization, and restaurant layout planning."
+<BaseLayout pageId="decorations" breadcrumbs={[{ label: 'Home', href: '/' }, { label: pageSEO.h1 }]}>
+<CategoryHub
+  title={pageSEO.h1}
   kicker="Customization directory"
-  intro="Use the Decorations section to explore visual customization and connect decorative choices with restaurant layout planning."
+  intro="Browse Karinderya customization topics, including the current Wiki pages for Tiles, counters, and Choopy."
   copyHeading="Introduction"
   cards={cards}
   relatedLinks={[
@@ -31,17 +34,19 @@ const faqItems = [
   ]}
   heroImage={siteImages.decorationsHero}
   tableOfContents
+  relatedHeading="Explore Related Sections"
+  adSlots
 >
-  <p>Decorations provide a way to organize the visual identity of a restaurant. This Wiki section connects decorative entries with Furniture and layout guides so players can find the right information for each part of the space.</p>
+  <p>The Decorations Hub separates visual customization from Furniture and restaurant Equipment. It provides navigation to the customization topics currently covered by the Wiki without assigning hidden effects to decorative choices.</p>
 
   <h2 id="overview">Overview</h2>
-  <p>Decoration pages focus on appearance, placement, and navigation between customization topics. They do not replace the Furniture directory, which covers tables and chairs, or the Equipment directory, which covers tools used in restaurant operations.</p>
+  <p>Use this hub to find Tiles, counter information, and the Choopy guide. Each linked page explains its own topic and keeps version-specific update history separate from general customization guidance.</p>
 
-  <h2 id="how-decorations-work">How Decorations Work</h2>
-  <p>Players can treat Decorations as one layer of restaurant planning. Visual surfaces and customization elements can be considered alongside dining areas, kitchen workspaces, and clear movement paths.</p>
+  <h2 id="customization-directory">Customization Directory</h2>
+  <ul><li><a href="/decorations/tiles/">Tiles</a> covers surface customization.</li><li>The <a href="/guides/counter-upgrades/">Counter guide</a> covers the current Wiki information about counter changes.</li><li>The <a href="/guides/choopy-mystery-box/">Choopy guide</a> covers the Choopy interface and the limits of the available information.</li></ul>
 
-  <h2 id="decoration-directory">Decoration Directory</h2>
-  <p>Start with <a href="/decorations/tiles/">Tiles</a> for surface customization. For workspace organization, use the <a href="/guides/counter-upgrades/">Counter Planning guide</a>. The <a href="/guides/choopy-mystery-box/">Choopy Mystery Box guide</a> explains that customization interface in a separate player-focused article.</p>
+  <h2 id="update-context">Related Update</h2>
+  <p>The <a href="/updates/decorations-part-1/">Decorations Part 1 update record</a> separates the dated update evidence from the player-focused pages in this directory.</p>
 
   <h2 id="layout-planning">Layout Planning</h2>
   <p>Plan decorations around the restaurant's functional areas. Keep the dining area readable, leave the kitchen workflow clear, and use a consistent visual direction so customization supports the overall layout.</p>
@@ -55,4 +60,5 @@ const faqItems = [
   </ul>
 
   <FAQ items={faqItems} />
-</WikiPage>
+</CategoryHub>
+</BaseLayout>

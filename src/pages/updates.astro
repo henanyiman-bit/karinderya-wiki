@@ -1,10 +1,16 @@
 ---
-import ContentPage from '../components/ContentPage.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import UpdatesDirectory from '../components/v2/templates/UpdatesDirectory.astro';
 import { siteImages } from '../data/images';
+import { getPageSEO } from '../utils/seo';
 ---
-<ContentPage title="Karinderya Updates" description="Follow Karinderya Roblox update features, codes, and related game guides." kicker="Version history" intro="Browse update features, codes, and their related game guides." relatedLinks={[{ label: 'Decorations Part 1', href: '/updates/decorations-part-1/' }, { label: 'Decorations', href: '/decorations/' }, { label: 'Codes', href: '/codes/' }, { label: 'Chiller', href: '/equipment/chiller/' }]} sourceIds={['roblox-game', 'wiki-decorations', 'worker-chiller']} heroImage={siteImages.updatesHero}>
-  <h2>Decorations Pt. 1</h2>
-  <p>The update includes the following feature set:</p>
-  <ul><li>Tiles</li><li>Counter Upgrade</li><li>Table Tops</li><li>Dishwasher</li><li>Choopy Mystery Box and delivery</li><li><code>DECOPART1</code> code</li><li><code>50KCCU</code> code</li></ul>
-  <p><a href="/updates/decorations-part-1/">Read the dedicated Decorations Part 1 update page</a> for its feature list and related guides.</p>
-</ContentPage>
+<BaseLayout pageId="updates" breadcrumbs={[{label:'Home',href:'/'},{label:getPageSEO('updates').h1}]}><UpdatesDirectory title={getPageSEO('updates').h1} kicker="Update history" intro="Browse dated Karinderya update records without treating unverified feature reports as official patch notes." relatedLinks={[{ label: 'Decorations', href: '/decorations/' }, { label: 'Codes', href: '/codes/' }, { label: 'Guides', href: '/guides/' }]} heroImage={siteImages.updatesHero}>
+  <h2 id="documented-updates">Documented Updates</h2>
+  <h3>Decorations Part 1</h3>
+  <p>This record covers the customization features reported around the August 29, 2026 Roblox experience update. Individual claims are separated by evidence strength rather than presented as a complete creator patch note.</p>
+  <p><a href="/updates/decorations-part-1/">Read the Decorations Part 1 update record</a>.</p>
+  <h2 id="verification-method">How Update Records Are Checked</h2>
+  <p>Update dates are tied to Roblox timestamps or dated creator-owned material where available. Feature details require a creator announcement or reviewable gameplay record. If only a feature name is supported, this Wiki does not infer its mechanics, price, or effect.</p>
+  <h2 id="related-sections">Related Wiki Sections</h2>
+  <p>Use <a href="/decorations/">Decorations</a> for the customization system, <a href="/codes/">Codes</a> for currently listed code strings, and the <a href="/guides/">Guides directory</a> for task-focused help.</p>
+</UpdatesDirectory></BaseLayout>

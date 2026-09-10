@@ -1,31 +1,71 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPageSEO } from '../utils/seo';
 
 interface Props {
-  title: string;
-  description: string;
+  pageId?: string;
+  title?: string;
+  description?: string;
   kicker?: string;
   relatedLinks?: { label: string; href: string }[];
+  v2?: boolean;
+  pageShell?: any;
+  pageHeader?: any;
 }
 
-const { title, description, kicker = 'Karinderya Wiki', relatedLinks = [] } = Astro.props;
+const {
+  pageId,
+  title,
+  description,
+  kicker = 'Karinderya Wiki',
+  relatedLinks = [],
+  v2 = false,
+  pageShell: V2PageShell,
+  pageHeader: V2PageHeader,
+} = Astro.props;
+const registrySEO = pageId ? getPageSEO(pageId) : undefined;
+const resolvedTitle = registrySEO?.h1 ?? title?.trim();
+const resolvedDescription = registrySEO?.description ?? description?.trim();
+
+if (!resolvedTitle || !resolvedDescription) {
+  throw new Error('InfoPage requires either a registered pageId or title and description.');
+}
+
+if (v2 && (!V2PageShell || !V2PageHeader)) {
+  throw new Error('InfoPage v2 requires pageShell and pageHeader components.');
+}
 ---
 
-<BaseLayout title={title} description={description} breadcrumbs={[{ label: 'Home', href: '/' }, { label: title }]}>
-  <div class="narrow">
-    <header class="page-hero">
-      <p class="kicker">{kicker}</p>
-      <h1>{title}</h1>
-      <p class="lead">{description}</p>
-    </header>
-    <article class="content-panel"><slot /></article>
-    {relatedLinks.length > 0 && (
-      <nav class="related" aria-label="Related pages">
-        <h2>Related pages</h2>
-        <div>{relatedLinks.map((item) => <a href={item.href}>{item.label}</a>)}</div>
-      </nav>
-    )}
-  </div>
+<BaseLayout pageId={pageId} title={title} description={description} breadcrumbs={[{ label: 'Home', href: '/' }, { label: resolvedTitle }]}>
+  {v2 ? (
+    <V2PageShell sidebar={false}>
+      <div class="narrow">
+        <V2PageHeader title={resolvedTitle} intro={resolvedDescription} eyebrow={kicker} />
+        <article class="content-panel"><slot /></article>
+        {relatedLinks.length > 0 && (
+          <nav class="related" aria-label="Related pages">
+            <h2>Related pages</h2>
+            <div>{relatedLinks.map((item) => <a href={item.href}>{item.label}</a>)}</div>
+          </nav>
+        )}
+      </div>
+    </V2PageShell>
+  ) : (
+    <div class="narrow">
+      <header class="page-hero">
+        <p class="kicker">{kicker}</p>
+        <h1>{resolvedTitle}</h1>
+        <p class="lead">{resolvedDescription}</p>
+      </header>
+      <article class="content-panel"><slot /></article>
+      {relatedLinks.length > 0 && (
+        <nav class="related" aria-label="Related pages">
+          <h2>Related pages</h2>
+          <div>{relatedLinks.map((item) => <a href={item.href}>{item.label}</a>)}</div>
+        </nav>
+      )}
+    </div>
+  )}
 </BaseLayout>
 
 <style>

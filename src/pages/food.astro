@@ -1,40 +1,42 @@
 ---
-import ContentPage from '../components/ContentPage.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 import WikiCard from '../components/WikiCard.astro';
+import CategoryHub from '../components/v2/templates/CategoryHub.astro';
 import { siteImages } from '../data/images';
+import { getPageSEO } from '../utils/seo';
+
+const pageSEO = getPageSEO('food');
 ---
 
-<ContentPage
-  title="Karinderya Food"
-  seoTitle="Karinderya Food Guide & Directory | Karinderya Wiki"
-  description="Explore Karinderya food categories and learn how food connects with recipes, ingredients, and restaurant service."
-  kicker="Food hub"
-  intro="Browse food-related Wiki sections and learn how menu information connects with cooking and restaurant service."
-  relatedLinks={[
-    { label: 'Beginner Guide', href: '/guides/beginner-guide/', description: 'Learn where food fits into the complete restaurant service loop.' },
-    { label: 'Cooking and Serving Guide', href: '/guides/cooking-and-serving/', description: 'Follow food from the customer order through preparation and service.' },
-    { label: 'Recipe Guide', href: '/recipes/', description: 'Understand how recipes connect orders, ingredients, cooking, and food.' },
-    { label: 'Ingredient Guide', href: '/ingredients/', description: 'Browse ingredient entries and their place in food preparation.' },
-  ]}
-  relatedHeading="Related Guides"
-  sourceIds={['codex-menu', 'wiki-menu']}
-  heroImage={siteImages.foodHero}
-  tableOfContents
->
+<BaseLayout pageId="food" breadcrumbs={[{ label: 'Home', href: '/' }, { label: pageSEO.h1 }]}>
+  <CategoryHub
+    title={pageSEO.h1}
+    kicker="Food hub"
+    intro="Learn what Food means in Karinderya and move to the separate Recipe, Ingredient, and Grocery sections."
+    relatedLinks={[
+      { label: 'Beginner Guide', href: '/guides/beginner-guide/', description: 'Learn where food fits into the complete restaurant service loop.' },
+      { label: 'Cooking and Serving Guide', href: '/guides/cooking-and-serving/', description: 'Follow food from the customer order through preparation and service.' },
+      { label: 'Recipe Guide', href: '/recipes/', description: 'Understand how recipes connect orders, ingredients, cooking, and food.' },
+      { label: 'Ingredient Guide', href: '/ingredients/', description: 'Browse ingredient entries and their place in food preparation.' },
+    ]}
+    relatedHeading="Related Guides"
+    heroImage={siteImages.foodHero}
+    tableOfContents
+  >
   <h2 id="introduction">Introduction</h2>
-  <p>Food is the part of the restaurant workflow that connects preparation with customer service. This hub organizes food-related information and helps players move between the pages used to understand an order.</p>
+  <p>Food is the prepared result handled during restaurant service. This hub defines that part of the game and directs players to the separate pages for recipes, ingredients, grocery information, and the cooking workflow.</p>
   <ul>
-    <li><strong>Food</strong> covers prepared menu items and their place in restaurant service.</li>
-    <li><strong>Recipes</strong> explain how orders connect with preparation information.</li>
-    <li><strong>Ingredients</strong> identify the supplies associated with cooking.</li>
-    <li><strong>Grocery</strong> organizes information used when restocking ingredients.</li>
+    <li><strong>Food</strong> covers prepared items and their place in restaurant service.</li>
+    <li><strong>Recipes</strong> cover the preparation relationships documented by the Wiki.</li>
+    <li><strong>Ingredients</strong> identify individual cooking supplies.</li>
+    <li><strong>Grocery</strong> covers ingredient sourcing and management.</li>
   </ul>
   <p>Use the <a href="/recipes/">Recipe Guide</a> for the complete cooking relationship and this page as the top-level Food directory.</p>
 
   <h2 id="how-food-works">How Food Works</h2>
   <p>Food connects the kitchen workflow with the order a customer receives. The relationship can be read as:</p>
   <p><strong>Ingredients → Recipes → Food → Orders</strong></p>
-  <p>Ingredients supply the cooking process, Recipes organize the preparation relationship, Food represents what moves through service, and Orders connect that food with the customer request. Grocery supports this flow by helping players return to the ingredient information used for restocking.</p>
+  <p>This sequence is a Wiki navigation model: ingredient entries lead to recipe information, recipe information leads to prepared food, and food is connected with customer orders. It does not claim a fixed in-game recipe or serving sequence.</p>
 
   <h2 id="featured-content">Featured Content</h2>
   <div class="card-grid">
@@ -43,8 +45,8 @@ import { siteImages } from '../data/images';
     <WikiCard title="Ingredient Guide" description="Browse ingredient entries and their connections with food preparation." href="/ingredients/" icon="I" />
   </div>
 
-  <h2 id="food-directory">Food Directory</h2>
-  <p>Food articles are organized from this directory. Use the connected sections below to find the cooking and service information currently available in the Wiki.</p>
+  <h2 id="food-directory">Food Information Directory</h2>
+  <p>The Wiki does not currently publish unverified individual food entries. Use these established sections to find the food-related information that is available.</p>
   <div class="card-grid">
     <WikiCard title="Recipes and Orders" description="Explore the relationship between orders, ingredients, cooking, and food." href="/recipes/" icon="R" />
     <WikiCard title="Ingredients" description="Open the directory of individual restaurant ingredients." href="/ingredients/" icon="I" />
@@ -55,12 +57,12 @@ import { siteImages } from '../data/images';
   <h2 id="food-categories">Food Categories</h2>
   <p>The Wiki organizes food information by the role it plays for the player:</p>
   <ul>
-    <li><strong>Food entries</strong> focus on an individual prepared menu item.</li>
+    <li><strong>Food information</strong> focuses on prepared items and their role in service.</li>
     <li><strong>Recipe connections</strong> link food with the information used during preparation.</li>
     <li><strong>Ingredient connections</strong> lead to the supplies associated with cooking.</li>
     <li><strong>Order and service information</strong> explains how food moves from the kitchen to the customer.</li>
   </ul>
-  <p>These sections keep food information separate from the detailed ingredient directory and the step-by-step restaurant guides.</p>
+  <p>Specific food names belong here only after they can support a reliable individual entry. Until then, the hub keeps food information separate from the ingredient directory and task-focused guides.</p>
 
   <h2 id="gameplay-tips">Gameplay Tips</h2>
   <ul>
@@ -70,4 +72,5 @@ import { siteImages } from '../data/images';
     <li>Keep prepared food connected with the intended order throughout the service workflow.</li>
     <li>Use the Grocery page for restocking information rather than treating it as a food directory.</li>
   </ul>
-</ContentPage>
+  </CategoryHub>
+</BaseLayout>

@@ -1,7 +1,9 @@
 ---
-import ContentPage from '../../components/ContentPage.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GuideArticle from '../../components/v2/templates/GuideArticle.astro';
 import FAQ from '../../components/FAQ.astro';
 import { siteImages } from '../../data/images';
+import { getPageSEO } from '../../utils/seo';
 
 const faqItems = [
   { question: 'Where should I begin with an order?', answer: 'Read the current order information first, then follow the restaurant workflow through ingredients, cooking, food, and serving.' },
@@ -10,12 +12,11 @@ const faqItems = [
 ];
 ---
 
-<ContentPage
-  title="Karinderya Cooking and Serving Guide"
-  description="Follow the Karinderya restaurant workflow from an order through ingredients, cooking, food preparation, and serving."
+<BaseLayout pageId="guides-cooking-and-serving" breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Guides', href: '/guides/' }, { label: getPageSEO('guides-cooking-and-serving').h1 }]}>
+<GuideArticle
+  title={getPageSEO('guides-cooking-and-serving').h1}
   kicker="Kitchen workflow guide"
-  intro="Keep each order moving through preparation and service without losing track of the next task."
-  parent={{ label: 'Guides', href: '/guides/' }}
+  intro="Read the customer request, follow the current cooking prompts, and deliver the completed food to the intended customer."
   tableOfContents
   heroImage={siteImages.foodHero}
   previousPage={{ label: 'Co-op Guide', href: '/guides/co-op-guide/' }}
@@ -27,18 +28,18 @@ const faqItems = [
     { label: 'Food', href: '/food/', description: 'Review how prepared food connects with restaurant service.' },
   ]}
 >
-  <h2 id="introduction">Introduction</h2>
-  <p>Cooking and serving connect customer needs with the kitchen and dining area. A clear workflow helps players understand what the restaurant is handling now and which task should happen next.</p>
+  <h2 id="direct-answer">Direct Answer</h2>
+  <p>Use the current customer and order prompts, move the request into the kitchen workflow, wait for the game to show that the food is ready, and serve it to the intended customer. Exact recipe inputs and equipment performance belong on separately verified pages.</p>
 
   <h2 id="overview">Overview</h2>
   <p>This guide explains the general restaurant flow. Recipes, Ingredients, Food, and Equipment remain separate Wiki sections so each topic can be explored without placing unsupported details into one article.</p>
 
   <h2 id="how-it-works">How It Works</h2>
-  <p>The restaurant workflow moves through five connected stages:</p>
+  <p>Public gameplay consistently shows a customer-to-kitchen-to-service loop. The Wiki summarizes it in five stages:</p>
   <ol>
     <li><strong>Order:</strong> read the information currently shown for the customer.</li>
-    <li><strong>Ingredients:</strong> identify the ingredient information connected with preparation.</li>
-    <li><strong>Cooking:</strong> use the kitchen and its available equipment.</li>
+    <li><strong>Ingredients:</strong> consult the ingredient information required by the current interface.</li>
+    <li><strong>Cooking:</strong> follow the live kitchen and equipment prompts.</li>
     <li><strong>Food:</strong> keep the prepared item associated with the current service task.</li>
     <li><strong>Serving:</strong> return to the dining area and complete the customer interaction.</li>
   </ol>
@@ -59,7 +60,7 @@ const faqItems = [
     <li>Finish visible tasks before adding more restaurant work.</li>
   </ul>
 
-  <h2 id="common-mistakes">Common Mistakes</h2>
+  <h2 id="common-mistakes">Common Issues</h2>
   <ul>
     <li>Starting preparation before reading the current order.</li>
     <li>Losing track of which prepared food belongs with the active task.</li>
@@ -67,5 +68,6 @@ const faqItems = [
     <li>Having multiple players repeat the same task while another area waits.</li>
   </ul>
 
-  <FAQ items={faqItems} />
-</ContentPage>
+  <FAQ slot="faq" items={faqItems} />
+</GuideArticle>
+</BaseLayout>

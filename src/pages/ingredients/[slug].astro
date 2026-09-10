@@ -1,6 +1,8 @@
 ---
-import ContentPage from '../../components/ContentPage.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EntityArticle from '../../components/v2/templates/EntityArticle.astro';
 import { ingredientEntities, type EntityRecord } from '../../data/entities';
+import { getPageSEO } from '../../utils/seo';
 
 export function getStaticPaths() {
   return ingredientEntities.map((entity) => ({ params: { slug: entity.slug }, props: { entity } }));
@@ -15,37 +17,91 @@ const previousEntity = findEntity(navigationOrder[currentIndex - 1]);
 const nextEntity = findEntity(navigationOrder[currentIndex + 1]);
 const shortTitle = (title: string) => title.replace('Karinderya ', '');
 const ingredientName = shortTitle(entity.title);
+const copyBySlug: Record<string, { definition: string; evidence: string; obtaining: string; usage: string }> = {
+  rice: {
+    definition: 'Rice is a named Grocery ingredient shown in a dated Karinderya listing.',
+    evidence: 'The available capture confirms the Rice listing and a package label at that time. It does not establish current price, recipe yield, or every dish that uses Rice.',
+    obtaining: 'Check the current Grocery interface for Rice availability and the live listing shown in your server.',
+    usage: 'Use Rice only where the current order or recipe interface calls for it; the Wiki does not publish an unverified recipe combination.',
+  },
+  condiments: {
+    definition: 'Condiments is a named Grocery ingredient listing shown in dated Karinderya material.',
+    evidence: 'The capture confirms the listing name but does not identify every condiment included, current price, serving yield, or complete recipe use.',
+    obtaining: 'Check the current Grocery interface for the Condiments listing and its live availability.',
+    usage: 'Follow the current order or recipe interface when Condiments are requested rather than assuming a fixed combination.',
+  },
+  eggs: {
+    definition: 'Eggs is retained as an Ingredient directory entry in the Karinderya Wiki.',
+    evidence: 'Current public material reviewed for this rebuild does not establish a reliable acquisition listing, quantity, or recipe connection for Eggs.',
+    obtaining: 'Use the current Grocery interface to confirm whether Eggs are listed and available in your server.',
+    usage: 'Follow only the live recipe or order prompt that names Eggs; no fixed combination is published here.',
+  },
+  vegetables: {
+    definition: 'Vegetables is retained as an Ingredient directory entry in the Karinderya Wiki.',
+    evidence: 'The reviewed evidence does not establish which individual vegetables are included or a complete set of recipe uses.',
+    obtaining: 'Confirm the current Vegetables listing and availability through the live Grocery interface.',
+    usage: 'Use the name shown by the current order or recipe interface; do not treat the category as a substitute for a verified recipe.',
+  },
+  bangus: {
+    definition: 'Bangus is retained as a named Ingredient entry for Karinderya.',
+    evidence: 'The reviewed public evidence does not establish a current Grocery listing, quantity, or confirmed recipe connection for Bangus.',
+    obtaining: 'Check the live Grocery and order interfaces for the current Bangus entry before planning around it.',
+    usage: 'Follow the current recipe or order prompt when Bangus is named; this page does not infer a dish from the ingredient alone.',
+  },
+  pork: {
+    definition: 'Pork is retained as a named Ingredient entry for Karinderya.',
+    evidence: 'A reliable current price, package, acquisition route, and recipe list were not established during this rebuild.',
+    obtaining: 'Confirm the Pork listing and availability in the current Grocery interface.',
+    usage: 'Use Pork only where the current recipe or order display identifies it.',
+  },
+  beef: {
+    definition: 'Beef is retained as a named Ingredient entry for Karinderya.',
+    evidence: 'The reviewed material does not establish a reliable current listing, quantity, or complete recipe use for Beef.',
+    obtaining: 'Confirm the Beef listing and availability in the current Grocery interface.',
+    usage: 'Follow the current recipe or order display when Beef is requested.',
+  },
+};
+const copy = copyBySlug[entity.slug];
+const pageId = `ingredient-${entity.slug}`;
+const pageSEO = getPageSEO(pageId);
+const parent = { label: 'Ingredients', href: '/ingredients/' };
+const previousPage = previousEntity ? { label: shortTitle(previousEntity.title), href: `/ingredients/${previousEntity.slug}/` } : undefined;
+const nextPage = nextEntity ? { label: shortTitle(nextEntity.title), href: `/ingredients/${nextEntity.slug}/` } : undefined;
+const relatedLinks = [
+  { label: 'Ingredients Hub', href: '/ingredients/', description: 'Browse the ingredient directory and learn how ingredients fit into restaurant workflow.' },
+  { label: 'Recipe Guide', href: '/recipes/', description: 'Learn how recipes connect ingredients with cooking and food.' },
+  { label: 'Food Guide', href: '/food/', description: 'Explore how prepared food fits into restaurant service.' },
+  { label: 'Grocery Guide', href: '/grocery/', description: 'Review the Grocery as part of ingredient planning and preparation.' },
+];
 ---
 
-<ContentPage
-  title={entity.title}
-  description={entity.description}
-  kicker="Ingredient profile"
-  intro={entity.intro}
-  parent={{ label: 'Ingredients', href: '/ingredients/' }}
-  heroImage={entity.heroImage}
-  tableOfContents
-  previousPage={previousEntity ? { label: shortTitle(previousEntity.title), href: `/ingredients/${previousEntity.slug}/` } : undefined}
-  nextPage={nextEntity ? { label: shortTitle(nextEntity.title), href: `/ingredients/${nextEntity.slug}/` } : undefined}
-  relatedLinks={[
-    { label: 'Ingredients Hub', href: '/ingredients/', description: 'Browse the ingredient directory and learn how ingredients fit into restaurant workflow.' },
-    { label: 'Recipe Guide', href: '/recipes/', description: 'Learn how recipes connect ingredients with cooking and food.' },
-    { label: 'Food Guide', href: '/food/', description: 'Explore how prepared food fits into restaurant service.' },
-    { label: 'Grocery Guide', href: '/grocery/', description: 'Review the Grocery as part of ingredient planning and preparation.' },
-  ]}
+<BaseLayout
+  pageId={pageId}
+  breadcrumbs={[{ label: 'Home', href: '/' }, parent, { label: pageSEO.h1 }]}
 >
-  <h2 id="introduction">Introduction</h2>
-  <p>{entity.overview}</p>
+  <EntityArticle
+    title={pageSEO.h1}
+    kicker="Ingredient profile"
+    intro={copy.definition}
+    heroImage={entity.heroImage}
+    tableOfContents
+    previousPage={previousPage}
+    nextPage={nextPage}
+    relatedLinks={relatedLinks}
+  >
+    <h2 id="introduction">Short Definition</h2>
+    <p>{copy.definition}</p>
 
-  <h2 id="overview">Overview</h2>
-  <ul>{entity.known.map((item) => <li>{item}</li>)}</ul>
+    <h2 id="overview">Overview</h2>
+    <p>{copy.evidence}</p>
 
-  <h2 id="how-it-works">How It Works</h2>
-  <p>{ingredientName} sits within the ingredient side of the restaurant workflow. The Grocery provides context for ingredient planning, Recipes explain where ingredients fit into cooking, and the Food guide follows the prepared result into service.</p>
+    <h2 id="how-it-works">How to Get {ingredientName}</h2>
+    <p>{copy.obtaining}</p>
 
-  <h2 id="usage">Usage</h2>
-  <ul>{entity.howToUse?.map((item) => <li>{item}</li>)}</ul>
+    <h2 id="usage">What It Is Used For</h2>
+    <p>{copy.usage}</p>
 
-  <h2 id="gameplay-tips">Gameplay Tips</h2>
-  <ul>{entity.tips?.map((item) => <li>{item}</li>)}</ul>
-</ContentPage>
+    <h2 id="gameplay-tips">Gameplay Tips</h2>
+    <ul><li>Read the current Grocery listing before relying on older availability information.</li><li>Use the Recipe Hub for preparation context and the Food Hub for prepared-food information.</li><li>Return to the Ingredients directory to compare other ingredient entries.</li></ul>
+  </EntityArticle>
+</BaseLayout>

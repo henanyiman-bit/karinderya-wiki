@@ -1,31 +1,33 @@
 ---
-import ContentPage from '../../components/ContentPage.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 import WikiCard from '../../components/WikiCard.astro';
+import DirectoryPage from '../../components/v2/templates/DirectoryPage.astro';
 import { siteImages } from '../../data/images';
+import { getPageSEO } from '../../utils/seo';
+const pageSEO = getPageSEO('equipment-stoves');
 ---
 
-<ContentPage
-  title="Karinderya Stoves"
-  description="Browse Karinderya Stoves and learn how cooking equipment fits into the kitchen and restaurant workflow."
-  kicker="Equipment directory"
-  intro="Browse the Stove directory and connect each cooking-equipment entry with the wider restaurant workflow."
-  parent={{ label: 'Equipment', href: '/equipment/' }}
-  heroImage={siteImages.equipmentHero}
-  tableOfContents
-  relatedLinks={[
-    { label: 'Equipment Hub', href: '/equipment/', description: 'Browse restaurant equipment categories and related guides.' },
-    { label: 'Cooking and Serving Guide', href: '/guides/cooking-and-serving/', description: 'Follow the restaurant workflow from preparation through customer service.' },
-    { label: 'Beginner Guide', href: '/guides/beginner-guide/', description: 'Learn the main restaurant systems and navigation paths.' },
-  ]}
->
+<BaseLayout pageId="equipment-stoves" breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Equipment', href: '/equipment/' }, { label: pageSEO.h1 }]}>
+  <DirectoryPage
+    title={pageSEO.h1}
+    kicker="Equipment directory"
+    intro="Browse the three Stove names visible in dated placement footage and open their evidence-limited entity pages."
+    heroImage={siteImages.equipmentHero}
+    tableOfContents
+    relatedLinks={[
+      { label: 'Equipment Hub', href: '/equipment/', description: 'Browse restaurant equipment categories and related guides.' },
+      { label: 'Cooking and Serving Guide', href: '/guides/cooking-and-serving/', description: 'Follow the restaurant workflow from preparation through customer service.' },
+      { label: 'Beginner Guide', href: '/guides/beginner-guide/', description: 'Learn the main restaurant systems and navigation paths.' },
+    ]}
+  >
   <h2 id="introduction">Introduction</h2>
-  <p>Stoves are grouped together in the Equipment section because they support the cooking part of restaurant service. This page acts as the directory for the Stove entries currently covered by the Wiki.</p>
+  <p>Dated placement footage shows Basic Stove, Standard Stove, and Deluxe Stove as names in a Stoves inventory. This page preserves those names for discovery without claiming a fixed upgrade order.</p>
 
   <h2 id="overview">Overview</h2>
-  <p>The Stove directory keeps individual equipment articles separate from broader kitchen guidance. Open an entry for information about that named Stove, or use the related guides to follow the complete preparation and serving workflow.</p>
+  <p>Each entry records the evidence boundary for that name. Current price, unlock method, cooking time, capacity, and performance order have not been established from creator-owned documentation.</p>
 
-  <h2 id="how-equipment-works">How Equipment Works</h2>
-  <p>Cooking equipment connects the kitchen with the rest of restaurant service. Ingredients and recipes provide preparation context, while the cooking and serving guide explains how kitchen tasks continue into customer service.</p>
+  <h2 id="how-equipment-works">How to Use This Directory</h2>
+  <p>Open the entry that matches the name shown in your current inventory or placement interface. Use the Cooking and Serving Guide for the task flow; this directory does not compare Stove performance.</p>
 
   <h2 id="directory">Directory</h2>
   <div class="card-grid">
@@ -43,4 +45,5 @@ import { siteImages } from '../../data/images';
     <li>Use the individual Stove entries when you need focused information about a named piece of equipment.</li>
     <li>Review the complete service flow before changing how kitchen work areas are organized.</li>
   </ul>
-</ContentPage>
+  </DirectoryPage>
+</BaseLayout>

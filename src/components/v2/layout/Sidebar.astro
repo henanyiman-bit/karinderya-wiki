@@ -1,0 +1,43 @@
+---
+interface Props {
+  sticky?: boolean;
+  ariaLabel?: string;
+  class?: string;
+}
+
+const {
+  sticky = false,
+  ariaLabel = "Page sidebar",
+  class: className,
+} = Astro.props;
+
+if (!ariaLabel.trim()) {
+  throw new Error("Sidebar ariaLabel must not be empty.");
+}
+---
+
+<aside
+  class:list={["v2-sidebar", className, { "is-sticky": sticky }]}
+  aria-label={ariaLabel}
+>
+  <slot />
+</aside>
+
+<style>
+  .v2-sidebar {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .v2-sidebar.is-sticky {
+    position: sticky;
+    top: var(--v2-sidebar-sticky-top, 88px);
+    align-self: start;
+  }
+
+  @media (max-width: 940px) {
+    .v2-sidebar.is-sticky {
+      position: static;
+    }
+  }
+</style>

@@ -45,14 +45,14 @@ export const siteImages = {
       { src: '/images/site/home-hero.webp', width: 1672 },
     ],
   },
-  codesHero: portraitHero('codes', 'codes-hero', 'Karinderya character presenting the codes and rewards guide'),
+  codesHero: portraitHero('codes', 'codes-hero', 'Karinderya codes and redemption guide illustration'),
   workersHero: portraitHero('workers', 'workers-hero', 'Karinderya restaurant workers gathered behind the counter'),
   ingredientsHero: portraitHero('ingredients', 'ingredients-hero', 'Karinderya character surrounded by documented cooking ingredients'),
   foodHero: portraitHero('food', 'food-recipes-hero', 'Karinderya food and recipe dishes displayed around a restaurant counter'),
   equipmentHero: portraitHero('equipment', 'equipment-hero', 'Karinderya kitchen equipment and cooking stations'),
   furnitureHero: portraitHero('furniture', 'furniture-hero', 'Karinderya restaurant furniture and dining area'),
   decorationsHero: portraitHero('decorations', 'decorations-hero', 'Decorated Karinderya restaurant interior with plants and counters'),
-  beginnerGuideHero: portraitHero('guides', 'beginner-guide-hero', 'Karinderya beginner guide scene with a restaurant character and task boards'),
+  beginnerGuideHero: portraitHero('guides', 'beginner-guide-hero', 'Karinderya beginner guide illustration inside a restaurant'),
   updatesHero: portraitHero('updates', 'updates-hero', 'Karinderya update board displayed beside prepared dishes'),
 } satisfies Record<string, ResponsiveImageAsset>;
 

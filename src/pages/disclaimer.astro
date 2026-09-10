@@ -1,7 +1,9 @@
 ---
 import InfoPage from '../components/InfoPage.astro';
+import PageHeader from '../components/v2/layout/PageHeader.astro';
+import PageShell from '../components/v2/layout/PageShell.astro';
 ---
-<InfoPage title="Disclaimer" description="Read the independence, accuracy, and game-information disclaimer for Karinderya Wiki." kicker="Site policy" relatedLinks={[{ label: 'About', href: '/about/' }, { label: 'Contact', href: '/contact/' }, { label: 'Terms of Use', href: '/terms/' }]}>
+<InfoPage pageId="disclaimer" v2 pageShell={PageShell} pageHeader={PageHeader} kicker="Site policy" relatedLinks={[{ label: 'About', href: '/about/' }, { label: 'Contact', href: '/contact/' }, { label: 'Terms of Use', href: '/terms/' }]}>
   <h2>Unofficial fan resource</h2>
   <p>Karinderya Wiki is an unofficial fan-made resource and is not affiliated with Roblox Corporation or the Karinderya developers. It is not endorsed or sponsored by either party.</p>
   <h2>Game information changes</h2>

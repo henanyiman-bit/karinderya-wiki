@@ -1,0 +1,109 @@
+---
+interface Props {
+  title: string;
+  intro?: string;
+  eyebrow?: string;
+  class?: string;
+}
+
+const {
+  title,
+  intro,
+  eyebrow,
+  class: className,
+} = Astro.props;
+
+if (!title?.trim()) {
+  throw new Error("PageHeader title is required.");
+}
+
+const hasMeta = Astro.slots.has("meta");
+const hasMedia = Astro.slots.has("media");
+---
+
+<header class:list={["v2-page-header", className, { "has-media": hasMedia }]}>
+  <div class="v2-page-header__content">
+    {eyebrow && <p class="v2-page-header__eyebrow">{eyebrow}</p>}
+    <h1>{title}</h1>
+    {intro && <p class="v2-page-header__intro">{intro}</p>}
+    {hasMeta && (
+      <div class="v2-page-header__meta">
+        <slot name="meta" />
+      </div>
+    )}
+  </div>
+
+  {hasMedia && (
+    <div class="v2-page-header__media">
+      <slot name="media" />
+    </div>
+  )}
+</header>
+
+<style>
+  .v2-page-header {
+    margin-block-end: var(--v2-space-6, 2rem);
+  }
+
+  .v2-page-header.has-media {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 0.42fr);
+    gap: var(--v2-space-6, 2rem);
+    align-items: center;
+  }
+
+  .v2-page-header__content,
+  .v2-page-header__media {
+    min-width: 0;
+  }
+
+  .v2-page-header__eyebrow {
+    margin: 0 0 var(--v2-space-2, 0.5rem);
+    color: var(--v2-muted-color, #71655e);
+    font-size: var(--v2-font-size-label, 0.8125rem);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    color: var(--v2-text-color, #2d2622);
+    font-size: var(--v2-font-size-h1, clamp(2rem, 4vw, 3rem));
+    line-height: var(--v2-line-height-heading, 1.2);
+    overflow-wrap: anywhere;
+  }
+
+  .v2-page-header__intro {
+    max-width: 68ch;
+    margin: var(--v2-space-4, 1rem) 0 0;
+    color: var(--v2-muted-color, #71655e);
+    font-size: var(--v2-font-size-body, 1rem);
+    line-height: var(--v2-line-height-body, 1.7);
+  }
+
+  .v2-page-header__meta {
+    margin-block-start: var(--v2-space-4, 1rem);
+  }
+
+  .v2-page-header__media {
+    max-width: 100%;
+    overflow: hidden;
+    border-radius: var(--v2-radius-large, 1.125rem);
+  }
+
+  .v2-page-header__media :global(img),
+  .v2-page-header__media :global(video) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  @media (max-width: 760px) {
+    .v2-page-header.has-media {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--v2-space-5, 1.5rem);
+    }
+  }
+</style>

@@ -1,20 +1,22 @@
 ---
-import ContentPage from '../components/ContentPage.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 import FAQ from '../components/FAQ.astro';
+import CodesPage from '../components/v2/templates/CodesPage.astro';
 import { siteImages } from '../data/images';
+import { getPageSEO } from '../utils/seo';
 
 const faqItems = [
-  { question: 'Why is a Karinderya code not accepted?', answer: 'Check the spelling, capitalization, and any extra spaces. A code may also have changed or may already have been used on the account.' },
-  { question: 'Can Karinderya codes change?', answer: 'Yes. Code availability may change over time, so check current game information before trying a code.' },
-  { question: 'Where should I look for code-related updates?', answer: 'Use the Updates section of this Wiki to review pages connected with changes to the game.' },
+  { question: 'Which Karinderya codes are currently listed by the developer?', answer: 'The official Roblox game description listed DECOPART1, BRGYPERMIT, and 100KCCU when this page was reviewed on September 9, 2026. A listing does not guarantee that a code can still be redeemed on every account.' },
+  { question: 'Why is a Karinderya code not accepted?', answer: 'Check for typing errors and extra spaces, then consider whether the account has already redeemed it or the server has a newer code state.' },
+  { question: 'Where are Karinderya codes entered?', answer: 'Use the code control shown by the current game interface. If it is not visible, finish the opening prompts before checking again.' },
 ];
 ---
 
-<ContentPage
-  title="Karinderya Codes Guide"
-  description="Learn how the Karinderya code system works, how to enter codes, and what to check when a code is not accepted."
+<BaseLayout pageId="codes" breadcrumbs={[{label:'Home',href:'/'},{label:getPageSEO('codes').h1}]}>
+<CodesPage
+  title={getPageSEO('codes').h1}
   kicker="Code help"
-  intro="Use this guide to understand the Karinderya code system and the basic steps for entering a code."
+  intro="The official Karinderya Roblox page currently lists DECOPART1, BRGYPERMIT, and 100KCCU. Reward details are not confirmed here."
   relatedLinks={[
     { label: 'Beginner Guide', href: '/guides/beginner-guide/' },
     { label: 'Updates', href: '/updates/' },
@@ -23,34 +25,38 @@ const faqItems = [
   tableOfContents
   heroImage={siteImages.codesHero}
 >
-  <h2 id="overview">Overview</h2>
-  <p>Codes are text strings entered through the game's code interface. Their availability may change over time, so this page focuses on using the system rather than maintaining a permanent list.</p>
+  <h2 id="direct-answer">Direct Answer</h2>
+  <p>When this page was reviewed on September 9, 2026, the official Roblox game description listed <code>DECOPART1</code>, <code>BRGYPERMIT</code>, and <code>100KCCU</code>. This confirms that the developer currently publishes these strings, but it does not prove that every code is redeemable on every account or server.</p>
 
-  <h2 id="how-codes-work">How Codes Work</h2>
-  <p>A code must be entered in the form currently recognized by the game. Spelling, capitalization, account history, and changes to the game can affect whether an entry is accepted.</p>
+  <h2 id="officially-listed-codes">Current Officially Listed Codes</h2>
+  <div class="table-scroll"><table><thead><tr><th>Code</th><th>Public classification</th><th>Reward</th></tr></thead><tbody>
+    <tr><td><code>DECOPART1</code></td><td>Listed in the official Roblox description</td><td>Reward details are not confirmed.</td></tr>
+    <tr><td><code>BRGYPERMIT</code></td><td>Listed in the official Roblox description</td><td>Reward details are not confirmed.</td></tr>
+    <tr><td><code>100KCCU</code></td><td>Listed in the official Roblox description</td><td>Reward details are not confirmed.</td></tr>
+  </tbody></table></div>
 
-  <h2 id="how-to-use-codes">How to Use Codes</h2>
+  <h2 id="historical-codes">Historical Codes</h2>
+  <p><code>50KCCU</code>, <code>2MVISITS</code>, <code>3MVISITS</code>, and <code>BATINATAYOHA</code> appear in dated community redemption records. They are not listed in the current official Roblox description, so this Wiki does not present them as current codes. Historical reports also differ on parts of some rewards.</p>
+
+  <h2 id="how-to-use-codes">How to Redeem Codes</h2>
   <ol>
-    <li>Open Karinderya and locate the current code interface.</li>
-    <li>Enter the code exactly as shown in current game information.</li>
+    <li>Open Karinderya and finish any opening prompts that hide the regular interface.</li>
+    <li>Open the current code control and enter only the code string.</li>
     <li>Remove spaces before or after the text.</li>
     <li>Submit the entry once and read the message displayed by the game.</li>
   </ol>
 
-  <h2 id="troubleshooting">Troubleshooting</h2>
+  <h2 id="troubleshooting">Why a Code May Not Work</h2>
   <ul>
     <li>Check every character and match capitalization.</li>
     <li>Make sure no extra spaces were included.</li>
     <li>Consider whether the account has already used the same code.</li>
-    <li>Check current game information because code availability can change.</li>
+    <li>Rejoin an updated server if the game has recently changed.</li>
   </ul>
 
-  <h2 id="gameplay-tips">Gameplay Tips</h2>
-  <ul>
-    <li>Enter codes carefully instead of submitting several variations quickly.</li>
-    <li>Read the in-game response before trying the same entry again.</li>
-    <li>Use the Updates section to continue exploring game changes and Wiki coverage.</li>
-  </ul>
+  <h2 id="verification-method">How This Page Is Checked</h2>
+  <p>Current code strings are taken from the public description of the official Roblox experience. Exact rewards are published only when creator-owned information or a recent, reviewable redemption record supports them. The current server response remains the final result for an individual account.</p>
 
   <FAQ items={faqItems} />
-</ContentPage>
+</CodesPage>
+</BaseLayout>

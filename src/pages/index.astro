@@ -3,20 +3,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import AdSlot from '../components/AdSlot.astro';
 import WikiCard from '../components/WikiCard.astro';
 import ResponsiveImage from '../components/ResponsiveImage.astro';
+import HomePortal from '../components/v2/templates/HomePortal.astro';
 import { siteImages } from '../data/images';
 
 const categories = [
-  { title: 'Food & Recipes', description: 'Browse menu groups, ingredients, and customer orders.', href: '/food/', icon: 'F' },
-  { title: 'Workers', description: 'Compare worker contracts and restaurant staffing tips.', href: '/workers/', icon: 'W' },
+  { title: 'Food & Recipes', description: 'Browse food, recipe, ingredient, and cooking information.', href: '/food/', icon: 'F' },
+  { title: 'Workers', description: 'Explore the Worker system and related management guides.', href: '/workers/', icon: 'W' },
   { title: 'Equipment', description: 'Browse equipment categories, Stoves, the Chiller, and the cooking workflow.', href: '/equipment/', icon: 'E' },
-  { title: 'Grocery & Ingredients', description: 'Check grocery listings, package sizes, and ingredients.', href: '/grocery/', icon: 'G' },
+  { title: 'Grocery & Ingredients', description: 'Find ingredient sourcing and management information.', href: '/grocery/', icon: 'G' },
   { title: 'Furniture', description: 'Browse Furniture categories, Tables, Chairs, and layout-planning guidance.', href: '/furniture/', icon: 'T' },
   { title: 'Decorations', description: 'Explore Tiles, counters, and Choopy Mystery Box information.', href: '/decorations/', icon: 'D' },
 ];
 const guides = [
   { title: 'Beginner Guide', description: 'Learn the service loop and the main restaurant systems.', href: '/guides/beginner-guide/', icon: '1' },
   { title: '5-Star Guide', description: 'Improve restaurant service while working toward five stars.', href: '/guides/5-star-guide/', icon: '5' },
-  { title: 'Counter Upgrades', description: 'Compare counter choices and the ElegantWood upgrade.', href: '/guides/counter-upgrades/', icon: 'C' },
+  { title: 'Counter Guide', description: 'Review the current Wiki information about counter changes.', href: '/guides/counter-upgrades/', icon: 'C' },
 ];
 const startHere = [
   { step: '01', title: 'Beginner Guide', description: 'Learn the core restaurant loop and plan your first steps.', href: '/guides/beginner-guide/' },
@@ -80,7 +81,8 @@ const wikiDirectory = [
   },
 ];
 ---
-<BaseLayout title="Karinderya Wiki" seoTitle="Karinderya Roblox Wiki: Codes, Guides & Game Information" description="An independent English wiki for the Karinderya Roblox experience, with player guides to codes, food, recipes, workers, equipment, and updates.">
+<BaseLayout pageId="home">
+  <HomePortal>
   <section class="hero"><div class="container hero-inner">
     <div><p class="kicker">Independent Roblox game guide</p><h1>Karinderya <em>Wiki</em></h1><p class="lead">Your English-language reference for running the kitchen, learning the systems, and keeping up with Karinderya.</p><div class="hero-actions"><a class="button primary" href="#explore">Explore the wiki</a><a class="button secondary" href="/codes/">Check codes</a></div></div>
     <ResponsiveImage image={siteImages.homeHero} priority sizes="(max-width: 700px) calc(100vw - 32px), 42vw" class="home-hero-image" />
@@ -91,14 +93,15 @@ const wikiDirectory = [
     <ol class="journey-list">{startHere.map((item) => <li><a href={item.href}><span>{item.step}</span><div><h3>{item.title}</h3><p>{item.description}</p></div><b aria-hidden="true">-&gt;</b></a></li>)}</ol>
   </div></section>
   <section class="section update-section"><div class="container content-layout">
-    <div class="main-column"><div class="section-heading"><div><p class="section-kicker">What's new</p><h2>Latest Update</h2></div><a href="/updates/">All updates -&gt;</a></div><article class="feature-card"><div><span>Game update</span><h3>Decorations Pt. 1</h3><p>Explore Tiles, Counter Upgrade, Table Tops, Dishwasher, Choopy delivery, and the related Wiki pages.</p></div><a href="/updates/decorations-part-1/">View update summary -&gt;</a></article><AdSlot placement="content-1" /></div>
+    <div class="main-column"><div class="section-heading"><div><p class="section-kicker">Update history</p><h2>Recent Documented Update</h2></div><a href="/updates/">All updates -&gt;</a></div><article class="feature-card"><div><span>Update record</span><h3>Decorations Pt. 1</h3><p>Read the dated update summary and follow links to the related Wiki topics.</p></div><a href="/updates/decorations-part-1/">View update summary -&gt;</a></article><AdSlot placement="content-1" /></div>
     <aside class="sidebar"><div class="section-heading"><div><p class="section-kicker">Player help</p><h2>Codes Guide</h2></div></div><div class="code-card"><span class="code-icon">%</span><div><strong>Redemption Guide</strong><p>Find code-entry help and troubleshooting tips.</p></div></div><a class="sidebar-link" href="/codes/">Open Codes Guide -&gt;</a><AdSlot placement="desktop-sidebar" /></aside>
   </div></section>
   <section class="section explore-section" id="explore"><div class="container"><div class="section-heading"><div><p class="section-kicker">Explore the game</p><h2>Build your restaurant knowledge</h2><p>Browse the main databases and player guides.</p></div></div><div class="card-grid">{categories.map((card) => <WikiCard {...card} />)}</div></div></section>
   <div class="container"><AdSlot placement="content-2" /></div>
-  <section class="section"><div class="container"><div class="section-heading"><div><p class="section-kicker">Helpful reads</p><h2>Popular Guides</h2></div><a href="/guides/">Browse guides -&gt;</a></div><div class="card-grid">{guides.map((card) => <WikiCard {...card} />)}</div></div></section>
+  <section class="section"><div class="container"><div class="section-heading"><div><p class="section-kicker">Helpful reads</p><h2>Useful Guides</h2></div><a href="/guides/">Browse guides -&gt;</a></div><div class="card-grid">{guides.map((card) => <WikiCard {...card} />)}</div></div></section>
   <section class="section directory-section" aria-labelledby="directory-heading"><div class="container"><div class="section-heading"><div><p class="section-kicker">Browse the database</p><h2 id="directory-heading">Wiki Directory</h2><p>Jump directly to guides, game systems, restaurant content, and updates.</p></div></div><div class="directory-grid">{wikiDirectory.map((group) => <section class="directory-card"><div class="directory-title"><span aria-hidden="true">{group.icon}</span><div><h3>{group.title}</h3><p>{group.description}</p></div></div><ul>{group.links.map((link) => <li><a href={link.href}>{link.label}<span aria-hidden="true">-&gt;</span></a></li>)}</ul></section>)}</div></div></section>
-  <section class="section latest-section"><div class="container"><div class="section-heading"><div><p class="section-kicker">Recently added</p><h2>Latest Pages</h2></div></div><div class="latest-list"><a href="/updates/decorations-part-1/"><span>Decorations Part 1</span><small>Update overview</small><b>-&gt;</b></a><a href="/guides/restaurant-layout/"><span>Restaurant Layout</span><small>Dining and work-area planning</small><b>-&gt;</b></a><a href="/ingredients/rice/"><span>Rice</span><small>Ingredient profile</small><b>-&gt;</b></a></div><AdSlot placement="bottom" /></div></section>
+  <section class="section latest-section"><div class="container"><div class="section-heading"><div><p class="section-kicker">More to explore</p><h2>Selected Wiki Pages</h2></div></div><div class="latest-list"><a href="/updates/decorations-part-1/"><span>Decorations Part 1</span><small>Update overview</small><b>-&gt;</b></a><a href="/guides/restaurant-layout/"><span>Restaurant Layout</span><small>Dining and work-area planning</small><b>-&gt;</b></a><a href="/ingredients/rice/"><span>Rice</span><small>Ingredient profile</small><b>-&gt;</b></a></div><AdSlot placement="bottom" /></div></section>
+  </HomePortal>
 </BaseLayout>
 <style>
   .hero { overflow: hidden; padding: clamp(54px, 9vw, 108px) 0 64px; background: radial-gradient(circle at 78% 50%, #ffe2c6 0, #fff4e9 24%, transparent 52%), linear-gradient(135deg, #fffaf5, #f7eee6); }

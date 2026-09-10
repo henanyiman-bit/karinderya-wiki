@@ -1,37 +1,39 @@
 ---
-import ContentPage from '../components/ContentPage.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 import WikiCard from '../components/WikiCard.astro';
+import CategoryHub from '../components/v2/templates/CategoryHub.astro';
+import { getPageSEO } from '../utils/seo';
+
+const pageSEO = getPageSEO('recipes');
 ---
 
-<ContentPage
-  title="Karinderya Recipes & Orders"
-  seoTitle="Karinderya Recipes Guide & Cooking Flow | Karinderya Wiki"
-  description="Learn how Recipes connect ingredients, cooking, and food orders in Karinderya with beginner-friendly guides and restaurant workflow tips."
-  kicker="Recipe hub"
-  intro="Explore how recipes connect customer orders with ingredients, cooking, food, and serving."
-  relatedLinks={[
-    { label: 'Beginner Guide', href: '/guides/beginner-guide/', description: 'Learn how recipes fit into the complete restaurant service loop.' },
-    { label: 'Cooking and Serving Guide', href: '/guides/cooking-and-serving/', description: 'Follow an order from the customer request through cooking and serving.' },
-    { label: 'Ingredient Guide', href: '/ingredients/', description: 'Browse the ingredient directory and connected cooking information.' },
-    { label: 'Equipment Guide', href: '/equipment/', description: 'Explore the restaurant tools used during food preparation.' },
-  ]}
-  relatedHeading="Related Guides"
-  sourceIds={['codex-menu', 'wiki-menu']}
-  tableOfContents
->
+<BaseLayout pageId="recipes" breadcrumbs={[{ label: 'Home', href: '/' }, { label: pageSEO.h1 }]}>
+  <CategoryHub
+    title={pageSEO.h1}
+    kicker="Recipe hub"
+    intro="Use the Recipe Hub to connect documented recipe information with ingredients, food, cooking, and serving guides."
+    relatedLinks={[
+      { label: 'Beginner Guide', href: '/guides/beginner-guide/', description: 'Learn how recipes fit into the complete restaurant service loop.' },
+      { label: 'Cooking and Serving Guide', href: '/guides/cooking-and-serving/', description: 'Follow an order from the customer request through cooking and serving.' },
+      { label: 'Ingredient Guide', href: '/ingredients/', description: 'Browse the ingredient directory and connected cooking information.' },
+      { label: 'Equipment Guide', href: '/equipment/', description: 'Explore the restaurant tools used during food preparation.' },
+    ]}
+    relatedHeading="Related Guides"
+    tableOfContents
+  >
   <h2 id="introduction">Introduction</h2>
-  <p>Recipes connect several parts of restaurant service in Karinderya. A customer order identifies the food being requested, ingredients support its preparation, Grocery helps organize supplies, and cooking turns those requirements into food that can be served.</p>
+  <p>Recipes describe the relationship between a requested food item and its preparation information. In this Wiki, the Recipe Hub connects recipe-related questions with the separate sections for ingredients, food, grocery information, cooking, and serving.</p>
   <p>This hub brings those topics together without duplicating the individual category pages. Use the <a href="/food/">Food Directory</a> to browse the wider menu section, the <a href="/ingredients/">Ingredient Guide</a> for ingredient entries, and the <a href="/grocery/">Grocery</a> page for restocking information.</p>
 
   <h2 id="how-recipes-work">How Recipes Work</h2>
-  <p>A recipe helps connect what a customer requests with the restaurant resources and cooking work needed to complete that order. The relationship can be read as:</p>
+  <p>The Wiki organizes recipe information around this service relationship:</p>
   <p><strong>Order → Ingredients → Cooking → Food → Serving</strong></p>
   <ul>
-    <li><strong>Order:</strong> identifies the food requested by the customer.</li>
-    <li><strong>Ingredients:</strong> connect the request with the supplies used by the restaurant.</li>
-    <li><strong>Cooking:</strong> places the order into the kitchen workflow.</li>
-    <li><strong>Food:</strong> represents the prepared order before it reaches the customer.</li>
-    <li><strong>Serving:</strong> completes the restaurant workflow for that order.</li>
+    <li><strong>Order:</strong> identifies the requested food.</li>
+    <li><strong>Ingredients:</strong> are the individual supplies documented in the ingredient directory.</li>
+    <li><strong>Cooking:</strong> is covered by the task-focused cooking guide.</li>
+    <li><strong>Food:</strong> is the category for prepared restaurant items.</li>
+    <li><strong>Serving:</strong> connects the prepared item with customer service.</li>
   </ul>
 
   <h2 id="featured-content">Featured Content</h2>
@@ -41,13 +43,13 @@ import WikiCard from '../components/WikiCard.astro';
     <WikiCard title="Food Directory" description="Explore food categories and the wider menu section of the Wiki." href="/food/" icon="F" />
   </div>
 
-  <h2 id="recipe-directory">Recipe Directory</h2>
-  <p>Use these Wiki sections to move between recipes and the systems connected to them. Each entry has a separate role in the restaurant workflow.</p>
+  <h2 id="recipe-directory">Recipe Information</h2>
+  <p>The Wiki does not currently publish unverified individual recipe entries. Use these established sections to move between recipe questions and the systems connected to them.</p>
   <div class="card-grid">
-    <WikiCard title="Food Directory" description="Browse menu groups and food-related Wiki content." href="/food/" icon="F" />
+    <WikiCard title="Food Directory" description="Browse the food category and its related Wiki content." href="/food/" icon="F" />
     <WikiCard title="Ingredient Directory" description="Open the directory of individual restaurant ingredients." href="/ingredients/" icon="I" />
-    <WikiCard title="Grocery" description="Review the Wiki section used for ingredient restocking information." href="/grocery/" icon="G" />
-    <WikiCard title="Cooking Equipment" description="Browse Stoves, the Chiller, and other equipment topics covered by the Wiki." href="/equipment/" icon="E" />
+    <WikiCard title="Grocery" description="Review ingredient sourcing and management information." href="/grocery/" icon="G" />
+    <WikiCard title="Cooking Equipment" description="Browse the equipment topics currently covered by the Wiki." href="/equipment/" icon="E" />
   </div>
 
   <h2 id="cooking-and-order-flow">Cooking and Order Flow</h2>
@@ -62,4 +64,5 @@ import WikiCard from '../components/WikiCard.astro';
     <li>Match prepared food with the intended customer before completing service.</li>
     <li>Use the Food, Grocery, and Equipment sections for information outside the recipe directory.</li>
   </ul>
-</ContentPage>
+  </CategoryHub>
+</BaseLayout>

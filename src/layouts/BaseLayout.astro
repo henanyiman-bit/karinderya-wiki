@@ -3,24 +3,47 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Breadcrumb, { type BreadcrumbItem } from '../components/Breadcrumb.astro';
 import GoogleIntegrations from '../components/GoogleIntegrations.astro';
+import { siteImages, entityImages, type ResponsiveImageAsset } from '../data/images';
+import { getPageSEO } from '../utils/seo';
+import { footerNavigation } from '../utils/navigation';
 
 interface Props {
-  title: string;
+  pageId?: string;
+  title?: string;
   seoTitle?: string;
-  description: string;
+  description?: string;
   breadcrumbs?: BreadcrumbItem[];
   noindex?: boolean;
   ogImage?: string;
 }
 
-const { title, seoTitle, description, breadcrumbs = [], noindex = false, ogImage } = Astro.props;
+const { pageId, title, seoTitle, description, breadcrumbs = [], noindex = false, ogImage } = Astro.props;
 const siteName = 'Karinderya Wiki';
-const fullTitle = seoTitle ?? (title === siteName ? title : `${title} | ${siteName}`);
+const registrySEO = pageId ? getPageSEO(pageId) : undefined;
+const legacyTitle = title?.trim();
+const legacyDescription = description?.trim();
+
+if (!registrySEO && !legacyTitle) {
+  throw new Error('BaseLayout requires either a registered pageId or a title.');
+}
+
+if (!registrySEO && !legacyDescription) {
+  throw new Error('BaseLayout requires either a registered pageId or a description.');
+}
+
+const fullTitle = registrySEO?.title ?? seoTitle ?? (legacyTitle === siteName ? legacyTitle : `${legacyTitle} | ${siteName}`);
+const resolvedDescription = registrySEO?.description ?? legacyDescription!;
 const siteURL = Astro.site ?? new URL('https://karinderya.ymmyi.wiki');
 const pathWithoutSlashes = Astro.url.pathname.replace(/^\/+|\/+$/g, '');
-const canonicalPath = pathWithoutSlashes ? `/${pathWithoutSlashes}/` : '/';
+const legacyCanonicalPath = pathWithoutSlashes ? `/${pathWithoutSlashes}/` : '/';
+const canonicalPath = registrySEO?.canonicalPath ?? legacyCanonicalPath;
 const canonicalURL = new URL(canonicalPath, siteURL);
-const ogImageURL = ogImage ? new URL(ogImage, siteURL) : undefined;
+const imageRegistry: Record<string, ResponsiveImageAsset> = { ...siteImages, ...entityImages };
+const registryImage = registrySEO?.ogImageKey ? imageRegistry[registrySEO.ogImageKey] : undefined;
+const resolvedOgImage = registrySEO ? registryImage?.webp.at(-1)?.src ?? registryImage?.fallback : ogImage;
+const ogImageURL = resolvedOgImage ? new URL(resolvedOgImage, siteURL) : undefined;
+const resolvedNoindex = registrySEO ? !registrySEO.indexable : noindex;
+const resolvedOgType = registrySEO?.ogType ?? 'website';
 const breadcrumbSchema = breadcrumbs.length > 0 ? {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
@@ -46,7 +69,7 @@ const pageSchema = {
       '@id': `${canonicalURL.href}#webpage`,
       url: canonicalURL.href,
       name: fullTitle,
-      description,
+      description: resolvedDescription,
       inLanguage: 'en',
       isPartOf: { '@id': `${siteURL.href}#website` },
     },
@@ -61,23 +84,23 @@ const pageSchema = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <title>{fullTitle}</title>
-    <meta name="description" content={description} />
+    <meta name="description" content={resolvedDescription} />
     <link rel="canonical" href={canonicalURL} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
-    {noindex && <meta name="robots" content="noindex, follow" />}
+    {resolvedNoindex && <meta name="robots" content="noindex, follow" />}
     <GoogleIntegrations />
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={resolvedOgType} />
     <meta property="og:site_name" content={siteName} />
     <meta property="og:title" content={fullTitle} />
-    <meta property="og:description" content={description} />
+    <meta property="og:description" content={resolvedDescription} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:locale" content="en_US" />
     {ogImageURL && <meta property="og:image" content={ogImageURL} />}
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={fullTitle} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:description" content={resolvedDescription} />
     {ogImageURL && <meta name="twitter:image" content={ogImageURL} />}
     <script type="application/ld+json" set:html={JSON.stringify(pageSchema)} />
     {breadcrumbSchema && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}
@@ -89,7 +112,7 @@ const pageSchema = {
       {breadcrumbs.length > 0 && <div class="container"><Breadcrumb items={breadcrumbs} /></div>}
       <slot />
     </main>
-    <Footer />
+    <Footer navigation={footerNavigation} />
   </body>
 </html>
 

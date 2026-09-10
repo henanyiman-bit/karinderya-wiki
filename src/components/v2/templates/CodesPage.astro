@@ -1,0 +1,19 @@
+---
+import PageHeader from '../layout/PageHeader.astro';
+import PageShell from '../layout/PageShell.astro';
+import RelatedContent, { type RelatedContentItem } from '../../RelatedContent.astro';
+import ResponsiveImage from '../../ResponsiveImage.astro';
+import TableOfContents from '../../TableOfContents.astro';
+import type { ResponsiveImageAsset } from '../../../data/images';
+interface Props { title:string; intro?:string; kicker?:string; heroImage?:ResponsiveImageAsset; relatedLinks?:RelatedContentItem[]; tableOfContents?:boolean }
+const {title,intro,kicker,heroImage,relatedLinks=[],tableOfContents=false}=Astro.props;
+---
+<PageShell sidebar={tableOfContents} sidebarSticky={tableOfContents} sidebarAriaLabel="Page navigation" class="v2-codes-page">
+  <PageHeader title={title} intro={intro} eyebrow={kicker}>{heroImage && <ResponsiveImage slot="media" image={heroImage} priority sizes="(max-width:760px) calc(100vw - 32px),320px" class="v2-codes-page__image" />}</PageHeader>
+  <article id="codes-content" class="content-panel v2-codes-page__content"><slot /></article>
+  <RelatedContent items={relatedLinks} />
+  {tableOfContents && <TableOfContents slot="sidebar" articleId="codes-content" />}
+</PageShell>
+<style>
+  .v2-codes-page{padding-block:var(--v2-space-3) var(--v2-space-7)}.v2-codes-page__content{min-width:0}.v2-codes-page__content :global(h2),.v2-codes-page__content :global(h3){scroll-margin-top:var(--v2-sidebar-sticky-top)}.v2-codes-page__content :global(code){overflow-wrap:anywhere;font-family:ui-monospace,SFMono-Regular,Consolas,monospace}.v2-codes-page__content :global(.table-scroll){max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}:global(.v2-codes-page__image){overflow:hidden;border:1px solid var(--v2-border-color);border-radius:var(--v2-radius-large);box-shadow:var(--v2-shadow-soft)}:global(.v2-codes-page__image img){aspect-ratio:4/3;object-fit:cover}@media(max-width:680px){.v2-codes-page{padding-block-start:0}}
+</style>

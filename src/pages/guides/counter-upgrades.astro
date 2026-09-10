@@ -1,21 +1,22 @@
 ---
-import ContentPage from '../../components/ContentPage.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GuideArticle from '../../components/v2/templates/GuideArticle.astro';
 import FAQ from '../../components/FAQ.astro';
 import { siteImages } from '../../data/images';
+import { getPageSEO } from '../../utils/seo';
 
 const faqItems = [
-  { question: 'What is a Counter in the Wiki?', answer: 'Counters are organized as part of restaurant customization and layout planning.' },
-  { question: 'How should I choose a Counter option?', answer: 'Review the choices currently shown in the game and consider how each one fits the restaurant layout.' },
+  { question: 'Is Counter Upgrade a confirmed Karinderya feature name?', answer: 'Dated Decorations Part 1 records use the term Counter Upgrade. The current options and exact controls still need to be read from the live game interface.' },
+  { question: 'Does changing a Counter improve restaurant performance?', answer: 'No reliable evidence reviewed for this guide establishes a speed, income, rating, or capacity bonus.' },
   { question: 'Where can I browse related customization pages?', answer: 'Use the Decorations Hub for Tiles, Counters, and other connected topics.' },
 ];
 ---
 
-<ContentPage
-  title="Karinderya Counter Planning Guide"
-  description="Learn how Counters fit into Karinderya restaurant customization, workspace organization, and layout planning."
+<BaseLayout pageId="guides-counter-upgrades" breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Guides', href: '/guides/' }, { label: getPageSEO('guides-counter-upgrades').h1 }]}>
+<GuideArticle
+  title={getPageSEO('guides-counter-upgrades').h1}
   kicker="Decorations guide"
-  intro="Plan Counter changes around the restaurant workspace and current customization options."
-  parent={{ label: 'Guides', href: '/guides/' }}
+  intro="Dated update records mention a Counter Upgrade feature, but current options and effects require confirmation in the game interface."
   tableOfContents
   heroImage={siteImages.decorationsHero}
   relatedLinks={[
@@ -25,24 +26,17 @@ const faqItems = [
     { label: 'Restaurant Layout Guide', href: '/guides/restaurant-layout/', description: 'Coordinate work areas and movement routes.' },
   ]}
 >
-  <h2 id="introduction">Introduction</h2>
-  <p>Counters are part of the restaurant’s customization and workspace planning. This guide explains how to review Counter options through the current interface and consider them alongside the surrounding layout.</p>
+  <h2 id="direct-answer">Direct Answer</h2>
+  <p>Counter Upgrade is named in dated Decorations Part 1 records. Those records do not establish a permanent menu, option list, price, or performance effect, so this guide does not provide fixed upgrade steps.</p>
 
   <h2 id="overview">Overview</h2>
-  <p>A Counter can shape how a restaurant work area looks and reads. Keep Counter decisions connected with Furniture, Equipment, and movement routes so customization does not make important interactions difficult to identify.</p>
+  <p>The Counter topic belongs to restaurant customization and workspace organization. It is separate from the Stove directory and is not treated here as a cooking-equipment progression system.</p>
 
-  <h2 id="how-it-works">How It Works</h2>
-  <p>The current customization interface shows the Counter choices available to the player. Review the name, appearance, and instructions displayed on screen, then consider how the selected option fits with the rest of the restaurant workspace.</p>
+  <h2 id="confirmed-information">What Is Currently Supported</h2>
+  <p>The feature name is supported by dated update reporting. To make a change, locate the Counter-related interaction available in the current version and follow only the prompts shown there.</p>
 
-  <h2 id="planning-process">Planning Process</h2>
-  <ol>
-    <li>Review the current Counter area and surrounding restaurant layout.</li>
-    <li>Open the Counter customization interface.</li>
-    <li>Read the available choices and prompts.</li>
-    <li>Consider visibility and movement around the work area.</li>
-    <li>Confirm the option that fits the current restaurant plan.</li>
-    <li>Review the surrounding layout after the change.</li>
-  </ol>
+  <h2 id="unconfirmed-information">What Is Not Yet Confirmed</h2>
+  <ul><li>The current interaction location and exact menu labels.</li><li>The complete list of Counter options.</li><li>Permanent purchase terms or delivery behavior.</li><li>Any effect on cooking, customer behavior, rating, or income.</li></ul>
 
   <h2 id="gameplay-tips">Gameplay Tips</h2>
   <ul>
@@ -60,5 +54,6 @@ const faqItems = [
     <li>Letting customization hide a frequently used interaction.</li>
   </ul>
 
-  <FAQ items={faqItems} />
-</ContentPage>
+  <FAQ slot="faq" items={faqItems} />
+</GuideArticle>
+</BaseLayout>

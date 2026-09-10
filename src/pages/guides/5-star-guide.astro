@@ -1,7 +1,9 @@
 ---
-import ContentPage from '../../components/ContentPage.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GuideArticle from '../../components/v2/templates/GuideArticle.astro';
 import FAQ from '../../components/FAQ.astro';
 import { siteImages } from '../../data/images';
+import { getPageSEO } from '../../utils/seo';
 
 const faqItems = [
   { question: 'Is there one best route toward five stars?', answer: 'No single plan fits every restaurant. Focus on clear service, organized work areas, and the part of the workflow that currently needs attention.' },
@@ -10,12 +12,11 @@ const faqItems = [
 ];
 ---
 
-<ContentPage
-  title="Karinderya 5-Star Guide"
-  description="Plan a well-organized Karinderya restaurant by improving service workflow, work areas, order handling, and restaurant management."
+<BaseLayout pageId="guides-5-star-guide" breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Guides', href: '/guides/' }, { label: getPageSEO('guides-5-star-guide').h1 }]}>
+<GuideArticle
+  title={getPageSEO('guides-5-star-guide').h1}
   kicker="Restaurant performance guide"
-  intro="Work toward a well-managed restaurant by keeping every part of service connected."
-  parent={{ label: 'Guides', href: '/guides/' }}
+  intro="Use the five-star goal as a progress target without relying on an unverified rating formula."
   tableOfContents
   heroImage={siteImages.beginnerGuideHero}
   relatedLinks={[
@@ -25,14 +26,14 @@ const faqItems = [
     { label: 'Upgrade Priority Guide', href: '/guides/upgrade-priority/', description: 'Choose improvements around current restaurant needs.' },
   ]}
 >
-  <h2 id="introduction">Introduction</h2>
-  <p>The five-star goal is easier to approach when the restaurant operates as one connected system. Keep customer service, ingredients, cooking, serving, layout, and task management organized rather than focusing on a single item or shortcut.</p>
+  <h2 id="direct-answer">Direct Answer</h2>
+  <p>Karinderya presents becoming a five-star owner as a game objective, but the public material reviewed does not provide a complete rating formula or a guaranteed sequence of actions. Use the rating visible in your current game and avoid treating any single upgrade as a guaranteed star increase.</p>
 
   <h2 id="overview">Overview</h2>
-  <p>Restaurant performance depends on how clearly players can follow the service workflow. Observe what happens from the moment a customer needs attention until food is served, then improve the area that repeatedly interrupts that process.</p>
+  <p>The rating display and its current feedback are the best evidence available to a player. The Wiki can connect you with service, layout, equipment, and Worker guides, but it cannot assign exact rating weight to those systems without creator-owned or reproducible evidence.</p>
 
-  <h2 id="how-it-works">How It Works</h2>
-  <p>Each restaurant system supports another. Ingredients connect with Recipes, cooking equipment supports preparation, Furniture defines the dining area, and Workers or co-op players help organize active tasks. Strong management keeps these parts understandable during service.</p>
+  <h2 id="how-it-works">What Is Not Confirmed</h2>
+  <p>No verified percentage, score formula, required purchase list, or fixed upgrade route is available for this guide. Claims that a particular item, layout, or Worker automatically produces five stars should be treated as unconfirmed.</p>
 
   <h2 id="restaurant-planning-process">Restaurant Planning Process</h2>
   <ol>
@@ -68,5 +69,6 @@ const faqItems = [
     <li>Adding more active tasks than the team can follow clearly.</li>
   </ul>
 
-  <FAQ items={faqItems} />
-</ContentPage>
+  <FAQ slot="faq" items={faqItems} />
+</GuideArticle>
+</BaseLayout>

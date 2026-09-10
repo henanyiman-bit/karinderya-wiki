@@ -1,7 +1,9 @@
 ---
 import InfoPage from '../components/InfoPage.astro';
+import PageHeader from '../components/v2/layout/PageHeader.astro';
+import PageShell from '../components/v2/layout/PageShell.astro';
 ---
-<InfoPage title="About" description="Learn about the purpose, editorial approach, and independence of Karinderya Wiki." relatedLinks={[{ label: 'Beginner guide', href: '/guides/beginner-guide/' }, { label: 'Contact', href: '/contact/' }, { label: 'Disclaimer', href: '/disclaimer/' }]}>
+<InfoPage pageId="about" v2 pageShell={PageShell} pageHeader={PageHeader} relatedLinks={[{ label: 'Beginner guide', href: '/guides/beginner-guide/' }, { label: 'Contact', href: '/contact/' }, { label: 'Disclaimer', href: '/disclaimer/' }]}>
   <h2>Our purpose</h2>
   <p>Karinderya Wiki is an English-language, community-focused reference for players of the Karinderya Roblox experience. This first edition provides a clear structure for guides, food, recipes, workers, equipment, codes, and updates.</p>
   <h2>Built for players</h2>

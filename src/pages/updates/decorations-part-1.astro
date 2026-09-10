@@ -1,9 +1,19 @@
 ---
-import ContentPage from '../../components/ContentPage.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import UpdateArticle from '../../components/v2/templates/UpdateArticle.astro';
+import { getPageSEO } from '../../utils/seo';
 ---
-<ContentPage title="Karinderya Decorations Part 1 Update" description="Review Karinderya Decorations Part 1 features, codes, and related customization guides." kicker="Update record" intro="Explore the Decorations Part 1 features, codes, and related guides." parent={{ label: 'Updates', href: '/updates/' }} relatedLinks={[{ label: 'Decorations', href: '/decorations/' }, { label: 'Tiles', href: '/decorations/tiles/' }, { label: 'Counter upgrades', href: '/guides/counter-upgrades/' }, { label: 'Choopy Mystery Box', href: '/guides/choopy-mystery-box/' }, { label: 'Codes', href: '/codes/' }]} sourceIds={['roblox-game', 'wiki-decorations']} tableOfContents>
-  <h2 id="update-features">Update Features</h2>
-  <ul><li>Tiles</li><li>Counter Upgrade</li><li>Table Tops</li><li>Dishwasher</li><li>Choopy Mystery Box and delivery</li></ul>
-  <h2 id="update-codes">Update Codes</h2>
-  <p><code>DECOPART1</code> and <code>50KCCU</code> are associated with this update. See the <a href="/codes/">Codes page</a> for rewards and redemption instructions.</p>
-</ContentPage>
+<BaseLayout pageId="updates-decorations-part-1" breadcrumbs={[{label:'Home',href:'/'},{label:'Updates',href:'/updates/'},{label:getPageSEO('updates-decorations-part-1').h1}]}><UpdateArticle title={getPageSEO('updates-decorations-part-1').h1} kicker="Historical update record" intro="A dated record of the customization features reported around the Decorations Part 1 update." relatedLinks={[{ label: 'Decorations', href: '/decorations/' }, { label: 'Tiles', href: '/decorations/tiles/' }, { label: 'Counter guide', href: '/guides/counter-upgrades/' }, { label: 'Choopy guide', href: '/guides/choopy-mystery-box/' }, { label: 'Codes', href: '/codes/' }]} tableOfContents>
+  <h2 id="verified-summary">Verified Update Summary</h2>
+  <p>Roblox recorded a Karinderya experience update on August 29, 2026. Dated community records from that period identify the release as <strong>Decorations Part 1</strong>. No complete creator-owned patch note was available during this review, so the feature list below preserves the evidence boundary.</p>
+  <h2 id="documented-changes">Documented Changes</h2>
+  <p>Dated records consistently name <strong>Tiles</strong> and a <strong>Counter Upgrade</strong> as customization additions. The dedicated <a href="/decorations/tiles/">Tiles page</a> and <a href="/guides/counter-upgrades/">Counter guide</a> cover those topics without assigning unverified prices or effects.</p>
+  <h2 id="partially-verified">Partially Verified Changes</h2>
+  <p><strong>Table Tops</strong> and a <strong>Dishwasher</strong> are also named in community update records. Their complete catalogs, behavior, availability, and gameplay effects were not established by the material reviewed, so this page does not describe them as fully documented systems.</p>
+  <h2 id="codes-around-update">Codes Mentioned Around This Update</h2>
+  <p><code>DECOPART1</code> is currently listed in the official Roblox description. Historical records also associate <code>50KCCU</code> with this period, but it is not on the current official listing. See the <a href="/codes/">Codes page</a> for the current classification; exact rewards are omitted where reliable evidence is unavailable or conflicting.</p>
+  <h2 id="choopy-context">Choopy Context</h2>
+  <p>Community gameplay records show Choopy activity from the same general period. The reviewed evidence does not establish that Choopy was formally introduced by this exact patch, so it is documented separately in the <a href="/guides/choopy-mystery-box/">Choopy guide</a>.</p>
+  <h2 id="verification-note">Verification Note</h2>
+  <p>This historical page separates Roblox timestamps, current official code listings, and dated community gameplay reports. It does not treat a community feature list as a complete official changelog.</p>
+</UpdateArticle></BaseLayout>

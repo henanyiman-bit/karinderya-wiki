@@ -1,0 +1,115 @@
+---
+import PageHeader from '../layout/PageHeader.astro';
+import PageShell from '../layout/PageShell.astro';
+import EntityNavigation from '../../EntityNavigation.astro';
+import RelatedContent, { type RelatedContentItem } from '../../RelatedContent.astro';
+import ResponsiveImage from '../../ResponsiveImage.astro';
+import TableOfContents from '../../TableOfContents.astro';
+import type { ResponsiveImageAsset } from '../../../data/images';
+
+interface Props {
+  title: string;
+  intro?: string;
+  kicker?: string;
+  heroImage?: ResponsiveImageAsset;
+  relatedLinks?: RelatedContentItem[];
+  relatedHeading?: string;
+  previousPage?: RelatedContentItem;
+  nextPage?: RelatedContentItem;
+  tableOfContents?: boolean;
+}
+
+const {
+  title,
+  intro,
+  kicker,
+  heroImage,
+  relatedLinks = [],
+  relatedHeading = 'Related Content',
+  previousPage,
+  nextPage,
+  tableOfContents = false,
+} = Astro.props;
+
+const hasQuickFacts = Astro.slots.has('quickFacts');
+---
+
+<PageShell
+  sidebar={tableOfContents}
+  sidebarSticky={tableOfContents}
+  sidebarAriaLabel="Page navigation"
+  class="v2-entity-article"
+>
+  <PageHeader title={title} intro={intro} eyebrow={kicker}>
+    {heroImage && (
+      <ResponsiveImage
+        slot="media"
+        image={heroImage}
+        priority
+        sizes="(max-width: 760px) calc(100vw - 32px), 320px"
+        class="v2-entity-article__image"
+      />
+    )}
+  </PageHeader>
+
+  {hasQuickFacts && (
+    <div class="v2-entity-article__facts">
+      <slot name="quickFacts" />
+    </div>
+  )}
+
+  <article id="entity-content" class="content-panel v2-entity-article__content">
+    <slot />
+  </article>
+
+  <EntityNavigation previousPage={previousPage} nextPage={nextPage} />
+  <RelatedContent items={relatedLinks} heading={relatedHeading} />
+
+  {tableOfContents && (
+    <TableOfContents slot="sidebar" articleId="entity-content" />
+  )}
+</PageShell>
+
+<style>
+  .v2-entity-article {
+    padding-block: var(--v2-space-3) var(--v2-space-7);
+  }
+
+  .v2-entity-article__facts,
+  .v2-entity-article__content {
+    min-width: 0;
+  }
+
+  .v2-entity-article__facts {
+    margin-block-end: var(--v2-space-5);
+  }
+
+  .v2-entity-article__content :global(h2),
+  .v2-entity-article__content :global(h3) {
+    scroll-margin-top: var(--v2-sidebar-sticky-top);
+  }
+
+  .v2-entity-article__content :global(.table-scroll) {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  :global(.v2-entity-article__image) {
+    overflow: hidden;
+    border: 1px solid var(--v2-border-color);
+    border-radius: var(--v2-radius-large);
+    box-shadow: var(--v2-shadow-soft);
+  }
+
+  :global(.v2-entity-article__image img) {
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  @media (max-width: 680px) {
+    .v2-entity-article {
+      padding-block-start: 0;
+    }
+  }
+</style>

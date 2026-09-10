@@ -1,0 +1,68 @@
+---
+import MainColumn from "./MainColumn.astro";
+import Sidebar from "./Sidebar.astro";
+import "../styles/tokens.css";
+
+interface Props {
+  sidebar?: boolean;
+  sidebarSticky?: boolean;
+  sidebarAriaLabel?: string;
+  class?: string;
+}
+
+const {
+  sidebar = true,
+  sidebarSticky = false,
+  sidebarAriaLabel = "Page sidebar",
+  class: className,
+} = Astro.props;
+
+const showSidebar = sidebar && Astro.slots.has("sidebar");
+---
+
+<div class:list={["v2-page-shell", className, { "has-sidebar": showSidebar }]}>
+  <MainColumn>
+    <slot />
+  </MainColumn>
+
+  {showSidebar && (
+    <Sidebar sticky={sidebarSticky} ariaLabel={sidebarAriaLabel}>
+      <slot name="sidebar" />
+    </Sidebar>
+  )}
+</div>
+
+<style>
+  .v2-page-shell {
+    width: min(
+      var(--v2-page-max-width),
+      calc(100% - var(--v2-page-padding-desktop) - var(--v2-page-padding-desktop))
+    );
+    margin-inline: auto;
+  }
+
+  .v2-page-shell.has-sidebar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--v2-sidebar-width);
+    gap: var(--v2-layout-gap);
+    align-items: start;
+  }
+
+  .v2-page-shell.has-sidebar > :global(.v2-main-column) {
+    max-width: var(--v2-content-max-width);
+  }
+
+  @media (max-width: 940px) {
+    .v2-page-shell,
+    .v2-page-shell.has-sidebar {
+      width: calc(100% - var(--v2-page-padding-mobile) - var(--v2-page-padding-mobile));
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--v2-space-6);
+    }
+
+    .v2-page-shell.has-sidebar > :global(.v2-main-column) {
+      max-width: none;
+    }
+  }
+</style>

@@ -1,39 +1,37 @@
 ---
-import ContentPage from '../../components/ContentPage.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import DirectoryPage from '../../components/v2/templates/DirectoryPage.astro';
 import { siteImages } from '../../data/images';
+import { getPageSEO } from '../../utils/seo';
+const pageSEO = getPageSEO('furniture-chairs');
 ---
 
-<ContentPage
-  title="Karinderya Chairs"
-  description="Learn how chairs fit into Karinderya furniture, dining-area organization, and restaurant layout planning."
-  kicker="Furniture category"
-  intro="Explore the role of chairs in the dining area and connect this category with Tables and layout guidance."
-  parent={{ label: 'Karinderya Furniture', href: '/furniture/' }}
-  relatedLinks={[
-    { label: 'Furniture Hub', href: '/furniture/', description: 'Browse Furniture categories and restaurant-planning information.' },
-    { label: 'Tables Directory', href: '/furniture/tables/', description: 'Browse the table entries currently available in the Wiki.' },
-    { label: 'Restaurant Layout Guide', href: '/guides/restaurant-layout/', description: 'Plan customer, work, and movement areas across the restaurant.' },
-  ]}
-  heroImage={siteImages.furnitureHero}
-  tableOfContents
->
-  <h2 id="introduction">Introduction</h2>
-  <p>Chairs are part of the Furniture system used in the restaurant dining area. This category explains how chairs relate to Tables, customer space, and the wider layout.</p>
+<BaseLayout pageId="furniture-chairs" breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Karinderya Furniture', href: '/furniture/' }, { label: pageSEO.h1 }]}>
+  <DirectoryPage
+    title={pageSEO.h1}
+    kicker="Furniture category"
+    intro="This directory preserves the Chairs topic while individual chair names and current options await reliable game evidence."
+    relatedLinks={[
+      { label: 'Furniture Hub', href: '/furniture/', description: 'Browse Furniture categories and restaurant-planning information.' },
+      { label: 'Tables Directory', href: '/furniture/tables/', description: 'Browse the table entries currently available in the Wiki.' },
+      { label: 'Restaurant Layout Guide', href: '/guides/restaurant-layout/', description: 'Plan customer, work, and movement areas across the restaurant.' },
+    ]}
+    heroImage={siteImages.furnitureHero}
+    tableOfContents
+  >
+  <h2 id="what-we-know">What We Know About Chairs</h2>
+  <p>Chairs are discussed as part of Karinderya seating and restaurant Furniture. The current Wiki does not yet have reliable game evidence for a complete chair catalog or individual chair details.</p>
 
   <h2 id="overview">Overview</h2>
-  <p>The Chairs page is a category entry rather than a list of individual chair articles. Use it to understand where chairs belong in Furniture navigation and to continue into the Tables directory or Restaurant Layout Guide.</p>
+  <p>This page remains a category entry rather than an item database. It connects the Furniture Hub with the Tables directory and Restaurant Layout Guide without creating unsupported chair entities.</p>
 
-  <h2 id="how-chairs-work">How Chairs Work</h2>
-  <p>Chairs help establish where the customer area begins and how it is arranged around tables. A clear chair arrangement also makes the boundary between dining space, movement paths, and work areas easier to recognize.</p>
+  <h2 id="furniture-and-seating">Furniture and Seating</h2>
+  <p>Use the current game interface to determine which seating options are available in your version. The surrounding Tables and restaurant layout provide the context for placing seating.</p>
 
-  <h2 id="usage">Usage</h2>
-  <p>Plan chairs together with the surrounding tables and the space players use during service. Adjust their placement when the dining area becomes difficult to navigate or understand.</p>
+  <h2 id="verified-entries">Verified Chair Entries</h2>
+  <p>No individual chair entry has enough independent evidence for publication in this directory yet. Names from older search metadata have therefore not been promoted into public entity pages.</p>
 
-  <h2 id="gameplay-tips">Gameplay Tips</h2>
-  <ul>
-    <li>Keep chairs grouped with the dining area they belong to.</li>
-    <li>Leave clear paths between customer seating and restaurant work areas.</li>
-    <li>Review the complete room after moving part of the seating arrangement.</li>
-    <li>Use the Tables directory and Restaurant Layout Guide for connected planning information.</li>
-  </ul>
-</ContentPage>
+  <h2 id="related-furniture">Related Furniture</h2>
+  <p>Browse the <a href="/furniture/tables/">Tables directory</a> for existing table entries, return to the <a href="/furniture/">Furniture Hub</a>, or use the <a href="/guides/restaurant-layout/">Restaurant Layout Guide</a> for space-planning guidance.</p>
+  </DirectoryPage>
+</BaseLayout>

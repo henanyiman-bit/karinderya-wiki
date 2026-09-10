@@ -1,7 +1,9 @@
 ---
-import ContentPage from '../../components/ContentPage.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EntityArticle from '../../components/v2/templates/EntityArticle.astro';
 import { tableEntities, type EntityRecord } from '../../data/entities';
 import { siteImages } from '../../data/images';
+import { getPageSEO } from '../../utils/seo';
 
 export function getStaticPaths() {
   return tableEntities.map((entity) => ({ params: { slug: entity.slug }, props: { entity } }));
@@ -14,36 +16,66 @@ const previousEntity = tableEntities[currentIndex - 1];
 const nextEntity = tableEntities[currentIndex + 1];
 const shortTitle = (title: string) => title.replace('Karinderya ', '');
 const itemName = shortTitle(entity.title);
+const copyBySlug: Record<string, { definition: string; evidence: string; obtaining: string; usage: string }> = {
+  'plank-table': {
+    definition: 'Plank Table is the name retained for this Karinderya Tables entry.',
+    evidence: 'Community pages use this name, but the rebuild did not obtain creator-owned evidence for a permanent price, seating value, effect, or unlock rule.',
+    obtaining: 'Check the current Furniture or Shop interface for the displayed name and acquisition option before relying on this entry.',
+    usage: 'If the item appears in owned inventory, place it through the current furniture interface and judge its fit within the dining area.',
+  },
+  'wood-table': {
+    definition: 'Wood Table is the name retained for this Karinderya Tables entry.',
+    evidence: 'Community material shows the name, while current creator-owned confirmation of its price, dimensions, effect, and unlock condition is unavailable.',
+    obtaining: 'Use the live Furniture or Shop interface to confirm the item and its current acquisition option.',
+    usage: 'Treat it as a dining-area furniture entry only when the same name is visible in your current game.',
+  },
+  'red-wooden-table': {
+    definition: 'Red Wooden Table is the name retained for this Karinderya Tables entry.',
+    evidence: 'Third-party listings use this name, but their price and effect claims are not sufficient evidence for permanent game data.',
+    obtaining: 'Confirm the exact name and current acquisition option in the live Furniture or Shop interface.',
+    usage: 'If the item is available, use the placement controls shown by the current game and keep the surrounding dining route clear.',
+  },
+};
+const copy = copyBySlug[entity.slug];
+const pageId = `furniture-${entity.slug}`;
+const pageSEO = getPageSEO(pageId);
+const parent = { label: 'Furniture', href: '/furniture/' };
+const previousPage = previousEntity ? { label: shortTitle(previousEntity.title), href: `/furniture/${previousEntity.slug}/` } : undefined;
+const nextPage = nextEntity ? { label: shortTitle(nextEntity.title), href: `/furniture/${nextEntity.slug}/` } : undefined;
+const relatedLinks = [
+  { label: 'Furniture Hub', href: '/furniture/', description: 'Browse Furniture categories and restaurant layout information.' },
+  { label: 'Tables Directory', href: '/furniture/tables/', description: 'Browse every table entry currently available in the Wiki.' },
+  { label: 'Restaurant Layout Guide', href: '/guides/restaurant-layout/', description: 'Plan customer, work, and movement areas across the restaurant.' },
+];
 ---
 
-<ContentPage
-  title={entity.title}
-  description={entity.description}
-  kicker="Furniture profile"
-  intro={entity.intro}
-  parent={{ label: 'Furniture', href: '/furniture/' }}
-  heroImage={siteImages.furnitureHero}
-  tableOfContents
-  previousPage={previousEntity ? { label: shortTitle(previousEntity.title), href: `/furniture/${previousEntity.slug}/` } : undefined}
-  nextPage={nextEntity ? { label: shortTitle(nextEntity.title), href: `/furniture/${nextEntity.slug}/` } : undefined}
-  relatedLinks={[
-    { label: 'Furniture Hub', href: '/furniture/', description: 'Browse Furniture categories and restaurant layout information.' },
-    { label: 'Tables Directory', href: '/furniture/tables/', description: 'Browse every table entry currently available in the Wiki.' },
-    { label: 'Restaurant Layout Guide', href: '/guides/restaurant-layout/', description: 'Plan customer, work, and movement areas across the restaurant.' },
-  ]}
+<BaseLayout
+  pageId={pageId}
+  breadcrumbs={[{ label: 'Home', href: '/' }, parent, { label: pageSEO.h1 }]}
 >
-  <h2 id="introduction">Introduction</h2>
-  <p>{entity.overview}</p>
+  <EntityArticle
+    title={pageSEO.h1}
+    kicker="Furniture profile"
+    intro={copy.definition}
+    heroImage={siteImages.furnitureHero}
+    tableOfContents
+    previousPage={previousPage}
+    nextPage={nextPage}
+    relatedLinks={relatedLinks}
+  >
+    <h2 id="introduction">Short Answer</h2>
+    <p>{copy.definition}</p>
 
-  <h2 id="overview">Overview</h2>
-  <ul>{entity.known.map((item) => <li>{item}</li>)}</ul>
+    <h2 id="overview">Overview</h2>
+    <p>{copy.evidence}</p>
 
-  <h2 id="how-it-works">How It Works</h2>
-  <p>{itemName} belongs to the Tables category and is used as part of the restaurant dining area. Its placement contributes to how the customer area is organized and how that space connects with regular movement through the restaurant.</p>
+    <h2 id="how-it-works">How to Get {itemName}</h2>
+    <p>{copy.obtaining}</p>
 
-  <h2 id="usage">Usage</h2>
-  <ul>{entity.howToUse?.map((item) => <li>{item}</li>)}</ul>
+    <h2 id="usage">Usage</h2>
+    <p>{copy.usage}</p>
 
-  <h2 id="gameplay-tips">Gameplay Tips</h2>
-  <ul>{entity.tips?.map((item) => <li>{item}</li>)}</ul>
-</ContentPage>
+    <h2 id="gameplay-tips">Gameplay Tips</h2>
+    <ul><li>Confirm the item name in the current game before planning around it.</li><li>Keep furniture placement connected with a readable dining area.</li><li>Use the Tables directory and Restaurant Layout Guide for broader navigation.</li></ul>
+  </EntityArticle>
+</BaseLayout>

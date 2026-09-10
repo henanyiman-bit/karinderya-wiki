@@ -1,25 +1,32 @@
 import type { APIRoute } from 'astro';
+import { getSitemapPages, pageRegistry } from '../utils/registry';
 
-const routes = [
-  '/', '/codes/', '/food/', '/recipes/', '/workers/', '/equipment/', '/guides/',
-  '/updates/', '/about/', '/contact/', '/privacy-policy/', '/terms/', '/disclaimer/',
-  '/grocery/', '/ingredients/', '/furniture/', '/furniture/tables/', '/furniture/chairs/',
-  '/ingredients/rice/', '/ingredients/condiments/', '/ingredients/eggs/',
-  '/ingredients/vegetables/', '/ingredients/bangus/', '/ingredients/pork/', '/ingredients/beef/',
-  '/furniture/plank-table/', '/furniture/wood-table/', '/furniture/red-wooden-table/',
-  '/decorations/', '/decorations/tiles/', '/equipment/stoves/', '/equipment/deluxe-stove/',
-  '/equipment/basic-stove/', '/equipment/standard-stove/', '/equipment/chiller/',
-  '/guides/beginner-guide/', '/guides/5-star-guide/',
-  '/guides/co-op-guide/', '/guides/cooking-and-serving/', '/guides/how-to-hire-workers/',
-  '/guides/restaurant-layout/', '/guides/upgrade-priority/',
-  '/guides/counter-upgrades/', '/guides/choopy-mystery-box/',
-  '/guides/how-to-sell-furniture/', '/guides/shop-restock/',
-  '/updates/decorations-part-1/',
-];
+const productionOrigin = 'https://karinderya.ymmyi.wiki';
+const sitemapPages = getSitemapPages();
+const sitemapPaths = sitemapPages.map((page) => page.path);
+const duplicatePaths = sitemapPaths.filter((path, index) => sitemapPaths.indexOf(path) !== index);
 
-export const GET: APIRoute = ({ site }) => {
-  const urls = routes
-    .map((route) => `<url><loc>${new URL(route, site).href}</loc></url>`)
+if (pageRegistry.site !== productionOrigin) {
+  throw new Error(`Sitemap must use the production origin "${productionOrigin}".`);
+}
+
+if (duplicatePaths.length > 0) {
+  throw new Error(`Duplicate sitemap paths: ${[...new Set(duplicatePaths)].join(', ')}.`);
+}
+
+for (const page of sitemapPages) {
+  if (!page.indexable || !page.includeInSitemap) {
+    throw new Error(`Invalid sitemap page "${page.id}".`);
+  }
+
+  if (page.path !== '/' && !page.path.endsWith('/')) {
+    throw new Error(`Sitemap path "${page.path}" must use a trailing slash.`);
+  }
+}
+
+export const GET: APIRoute = () => {
+  const urls = sitemapPaths
+    .map((path) => `<url><loc>${new URL(path, productionOrigin).href}</loc></url>`)
     .join('');
   return new Response(
     `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls}</urlset>`,
