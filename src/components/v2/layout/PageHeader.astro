@@ -42,13 +42,14 @@ const hasMedia = Astro.slots.has("media");
 
 <style>
   .v2-page-header {
-    margin-block-end: var(--v2-space-6, 2rem);
+    margin-block-end: var(--v2-space-7, 3rem);
+    padding-block: var(--v2-space-4, 1rem);
   }
 
   .v2-page-header.has-media {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(220px, 0.42fr);
-    gap: var(--v2-space-6, 2rem);
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.48fr);
+    gap: var(--v2-space-7, 3rem);
     align-items: center;
   }
 
@@ -61,8 +62,8 @@ const hasMedia = Astro.slots.has("media");
     margin: 0 0 var(--v2-space-2, 0.5rem);
     color: var(--v2-muted-color, #71655e);
     font-size: var(--v2-font-size-label, 0.8125rem);
-    font-weight: 700;
-    letter-spacing: 0.08em;
+    font-weight: 800;
+    letter-spacing: 0.12em;
     line-height: 1.4;
     text-transform: uppercase;
   }
@@ -72,14 +73,15 @@ const hasMedia = Astro.slots.has("media");
     color: var(--v2-text-color, #2d2622);
     font-size: var(--v2-font-size-h1, clamp(2rem, 4vw, 3rem));
     line-height: var(--v2-line-height-heading, 1.2);
+    letter-spacing: -0.04em;
     overflow-wrap: anywhere;
   }
 
   .v2-page-header__intro {
-    max-width: 68ch;
-    margin: var(--v2-space-4, 1rem) 0 0;
+    max-width: 64ch;
+    margin: var(--v2-space-5, 1.5rem) 0 0;
     color: var(--v2-muted-color, #71655e);
-    font-size: var(--v2-font-size-body, 1rem);
+    font-size: clamp(1.02rem, 1.4vw, 1.15rem);
     line-height: var(--v2-line-height-body, 1.7);
   }
 
@@ -91,6 +93,7 @@ const hasMedia = Astro.slots.has("media");
     max-width: 100%;
     overflow: hidden;
     border-radius: var(--v2-radius-large, 1.125rem);
+    box-shadow: var(--v2-shadow-soft);
   }
 
   .v2-page-header__media :global(img),

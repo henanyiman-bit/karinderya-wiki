@@ -87,13 +87,13 @@ const { articleId } = Astro.props;
 </script>
 
 <style>
-  .toc-shell { position: sticky; top: 88px; align-self: start; min-width: 0; }
-  .toc-desktop { padding: 18px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); box-shadow: 0 8px 24px rgb(72 45 28 / 6%); }
+  .toc-shell { position: sticky; top: var(--v2-sidebar-sticky-top, 104px); align-self: start; min-width: 0; }
+  .toc-desktop { padding: 21px; border: 1px solid var(--border); border-radius: var(--radius); background: color-mix(in srgb, var(--surface) 92%, var(--accent-soft)); box-shadow: 0 10px 28px rgb(72 45 28 / 6%); }
   .toc-title { margin: 0 0 10px; color: var(--ink); font-size: .78rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
   ol { display: grid; gap: 3px; margin: 0; padding: 0; list-style: none; }
   li { min-width: 0; }
   li.toc-level-3 { padding-left: 14px; }
-  a { display: block; padding: 6px 8px; border-radius: 7px; color: var(--muted); font-size: .82rem; line-height: 1.35; overflow-wrap: anywhere; text-decoration: none; }
+  a { display: block; padding: 7px 9px; border-radius: 8px; color: var(--muted); font-size: .87rem; line-height: 1.4; overflow-wrap: anywhere; text-decoration: none; }
   a:hover { color: var(--accent-dark); background: var(--accent-soft); }
   .toc-mobile { display: none; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }
   .toc-mobile summary { min-height: 48px; display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; color: var(--ink); cursor: pointer; font-weight: 800; }

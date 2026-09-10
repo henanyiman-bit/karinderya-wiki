@@ -22,11 +22,11 @@ const { facts, heading = 'Quick Facts' } = Astro.props;
 )}
 
 <style>
-  .quick-facts { margin: 24px 0 30px; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius); background: #fffaf5; }
-  h2 { margin: 0; padding: 15px 18px; color: white; background: linear-gradient(135deg, #5b3426, #7a3a25); font-size: 1rem; }
+  .quick-facts { margin: 28px 0 34px; overflow: hidden; border: 1px solid var(--border); border-radius: 18px; background: #fffaf5; box-shadow: var(--v2-shadow-card, 0 10px 28px rgba(63, 39, 28, .07)); }
+  h2 { margin: 0; padding: 18px 22px; color: white; background: linear-gradient(135deg, #513025, #7a3a25); font-size: 1.08rem; }
   dl { margin: 0; }
-  dl div { display: grid; grid-template-columns: minmax(110px, .42fr) minmax(0, 1fr); gap: 16px; padding: 12px 18px; border-top: 1px solid var(--border); }
-  dt { color: var(--ink); font-size: .82rem; font-weight: 800; }
-  dd { min-width: 0; margin: 0; color: var(--muted); font-size: .84rem; overflow-wrap: anywhere; }
+  dl div { display: grid; grid-template-columns: minmax(120px, .4fr) minmax(0, 1fr); gap: 20px; padding: 15px 22px; border-top: 1px solid var(--border); }
+  dt { color: var(--ink); font-size: .86rem; font-weight: 800; }
+  dd { min-width: 0; margin: 0; color: var(--muted); font-size: .9rem; overflow-wrap: anywhere; }
   @media (max-width: 480px) { dl div { grid-template-columns: 1fr; gap: 4px; } }
 </style>
