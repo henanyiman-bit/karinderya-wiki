@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import AdSlot from '../components/AdSlot.astro';
 import WikiCard from '../components/WikiCard.astro';
 import DirectoryPage from '../components/v2/templates/DirectoryPage.astro';
 import { getPageSEO } from '../utils/seo';
@@ -30,24 +29,20 @@ const categories = [
 const pageSEO = getPageSEO('guides');
 ---
 <BaseLayout pageId="guides" breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Guides' }]}>
-  <DirectoryPage title={pageSEO.h1} kicker="Learn the game" intro="Task-focused walkthroughs for building, managing, upgrading, and customizing your restaurant." contentPanel={false}>
-    <AdSlot placement="top" />
+  <DirectoryPage title={pageSEO.h1} kicker="Learn the game" intro="Task-focused walkthroughs for building, managing, upgrading, and customizing your restaurant." contentPanel={false} adCount={2}>
 
     <section class="featured" aria-labelledby="featured-heading">
-      <div><p class="section-kicker">Recommended first</p><h2 id="featured-heading">Featured Guide</h2><p>Start with an introduction to restaurant service, ingredient planning, equipment, and everyday management.</p><a class="featured-link" href="/guides/beginner-guide/">Read the Beginner Guide <span aria-hidden="true">-&gt;</span></a></div>
+      <div><p class="section-kicker">Recommended first</p><h2 id="featured-heading">Featured Guide</h2><p>Start with an introduction to restaurant service, ingredient planning, equipment, and everyday management.</p><a class="featured-link" href="/guides/beginner-guide/">Read the Beginner Guide <span aria-hidden="true">→</span></a></div>
       <div class="featured-steps" aria-label="Beginner guide topics"><span>Service loop</span><span>Ingredients</span><span>Equipment</span><span>Planning</span></div>
     </section>
 
     <section class="section" aria-labelledby="categories-heading"><div class="section-heading"><div><p class="section-kicker">Browse by goal</p><h2 id="categories-heading">Guide Categories</h2><p>Choose a topic based on what you want to improve next.</p></div></div>
-      <div class="category-grid">{categories.map((category) => <section class="guide-category"><h3>{category.title}</h3><p>{category.description}</p><ul>{category.guideHrefs.map((href) => { const guide = guideByHref.get(href); return guide && <li><a href={guide.href}>{guide.title}<span aria-hidden="true">-&gt;</span></a></li>; })}</ul></section>)}</div>
+      <div class="category-grid">{categories.map((category) => <section class="guide-category"><h3>{category.title}</h3><p>{category.description}</p><ul>{category.guideHrefs.map((href) => { const guide = guideByHref.get(href); return guide && <li><a href={guide.href}>{guide.title}<span aria-hidden="true">→</span></a></li>; })}</ul></section>)}</div>
     </section>
-
-    <AdSlot placement="content-1" />
 
     <section class="section directory" aria-labelledby="directory-heading"><div class="section-heading"><div><p class="section-kicker">All walkthroughs</p><h2 id="directory-heading">Guide Directory</h2><p>Browse every guide currently available in the Wiki.</p></div></div><div class="card-grid">{guides.map((guide) => <WikiCard {...guide} />)}</div></section>
 
     <nav class="related" aria-label="Related wiki sections"><h2>Continue exploring</h2><div><a href="/food/">Food</a><a href="/workers/">Workers</a><a href="/equipment/">Equipment</a><a href="/furniture/">Furniture</a></div></nav>
-    <AdSlot placement="bottom" />
   </DirectoryPage>
 </BaseLayout>
 

@@ -4,14 +4,20 @@ import PageShell from '../layout/PageShell.astro';
 import RelatedContent, { type RelatedContentItem } from '../../RelatedContent.astro';
 import ResponsiveImage from '../../ResponsiveImage.astro';
 import TableOfContents from '../../TableOfContents.astro';
+import AdSlot from '../../AdSlot.astro';
 import type { ResponsiveImageAsset } from '../../../data/images';
-interface Props { title:string; intro?:string; kicker?:string; heroImage?:ResponsiveImageAsset; relatedLinks?:RelatedContentItem[]; tableOfContents?:boolean }
-const {title,intro,kicker,heroImage,relatedLinks=[],tableOfContents=false}=Astro.props;
+import { normalizeAdCount, type AdCount } from '../../../utils/ad-policy';
+interface Props { title:string; intro?:string; kicker?:string; heroImage?:ResponsiveImageAsset; relatedLinks?:RelatedContentItem[]; tableOfContents?:boolean; adCount?:AdCount }
+const {title,intro,kicker,heroImage,relatedLinks=[],tableOfContents=false,adCount}=Astro.props;
+const resolvedAdCount=normalizeAdCount(adCount,2);
 ---
 <PageShell sidebar={tableOfContents} sidebarSticky={tableOfContents} sidebarAriaLabel="Page navigation" class="v2-codes-page">
   <PageHeader title={title} intro={intro} eyebrow={kicker}>{heroImage && <ResponsiveImage slot="media" image={heroImage} priority sizes="(max-width:760px) calc(100vw - 32px),320px" class="v2-codes-page__image" />}</PageHeader>
+  {resolvedAdCount>=1&&<AdSlot placement="after-intro" />}
   <article id="codes-content" class="content-panel v2-codes-page__content"><slot /></article>
+  {resolvedAdCount>=2&&<AdSlot placement="before-related" />}
   <RelatedContent items={relatedLinks} />
+  {resolvedAdCount>=3&&<AdSlot placement="end-content" />}
   {tableOfContents && <TableOfContents slot="sidebar" articleId="codes-content" />}
 </PageShell>
 <style>

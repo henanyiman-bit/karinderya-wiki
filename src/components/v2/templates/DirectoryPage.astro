@@ -4,7 +4,9 @@ import PageShell from '../layout/PageShell.astro';
 import RelatedContent, { type RelatedContentItem } from '../../RelatedContent.astro';
 import ResponsiveImage from '../../ResponsiveImage.astro';
 import TableOfContents from '../../TableOfContents.astro';
+import AdSlot from '../../AdSlot.astro';
 import type { ResponsiveImageAsset } from '../../../data/images';
+import { normalizeAdCount, type AdCount } from '../../../utils/ad-policy';
 
 interface Props {
   title: string;
@@ -15,6 +17,7 @@ interface Props {
   relatedHeading?: string;
   tableOfContents?: boolean;
   contentPanel?: boolean;
+  adCount?: AdCount;
 }
 
 const {
@@ -26,7 +29,9 @@ const {
   relatedHeading = 'Related Content',
   tableOfContents = false,
   contentPanel = true,
+  adCount,
 } = Astro.props;
+const resolvedAdCount = normalizeAdCount(adCount, 0);
 ---
 
 <PageShell
@@ -46,6 +51,8 @@ const {
     )}
   </PageHeader>
 
+  {resolvedAdCount >= 1 && <AdSlot placement="after-intro" />}
+
   <div
     id="directory-content"
     class:list={['v2-directory-page__content', { 'content-panel': contentPanel }]}
@@ -53,7 +60,10 @@ const {
     <slot />
   </div>
 
+  {resolvedAdCount >= 2 && <AdSlot placement="before-related" />}
   <RelatedContent items={relatedLinks} heading={relatedHeading} />
+
+  {resolvedAdCount >= 3 && <AdSlot placement="end-content" />}
 
   {tableOfContents && (
     <TableOfContents slot="sidebar" articleId="directory-content" />

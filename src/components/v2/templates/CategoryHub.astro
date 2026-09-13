@@ -7,6 +7,7 @@ import ResponsiveImage from '../../ResponsiveImage.astro';
 import TableOfContents from '../../TableOfContents.astro';
 import WikiCard from '../../WikiCard.astro';
 import type { ResponsiveImageAsset } from '../../../data/images';
+import { normalizeAdCount, type AdCount } from '../../../utils/ad-policy';
 
 interface CategoryCard {
   title: string;
@@ -29,6 +30,7 @@ interface Props {
   copyHeading?: string;
   note?: string;
   adSlots?: boolean;
+  adCount?: AdCount;
 }
 
 const {
@@ -44,9 +46,11 @@ const {
   copyHeading = 'About this section',
   note,
   adSlots = false,
+  adCount,
 } = Astro.props;
 const hasDirectory = cards.length > 0;
 const resolvedBrowseHeading = browseHeading ?? `Browse ${title}`;
+const resolvedAdCount = normalizeAdCount(adCount, adSlots ? 3 : 2);
 ---
 
 <PageShell
@@ -66,7 +70,7 @@ const resolvedBrowseHeading = browseHeading ?? `Browse ${title}`;
     )}
   </PageHeader>
 
-  {adSlots && <AdSlot placement="top" />}
+  {resolvedAdCount >= 1 && <AdSlot placement="after-intro" />}
 
   {hasDirectory ? (
     <div id="article-content" class="v2-category-hub__content">
@@ -82,7 +86,6 @@ const resolvedBrowseHeading = browseHeading ?? `Browse ${title}`;
           {cards.map((card) => <WikiCard {...card} />)}
         </div>
       </section>
-      {adSlots && <AdSlot placement="content-1" />}
       <section class="content-panel v2-category-hub__copy">
         <h2>{copyHeading}</h2>
         <slot />
@@ -94,8 +97,9 @@ const resolvedBrowseHeading = browseHeading ?? `Browse ${title}`;
     </article>
   )}
 
+  {resolvedAdCount >= 2 && <AdSlot placement="before-related" />}
   <RelatedContent items={relatedLinks} heading={relatedHeading} />
-  {adSlots && <AdSlot placement="bottom" />}
+  {resolvedAdCount >= 3 && <AdSlot placement="end-content" />}
 
   {tableOfContents && (
     <TableOfContents slot="sidebar" articleId="article-content" />

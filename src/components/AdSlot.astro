@@ -2,19 +2,28 @@
 import { adsenseSlots, googleIntegrations, type AdPlacement } from '../config/google';
 
 interface Props {
-  placement: AdPlacement | 'sidebar';
+  placement: AdPlacement | 'sidebar' | 'after-intro' | 'mid-content' | 'before-related' | 'end-content';
   class?: string;
 }
 
 const { placement, class: className = '' } = Astro.props;
-const normalizedPlacement: AdPlacement = placement === 'sidebar' ? 'desktop-sidebar' : placement;
+const placementMap = {
+  sidebar: 'desktop-sidebar',
+  'after-intro': 'top',
+  'mid-content': 'content-1',
+  'before-related': 'content-2',
+  'end-content': 'bottom',
+} satisfies Record<string, AdPlacement>;
+const normalizedPlacement: AdPlacement = placement in placementMap
+  ? placementMap[placement as keyof typeof placementMap]
+  : placement as AdPlacement;
 const slotId = adsenseSlots[normalizedPlacement];
 const isLive = Boolean(googleIntegrations.adsense.enabled && slotId);
 const showDevelopmentPlaceholder = import.meta.env.DEV && !isLive;
 ---
 
 {isLive ? (
-  <aside class:list={['ad-slot', 'is-live', `ad-${normalizedPlacement}`, className]} aria-label="Advertisement" data-ad-placement={normalizedPlacement}>
+  <aside class:list={['ad-slot', 'is-live', `ad-${normalizedPlacement}`, `ad-context-${placement}`, className]} aria-label="Advertisement" data-ad-placement={normalizedPlacement} data-ad-context={placement}>
     <ins
       class="adsbygoogle"
       data-ad-client={googleIntegrations.adsense.clientId}
@@ -24,17 +33,18 @@ const showDevelopmentPlaceholder = import.meta.env.DEV && !isLive;
     ></ins>
   </aside>
 ) : showDevelopmentPlaceholder ? (
-  <aside class:list={['ad-slot', 'is-placeholder', `ad-${normalizedPlacement}`, className]} aria-label="Advertisement placeholder" data-ad-placement={normalizedPlacement}>
+  <aside class:list={['ad-slot', 'is-placeholder', `ad-${normalizedPlacement}`, `ad-context-${placement}`, className]} aria-label="Advertisement placeholder" data-ad-placement={normalizedPlacement} data-ad-context={placement}>
     <span>Advertisement</span>
   </aside>
 ) : null}
 
 <style>
-  .ad-slot { width: 100%; min-width: 0; display: grid; place-items: center; overflow: hidden; }
-  .is-placeholder { min-height: 48px; contain: layout paint; border: 1px dashed #dccfc4; border-radius: 10px; color: #7c6e65; background: #faf7f3; font-size: .67rem; letter-spacing: .11em; text-align: center; text-transform: uppercase; }
-  .is-live { min-height: 90px; }
+  .ad-slot { width: 100%; min-width: 0; max-width: 100%; display: grid; place-items: center; margin-block: clamp(28px, 4vw, 48px); padding-block: 12px; overflow: hidden; border-block: 1px solid color-mix(in srgb, var(--border) 72%, transparent); }
+  .is-placeholder { min-height: 72px; contain: layout paint; color: #85766d; background: transparent; font-size: .65rem; letter-spacing: .13em; text-align: center; text-transform: uppercase; }
+  .is-live { min-height: 110px; }
   .adsbygoogle { width: 100%; min-width: 0; display: block; }
-  .ad-desktop-sidebar.is-placeholder { min-height: 120px; }
+  .ad-desktop-sidebar { margin-block: 28px 0; }
+  .ad-desktop-sidebar.is-placeholder { min-height: 140px; }
   .ad-desktop-sidebar.is-live { min-height: 250px; }
-  @media (max-width: 900px) { .ad-desktop-sidebar { display: none; } }
+  @media (max-width: 900px) { .ad-slot { margin-block: 26px; padding-block: 10px; } .ad-desktop-sidebar { display: none; } }
 </style>
