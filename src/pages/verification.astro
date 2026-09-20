@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TableOfContents from '../components/TableOfContents.astro';
 import RelatedContent from '../components/RelatedContent.astro';
+import AdSlot from '../components/AdSlot.astro';
 
 const title = 'Wiki Information';
 const description = 'Learn what Karinderya Wiki covers and find the main game databases and player guides.';
@@ -19,9 +20,10 @@ const description = 'Learn what Karinderya Wiki covers and find the main game da
       <h1>{title}</h1>
       <p class="lead">A quick introduction to this player-focused Karinderya game wiki.</p>
     </header>
+    <AdSlot placement="after-intro" />
 
     <div class="article-layout">
-      <TableOfContents articleId="article-content" />
+      <div class="toc-column"><TableOfContents articleId="article-content" /><AdSlot placement="sidebar" /></div>
       <article id="article-content" class="content-panel article-content">
         <h2 id="about-this-wiki">About This Wiki</h2>
         <p>Karinderya Wiki is an English-language player resource for the Karinderya Roblox experience. It organizes codes, food, ingredients, workers, equipment, furniture, decorations, updates, and gameplay guides into easy-to-browse pages.</p>
@@ -40,6 +42,7 @@ const description = 'Learn what Karinderya Wiki covers and find the main game da
 
         <h2 id="independent-player-resource">Independent Player Resource</h2>
         <p>Karinderya Wiki is a fan-made player resource and is not affiliated with Roblox Corporation, SILOG, or the Karinderya development team.</p>
+        <AdSlot placement="mid-content" />
       </article>
     </div>
 
@@ -50,6 +53,7 @@ const description = 'Learn what Karinderya Wiki covers and find the main game da
         { label: 'Latest updates', href: '/updates/' },
       ]}
     />
+    <AdSlot placement="end-content" />
   </div>
 </BaseLayout>
 
@@ -57,7 +61,7 @@ const description = 'Learn what Karinderya Wiki covers and find the main game da
   .article-wrap { max-width: 1180px; }
   .article-layout { display: grid; grid-template-columns: minmax(0, 1fr) 240px; grid-template-areas: "article toc"; align-items: start; gap: 24px; }
   .article-content { grid-area: article; }
-  .article-layout > :global(.toc-shell) { grid-area: toc; }
+  .toc-column { grid-area: toc; min-width: 0; }
   .article-content :global(h2) { scroll-margin-top: 90px; }
   @media (max-width: 900px) {
     .article-layout { grid-template-columns: minmax(0, 1fr); grid-template-areas: "toc" "article"; }

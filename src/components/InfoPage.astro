@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getPageSEO } from '../utils/seo';
+import AdSlot from './AdSlot.astro';
 
 interface Props {
   pageId?: string;
@@ -41,13 +42,16 @@ if (v2 && (!V2PageShell || !V2PageHeader)) {
     <V2PageShell sidebar={false}>
       <div class="narrow">
         <V2PageHeader title={resolvedTitle} intro={resolvedDescription} eyebrow={kicker} />
+        <AdSlot placement="after-intro" />
         <article class="content-panel"><slot /></article>
+        <AdSlot placement="before-related" />
         {relatedLinks.length > 0 && (
           <nav class="related" aria-label="Related pages">
             <h2>Related pages</h2>
             <div>{relatedLinks.map((item) => <a href={item.href}>{item.label}</a>)}</div>
           </nav>
         )}
+        <AdSlot placement="end-content" />
       </div>
     </V2PageShell>
   ) : (
@@ -57,13 +61,16 @@ if (v2 && (!V2PageShell || !V2PageHeader)) {
         <h1>{resolvedTitle}</h1>
         <p class="lead">{resolvedDescription}</p>
       </header>
+      <AdSlot placement="after-intro" />
       <article class="content-panel"><slot /></article>
+      <AdSlot placement="before-related" />
       {relatedLinks.length > 0 && (
         <nav class="related" aria-label="Related pages">
           <h2>Related pages</h2>
           <div>{relatedLinks.map((item) => <a href={item.href}>{item.label}</a>)}</div>
         </nav>
       )}
+      <AdSlot placement="end-content" />
     </div>
   )}
 </BaseLayout>
