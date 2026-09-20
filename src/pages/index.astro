@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import AdSlot from '../components/AdSlot.astro';
+import AdSlot from '../components/ads/AdSlot.astro';
 import WikiCard from '../components/WikiCard.astro';
 import ResponsiveImage from '../components/ResponsiveImage.astro';
 import HomePortal from '../components/v2/templates/HomePortal.astro';
@@ -88,19 +88,20 @@ const wikiDirectory = [
     <div><p class="kicker">Independent Roblox game guide</p><h1>Karinderya <em>Wiki</em></h1><p class="lead">Your English-language reference for running the kitchen, learning the systems, and keeping up with Karinderya.</p><div class="hero-actions"><a class="button primary" href="#explore">Explore the wiki</a><a class="button secondary" href="/codes/">Check codes</a></div></div>
     <ResponsiveImage image={siteImages.homeHero} priority sizes="(max-width: 700px) calc(100vw - 32px), 42vw" class="home-hero-image" />
   </div></section>
+  <div class="container"><AdSlot slot="home-top" /></div>
   <section class="section start-section" aria-labelledby="start-heading"><div class="container">
     <div class="section-heading"><div><p class="section-kicker">New to Karinderya?</p><h2 id="start-heading">Start Here</h2><p>Follow a simple path from your first service loop to restaurant upgrades and customization.</p></div><a href="/guides/">View all guides <span aria-hidden="true">→</span></a></div>
     <ol class="journey-list">{startHere.map((item) => <li><a href={item.href}><span>{item.step}</span><div><h3>{item.title}</h3><p>{item.description}</p></div><b aria-hidden="true">→</b></a></li>)}</ol>
   </div></section>
   <section class="section update-section"><div class="container content-layout">
-    <div class="main-column"><div class="section-heading"><div><p class="section-kicker">Update history</p><h2>Recent Documented Update</h2></div><a href="/updates/">All updates <span aria-hidden="true">→</span></a></div><article class="feature-card"><div><span>Update record</span><h3>Decorations Pt. 1</h3><p>Read the dated update summary and follow links to the related Wiki topics.</p></div><a href="/updates/decorations-part-1/">View update summary <span aria-hidden="true">→</span></a></article><AdSlot placement="content-1" /></div>
+    <div class="main-column"><div class="section-heading"><div><p class="section-kicker">Update history</p><h2>Recent Documented Update</h2></div><a href="/updates/">All updates <span aria-hidden="true">→</span></a></div><article class="feature-card"><div><span>Update record</span><h3>Decorations Pt. 1</h3><p>Read the dated update summary and follow links to the related Wiki topics.</p></div><a href="/updates/decorations-part-1/">View update summary <span aria-hidden="true">→</span></a></article><AdSlot slot="home-mid" /></div>
     <aside class="sidebar"><div class="section-heading"><div><p class="section-kicker">Player help</p><h2>Codes Guide</h2></div></div><div class="code-card"><span class="code-icon">%</span><div><strong>Redemption Guide</strong><p>Find code-entry help and troubleshooting tips.</p></div></div><a class="sidebar-link" href="/codes/">Open Codes Guide <span aria-hidden="true">→</span></a></aside>
   </div></section>
   <section class="section explore-section" id="explore"><div class="container"><div class="section-heading"><div><p class="section-kicker">Explore the game</p><h2>Build your restaurant knowledge</h2><p>Browse game topics, systems, and practical player guides.</p></div></div><div class="card-grid topic-grid">{categories.map((card) => <WikiCard {...card} />)}</div></div></section>
-  <div class="container"><AdSlot placement="content-2" /></div>
   <section class="section guides-section"><div class="container"><div class="section-heading"><div><p class="section-kicker">Helpful reads</p><h2>Useful Guides</h2></div><a href="/guides/">Browse guides <span aria-hidden="true">→</span></a></div><div class="card-grid">{guides.map((card) => <WikiCard {...card} />)}</div></div></section>
   <section class="section directory-section" aria-labelledby="directory-heading"><div class="container"><div class="section-heading"><div><p class="section-kicker">Browse the wiki</p><h2 id="directory-heading">Wiki Directory</h2><p>Jump directly to guides, game systems, restaurant content, and updates.</p></div></div><div class="directory-grid">{wikiDirectory.map((group) => <section class="directory-card"><div class="directory-title"><span aria-hidden="true">{group.icon}</span><div><h3>{group.title}</h3><p>{group.description}</p></div></div><ul>{group.links.map((link) => <li><a href={link.href}>{link.label}<span aria-hidden="true">→</span></a></li>)}</ul></section>)}</div></div></section>
   <section class="section latest-section"><div class="container"><div class="section-heading"><div><p class="section-kicker">More to explore</p><h2>Selected Wiki Pages</h2></div></div><div class="latest-list"><a href="/updates/decorations-part-1/"><span>Decorations Part 1</span><small>Update overview</small><b aria-hidden="true">→</b></a><a href="/guides/restaurant-layout/"><span>Restaurant Layout</span><small>Dining and work-area planning</small><b aria-hidden="true">→</b></a><a href="/ingredients/rice/"><span>Rice</span><small>Ingredient profile</small><b aria-hidden="true">→</b></a></div></div></section>
+  <div class="container"><AdSlot slot="home-bottom" /></div>
   </HomePortal>
 </BaseLayout>
 <style>

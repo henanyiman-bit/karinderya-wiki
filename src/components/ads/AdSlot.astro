@@ -1,0 +1,54 @@
+---
+import { ADSTERRA, AD_SLOTS, type AdSlotName } from '../../config/ads';
+
+interface Props { slot: AdSlotName; }
+
+const { slot } = Astro.props;
+const config = AD_SLOTS[slot];
+const bannerCode = (ad: { key: string; width: number; height: number; script: string }) => `
+  <script>
+    atOptions = {
+      'key' : '${ad.key}',
+      'format' : 'iframe',
+      'height' : ${ad.height},
+      'width' : ${ad.width},
+      'params' : {}
+    };
+  </script>
+  <script src="${ad.script}"></script>
+`;
+const nativeCode = `
+  <script async="async" data-cfasync="false" src="${ADSTERRA.native.script}"></script>
+  <div id="${ADSTERRA.native.containerId}"></div>
+`;
+---
+
+{config.enabled && config.type === 'native' && (
+  <aside class="adsterra-ad adsterra-ad--native" aria-label="Advertisement" set:html={nativeCode}></aside>
+)}
+
+{config.enabled && config.type === 'responsive' && (
+  <aside class="adsterra-ad adsterra-ad--responsive" aria-label="Advertisement">
+    <div class="adsterra-desktop" set:html={bannerCode(ADSTERRA.banners.desktop)}></div>
+    <div class="adsterra-mobile" set:html={bannerCode(ADSTERRA.banners.mobile)}></div>
+  </aside>
+)}
+
+{config.enabled && config.type === 'bottom' && (
+  <aside class="adsterra-ad adsterra-ad--bottom" aria-label="Advertisement">
+    <div class="adsterra-desktop" set:html={bannerCode(ADSTERRA.banners.rectangle)}></div>
+    <div class="adsterra-mobile" set:html={bannerCode(ADSTERRA.banners.mobile)}></div>
+  </aside>
+)}
+
+<style>
+  .adsterra-ad { width: 100%; min-width: 0; display: grid; place-items: center; margin-block: clamp(28px, 4vw, 48px); overflow: hidden; contain: layout paint; }
+  .adsterra-ad--responsive { min-height: 90px; }
+  .adsterra-ad--native, .adsterra-ad--bottom { min-height: 250px; }
+  .adsterra-mobile { display: none; }
+  @media (max-width: 760px) {
+    .adsterra-ad--responsive, .adsterra-ad--bottom { min-height: 50px; }
+    .adsterra-desktop { display: none; }
+    .adsterra-mobile { display: block; }
+  }
+</style>
